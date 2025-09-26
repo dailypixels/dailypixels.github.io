@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f9fafc;
+      margin: 0;
+      color: #333;
+    }
+    .contact-container {
+      max-width: 900px;
+      margin: 60px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .contact-info {
+      background: linear-gradient(135deg, #0077cc, #005fa3);
+      color: #fff;
+      padding: 40px;
+    }
+    .contact-info h2 {
+      margin-top: 0;
+      font-size: 28px;
+    }
+    .contact-info p {
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+    .contact-form {
+      padding: 40px;
+    }
+    .contact-form h2 {
+      font-size: 28px;
+      margin-top: 0;
+    }
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      width: 100%;
+      transition: border 0.3s;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border: 1px solid #0077cc;
+      outline: none;
+    }
+    .contact-form button {
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background: #0077cc;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .contact-form button:hover {
+      background: #005fa3;
+    }
+    @media(max-width: 768px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    /* Contact Hero */
+.hero-contact {
+  background: linear-gradient(135deg, #f9fbff, #eef4ff);
+  padding: 80px 20px;
+  text-align: center;
+  border-bottom: 1px solid #eaeaea;
+  animation: fadeInHero 1s ease-in-out;
+}
+
+.hero-contact .hero-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hero-contact h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 15px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.hero-contact p {
+  font-size: 1.1rem;
+  color: #555;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 1s ease forwards;
+  animation-delay: 0.6s;
+}
+
+/* Reuse animations */
+@keyframes fadeInHero {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Contact Container Animations */
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin: 60px auto;
+  max-width: 1100px;
+  padding: 0 20px;
+  opacity: 0;
+  animation: fadeInHero 1s ease forwards;
+  animation-delay: 0.8s; /* appear after hero */
+}
+
+/* Left side (info) */
+.contact-info {
+  flex: 1;
+  min-width: 280px;
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: slideInLeft 1s ease forwards;
+  animation-delay: 1s;
+}
+
+/* Right side (form) */
+.contact-form {
+  flex: 1;
+  min-width: 280px;
+  opacity: 0;
+  transform: translateX(30px);
+  animation: slideInRight 1s ease forwards;
+  animation-delay: 1.2s;
+}
+
+/* Animations */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+  </style>
+</head>
+<body>
+   <!-- ============ Header ============ -->
+<header class="site-header">
+  <div class="container nav-container">
+<a href="../index.html" class="logo">Daily Pixel</a>
+   <nav class="main-nav">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../Urdustories/index.html">Urdu Stories</a></li>
+    <li><a href="../Articles/index.html" >Articles</a></li>
+    <li><a href="../Blogs/index.html">Blogs</a></li>
+    <li><a href="../submission/index.html">Submit</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>  </ul>
+</nav>
+
+<a href="../index.html" class="menu-btn">☰</a>
+  </div>
+</header>
+  
+<!-- Hero -->
+<section class="hero hero-contact">
+  <div class="hero-content">
+    <h1 class="animate-title">Contact Us</h1>
+    <p class="animate-subtitle">
+      We’d love to hear from you — questions, suggestions, or feedback.
+    </p>
+  </div>
+</section>
+
+
+  <div class="contact-container">
+    <!-- Left Info Section -->
+    <div class="contact-info">
+      <h2>Get in Touch</h2>
+      <p>Have questions, suggestions, or just want to say hello?  
+      We’d love to hear from you.</p>
+      <p><strong>Email:</strong> dailypixelsit@gmail.com</p>
+      <p><strong>Phone:</strong> +92 3150014014</p>
+      <p><strong>Address:</strong> 123 Story Lane, Imagination City</p>
+    </div>
+
+    <!-- Right Form Section -->
+    <div class="contact-form">
+      <h2>Send a Message</h2>
+      <form action="https://formspree.io/f/xkgvkele" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+<script src="../js/storyFeatures.js"></script>
+
+<footer class="site-footer">
+  <p>© <span id="year"></span> Daily Pixel. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
