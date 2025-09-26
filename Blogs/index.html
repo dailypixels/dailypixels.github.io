@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blogs | Daily Pixel</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>.post-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+  gap: 20px; /* spacing between cards */
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* fill the column */
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.post-card img {
+  width: 100%;
+  height: 180px; /* match Articles card image height */
+  object-fit: cover;
+}
+
+.post-content {
+  padding: 15px;
+}
+
+.post-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.post-meta {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.post-excerpt {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .post-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row on medium screens */
+  }
+}
+
+@media (max-width: 900px) {
+  .post-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row on tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  .post-grid {
+    grid-template-columns: 1fr; /* 1 card per row on mobile */
+  }
+}
+ body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+     /* Filter Buttons */
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .filter-button {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-size: 0.95rem;
+    }
+
+    .filter-button:hover,
+    .filter-button.active {
+      background-color: #0056b3;
+    }
+
+    /* Blog Grid */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 0 20px 40px;
+      margin: 0 auto;
+      max-width: 1200px;
+    }
+
+    /* Blog Cards */
+    .post-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .post-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .post-media img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .post-content {
+      padding: 15px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .post-title {
+      font-size: 1.2rem;
+      margin: 0 0 5px 0;
+    }
+
+    .post-meta {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .post-excerpt {
+      flex: 1;
+      font-size: 0.95rem;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .post-tags {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .tag {
+      background: #eee;
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #007bff;
+      color: white;
+    }
+
+    a.post-link {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* Search Box Styles */
+.search-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+#search-input {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+#search-input:focus {
+  border-color: #5c9ded;
+  box-shadow: 0 0 8px rgba(92, 157, 237, 0.5);
+}
+
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+<body>
+
+ <!-- ============ Header ============ -->
+<header class="site-header">
+  <div class="container nav-container">
+<a href="../index.html" class="logo">Daily Pixel</a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../Urdustories/index.html">Urdu Stories</a></li>
+        <li><a href="../Articles/index.html">Articles</a></li>
+        <li><a href="../Blogs/index.html"class="active">Blogs</a></li>
+        <li><a href="../submission/index.html" >Submit</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+<a href="../index.html" class="menu-btn">☰</a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content container">
+    <h1>Daily Pixel Blogs</h1>
+    <p>Insights, guides, and stories across Health, Wellness, Travel, Lifestyle, and Culture.</p>
+  </div>
+</section>
+ 
+
+<div class="filter-buttons">
+  <button class="filter-button active" data-filter="all">All</button>
+  <button class="filter-button" data-filter="Health & Wellness">Health & Wellness</button>
+  <button class="filter-button" data-filter="Technology & Innovation">Technology & Innovation</button>
+  <button class="filter-button" data-filter="Travel & Adventure">Travel & Adventure</button>
+  <button class="filter-button" data-filter="Food & Nutrition">Food & Nutrition</button>
+  <button class="filter-button" data-filter="Self-Improvement & Productivity">Self-Improvement & Productivity</button>
+  <button class="filter-button" data-filter="Arts & Entertainment">Arts & Entertainment</button>
+  <button class="filter-button" data-filter="Environment & Sustainability">Environment & Sustainability</button>
+</div>
+
+<div class="search-container">
+  <input type="text" id="search-input" placeholder="Search posts..." />
+</div>
+
+<!-- Blogs Grid -->
+<main class="page-section">
+  <h2 class="section-title">All Blogs</h2>
+  <div class="post-grid">
+
+   <!-- Blog 1 -->
+<a href="blog1.html" class="post-link" data-tags="Health,Lifestyle,Nutrition,Wellness,Exercise">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/1003578474/photo/active-student-drinking-water-while-being-on-a-diet.webp?a=1&b=1&s=612x612&w=0&k=20&c=aEKJcDd5eg1x4bRWv-4wOFCXjXnF2_KOX7hdZpg6S0o=" alt="Healthy lifestyle concept" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">10 Simple Habits for a Healthier Lifestyle</h3>
+      <p class="post-meta">September 13, 2025 • Dr. Sarah Malik</p>
+      <p class="post-excerpt">
+        Discover 10 practical habits to improve your health and wellness, from nutrition and exercise to mindfulness and sleep.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Health</span>
+        <span class="tag">Wellness</span>
+        <span class="tag">Lifestyle</span>
+        <span class="tag">Nutrition</span>
+        <span class="tag">Exercise</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+
+
+  <!-- Blog 2 -->
+<a href="blog2.html" class="post-link" data-tags="Travel,Adventure,Tourism,Destinations">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/2229137172/photo/young-female-tourist-taking-photos-in-urban-setting.webp?a=1&b=1&s=612x612&w=0&k=20&c=tRAkblxvlqEcRIWV9s4gyZA9hjSUtUqYIY5Rt93EdOw=" alt="Scenic travel destination" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Top 7 Travel Destinations to Explore in 2025</h3>
+      <p class="post-meta">September 10, 2025 • VisualVerse</p>
+      <p class="post-excerpt">
+        Discover the top 7 travel destinations for 2025, including hidden gems and adventure hotspots that will make your next journey unforgettable.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Travel</span>
+        <span class="tag">Adventure</span>
+        <span class="tag">Tourism</span>
+        <span class="tag">Destinations</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 3 -->
+<a href="blog3.html" class="post-link" data-tags="Health,Mindfulness,Wellness,Mental Health">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/1384564764/photo/portrait-of-calm-young-woman-meditate-at-meeting-avoiding-pressure-annoying-angry-colleagues.webp?a=1&b=1&s=612x612&w=0&k=20&c=0J1RLNAnaIVvHyvAJRMnonbm1eTycTtX9H1OtnHZpX4=" alt="Meditation and mindfulness concept" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">5 Mindfulness Practices to Reduce Stress</h3>
+      <p class="post-meta">August 28, 2025 • Dr. Ayesha Khan</p>
+      <p class="post-excerpt">
+        Learn 5 simple mindfulness practices to reduce stress, improve focus, and enhance your overall well-being. Perfect for beginners.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Health</span>
+        <span class="tag">Mindfulness</span>
+        <span class="tag">Wellness</span>
+        <span class="tag">Mental Health</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 4 -->
+<a href="blog4.html" class="post-link" data-tags="Travel,Adventure,Exploration,Destinations">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/804229182/photo/man-standing-on-a-rock.webp?a=1&b=1&s=612x612&w=0&k=20&c=uI9tzdFY7A7Yrr_rFkBDVhD1vQoUzSxNSqzVgOHofx0=" alt="Adventure travel destination" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Top 5 Hidden Gems for Adventure Travelers</h3>
+      <p class="post-meta">September 15, 2025 • VisualVerse</p>
+      <p class="post-excerpt">
+        Explore 5 off-the-beaten-path destinations perfect for adventure seekers, with tips for making your journey safe and unforgettable.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Travel</span>
+        <span class="tag">Adventure</span>
+        <span class="tag">Exploration</span>
+        <span class="tag">Destinations</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 5 -->
+<a href="blog5.html" class="post-link" data-tags="Culture,Lifestyle,Storytelling,Heritage">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/1214151735/photo/text-phrase-story-telling-spelt-out-with-wooden-letters-on-the-wooden-background-business.webp?a=1&b=1&s=612x612&w=0&k=20&c=aaMLsG5baWQr3G422bJhJHZs78FN1exEZUZemUrmZC4=" alt="Traditional storytelling session" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">The Art of Storytelling: Preserving Culture Through Words</h3>
+      <p class="post-meta">September 20, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Learn how storytelling preserves culture, shares traditions, and connects generations, keeping heritage alive in a modern world.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Culture</span>
+        <span class="tag">Lifestyle</span>
+        <span class="tag">Storytelling</span>
+        <span class="tag">Heritage</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 6 -->
+<a href="blog6.html" class="post-link" data-tags="Health,Wellness,Mindfulness,Lifestyle">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://images.unsplash.com/photo-1661972700757-25f8bbe0afff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TWluZGZ1bCUyMExpdmluZyUzQSUyMFNpbXBsZSUyMFByYWN0aWNlcyUyMGZvciUyMGElMjBIZWFsdGhpZXIlMjBMaWZlfGVufDB8fDB8fHww" alt="Person meditating outdoors" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Mindful Living: Simple Practices for a Healthier Life</h3>
+      <p class="post-meta">September 21, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Explore simple mindfulness practices to reduce stress, boost well-being, and create a healthier lifestyle every day.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Health</span>
+        <span class="tag">Wellness</span>
+        <span class="tag">Mindfulness</span>
+        <span class="tag">Lifestyle</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 7 -->
+<a href="blog7.html" class="post-link" data-tags="Culture,Lifestyle,Festivals,Tradition">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/1131529564/photo/thai-females-tranditinal-dancing.webp?a=1&b=1&s=612x612&w=0&k=20&c=wrepD42WO32L6IcU_3DeIew4RrVAD7PZW0q1uaevEIQ=" alt="Colorful festival celebration" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Exploring World Festivals: Celebrating Culture and Tradition</h3>
+      <p class="post-meta">September 22, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Discover unique festivals worldwide, their traditions, and cultural significance. Learn how celebrations bring communities together and preserve heritage.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Culture</span>
+        <span class="tag">Lifestyle</span>
+        <span class="tag">Festivals</span>
+        <span class="tag">Tradition</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 8 -->
+<a href="blog8.html" class="post-link" data-tags="Health,Wellness,Nutrition,Lifestyle">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/942881262/photo/diverse-women-with-health-icons.webp?a=1&b=1&s=612x612&w=0&k=20&c=xzjGADnJF8-lqE4CD6o4rIZhjyDbeCLFBeLIirgOYwg=" alt="Healthy balanced lifestyle concept" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Holistic Wellness: Integrating Mind, Body, and Nutrition</h3>
+      <p class="post-meta">September 23, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Discover how to achieve holistic wellness by balancing mental health, physical fitness, and nutrition. Learn practical strategies for a healthier, happier life.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Health</span>
+        <span class="tag">Wellness</span>
+        <span class="tag">Nutrition</span>
+        <span class="tag">Lifestyle</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 9 -->
+<a href="blog9.html" class="post-link" data-tags="Culture,Lifestyle,Arts,Heritage">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/2210043686/photo/close-up-of-artist-painting-lakhon-khol-traditional-mask-in-cambodia.webp?a=1&b=1&s=612x612&w=0&k=20&c=XFv407_vK9xSwpv2xwOVuLikeOwBPbhWlAkBNPVovsE=" alt="Traditional crafts and art display" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Traditional Arts Around the World: Preserving Culture Through Creativity</h3>
+      <p class="post-meta">September 24, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Explore traditional arts globally, their historical significance, and how crafts, music, and dance preserve cultural heritage for future generations.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Culture</span>
+        <span class="tag">Lifestyle</span>
+        <span class="tag">Arts</span>
+        <span class="tag">Heritage</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 10 -->
+<a href="blog10.html" class="post-link" data-tags="Health,Wellness,Immunity,Lifestyle">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/1222353077/photo/immunity-health-diet-food-concept-protection-against-coronavirus.webp?a=1&b=1&s=612x612&w=0&k=20&c=4qIcRvkFBdVXiUH3z6wkJa5jkkXz-hBFdn-BPwVbDUs=" alt="Healthy foods and exercise concept for immunity" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Boosting Immunity Naturally: Health Strategies for Everyday Life</h3>
+      <p class="post-meta">September 25, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Learn practical strategies to naturally strengthen your immune system, including nutrition, exercise, sleep, stress management, and daily healthy habits.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Health</span>
+        <span class="tag">Wellness</span>
+        <span class="tag">Immunity</span>
+        <span class="tag">Lifestyle</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 11 -->
+<a href="blog11.html" class="post-link" data-tags="Culture,Lifestyle,Food,Travel">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/1176066656/photo/homeless-and-needy-people-receive-help-receive-food-from-volunteers-concept-of-food-donation.webp?a=1&b=1&s=612x612&w=0&k=20&c=LtLtHHaMTqkMUebhDLCzLiHBzwdSDjUxVOOZccNz56E=" alt="Vibrant street food market" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Street Food Culture: Tasting the World Through Local Flavors</h3>
+      <p class="post-meta">September 26, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Discover the vibrant world of street food, its cultural significance, and how culinary traditions are preserved and celebrated globally.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Culture</span>
+        <span class="tag">Lifestyle</span>
+        <span class="tag">Food</span>
+        <span class="tag">Travel</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 12 -->
+<a href="blog12.html" class="post-link" data-tags="Health,Wellness,Digital Detox,Lifestyle">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/2172838726/photo/bright-yellow-digital-detox-sticker-on-laptop-beside-a-green-plant-in-a-cozy-workspace.webp?a=1&b=1&s=612x612&w=0&k=20&c=InJJSZ5lx8Rf23ECNJ3JDmlrwkMZd4JVa0XzKAyZP2M=" alt="Person enjoying nature without devices" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Digital Detox: Reclaiming Your Health in a Screen-Filled World</h3>
+      <p class="post-meta">September 27, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Learn practical strategies to reduce screen time, improve mental health, and boost overall well-being through a mindful digital detox.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Health</span>
+        <span class="tag">Wellness</span>
+        <span class="tag">Digital Detox</span>
+        <span class="tag">Lifestyle</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 13 -->
+<a href="blog13.html" class="post-link" data-tags="Culture,Lifestyle,Music,Heritage">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/1301006104/photo/3d-render-of-headphones-surrounded-by-music-concept.webp?a=1&b=1&s=612x612&w=0&k=20&c=rVtqkcJbSjnMcNQufji5zWDBpcdfKEyqt4BtuZeBVAw=" alt="Musical instruments from different cultures" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">The Evolution of Music Across Cultures: A Journey Through Sound</h3>
+      <p class="post-meta">September 28, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Explore how music has evolved around the world, its cultural significance, and ways traditional and modern forms preserve heritage and creativity.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Culture</span>
+        <span class="tag">Lifestyle</span>
+        <span class="tag">Music</span>
+        <span class="tag">Heritage</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 14 -->
+<a href="blog14.html" class="post-link" data-tags="Health,Wellness,Nutrition,Lifestyle">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://images.unsplash.com/photo-1479803244419-b24dfe9cbafa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fE1pbmRmdWwlMjBFYXRpbmclM0ElMjBUcmFuc2Zvcm1pbmclMjBZb3VyJTIwSGVhbHRoJTIwT25lJTIwTWVhbCUyMGF0JTIwYSUyMFRpbWV8ZW58MHx8MHx8fDA%3D" alt="Healthy mindful eating concept" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Mindful Eating: Transforming Your Health One Meal at a Time</h3>
+      <p class="post-meta">September 29, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Learn practical techniques for mindful eating, enhancing digestion, nutrition, and emotional well-being while creating a healthier relationship with food.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Health</span>
+        <span class="tag">Wellness</span>
+        <span class="tag">Nutrition</span>
+        <span class="tag">Lifestyle</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 15 -->
+<a href="blog15.html" class="post-link" data-tags="Culture,Lifestyle,Architecture,Heritage">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/2188046813/photo/mid-adult-woman-walking-on-the-street-in-palermo-in-italy.webp?a=1&b=1&s=612x612&w=0&k=20&c=MJcaVams-bEQTkvr2FEPEsbfDFGf0k_j89djwEcvgH8=" alt="Iconic architecture from different cultures" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Architectural Wonders: How Buildings Reflect Culture and History</h3>
+      <p class="post-meta">September 30, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Discover how architecture reflects culture, history, and societal values. Explore iconic structures, traditional styles, and modern innovations around the world.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Culture</span>
+        <span class="tag">Lifestyle</span>
+        <span class="tag">Architecture</span>
+        <span class="tag">Heritage</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 16 -->
+<a href="blog16.html" class="post-link" data-tags="Health,Wellness,Nutrition,Lifestyle">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/1483471915/photo/fruits-and-vegetables-containing-vitamins-and-minerals-natural-immune-boosting.webp?a=1&b=1&s=612x612&w=0&k=20&c=oJhnv3tmr7g3RQLfvXKV2tvLiWG6Z68pb5UVQ0pJEPg=" alt="Healthy foods and lifestyle for immunity" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Boosting Immunity Naturally: Habits and Foods for a Stronger Body</h3>
+      <p class="post-meta">October 1, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Discover natural ways to strengthen your immune system through diet, lifestyle, and wellness habits, promoting long-term health and resilience.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Health</span>
+        <span class="tag">Wellness</span>
+        <span class="tag">Nutrition</span>
+        <span class="tag">Lifestyle</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 17 -->
+<a href="blog17.html" class="post-link" data-tags="Culture,Lifestyle,Festivals,Heritage">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/2196295702/photo/young-asian-couple-walking-and-enjoying-eating-at-a-street-food-night-market-in-bangkok.webp?a=1&b=1&s=612x612&w=0&k=20&c=o5WH0PCKnnUg9NOXkOMZe5cnRCgy70cXZUKrLL9UNcE=" alt="Colorful festival celebration" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Festivals Around the World: Celebrating Culture and Tradition</h3>
+      <p class="post-meta">October 2, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Explore vibrant festivals worldwide, their cultural significance, and how traditions are preserved through celebrations that connect communities.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Culture</span>
+        <span class="tag">Lifestyle</span>
+        <span class="tag">Festivals</span>
+        <span class="tag">Heritage</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 18 -->
+<a href="blog18.html" class="post-link" data-tags="Health,Wellness,Sleep,Lifestyle">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/926312278/photo/beautiful-young-woman-is-sleeping-sweetly-in-a-white-bed-in-her-room.webp?a=1&b=1&s=612x612&w=0&k=20&c=5pxAX_--yaOdhdj4nIHHYt1bcbQxdhX3N88KIWW2dcU=" alt="Peaceful sleep and wellness concept" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">The Power of Sleep: How Quality Rest Transforms Your Health</h3>
+      <p class="post-meta">October 3, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Learn why quality sleep is essential for physical, mental, and emotional well-being, and discover practical strategies to improve your sleep hygiene.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Health</span>
+        <span class="tag">Wellness</span>
+        <span class="tag">Sleep</span>
+        <span class="tag">Lifestyle</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 19 -->
+<a href="blog19.html" class="post-link" data-tags="Culture,Lifestyle,Artisan,Heritage">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/2225393722/photo/mural-of-fishermen-by-water-in-babylon-iraq-highlights-cultural-heritage-and-art.webp?a=1&b=1&s=612x612&w=0&k=20&c=yC52LWy2alcbD_YqWxKI7fNXjxWxna2Go3ZIjwWYyHY=" alt="Artisan crafting traditional goods" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">The Art of Traditional Crafts: Preserving Culture Through Handmade Skills</h3>
+      <p class="post-meta">October 4, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Explore traditional crafts from around the world, their cultural significance, and how preserving handmade skills maintains heritage and creativity for the future.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Culture</span>
+        <span class="tag">Lifestyle</span>
+        <span class="tag">Artisan</span>
+        <span class="tag">Heritage</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 20 -->
+<a href="blog20.html" class="post-link" data-tags="Technology,Innovation,AI,Digital Trends">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/2233277590/photo/digital-marketing-with-ai-and-data-analytics-targeting-customers-through-dashboards.webp?a=1&b=1&s=612x612&w=0&k=20&c=z6U0tH9Xs3JMwHN-YOmQsoVcNAmawsWRtZF1EDuOU5g=" alt="Artificial Intelligence technology concept" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">The Rise of AI: Transforming Technology and Everyday Life</h3>
+      <p class="post-meta">October 5, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Explore how Artificial Intelligence is shaping technology, industries, and our daily lives, along with emerging trends and ethical considerations.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Technology</span>
+        <span class="tag">Innovation</span>
+        <span class="tag">AI</span>
+        <span class="tag">Digital Trends</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+
+<!-- Blog 21 -->
+<a href="blog21.html" class="post-link" data-tags="Travel,Adventure,Destinations,Culture">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/1401378498/photo/young-woman-traveler-make-photos-for-social-media-of-amazing-exotic-waterfalls-and-tropical.webp?a=1&b=1&s=612x612&w=0&k=20&c=bUrCMHqdZ4A5-bmk7ErbRVSeRSYMlUvAauggqsHIe6k=" alt="Scenic hidden travel destination" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Exploring Hidden Gems: Offbeat Travel Destinations You Must Visit</h3>
+      <p class="post-meta">October 6, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Discover offbeat travel destinations worldwide, learn what makes them unique, and get practical tips for exploring lesser-known places responsibly.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Travel</span>
+        <span class="tag">Adventure</span>
+        <span class="tag">Destinations</span>
+        <span class="tag">Culture</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 22 -->
+<a href="blog22.html" class="post-link" data-tags="Food,Nutrition,Health,Lifestyle">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/670535520/photo/sping-greens-and-goji-berries-pattern-top-view.webp?a=1&b=1&s=612x612&w=0&k=20&c=8PNmRPD5Er6LSifgrwE9EbSBpfDFvVxfipHznolNsQw=" alt="Assorted superfoods on table" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Superfoods for Everyday Health: Boost Your Nutrition Naturally</h3>
+      <p class="post-meta">October 7, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Discover nutrient-rich superfoods, their health benefits, and practical tips for incorporating them into your daily diet to enhance wellness and vitality.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Food</span>
+        <span class="tag">Nutrition</span>
+        <span class="tag">Health</span>
+        <span class="tag">Lifestyle</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 23 -->
+<a href="blog23.html" class="post-link" data-tags="Self-Improvement,Productivity,Habits,Time Management">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://images.unsplash.com/photo-1676282827717-842a6257b39d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TWFzdGVyaW5nJTIwUHJvZHVjdGl2aXR5JTNBJTIwU3RyYXRlZ2llcyUyMHRvJTIwTWF4aW1pemUlMjBZb3VyJTIwVGltZSUyMGFuZCUyMEZvY3VzfGVufDB8fDB8fHww" alt="Workspace with productivity tools and planner" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Mastering Productivity: Strategies to Maximize Your Time and Focus</h3>
+      <p class="post-meta">October 8, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Learn effective productivity strategies, time management techniques, and actionable self-improvement tips to achieve your goals and enhance daily performance.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Self-Improvement</span>
+        <span class="tag">Productivity</span>
+        <span class="tag">Habits</span>
+        <span class="tag">Time Management</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 24 -->
+<a href="blog24.html" class="post-link" data-tags="Arts,Entertainment,Cinema,Culture">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/1509194207/photo/movie-time-3d-render-illustration-cinema-poster-concept-on-color-background-composition-with.webp?a=1&b=1&s=612x612&w=0&k=20&c=os_tEdovG_07Uu8nkEigsBwdH2dNsE8SeJGaCgdCNxI=" alt="Film reel and cinema concept" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">The Evolution of Modern Cinema: From Classic Films to Streaming</h3>
+      <p class="post-meta">October 9, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Explore the evolution of cinema, from classic films to streaming platforms, and learn how technology and storytelling have shaped filmmaking throughout history.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Arts</span>
+        <span class="tag">Entertainment</span>
+        <span class="tag">Cinema</span>
+        <span class="tag">Culture</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 25 -->
+<a href="blog25.html" class="post-link" data-tags="Environment,Sustainability,Eco-Friendly,Climate">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/2185944241/photo/people-gardening-on-globe-held-by-hands-symbolizing-environmental-protection-and-planet-care.webp?a=1&b=1&s=612x612&w=0&k=20&c=-v2Mdx0ZAsaa3zSLyNAxpUamN2fJyRwLNW6xB9Om-0Q=" alt="Eco-friendly sustainable lifestyle concept" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Practical Steps Toward a Sustainable Lifestyle: Protecting Our Planet</h3>
+      <p class="post-meta">October 10, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Learn practical ways to live sustainably, reduce your environmental impact, and adopt eco-friendly habits that protect the planet for future generations.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Environment</span>
+        <span class="tag">Sustainability</span>
+        <span class="tag">Eco-Friendly</span>
+        <span class="tag">Climate</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 26 -->
+<a href="blog26.html" class="post-link" data-tags="Culture,Lifestyle,Mindfulness,Minimalism">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://plus.unsplash.com/premium_photo-1661694530132-773a74053850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fEVtYnJhY2luZyUyME1pbmltYWxpc20lM0ElMjBIb3clMjBTaW1wbGlmeWluZyUyMExpZmUlMjBFbmhhbmNlcyUyMEN1bHR1cmUlMjAlMjYlMjBMaWZlc3R5bGV8ZW58MHx8MHx8fDA%3D" alt="Minimalist lifestyle concept with clean home and simple living" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Embracing Minimalism: How Simplifying Life Enhances Culture & Lifestyle</h3>
+      <p class="post-meta">October 11, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Explore the benefits of minimalism, learn how simplifying possessions and habits enhances well-being, and discover tips for cultivating a mindful lifestyle.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Culture</span>
+        <span class="tag">Lifestyle</span>
+        <span class="tag">Mindfulness</span>
+        <span class="tag">Minimalism</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 27 -->
+<a href="blog27.html" class="post-link" data-tags="Health,Wellness,Sleep,Self-Care">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/2185505992/photo/woman-is-sleeping-in-the-bedroom.webp?a=1&b=1&s=612x612&w=0&k=20&c=01rebcy_AE8OqHW5onVV7LRzejCmaY7KRbLn7Ihw1Zg=" alt="Person sleeping peacefully under soft light" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">The Science of Sleep: Unlocking Better Rest and Wellness</h3>
+      <p class="post-meta">October 12, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Discover the importance of sleep for physical and mental health, learn how sleep affects your body and mind, and get tips to improve sleep quality for overall wellness.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Health</span>
+        <span class="tag">Wellness</span>
+        <span class="tag">Sleep</span>
+        <span class="tag">Self-Care</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 28 -->
+<a href="blog28.html" class="post-link" data-tags="Technology,Innovation,AI,Digital Trends">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/2160067036/photo/robots-artificial-intelligent-being-introduced-to-business-people-people-working-and.webp?a=1&b=1&s=612x612&w=0&k=20&c=MXriNlDCkCVJ4OzVPXUt8d13tkpFrdFH_3E88HIsqW8=" alt="Artificial intelligence concept with digital interface" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">AI in Everyday Life: How Artificial Intelligence is Shaping the Future</h3>
+      <p class="post-meta">October 13, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Explore how AI is transforming daily life through smart devices, healthcare, business, and entertainment, and learn about its benefits, challenges, and future potential.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Technology</span>
+        <span class="tag">Innovation</span>
+        <span class="tag">AI</span>
+        <span class="tag">Digital Trends</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 29 -->
+<a href="blog29.html" class="post-link" data-tags="Travel,Adventure,Destinations,Culture">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/2231423967/photo/stunning-view-of-cozy-village-along-colorful-houses-and-coastal-cliffs-in-faroe-islands.webp?a=1&b=1&s=612x612&w=0&k=20&c=2sz5uEdq9HLSxgBdZwhwWDIn1E6gPSuQnwLgbu-NA34=" alt="Scenic hidden travel destination with mountains and lake" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Exploring Hidden Gems: Unique Travel Destinations Around the World</h3>
+      <p class="post-meta">October 14, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Discover lesser-known travel destinations, immerse yourself in local cultures, and find tips for exploring off-the-beaten-path locations safely and enjoyably.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Travel</span>
+        <span class="tag">Adventure</span>
+        <span class="tag">Destinations</span>
+        <span class="tag">Culture</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 30 -->
+<a href="blog30.html" class="post-link" data-tags="Food,Nutrition,Wellness,Healthy Eating">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/2205111680/photo/asian-kid-dislike-eating-vegetable.webp?a=1&b=1&s=612x612&w=0&k=20&c=gN569uSUGQBK9Y1L9nqwiq-7R4h9mR7LAZooq3YhK_Y=" alt="Variety of superfoods on a table" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Superfoods for a Healthy Life: Nutrition, Benefits, and Tips</h3>
+      <p class="post-meta">October 15, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Learn about nutrient-rich superfoods, their health benefits, and practical ways to include them in your diet for energy, immunity, and overall wellness.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Food</span>
+        <span class="tag">Nutrition</span>
+        <span class="tag">Wellness</span>
+        <span class="tag">Healthy Eating</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+
+<!-- Blog 31 -->
+<a href="blog31.html" class="post-link" data-tags="Self-Improvement,Productivity,Time Management,Personal Growth">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://images.unsplash.com/photo-1744723070697-743b46dbaa81?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fE1hc3RlcmluZyUyMFRpbWUlMjBNYW5hZ2VtZW50JTNBJTIwQm9vc3QlMjBQcm9kdWN0aXZpdHklMjBhbmQlMjBBY2hpZXZlJTIwWW91ciUyMEdvYWxzfGVufDB8fDB8fHww" alt="Person organizing tasks and managing time efficiently" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Mastering Time Management: Boost Productivity and Achieve Your Goals</h3>
+      <p class="post-meta">October 16, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Learn practical strategies and habits to manage your time effectively, boost productivity, and achieve personal and professional goals.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Self-Improvement</span>
+        <span class="tag">Productivity</span>
+        <span class="tag">Time Management</span>
+        <span class="tag">Personal Growth</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 32 -->
+<a href="blog32.html" class="post-link" data-tags="Arts,Entertainment,Cinema,Film History">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://images.unsplash.com/photo-1627133805103-ce2d34ccdd37?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fFRoZSUyMEV2b2x1dGlvbiUyMG9mJTIwQ2luZW1hJTNBJTIwRnJvbSUyMFNpbGVudCUyMEZpbG1zJTIwdG8lMjBNb2Rlcm4lMjBCbG9ja2J1c3RlcnN8ZW58MHx8MHx8fDA%3D" alt="Vintage film reel and modern movie scene" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">The Evolution of Cinema: From Silent Films to Modern Blockbusters</h3>
+      <p class="post-meta">October 17, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Explore the history of cinema, its evolution from silent films to today’s blockbusters, and the cultural impact of movies across generations.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Arts</span>
+        <span class="tag">Entertainment</span>
+        <span class="tag">Cinema</span>
+        <span class="tag">Film History</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 33 -->
+<a href="blog33.html" class="post-link" data-tags="Environment,Sustainability,Eco-Friendly,Climate Awareness">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/2183597764/photo/recycling-is-green-concept-and-symbol-of-our-commitment-to-conserving-nature-and-earth-as-it.webp?a=1&b=1&s=612x612&w=0&k=20&c=wsnI8GPEE5oAgqG6zMPkEUifqiGyrpEKkCfGBbF7EJs=" alt="Eco-friendly home with solar panels and greenery" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Climate Action at Home: Simple Steps Towards a Sustainable Future</h3>
+      <p class="post-meta">October 18, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Learn practical ways to reduce your carbon footprint, live sustainably, and contribute to environmental conservation through everyday actions at home.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Environment</span>
+        <span class="tag">Sustainability</span>
+        <span class="tag">Eco-Friendly</span>
+        <span class="tag">Climate Awareness</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 34 -->
+<a href="blog34.html" class="post-link" data-tags="Health,Wellness,Mental Health,Self-Care">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/2204616643/photo/group-therapy-session-with-young-adults-sharing-and-discussing-problems.webp?a=1&b=1&s=612x612&w=0&k=20&c=whF2kovUgqZSZ9gINws2bXSfnxUTaxljOV_nw5wBvgs=" alt="Person practicing mindfulness and meditation for mental wellness" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Mental Wellness: Strategies to Manage Stress and Boost Emotional Health</h3>
+      <p class="post-meta">October 19, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Discover effective strategies for mental wellness, stress management, and emotional health. Learn practical tips to improve your mindset and overall well-being.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Health</span>
+        <span class="tag">Wellness</span>
+        <span class="tag">Mental Health</span>
+        <span class="tag">Self-Care</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 35 -->
+<a href="blog35.html" class="post-link" data-tags="Technology,Innovation,AI,Digital Trends">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://plus.unsplash.com/premium_photo-1664299932474-bf48fd8f69fd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8VGhlJTIwUmlzZSUyMG9mJTIwQXJ0aWZpY2lhbCUyMEludGVsbGlnZW5jZSUzQSUyMFRyYW5zZm9ybWluZyUyMEluZHVzdHJpZXMlMjBhbmQlMjBEYWlseSUyMExpZmV8ZW58MHx8MHx8fDA%3D" alt="Artificial intelligence concept with robotics and data visualization" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">The Rise of Artificial Intelligence: Transforming Industries and Daily Life</h3>
+      <p class="post-meta">October 20, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Explore how artificial intelligence is transforming industries, daily life, and the future of work. Learn about AI applications, benefits, challenges, and ethical considerations.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Technology</span>
+        <span class="tag">Innovation</span>
+        <span class="tag">AI</span>
+        <span class="tag">Digital Trends</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 36 -->
+<a href="blog36.html" class="post-link" data-tags="Travel,Adventure,Iceland,Nature">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/657707960/photo/a-process-of-camping-in-winter-forest-setting-a-tent-covered-in-snow-making-a-bonfire-campfire.webp?a=1&b=1&s=612x612&w=0&k=20&c=UYo8zyRPsQw1HxlI_YPAiKmimEcFv7AVnk49-l41juA=" alt="Iceland landscape with glacier and waterfall" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Exploring Iceland: A Journey Through Land of Fire and Ice</h3>
+      <p class="post-meta">October 21, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Discover the wonders of Iceland, from glaciers and volcanoes to waterfalls and geothermal springs. Learn travel tips, attractions, and cultural experiences for an unforgettable adventure.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Travel</span>
+        <span class="tag">Adventure</span>
+        <span class="tag">Iceland</span>
+        <span class="tag">Nature</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 37 -->
+<a href="blog37.html" class="post-link" data-tags="Food,Nutrition,Healthy Eating,Plant-Based">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/1511614054/photo/vitamin-vegetable-salad-on-plate.webp?a=1&b=1&s=612x612&w=0&k=20&c=o5cUkKgp1im2o37hzdpEwiNWulr-qYSx4ya8XUOWNZo=" alt="Colorful plant-based meal with vegetables and grains" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Plant-Based Diets: Health Benefits and Delicious Recipes</h3>
+      <p class="post-meta">October 22, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Explore the benefits of plant-based diets, including improved health, sustainability, and nutrition. Learn practical tips and delicious recipes to get started.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Food</span>
+        <span class="tag">Nutrition</span>
+        <span class="tag">Healthy Eating</span>
+        <span class="tag">Plant-Based</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 38 -->
+<a href="blog38.html" class="post-link" data-tags="Self-Improvement,Productivity,Time Management,Personal Growth">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://images.unsplash.com/photo-1698502574196-6df6636782c0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fE1hc3RlcmluZyUyMFByb2R1Y3Rpdml0eSUzQSUyMFRpbWUlMjBNYW5hZ2VtZW50JTIwYW5kJTIwRWZmZWN0aXZlJTIwSGFiaXRzfGVufDB8fDB8fHww" alt="Person planning daily tasks for productivity" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Mastering Productivity: Time Management and Effective Habits</h3>
+      <p class="post-meta">October 23, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Learn strategies for improving productivity through time management, goal-setting, and effective daily habits. Boost focus, efficiency, and personal growth.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Self-Improvement</span>
+        <span class="tag">Productivity</span>
+        <span class="tag">Time Management</span>
+        <span class="tag">Personal Growth</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 39 -->
+<a href="blog39.html" class="post-link" data-tags="Arts,Entertainment,Cinema,Movies">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://images.unsplash.com/photo-1589535189132-7221b70db02a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fFRoZSUyMEV2b2x1dGlvbiUyMG9mJTIwQ2luZW1hJTNBJTIwRnJvbSUyMFNpbGVudCUyMEZpbG1zJTIwdG8lMjBNb2Rlcm4lMjBCbG9ja2J1c3RlcnN8ZW58MHx8MHx8fDA%3D" alt="Vintage film reel and modern movie cinema" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">The Evolution of Cinema: From Silent Films to Modern Blockbusters</h3>
+      <p class="post-meta">October 24, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Explore the history and evolution of cinema, from silent films to contemporary blockbusters. Learn about key milestones, influential filmmakers, and the impact of movies on culture and society.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Arts</span>
+        <span class="tag">Entertainment</span>
+        <span class="tag">Cinema</span>
+        <span class="tag">Movies</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 40 -->
+<a href="blog40.html" class="post-link" data-tags="Environment,Sustainability,Eco-Friendly,Climate Awareness">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/1379129858/photo/abstract-background-earth-day-and-globe-ball-with-a-tree-in-a-human-hand-saving-environment.webp?a=1&b=1&s=612x612&w=0&k=20&c=74dNKmE5NSHpjPYQtEoZHNGk7RDoMkF90TXVI1LZxyM=" alt="Eco-friendly living with renewable energy and nature" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Living Sustainably: Practical Ways to Protect Our Planet</h3>
+      <p class="post-meta">October 25, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Learn practical strategies for sustainable living, reducing your carbon footprint, and protecting the environment. Explore tips for eco-friendly habits, renewable energy, and responsible consumption.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Environment</span>
+        <span class="tag">Sustainability</span>
+        <span class="tag">Eco-Friendly</span>
+        <span class="tag">Climate Awareness</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 41 -->
+<a href="blog41.html" class="post-link" data-tags="Health,Wellness,Mindfulness,Mental Health">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/1804471463/photo/portrait-of-young-woman-relaxing-at-home-and-listening-music.webp?a=1&b=1&s=612x612&w=0&k=20&c=C-b20UTaMGmscsuqSA2JT4_G5fOlAuqZ3HvhpJ9lpkQ=" alt="Person meditating in a peaceful environment" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Mindful Living: Techniques for Reducing Stress and Enhancing Well-Being</h3>
+      <p class="post-meta">October 26, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Discover mindfulness techniques to reduce stress, improve mental health, and enhance overall well-being. Learn practical exercises, meditation practices, and lifestyle tips.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Health</span>
+        <span class="tag">Wellness</span>
+        <span class="tag">Mindfulness</span>
+        <span class="tag">Mental Health</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 42 -->
+<a href="blog42.html" class="post-link" data-tags="Technology,Innovation,AI,Digital Trends">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/2195600781/photo/businessman-point-at-automation-as-a-pivotal-force-reshaping-industries-and-enhancing.webp?a=1&b=1&s=612x612&w=0&k=20&c=aCntQqgB4Q7Pf9fhv6kN7zhPzqqc1W4vuoEByocIwGg=" alt="Artificial intelligence conceptual graphic with futuristic technology" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">The Rise of Artificial Intelligence: Transforming Industries and Daily Life</h3>
+      <p class="post-meta">October 27, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Explore how artificial intelligence (AI) is transforming industries, enhancing daily life, and shaping the future. Learn about AI applications, opportunities, challenges, and ethical considerations.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Technology</span>
+        <span class="tag">Innovation</span>
+        <span class="tag">AI</span>
+        <span class="tag">Digital Trends</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 43 -->
+<a href="blog43.html" class="post-link" data-tags="Travel,Adventure,Nature,Tourism">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://images.unsplash.com/photo-1504985724362-dab7273d3caf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fEV4cGxvcmluZyUyMHRoZSUyMFdvbmRlcnMlMjBvZiUyMEljZWxhbmQlM0ElMjBBJTIwVHJhdmVsZXIlRTIlODAlOTlzJTIwR3VpZGV8ZW58MHx8MHx8fDA%3D" alt="Iceland landscape with glaciers and waterfalls" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Exploring the Wonders of Iceland: A Traveler’s Guide</h3>
+      <p class="post-meta">October 28, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Discover the natural wonders of Iceland, from glaciers and volcanoes to waterfalls and hot springs. Explore travel tips, must-see destinations, and adventure experiences for an unforgettable journey.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Travel</span>
+        <span class="tag">Adventure</span>
+        <span class="tag">Nature</span>
+        <span class="tag">Tourism</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 44 -->
+<a href="blog44.html" class="post-link" data-tags="Food,Nutrition,Healthy Eating,Wellness">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/2221084610/photo/a-male-nutritionist-works-at-his-desk-discussing-the-benefits-of-eating-fruit-he-analyzes.webp?a=1&b=1&s=612x612&w=0&k=20&c=q_WlNxD1eMzsf7CmCWEaPuepjVQ7JTj59uH1vc5qETA=" alt="Assorted superfoods on a wooden table" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Superfoods for a Healthy Life: Boost Nutrition and Well-Being</h3>
+      <p class="post-meta">October 29, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Discover nutrient-rich superfoods that promote health, boost immunity, and enhance overall well-being. Learn how to incorporate them into your diet and enjoy delicious, healthy meals.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Food</span>
+        <span class="tag">Nutrition</span>
+        <span class="tag">Healthy Eating</span>
+        <span class="tag">Wellness</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 45 -->
+<a href="blog45.html" class="post-link" data-tags="Self-Improvement,Productivity,Time Management,Personal Growth">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/2156224057/photo/green-piece-of-paper-with-the-word-productivity.webp?a=1&b=1&s=612x612&w=0&k=20&c=RKMAVzwghuk9V5yw36ZFoIr0eVw_-2iM0GhurPYybWw=" alt="Person planning tasks and goals for productivity" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Boosting Productivity: Effective Habits for Personal and Professional Growth</h3>
+      <p class="post-meta">October 30, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Learn practical strategies and habits to increase productivity, manage time effectively, and achieve personal and professional goals. Discover actionable tips to enhance focus and performance.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Self-Improvement</span>
+        <span class="tag">Productivity</span>
+        <span class="tag">Time Management</span>
+        <span class="tag">Personal Growth</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 46 -->
+<a href="blog46.html" class="post-link" data-tags="Arts,Entertainment,Movies,Cinema">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/2185208761/photo/3d-render-of-film-industry-elements-camera-tickets-popcorn-cinema-chair-background-for.webp?a=1&b=1&s=612x612&w=0&k=20&c=lW-cppM7lj8VHCpaGOwfi_I4skMbpALEe0CwFCAPEDI=" alt="Classic and modern cinema montage" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">The Evolution of Cinema: How Movies Shape Culture and Society</h3>
+      <p class="post-meta">October 31, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Explore the history and evolution of cinema, its cultural impact, and how films influence society. Learn about cinematic trends, genres, and the role of storytelling in shaping perspectives.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Arts</span>
+        <span class="tag">Entertainment</span>
+        <span class="tag">Movies</span>
+        <span class="tag">Cinema</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 47 -->
+<a href="blog47.html" class="post-link" data-tags="Environment,Sustainability,Eco-Friendly,Green Living">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/2183460518/photo/vertical-photo-collage-of-happy-businesswoman-walk-promotion-light-bulb-idea-tactics-progress.webp?a=1&b=1&s=612x612&w=0&k=20&c=hXg1TOnsBd4mNZ10vHjPNPAUQ8bGM_7gxU5dvo4OGek=" alt="Eco-friendly lifestyle with renewable energy and sustainable habits" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Eco-Friendly Living: Practical Steps for a Sustainable Lifestyle</h3>
+      <p class="post-meta">November 1, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Learn practical ways to live sustainably and reduce your environmental footprint. Explore eco-friendly habits, renewable energy, waste reduction, and green lifestyle tips.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Environment</span>
+        <span class="tag">Sustainability</span>
+        <span class="tag">Eco-Friendly</span>
+        <span class="tag">Green Living</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 48 -->
+<a href="blog48.html" class="post-link" data-tags="Technology,Innovation,AI,Digital Trends">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://images.unsplash.com/photo-1737644467636-6b0053476bb2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8VGhlJTIwUmlzZSUyMG9mJTIwQXJ0aWZpY2lhbCUyMEludGVsbGlnZW5jZSUzQSUyMFRyYW5zZm9ybWluZyUyMHRoZSUyME1vZGVybiUyMFdvcmxkfGVufDB8fDB8fHww" alt="Artificial intelligence and robotics concept" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">The Rise of Artificial Intelligence: Transforming the Modern World</h3>
+      <p class="post-meta">November 2, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Explore the impact of artificial intelligence (AI) on industries, daily life, and future innovation. Learn about AI technologies, benefits, challenges, and how AI is shaping the modern world.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Technology</span>
+        <span class="tag">Innovation</span>
+        <span class="tag">AI</span>
+        <span class="tag">Digital Trends</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 49 -->
+<a href="blog49.html" class="post-link" data-tags="Travel,Adventure,Hidden Gems,Destinations">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/1347447781/photo/woman-walking-among-high-rocks-and-taking-pictures-on-mobile.webp?a=1&b=1&s=612x612&w=0&k=20&c=2wbrvn9GB244PcfR0b0jbCRKPox-q7k0IGhJe6vOprU=" alt="Scenic hidden travel destination with mountains and lakes" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Exploring Hidden Gems: Off-the-Beaten-Path Travel Destinations</h3>
+      <p class="post-meta">November 3, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Discover unique and less-traveled destinations around the world. Learn tips for off-the-beaten-path adventures, cultural experiences, and memorable travel moments.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Travel</span>
+        <span class="tag">Adventure</span>
+        <span class="tag">Hidden Gems</span>
+        <span class="tag">Destinations</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+<!-- Blog 50 -->
+<a href="blog50.html" class="post-link" data-tags="Food,Nutrition,Healthy Eating,Wellness">
+  <article class="post-card">
+    <div class="post-media">
+      <img src="https://media.istockphoto.com/id/1128380390/photo/various-superfoods.webp?a=1&b=1&s=612x612&w=0&k=20&c=TCZ9P8lr5q3LIrrftEsASh6wvblR6UDPGJDQ4mos6pw=" alt="Variety of superfoods including fruits, nuts, and vegetables" loading="lazy">
+    </div>
+    <div class="post-content">
+      <h3 class="post-title">Superfoods for a Healthy Life: Nutrition, Benefits, and Practical Tips</h3>
+      <p class="post-meta">November 4, 2025 • Amina Siddiqui</p>
+      <p class="post-excerpt">
+        Discover the power of superfoods and their benefits for a healthy lifestyle. Learn about nutrition, how to include superfoods in your diet, and tips for optimal well-being.
+      </p>
+      <div class="post-tags">
+        <span class="tag">Food</span>
+        <span class="tag">Nutrition</span>
+        <span class="tag">Healthy Eating</span>
+        <span class="tag">Wellness</span>
+      </div>
+    </div>
+  </article>
+</a>
+
+    <!-- Continue adding blog6.html → blog50.html here in same style -->
+
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <p>© 2025 Daily Pixel. All rights reserved.</p>
+</footer>
+ <script>
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const blogCards = document.querySelectorAll('.post-link');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const filter = button.getAttribute('data-filter');
+
+        blogCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          // Match exactly, handling & and spaces
+          if (filter === 'all' || category === filter) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const filterButtons = document.querySelectorAll('.filter-button');
+  const posts = document.querySelectorAll('.post-link');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove 'active' class from all buttons and add to the clicked one
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      const filter = button.getAttribute('data-filter');
+
+      posts.forEach(post => {
+        const tags = post.getAttribute('data-tags'); // Get tags as string
+        if (filter === 'all') {
+          post.style.display = 'block';
+        } else {
+          // Check if any tag matches the filter
+          const tagList = tags.split(',').map(tag => tag.trim());
+          if (tagList.some(tag => {
+            // Match the filter loosely (like "Health & Wellness" matches "Health" or "Wellness")
+            const filterKeywords = filter.split('&').map(f => f.trim());
+            return filterKeywords.some(fk => tag.toLowerCase().includes(fk.toLowerCase()));
+          })) {
+            post.style.display = 'block';
+          } else {
+            post.style.display = 'none';
+          }
+        }
+      });
+    });
+  });
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Get all filter buttons and post cards
+  const filterButtons = document.querySelectorAll('.filter-button');
+  const posts = document.querySelectorAll('.post-card');
+  const searchInput = document.getElementById('search-input');
+
+  let currentFilter = 'all';
+
+  // Function to filter posts
+  function filterPosts() {
+    const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+
+    posts.forEach(function(post) {
+      const postTags = post.getAttribute('data-tags').toLowerCase();
+      const postTitle = post.querySelector('.post-title').textContent.toLowerCase();
+      const postExcerpt = post.querySelector('.post-excerpt').textContent.toLowerCase();
+
+      const matchesFilter = currentFilter === 'all' || postTags.includes(currentFilter.toLowerCase());
+      const matchesSearch = !searchTerm || postTitle.includes(searchTerm) || postExcerpt.includes(searchTerm) || postTags.includes(searchTerm);
+
+      if (matchesFilter && matchesSearch) {
+        post.parentElement.style.display = 'block';
+      } else {
+        post.parentElement.style.display = 'none';
+      }
+    });
+  }
+
+  // Filter button click
+  filterButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      currentFilter = button.getAttribute('data-filter');
+      filterPosts();
+    });
+  });
+
+  // Live search input
+  if (searchInput) {
+    searchInput.addEventListener('input', filterPosts);
+  }
+});
+</script>
+<script>
+  const searchInput = document.getElementById('search-input');
+  const posts = document.querySelectorAll('.post-card');
+
+  searchInput.addEventListener('input', function () {
+    const query = this.value.toLowerCase();
+
+    posts.forEach(post => {
+      // Combine title, excerpt, and tags into one searchable string
+      const title = post.querySelector('.post-title').textContent.toLowerCase();
+      const excerpt = post.querySelector('.post-excerpt').textContent.toLowerCase();
+      const tags = Array.from(post.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase()).join(' ');
+
+      const combinedText = title + ' ' + excerpt + ' ' + tags;
+
+      // Show post if any word matches query
+      if (combinedText.includes(query)) {
+        post.parentElement.style.display = 'block';
+      } else {
+        post.parentElement.style.display = 'none';
+      }
+    });
+  });
+</script>
+
+<script src="../js/storyFeatures.js"></script>
+</body>
+</html>

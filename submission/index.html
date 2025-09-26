@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Your Story | Daily Pixel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>/* Form Animation */
+.submit-form {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.submit-form.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- ============ Header ============ -->
+<header class="site-header">
+  <div class="container nav-container">
+<a href="../index.html" class="logo">Daily Pixel</a>
+   <nav class="main-nav">
+  <ul>
+    <li><a href="../index.html" >Home</a></li>
+    <li><a href="../Urdustories/index.html">Urdu Stories</a></li>
+    <li><a href="../Articles/index.html" >Articles</a></li>
+    <li><a href="../Blogs/index.html">Blogs</a></li>
+    <li><a href="index.html" class="active">Submit</a></li> <!-- FIXED -->
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../contact.html">Contact</a></li>  
+</ul>
+</nav>
+
+<a href="../index.html" class="menu-btn">☰</a>
+  </div>
+</header>
+
+  <!-- Hero -->
+<section class="hero hero-submit">
+  <div class="hero-content">
+    <h1 class="animate-title">Submit Your Story</h1>
+    <p class="animate-subtitle">
+      Share your creativity with the world — write, express, and inspire.
+    </p>
+  </div>
+</section>
+
+
+  <!-- ============ Submission Form ============ -->
+  <main class="submit-section">
+    <form action="https://formspree.io/f/xkgvkele" method="POST" class="submit-form">
+
+      <label for="title">Story Title</label>
+      <input type="text" id="title" name="title" placeholder="Enter your story title" required>
+
+      <label for="description">Short Description</label>
+      <textarea id="description" name="description" rows="4" placeholder="Write a short summary of your story..." required></textarea>
+
+      <label for="category">Select Category</label>
+      <select id="category" name="category" required>
+        <option value="">Choose a category</option>
+        <option value="blog">Blog</option>
+        <option value="article">Article</option>
+        <option value="story">Story</option>
+        <option value="poetry">Poetry</option>
+        <option value="art">Art</option>
+      </select>
+
+      <label for="email">Your Email (optional)</label>
+      <input type="email" id="email" name="email" placeholder="your@email.com">
+
+      <button type="submit" class="submit-btn">Submit Story</button>
+    </form>
+  </main>
+
+  <!-- ============ Footer ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Daily Pixel. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // auto year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector(".submit-form");
+    setTimeout(() => {
+      form.classList.add("show");
+    }, 600); // delay so it animates after hero
+  });
+</script>
+
+</body>
+</html>
