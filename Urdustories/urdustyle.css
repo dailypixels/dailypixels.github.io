@@ -1087,3 +1087,18 @@ body {
 .btn:hover{transform:translateY(-2px); box-shadow:var(--shadow)}
 .btn-primary{background:var(--primary); color:#fff; border-color:transparent}
 .btn-primary:hover{background:var(--primary-600)}
+/* Urdu Footer Styling - Centered */
+.urdu-footer {
+  background: #ffffff;
+  text-align: center;               /* force center */
+  padding: 20px 10px;
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
+  font-size: 16px;
+  color: #444;
+  border-top: 1px solid #eaeaea;
+}
+
+.urdu-footer p {
+  margin: 0;
+  text-align: center;               /* double ensure center */
+}
