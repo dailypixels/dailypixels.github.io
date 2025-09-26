@@ -1,0 +1,1089 @@
+/* =========================
+   Urdu Stories Styles
+   ========================= */
+
+/* Premium Urdu Nastaliq Font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap');
+
+body {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  background: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  direction: rtl;
+  text-align: right;
+}
+
+/* Urdu Story Cards */
+.post-card-urdu {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-in-out;
+}
+
+.post-card-urdu:hover {
+  transform: translateY(-4px);
+}
+
+.post-card-urdu img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+.post-content-urdu {
+  padding: 16px;
+}
+
+.post-title-urdu {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #222;
+  line-height: 1.8;
+}
+
+.post-meta-urdu {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.post-excerpt-urdu {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.9;
+  max-height: 4.5em; /* Keeps cards neat */
+  overflow: hidden;
+}
+/* Urdu Cards */
+.post-card-urdu {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-width: 320px;
+  margin: auto;
+}
+
+.post-card-urdu:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Image */
+.post-card-urdu .post-media img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+/* Content */
+.post-content-urdu {
+  padding: 16px;
+  font-family: 'Noto Nastaliq Urdu', serif;
+  direction: rtl;
+  text-align: right;
+  line-height: 1.7;
+}
+
+.post-title-urdu {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #222;
+}
+
+.post-meta-urdu {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.post-excerpt-urdu {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* Grid Layout (Cards Side by Side) */
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  margin-top: 30px;
+}
+/* Urdu Story Page Styling */
+body {
+  background: #f8f9fc;
+  font-family: 'Noto Nastaliq Urdu', serif;
+  color: #222;
+  margin: 0;
+  padding: 0;
+}
+
+/* Back link */
+.back-link-urdu {
+  display: block;
+  text-align: center;
+  margin: 20px auto;
+  font-size: 1rem;
+  color: #444;
+  text-decoration: none;
+  font-weight: bold;
+}
+.back-link-urdu:hover {
+  text-decoration: underline;
+}
+
+/* Story Container */
+.urdu-story-page {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  line-height: 2;
+}
+
+/* Title & Meta */
+.urdu-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+  text-align: center;
+}
+.urdu-meta {
+  font-size: 0.95rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Tags */
+.urdu-tags {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.urdu-tag {
+  display: inline-block;
+  background: #eee;
+  padding: 4px 10px;
+  border-radius: 12px;
+  margin: 0 4px;
+  font-size: 0.85rem;
+}
+
+/* Featured Image */
+.urdu-featured-image {
+  display: block;
+  margin: 0 auto 5px auto;
+  border-radius: 12px;
+  max-width: 70%; /* Reduced Image Size */
+  height: auto;
+}
+
+/* Content */
+.urdu-story-content {
+  font-size: 1.2rem;
+  color: #333;
+  padding: 0 10px;
+}
+
+/* End Note */
+.end-note {
+  text-align: center;
+  margin-top: 30px;
+  font-weight: bold;
+  color: #777;
+}
+
+/* Navigation Buttons */
+.story-navigation-urdu {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+.nav-button {
+  padding: 10px 18px;
+  background: #f1f1f1;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  color: #333;
+  transition: background 0.2s ease;
+}
+.nav-button:hover {
+  background: #ddd;
+}
+/* Urdu Story Page Styling */
+body {
+  background: #f8f9fc;
+  font-family: 'Noto Nastaliq Urdu', serif;
+  color: #222;
+  margin: 0;
+  padding: 0;
+}
+
+/* Back link */
+.back-link-urdu {
+  display: block;
+  text-align: center;
+  margin: 20px auto;
+  font-size: 1rem;
+  color: #444;
+  text-decoration: none;
+  font-weight: bold;
+}
+.back-link-urdu:hover {
+  text-decoration: underline;
+}
+
+/* Story Container */
+.urdu-story-page {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  line-height: 2;
+}
+
+/* Title & Meta */
+.urdu-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+  text-align: center;
+}
+.urdu-meta {
+  font-size: 0.95rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Tags */
+.urdu-tags {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.urdu-tag {
+  display: inline-block;
+  background: #eee;
+  padding: 4px 10px;
+  border-radius: 12px;
+  margin: 0 4px;
+  font-size: 0.85rem;
+}
+
+/* Featured Image */
+.urdu-featured-image {
+  display: block;
+  margin: 0 auto 20px auto;
+  border-radius: 12px;
+  max-width: 70%; /* Reduced Image Size */
+  height: auto;
+}
+
+/* Content */
+.urdu-story-content {
+  font-size: 1.2rem;
+  color: #333;
+  padding: 0 10px;
+}
+
+/* End Note */
+.end-note {
+  text-align: center;
+  margin-top: 30px;
+  font-weight: bold;
+  color: #777;
+}
+
+/* Navigation Buttons */
+.story-navigation-urdu {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+.nav-button {
+  padding: 10px 18px;
+  background: #f1f1f1;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  color: #333;
+  transition: background 0.2s ease;
+}
+.nav-button:hover {
+  background: #ddd;
+}
+/* Urdu Story Global Styles */
+body {
+  background: #f9f9f9;
+  font-family: "Noto Nastaliq Urdu", serif;
+  direction: rtl;
+  text-align: right;
+  margin: 0;
+  padding: 0;
+  line-height: 2.2;
+  color: #222;
+}
+
+/* Story Container */
+.urdu-story-page {
+  max-width: 750px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 18px;
+  padding: 40px 30px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+/* Decorative Vertical Lines (Notebook Feel) */
+.urdu-story-page::before,
+.urdu-story-page::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  width: 2px;
+  background: #ddd;
+}
+.urdu-story-page::before { left: 20px; }
+.urdu-story-page::after { right: 20px; }
+
+/* Title */
+.urdu-title {
+  font-size: 2.1rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Meta */
+.urdu-meta {
+  font-size: 0.95rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Tags */
+.urdu-tags {
+  text-align: center;
+  margin-bottom: 25px;
+}
+.urdu-tag {
+  display: inline-block;
+  background: #f3f3f3;
+  padding: 5px 12px;
+  border-radius: 12px;
+  margin: 0 5px;
+  font-size: 0.85rem;
+}
+
+/* Image */
+.urdu-featured-image {
+  display: block;
+  margin: 0 auto 25px auto;
+  border-radius: 14px;
+  max-width: 65%;
+  height: auto;
+  box-shadow: 0 3px 18px rgba(0, 0, 0, 0.1);
+  border: 4px solid #f8f8f8;
+}
+
+/* Content */
+.urdu-story-content {
+  font-size: 1.25rem;
+  padding: 0 15px;
+  text-align: justify;
+  color: #333;
+}
+
+/* End Note */
+.end-note {
+  text-align: center;
+  margin-top: 40px;
+  font-weight: bold;
+  color: #777;
+  font-size: 1rem;
+}
+
+/* Navigation Buttons */
+.story-navigation-urdu {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 45px;
+}
+.nav-button {
+  padding: 12px 20px;
+  background: #f3f3f3;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  color: #333;
+  transition: background 0.2s ease;
+}
+.nav-button:hover { background: #ddd; }
+
+/* Back Link */
+.back-link {
+  display: block;
+  text-align: center;
+  margin: 20px auto;
+  font-size: 1rem;
+  text-decoration: none;
+  color: #444;
+}
+.back-link:hover { color: #000; }
+/* ===============================
+   Urdu Stories Style - urdustyle.css
+   =============================== */
+
+/* Import Premium Urdu Font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap');
+
+/* urdustyle.css – Responsive Premium Urdu Stories Style */
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Nastaliq Urdu", serif;
+  background: #fafafa;
+  color: #222;
+  line-height: 1.8;
+  direction: rtl;
+  text-align: right;
+  padding: 20px;
+}
+
+/* Main Container */
+.story-container {
+  max-width: 900px;
+  margin: auto;
+  background: #fff;
+  padding: 40px 25px;
+  border-radius: 20px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.06);
+}
+
+/* Back to Urdu Stories Link */
+.back-link {
+  display: block;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 18px;
+  text-decoration: none;
+  color: #444;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+  transition: color 0.3s ease;
+}
+.back-link:hover {
+  color: #ff5722;
+}
+
+/* Story Title */
+.story-title {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+/* Story Meta (Date & Author) */
+.story-meta {
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+/* Tags */
+.story-tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+.story-tags span {
+  background: #f5f5f5;
+  border-radius: 20px;
+  padding: 5px 15px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+}
+
+/* Featured Image */
+.urdu-featured-image {
+  display: block;
+  margin: 0 auto 30px auto;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 16 / 9; /* Cinematic */
+  object-fit: cover;
+  box-shadow: 0 3px 18px rgba(0, 0, 0, 0.1);
+  border: 4px solid #f8f8f8;
+}
+
+/* Story Content */
+.story-content {
+  font-size: 20px;
+  line-height: 2.2;
+  color: #333;
+  text-align: justify;
+  margin-bottom: 35px;
+}
+
+/* Navigation Buttons */
+.story-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.story-nav a {
+  background: #f0f0f0;
+  color: #333;
+  padding: 10px 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border: 1px solid #ddd;
+}
+.story-nav a:hover {
+  background: #ff5722;
+  color: #fff;
+  border-color: #ff5722;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .story-container {
+    padding: 30px 20px;
+  }
+  .story-title {
+    font-size: 26px;
+  }
+  .urdu-featured-image {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+  .story-container {
+    padding: 25px 15px;
+  }
+  .story-title {
+    font-size: 24px;
+  }
+  .story-content {
+    font-size: 18px;
+  }
+  .story-tags span {
+    font-size: 13px;
+    padding: 4px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .story-container {
+    padding: 20px 10px;
+  }
+  .story-title {
+    font-size: 22px;
+  }
+  .story-content {
+    font-size: 17px;
+  }
+  .story-nav a {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+}
+/* Urdu Stories Index Page Cards Styling */
+
+/* Story Grid Layout */
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+  padding: 0 10px;
+}
+
+/* Story Card */
+.story-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.story-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Story Card Image */
+.story-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Premium cinematic cards */
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+/* Story Card Text */
+.story-info {
+  padding: 15px;
+}
+.story-info h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #222;
+  text-align: right;
+}
+.story-info p.meta {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 12px;
+  text-align: right;
+}
+.story-info p.excerpt {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* Read More Link */
+.read-more {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #ff5722;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.read-more:hover {
+  color: #e64a19;
+}
+
+/* Responsive Cards */
+@media (max-width: 768px) {
+  .story-info h3 {
+    font-size: 18px;
+  }
+  .story-info p.excerpt {
+    font-size: 15px;
+  }
+}
+/* urdustyle.css */
+
+/* Base setup */
+body {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  direction: rtl;
+  text-align: right;
+  background: #fafafa;
+  color: #222;
+  margin: 0;
+  padding: 0;
+  line-height: 2;
+  font-size: 1.2rem;
+}
+
+/* Back link */
+.back-link {
+  display: block;
+  width: fit-content;
+  margin: 20px auto;
+  font-size: 1rem;
+  color: #555;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+.back-link:hover {
+  background: #f0f0f0;
+}
+
+/* Story container */
+.story-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* Story header */
+.story-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.story-title {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+.story-meta {
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+.story-tags span {
+  display: inline-block;
+  background: #eee;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  margin: 0 4px;
+}
+
+/* Featured image */
+.urdu-featured-image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+/* Story content */
+.story-content p {
+  margin: 20px 0;
+  font-size: 1.2rem;
+  line-height: 2.2;
+}
+.end-note {
+  text-align: center;
+  font-style: italic;
+  margin-top: 30px;
+  color: #444;
+}
+
+/* Navigation buttons */
+.story-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.nav-button {
+  background: #f5f5f5;
+  color: #333;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+}
+.nav-button:hover {
+  background: #eaeaea;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .story-container {
+    padding: 15px;
+  }
+  .story-title {
+    font-size: 1.6rem;
+  }
+  .story-content p {
+    font-size: 1rem;
+    line-height: 2;
+  }
+}
+/* urdustyle.css */
+
+/* General Page */
+body {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  direction: rtl;
+  text-align: right;
+  background: #fafafa;
+  color: #222;
+  margin: 0;
+  padding: 0;
+  line-height: 2;
+  font-size: 1.1rem;
+}
+
+/* Back Button */
+.back-link {
+  display: block;
+  width: fit-content;
+  margin: 20px auto;
+  font-size: 1rem;
+  color: #555;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+.back-link:hover {
+  background: #f0f0f0;
+}
+
+/* Story Container */
+.story-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* Header */
+.story-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.story-title {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+.story-meta {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+.story-tags span {
+  display: inline-block;
+  background: #eee;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  margin: 0 4px;
+}
+
+/* Featured Image */
+.urdu-featured-image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+/* Story Text */
+.story-content p {
+  margin: 20px 0;
+  font-size: 1.1rem;
+  line-height: 2;
+}
+.end-note {
+  text-align: center;
+  font-style: italic;
+  margin-top: 30px;
+  color: #444;
+}
+
+/* Navigation */
+.story-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.nav-button {
+  background: #f5f5f5;
+  color: #333;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+}
+.nav-button:hover {
+  background: #eaeaea;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .story-container {
+    padding: 15px;
+  }
+  .story-title {
+    font-size: 1.5rem;
+  }
+  .story-content p {
+    font-size: 1rem;
+    line-height: 2;
+  }
+}
+/* Top Navigation/Header */
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.site-header .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #1a4e8a;
+  text-decoration: none;
+}
+
+.main-nav a {
+  margin: 0 12px;
+  text-decoration: none;
+  font-size: 1rem;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+  color: #1a4e8a;
+}
+
+.main-nav .active {
+  font-weight: bold;
+  color: #1a4e8a;
+}
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+  .site-header .container {
+    flex-direction: column;
+    height: auto;
+    padding: 10px 0;
+  }
+  .main-nav {
+    margin-top: 8px;
+  }
+  .main-nav a {
+    display: inline-block;
+    margin: 5px 8px;
+  }
+}
+
+/* Header */
+.site-header {
+  background: #222;
+  color: #fff;
+  padding: 10px 0;
+}
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+.nav-links li a {
+  color: #fff;
+  text-decoration: none;
+}
+.nav-links li a.active {
+  border-bottom: 2px solid #ff9800;
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: var(--hero-img) center/cover no-repeat;
+  z-index: -1;
+}
+.hero-content {
+  z-index: 2;
+}
+/* Header / Nav */
+.site-header{position:sticky; top:0; z-index:50; background:var(--surface); box-shadow:0 2px 12px rgba(11,18,32,.06)}
+.header-inner{display:flex; align-items:center; justify-content:space-between; padding:.9rem 0}
+.brand{font-family:Merriweather,Georgia,serif; font-weight:700; font-size:1.35rem; color:var(--primary); text-decoration:none}
+.main-nav ul{list-style:none; display:flex; gap:1.25rem; margin:0}
+.main-nav a{color:var(--text); text-decoration:none; font-weight:600; padding:.35rem .2rem; border-radius:8px}
+.main-nav a:hover{color:var(--primary)}
+.nav-toggle{display:none; width:44px; height:40px; align-items:center; justify-content:center; background:transparent; border:0; cursor:pointer}
+.nav-toggle span{display:block; width:24px; height:2px; background:var(--text); margin:3px 0; border-radius:2px}
+
+/* Hero */
+.hero{position:relative; min-height:48vh; display:grid; place-items:center; overflow:hidden}
+.hero-bg{position:absolute; inset:0; background-size:cover; background-position:center; transform:scale(1.03)}
+.hero-bg::before{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.35), rgba(0,0,0,.45));
+}
+.hero-bg{background-image:var(--hero-img)}
+.hero-content{position:relative; text-align:center; color:#fff; padding:4rem 0}
+.hero h1{font-family:Merriweather,Georgia,serif; font-size:clamp(1.8rem,3.5vw,3rem); margin:.25rem 0 .5rem}
+.hero p{color:#ECF0F6; margin:0 0 1.2rem}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  background:var(--surface); color:var(--primary);
+  border:1px solid #E2E8F0; border-radius:12px; padding:.7rem 1.1rem;
+  font-weight:700; text-decoration:none; transition:.25s ease
+}
+.btn:hover{transform:translateY(-2px); box-shadow:var(--shadow)}
+.btn-primary{background:var(--primary); color:#fff; border-color:transparent}
+.btn-primary:hover{background:var(--primary-600)}
