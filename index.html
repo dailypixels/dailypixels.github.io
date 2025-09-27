@@ -8349,6 +8349,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const cookieBanner = document.getElementById("cookie-banner");
+    const cookieBtn = document.getElementById("cookie-btn");
+
+    // Check if already accepted
+    if (localStorage.getItem("cookieAccepted")) {
+      cookieBanner.style.display = "none";
+    }
+
+    cookieBtn.addEventListener("click", function () {
+      // add hide animation
+      cookieBanner.classList.add("hide");
+
+      // after animation ends, remove from DOM
+      setTimeout(() => {
+        cookieBanner.style.display = "none";
+      }, 500);
+
+      localStorage.setItem("cookieAccepted", "true");
+    });
+  });
+</script>
 
 
 <script src="script.js"></script>
