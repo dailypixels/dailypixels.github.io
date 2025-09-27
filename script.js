@@ -1256,3 +1256,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initial setup
   updateStories();
 });
+document.addEventListener("DOMContentLoaded", function () {
+  const banner = document.getElementById("cookie-banner");
+  const button = document.getElementById("accept-cookies");
+
+  if (!localStorage.getItem("cookiesAccepted")) {
+    banner.style.display = "flex";
+  }
+
+  button.addEventListener("click", function () {
+    localStorage.setItem("cookiesAccepted", "true");
+    banner.style.display = "none";
+  });
+});

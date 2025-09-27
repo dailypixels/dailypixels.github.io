@@ -4060,3 +4060,49 @@ body.home .story-card .text-link {
 html {
   scroll-behavior: smooth;
 }
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  background: #ffffff;
+  color: #333;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 9999;
+}
+
+.cookie-banner p {
+  margin: 0;
+  font-size: 14px;
+  flex: 1;
+}
+
+.cookie-banner a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.cookie-banner button {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.cookie-banner button:hover {
+  background: #1d4ed8;
+}
