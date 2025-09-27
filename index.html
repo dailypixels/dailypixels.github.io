@@ -8363,53 +8363,71 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <style>
   /* Cookie Banner Styling */
+.cookie-banner {
+  position: fixed;
+  bottom: -100px; /* hidden initially */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 800px;
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  z-index: 9999;
+  font-size: 14px;
+
+  /* animation */
+  opacity: 0;
+  transition: all 0.6s ease-in-out;
+}
+.cookie-banner.show {
+  bottom: 20px; /* slides up */
+  opacity: 1;
+}
+
+.cookie-banner a {
+  color: #ffeb3b;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+#cookie-btn {
+  background: white;
+  color: #007bff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+#cookie-btn:hover {
+  background: #f1f1f1;
+  transform: scale(1.05);
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 600px) {
   .cookie-banner {
-    position: fixed;
-    bottom: -100px; /* hidden initially */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 800px;
-    background: linear-gradient(135deg, #007bff, #00c6ff);
-    color: white;
-    padding: 15px 20px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 9999;
-
-    /* animation */
-    opacity: 0;
-    transition: all 0.6s ease-in-out;
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+    padding: 12px;
+    font-size: 13px;
   }
-  .cookie-banner.show {
-    bottom: 20px; /* slides up */
-    opacity: 1;
-  }
-
-  .cookie-banner a {
-    color: #ffeb3b;
-    font-weight: bold;
-    text-decoration: underline;
-  }
-
   #cookie-btn {
-    background: white;
-    color: #007bff;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    padding: 10px;
   }
-
-  #cookie-btn:hover {
-    background: #f1f1f1;
-    transform: scale(1.05);
-  }
+}
 </style>
 
 <script>
