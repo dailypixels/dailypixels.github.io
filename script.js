@@ -1269,3 +1269,18 @@ document.addEventListener("DOMContentLoaded", function () {
     banner.style.display = "none";
   });
 });
+document.addEventListener("DOMContentLoaded", function () {
+  const cookieBanner = document.getElementById("cookie-banner");
+  const cookieButton = document.getElementById("cookie-btn");
+
+  // Check if user already accepted
+  if (localStorage.getItem("cookieConsent") === "true") {
+    cookieBanner.style.display = "none";
+  }
+
+  cookieButton.addEventListener("click", function () {
+    cookieBanner.style.display = "none";
+    // Save choice so it doesn't appear again
+    localStorage.setItem("cookieConsent", "true");
+  });
+});

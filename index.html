@@ -8349,39 +8349,88 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 </script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const cookieBanner = document.getElementById("cookie-banner");
-    const cookieBtn = document.getElementById("cookie-btn");
-
-    // Check if already accepted
-    if (localStorage.getItem("cookieAccepted")) {
-      cookieBanner.style.display = "none";
-    }
-
-    cookieBtn.addEventListener("click", function () {
-      // add hide animation
-      cookieBanner.classList.add("hide");
-
-      // after animation ends, remove from DOM
-      setTimeout(() => {
-        cookieBanner.style.display = "none";
-      }, 500);
-
-      localStorage.setItem("cookieAccepted", "true");
-    });
-  });
-</script>
 
 
 <script src="script.js"></script>
+<!-- Cookie Consent Banner -->
 <div id="cookie-banner" class="cookie-banner">
-  <p>
-    This site uses cookies to improve your experience. By continuing to browse, you accept our 
-    <a href="privacy.html">Privacy Policy</a>.
-  </p>
-  <button id="accept-cookies">Got it ✅</button>
+  <span>
+    🍪 This site uses cookies to improve your experience. By continuing to browse, 
+    you accept our <a href="/privacy.html" target="_blank">Privacy Policy</a>.
+  </span>
+  <button id="cookie-btn">Got it ✅</button>
 </div>
+
+<style>
+  /* Cookie Banner Styling */
+  .cookie-banner {
+    position: fixed;
+    bottom: -100px; /* hidden initially */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 800px;
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 9999;
+
+    /* animation */
+    opacity: 0;
+    transition: all 0.6s ease-in-out;
+  }
+  .cookie-banner.show {
+    bottom: 20px; /* slides up */
+    opacity: 1;
+  }
+
+  .cookie-banner a {
+    color: #ffeb3b;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  #cookie-btn {
+    background: white;
+    color: #007bff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+
+  #cookie-btn:hover {
+    background: #f1f1f1;
+    transform: scale(1.05);
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const cookieBanner = document.getElementById("cookie-banner");
+    const cookieButton = document.getElementById("cookie-btn");
+
+    // Show banner if not accepted
+    if (localStorage.getItem("cookieConsent") !== "true") {
+      setTimeout(() => {
+        cookieBanner.classList.add("show");
+      }, 1000); // delay 1s before sliding in
+    }
+
+    // On button click
+    cookieButton.addEventListener("click", function () {
+      cookieBanner.classList.remove("show");
+      localStorage.setItem("cookieConsent", "true");
+    });
+  });
+</script>
 
 </body>
 </html>

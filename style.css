@@ -4128,39 +4128,3 @@ html {
   border-radius: 5px;
   cursor: pointer;
 }
-.cookie-banner {
-  position: fixed;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fff;
-  padding: 12px 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  z-index: 9999;
-
-  /* animation stuff */
-  opacity: 1;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.cookie-banner.hide {
-  opacity: 0;
-  transform: translate(-50%, 50px);
-  pointer-events: none;
-}
-
-.cookie-banner button {
-  background: #007BFF;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-.cookie-banner button:hover {
-  background: #0056b3;
-}
