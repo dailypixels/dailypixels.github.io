@@ -4057,3 +4057,6 @@ body.home .story-card .text-link {
 .story-body .text-link:hover {
   text-decoration: underline;
 }
+html {
+  scroll-behavior: smooth;
+}
