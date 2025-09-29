@@ -4172,3 +4172,21 @@ html {
     transform: translateY(0);
   }
 }
+/* Mobile Responsive Cookie Popup */
+@media screen and (max-width: 768px) {
+  .cookie-popup {
+    width: 90%;             /* shrink popup width */
+    max-width: 320px;       /* set a reasonable max */
+    left: 50%;              /* center horizontally */
+    transform: translateX(-50%);
+    bottom: 20px;           /* add some space from bottom */
+    font-size: 14px;        /* smaller font for mobile */
+    padding: 12px;          /* reduce padding */
+    line-height: 1.4;
+  }
+
+  .cookie-popup button {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+}
