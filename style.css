@@ -4226,3 +4226,40 @@ html {
     box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
   }
 }
+/* Featured Stories Card */
+#stories .card.section.header-row {
+  background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+  border-radius: 16px;
+  padding: 25px 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#stories .card.section.header-row:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+#stories .section-title {
+  font-size: 26px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  #stories .card.section.header-row {
+    padding: 18px 15px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+  }
+  #stories .section-title {
+    font-size: 20px;
+  }
+}
