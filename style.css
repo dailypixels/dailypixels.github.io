@@ -4190,3 +4190,39 @@ html {
     padding: 6px 12px;
   }
 }
+/* Premium Desktop Styling for Category Buttons */
+@media (min-width: 1024px) {
+  .categories-slider {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .category-btn {
+    background: #fff;
+    border: none;
+    border-radius: 14px;
+    padding: 14px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .category-btn:hover {
+    background: linear-gradient(135deg, #4f46e5, #3b82f6);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+  }
+
+  .category-btn.active {
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+  }
+}
