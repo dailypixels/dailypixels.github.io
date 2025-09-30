@@ -4599,3 +4599,50 @@ body {
   font-weight: 600;
   box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
 }
+/* Mobile Tags Section */
+.mobile-tags {
+  display: none; /* hidden by default */
+}
+
+@media (max-width: 768px) {
+  .mobile-tags {
+    display: block;
+    margin: 15px 0;
+    overflow-x: auto;
+  }
+
+  .tags-scroll {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    overflow-x: auto;
+    scrollbar-width: none; /* hide scrollbar (Firefox) */
+  }
+  .tags-scroll::-webkit-scrollbar {
+    display: none; /* hide scrollbar (Chrome/Safari) */
+  }
+
+  .tag-btn {
+    flex: 0 0 auto;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: none;
+    font-size: 14px;
+    background: #f3f4f6;
+    color: #374151;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .tag-btn:hover {
+    background: #e5e7eb;
+  }
+
+  .tag-btn.active {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+  }
+}
