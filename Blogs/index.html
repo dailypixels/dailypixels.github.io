@@ -207,6 +207,42 @@
   border-color: #5c9ded;
   box-shadow: 0 0 8px rgba(92, 157, 237, 0.5);
 }
+/* Desktop-only: Blog Filter Buttons Compact Style */
+@media (min-width: 1024px) {
+  .filter-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, auto); /* 4 buttons per row */
+    gap: 15px 20px;
+    justify-content: center;
+    margin: 20px auto;
+  }
+
+  .filter-button {
+    background: #f3f4f6;
+    border: none;
+    border-radius: 999px;
+    padding: 8px 18px;  /* compact padding */
+    font-size: 15px;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    width: auto; /* shrink to text */
+    white-space: nowrap; /* prevent text wrapping */
+  }
+
+  .filter-button:hover {
+    background: #e5e7eb;
+  }
+
+  .filter-button.active {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+  }
+}
 
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
