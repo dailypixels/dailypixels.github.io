@@ -1284,3 +1284,25 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("cookieConsent", "true");
   });
 });
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // If already signed in, send them back
+    window.location.href = redirectUrl;
+  }
+});
+import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+
+const auth = getAuth();
+
+// LOGOUT FUNCTION
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+  try {
+    await signOut(auth);
+    alert("You have been logged out.");
+    window.location.href = "login.html"; // redirect back to login page
+  } catch (error) {
+    console.error("Logout Error:", error.message);
+  }
+});
