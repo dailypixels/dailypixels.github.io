@@ -4797,3 +4797,54 @@ body {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
+/* ------------------- Responsive Styling ------------------- */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 100px 15px 80px;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  .hero p {
+    font-size: 1.1rem;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .hero {
+    padding: 80px 15px 60px;
+    border-radius: 0 0 25px 25px;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 0 10px;
+  }
+  .hero-btn {
+    padding: 10px 22px;
+    font-size: 1rem;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+  .hero {
+    padding: 60px 10px 50px;
+  }
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+  .hero p {
+    font-size: 0.95rem;
+  }
+  .hero-btn {
+    font-size: 0.9rem;
+    padding: 8px 18px;
+  }
+}
