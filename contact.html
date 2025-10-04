@@ -259,34 +259,34 @@
     transform: translateY(0);
   }
 }
+.site-footer {
+  text-align: center;
+  background: #f8f9fa;
+  padding: 15px 0;
+  margin-top: 40px;
+  border-top: 1px solid #ddd;
+  font-size: 14px;
+  color: #555;
+}
 
   </style>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GZ3CFNHDLS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-GZ3CFNHDLS');
-</script>
 </head>
 <body>
- <!-- ============ Header ============ -->
+   <!-- ============ Header ============ -->
 <header class="site-header">
   <div class="container nav-container">
 <a href="../index.html" class="logo">Daily Pixel</a>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../Urdustories/index.html">Urdu Stories</a></li>
-        <li><a href="../Articles/index.html">Articles</a></li>
-        <li><a href="../Blogs/index.html">Blogs</a></li>
-        <li><a href="../submission/index.html" >Submit</a></li>
-        <li><a href="../about.html">About</a></li>
-        <li><a href="../contact.html"class="active">Contact</a></li>
-      </ul>
-    </nav>
+   <nav class="main-nav">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../Urdustories/index.html">Urdu Stories</a></li>
+    <li><a href="../Articles/index.html" >Articles</a></li>
+    <li><a href="../Blogs/index.html">Blogs</a></li>
+    <li><a href="../submission/index.html">Submit</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>  </ul>
+</nav>
+
 <a href="../index.html" class="menu-btn">☰</a>
   </div>
 </header>
@@ -314,17 +314,66 @@
     </div>
 
     <!-- Right Form Section -->
-    <div class="contact-form">
-      <h2>Send a Message</h2>
-      <form action="https://formspree.io/f/xkgvkele" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="email" name="email" placeholder="Your Email" required />
-        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </div>
+<div class="contact-form">
+  <h2>Send a Message</h2>
+  <form id="contact-form" action="https://formspree.io/f/xkgvkele" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+
+  <!-- Success Message -->
+  <div id="contact-success" class="alert alert-success mt-3" style="display:none;">
+    ✅ Thank you! Your message has been sent successfully.
   </div>
-<script src="../js/storyFeatures.js"></script>
+
+  <!-- Error Message -->
+  <div id="contact-error" class="alert alert-danger mt-3" style="display:none;">
+    ❌ Oops! Something went wrong. Please try again.
+  </div>
+</div>
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("contact-form");
+  const successBox = document.getElementById("contact-success");
+  const errorBox = document.getElementById("contact-error");
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault(); // prevent redirect
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+      });
+
+      if (response.ok) {
+        form.reset(); // clear inputs
+        successBox.style.display = "block";
+        errorBox.style.display = "none";
+
+        // hide success after 5 seconds
+        setTimeout(() => {
+          successBox.style.display = "none";
+        }, 5000);
+      } else {
+        throw new Error("Formspree error");
+      }
+    } catch (err) {
+      errorBox.style.display = "block";
+      successBox.style.display = "none";
+    }
+  });
+});
+</script>
+
 
 <footer class="site-footer">
   <p>© <span id="year"></span> Daily Pixel. All rights reserved.</p>
