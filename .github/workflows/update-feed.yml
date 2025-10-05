@@ -20,36 +20,42 @@ jobs:
           SITE="https://dailypixelsite.github.io"
           DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-          # Create feed.xml header if it doesn’t exist
+          # Create feed.xml if it doesn't exist
           if [ ! -f "$FEED" ]; then
             echo '<?xml version="1.0" encoding="utf-8"?>' > $FEED
             echo '<feed xmlns="http://www.w3.org/2005/Atom">' >> $FEED
-            echo "  <title type=\"html\">daily pixel</title>" >> $FEED
+            echo "  <title type=\"html\">Daily Pixel — New Stories</title>" >> $FEED
             echo "  <id>${SITE}/feed.xml</id>" >> $FEED
             echo "  <updated>${DATE}</updated>" >> $FEED
           else
-            # remove the closing </feed> for appending new entry
+            # remove the closing </feed> for appending
             sed -i '/<\/feed>/d' $FEED
           fi
 
-          # Find the latest changed story file
+          # Find latest added or modified story
           FILE=$(git diff --name-only HEAD~1 HEAD | grep '^stories/.*\.html' | tail -n 1)
           if [ -z "$FILE" ]; then
             echo "No new story found."
             exit 0
           fi
 
-          # Get title line from the HTML <title> tag
+          echo "📄 Found new story: $FILE"
+
+          # Extract title text between <title> tags
           TITLE=$(grep -m1 "<title>" "$FILE" | sed -E 's/.*<title>(.*)<\/title>.*/\1/')
-          SUMMARY=$(grep -m1 "<p class=\"excerpt\">" index.html | sed -E 's/.*<p class="excerpt">(.*)<\/p>.*/\1/')
+          # Extract first paragraph as summary
+          SUMMARY=$(grep -m1 "<p" "$FILE" | sed -E 's/.*<p[^>]*>(.*)<\/p>.*/\1/' | sed 's/"/&quot;/g')
+
           LINK="${SITE}/${FILE}"
+
+          echo "📰 Adding entry for: $TITLE"
 
           echo "  <entry>" >> $FEED
           echo "    <title>${TITLE}</title>" >> $FEED
           echo "    <link href=\"${LINK}\" />" >> $FEED
           echo "    <id>${LINK}</id>" >> $FEED
           echo "    <updated>${DATE}</updated>" >> $FEED
-          echo "    <summary>${SUMMARY:-New story on Daily Pixel.}</summary>" >> $FEED
+          echo "    <summary>${SUMMARY:-New story published on Daily Pixel.}</summary>" >> $FEED
           echo "  </entry>" >> $FEED
           echo "</feed>" >> $FEED
 
@@ -58,5 +64,5 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add feed.xml
-          git commit -m "Auto update feed.xml for new story"
+          git commit -m "Auto update feed.xml with new story"
           git push
