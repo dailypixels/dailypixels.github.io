@@ -1,0 +1,23 @@
+---
+layout: none
+permalink: /stories_feed.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Daily Pixel Stories</title>
+  <link href="{{ site.url }}/stories_feed.xml" rel="self" />
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <id>{{ site.url }}/stories_feed.xml</id>
+  <author><name>Daily Pixel</name></author>
+
+  {% assign stories = site.static_files | where_exp: "f", "f.path contains '/stories/'" %}
+  {% for story in stories %}
+    <entry>
+      <title>{{ story.basename | replace: '-', ' ' | capitalize }}</title>
+      <link href="{{ site.url }}/{{ story.path }}" />
+      <id>{{ site.url }}/{{ story.path }}</id>
+      <updated>{{ site.time | date_to_xmlschema }}</updated>
+      <summary>New story added: {{ story.basename | replace: '-', ' ' | capitalize }}</summary>
+    </entry>
+  {% endfor %}
+</feed>
