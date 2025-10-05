@@ -35,9 +35,10 @@
     <li><a href="Urdustories/index.html">Urdu Stories</a></li>
     <li><a href="Articles/index.html" >Articles</a></li>
     <li><a href="Blogs/index.html">Blogs</a></li>
-      <li><a href="submission/index.html">Submit</a></li>
-<li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>  
+    <li><a href="submission/index.html">Submit</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li> 
+    <li><a href="#newsletter"class="active">Subscribe</a></li> 
   </ul>
 </nav>
 
@@ -8034,14 +8035,35 @@
     </aside>
   </main>
   
- <!-- Newsletter Signup -->
-  <section class="newsletter container">
-    <h2>Stay Updated</h2>
-    <p>Get the latest stories delivered straight to your inbox.</p>
-    <form id="newsletterForm" action="https://formspree.io/f/xkgvkele" method="POST">
-  <input type="email" name="email" placeholder="Enter your email" required />
-  <button type="submit">Subscribe</button>
-</form>
+<!-- Newsletter Signup -->
+<section id="newsletter" class="newsletter container">
+  <h2>Stay Updated</h2>
+  <p>Get the latest stories delivered straight to your inbox.</p>
+
+  <form id="newsletterForm" 
+        action="https://github.us8.list-manage.com/subscribe/post?u=8f7921ac4ffdcb2d7acd2c254&amp;id=97ea3ee135&amp;f_id=00ab09e1f0" 
+        method="post" novalidate>
+    <input type="email" id="newsletterEmail" name="EMAIL" placeholder="Enter your email" required />
+    <button type="submit" id="subscribeBtn">Subscribe</button>
+  </form>
+
+  <!-- Unsubscribe -->
+  <button id="unsubscribeBtn" style="display:none; margin-top:10px;" class="btn btn-outline-secondary">
+    Unsubscribe
+  </button>
+
+  <!-- Messages -->
+  <div id="newsletter-success" class="alert alert-success mt-3" style="display:none;">
+    🎉 You’re subscribed! Welcome to Daily Pixel.
+  </div>
+  <div id="newsletter-already" class="alert alert-warning mt-3" style="display:none;">
+    ⚠️ You are already subscribed with this email.
+  </div>
+  <div id="newsletter-error" class="alert alert-danger mt-3" style="display:none;">
+    ❌ Please enter a valid email before subscribing.
+  </div>
+</section>
+
 
   </section>
   <!-- ============ About (kept, just styled) ============ -->
@@ -8058,6 +8080,105 @@
       </nav>
     </div>
   </footer>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("newsletterForm");
+  const emailInput = document.getElementById("newsletterEmail");
+  const subscribeBtn = document.getElementById("subscribeBtn");
+  const unsubscribeBtn = document.getElementById("unsubscribeBtn");
+
+  const successMsg = document.getElementById("newsletter-success");
+  const alreadyMsg = document.getElementById("newsletter-already");
+  const errorMsg = document.getElementById("newsletter-error");
+
+  // Helper to validate email
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  // Load state from localStorage
+  const savedEmail = localStorage.getItem("subscribedEmail");
+  if (savedEmail) {
+    emailInput.value = savedEmail;
+    subscribeBtn.textContent = "✅ Subscribed!";
+    subscribeBtn.style.backgroundColor = "#28a745"; // green
+    unsubscribeBtn.style.display = "inline-block";
+  }
+
+  // Handle subscribe
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const email = emailInput.value.trim().toLowerCase();
+
+    // Reset messages
+    successMsg.style.display = "none";
+    alreadyMsg.style.display = "none";
+    errorMsg.style.display = "none";
+
+    if (!isValidEmail(email)) {
+      errorMsg.style.display = "block";
+      subscribeBtn.textContent = "Subscribe";
+      subscribeBtn.style.backgroundColor = "#007bff"; // blue
+      return;
+    }
+
+    // Check if already subscribed locally
+    if (localStorage.getItem("subscribedEmail") === email) {
+      alreadyMsg.style.display = "block";
+      return;
+    }
+
+    // Start subscribing
+    subscribeBtn.disabled = true;
+    subscribeBtn.textContent = "Subscribing...";
+
+    const formData = new FormData(form);
+
+    try {
+      await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors"
+      });
+
+      // Success
+      localStorage.setItem("subscribedEmail", email);
+      subscribeBtn.textContent = "✅ Subscribed!";
+      subscribeBtn.style.backgroundColor = "#28a745"; // green
+      unsubscribeBtn.style.display = "inline-block";
+      successMsg.style.display = "block";
+    } catch (err) {
+      errorMsg.style.display = "block";
+      subscribeBtn.textContent = "Subscribe";
+      subscribeBtn.style.backgroundColor = "#007bff";
+    } finally {
+      subscribeBtn.disabled = false;
+    }
+  });
+
+  // Handle Unsubscribe
+  unsubscribeBtn.addEventListener("click", function () {
+    localStorage.removeItem("subscribedEmail");
+    emailInput.value = "";
+    subscribeBtn.textContent = "Subscribe";
+    subscribeBtn.style.backgroundColor = "#007bff"; // blue
+    unsubscribeBtn.style.display = "none";
+
+    successMsg.style.display = "none";
+    alreadyMsg.style.display = "none";
+    errorMsg.style.display = "none";
+  });
+});
+</script>
+
+
+
+
+
+
 <script>
   const searchInput = document.getElementById('searchInput');
   const cards = document.querySelectorAll('.story-card');
