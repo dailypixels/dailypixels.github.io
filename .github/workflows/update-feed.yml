@@ -1,68 +1,46 @@
-name: Update feed.xml automatically
+name: Update Feed Automatically
+
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
     paths:
-      - "stories/**.html"
+      - 'stories/**/*.html'
 
 jobs:
   update-feed:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Generate or update feed.xml
+      - name: Generate feed.xml
         run: |
-          echo "🔄 Updating feed.xml ..."
-          FEED="feed.xml"
-          SITE="https://dailypixelsite.github.io"
-          DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          echo '<?xml version="1.0" encoding="UTF-8"?>' > feed.xml
+          echo '<feed xmlns="http://www.w3.org/2005/Atom">' >> feed.xml
+          echo '<title>Daily Pixel</title>' >> feed.xml
+          echo '<updated>'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'</updated>' >> feed.xml
 
-          # Create feed.xml if it doesn't exist
-          if [ ! -f "$FEED" ]; then
-            echo '<?xml version="1.0" encoding="utf-8"?>' > $FEED
-            echo '<feed xmlns="http://www.w3.org/2005/Atom">' >> $FEED
-            echo "  <title type=\"html\">Daily Pixel — New Stories</title>" >> $FEED
-            echo "  <id>${SITE}/feed.xml</id>" >> $FEED
-            echo "  <updated>${DATE}</updated>" >> $FEED
-          else
-            # remove the closing </feed> for appending
-            sed -i '/<\/feed>/d' $FEED
-          fi
+          for f in stories/*.html; do
+            TITLE=$(grep -m1 "<h1>" "$f" | sed 's/<[^>]*>//g')
+            LINK="https://dailypixelsite.github.io/${f}"
+            DATE=$(git log -1 --format="%aI" "$f" || date -u +"%Y-%m-%dT%H:%M:%SZ")
+            SUMMARY=$(grep -m1 "<p>" "$f" | sed 's/<[^>]*>//g' | head -c 200)
+            echo "<entry>" >> feed.xml
+            echo "  <title>${TITLE}</title>" >> feed.xml
+            echo "  <link href=\"${LINK}\" />" >> feed.xml
+            echo "  <updated>${DATE}</updated>" >> feed.xml
+            echo "  <summary>${SUMMARY}</summary>" >> feed.xml
+            echo "</entry>" >> feed.xml
+          done
 
-          # Find latest added or modified story
-          FILE=$(git diff --name-only HEAD~1 HEAD | grep '^stories/.*\.html' | tail -n 1)
-          if [ -z "$FILE" ]; then
-            echo "No new story found."
-            exit 0
-          fi
+          echo "</feed>" >> feed.xml
 
-          echo "📄 Found new story: $FILE"
-
-          # Extract title text between <title> tags
-          TITLE=$(grep -m1 "<title>" "$FILE" | sed -E 's/.*<title>(.*)<\/title>.*/\1/')
-          # Extract first paragraph as summary
-          SUMMARY=$(grep -m1 "<p" "$FILE" | sed -E 's/.*<p[^>]*>(.*)<\/p>.*/\1/' | sed 's/"/&quot;/g')
-
-          LINK="${SITE}/${FILE}"
-
-          echo "📰 Adding entry for: $TITLE"
-
-          echo "  <entry>" >> $FEED
-          echo "    <title>${TITLE}</title>" >> $FEED
-          echo "    <link href=\"${LINK}\" />" >> $FEED
-          echo "    <id>${LINK}</id>" >> $FEED
-          echo "    <updated>${DATE}</updated>" >> $FEED
-          echo "    <summary>${SUMMARY:-New story published on Daily Pixel.}</summary>" >> $FEED
-          echo "  </entry>" >> $FEED
-          echo "</feed>" >> $FEED
-
-      - name: Commit feed.xml changes
+      - name: Commit and push changes
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add feed.xml
-          git commit -m "Auto update feed.xml with new story"
+          git commit -m "Auto-update feed.xml" || echo "No changes to commit"
           git push
