@@ -1,5 +1,0 @@
-plugins:
-  - jekyll-feed
-
-url: "https://dailypixelsite.github.io"
-baseurl: ""
