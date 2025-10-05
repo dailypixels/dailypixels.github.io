@@ -1,0 +1,62 @@
+name: Update feed.xml automatically
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "stories/**.html"
+
+jobs:
+  update-feed:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate or update feed.xml
+        run: |
+          echo "🔄 Updating feed.xml ..."
+          FEED="feed.xml"
+          SITE="https://dailypixelsite.github.io"
+          DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          # Create feed.xml header if it doesn’t exist
+          if [ ! -f "$FEED" ]; then
+            echo '<?xml version="1.0" encoding="utf-8"?>' > $FEED
+            echo '<feed xmlns="http://www.w3.org/2005/Atom">' >> $FEED
+            echo "  <title type=\"html\">daily pixel</title>" >> $FEED
+            echo "  <id>${SITE}/feed.xml</id>" >> $FEED
+            echo "  <updated>${DATE}</updated>" >> $FEED
+          else
+            # remove the closing </feed> for appending new entry
+            sed -i '/<\/feed>/d' $FEED
+          fi
+
+          # Find the latest changed story file
+          FILE=$(git diff --name-only HEAD~1 HEAD | grep '^stories/.*\.html' | tail -n 1)
+          if [ -z "$FILE" ]; then
+            echo "No new story found."
+            exit 0
+          fi
+
+          # Get title line from the HTML <title> tag
+          TITLE=$(grep -m1 "<title>" "$FILE" | sed -E 's/.*<title>(.*)<\/title>.*/\1/')
+          SUMMARY=$(grep -m1 "<p class=\"excerpt\">" index.html | sed -E 's/.*<p class="excerpt">(.*)<\/p>.*/\1/')
+          LINK="${SITE}/${FILE}"
+
+          echo "  <entry>" >> $FEED
+          echo "    <title>${TITLE}</title>" >> $FEED
+          echo "    <link href=\"${LINK}\" />" >> $FEED
+          echo "    <id>${LINK}</id>" >> $FEED
+          echo "    <updated>${DATE}</updated>" >> $FEED
+          echo "    <summary>${SUMMARY:-New story on Daily Pixel.}</summary>" >> $FEED
+          echo "  </entry>" >> $FEED
+          echo "</feed>" >> $FEED
+
+      - name: Commit feed.xml changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add feed.xml
+          git commit -m "Auto update feed.xml for new story"
+          git push
