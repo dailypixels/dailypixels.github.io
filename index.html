@@ -8072,6 +8072,11 @@
     <p>Daily Pixel publishes original storytelling across nature, travel, photography, culture, and more. We value curiosity, clarity, and craft—offering short reads for busy days and immersive features for when you want to linger. Grab a cup, pick a tag, and find your next favorite read.</p>
   </section>
 
+
+
+
+
+  
   <!-- ============ Footer ============ -->
   <footer class="site-footer">
     <div class="container footer-inner">
@@ -8080,6 +8085,96 @@
       </nav>
     </div>
   </footer>
+
+
+
+
+<button id="backToTop" title="Go to top">
+  <span style="font-size: 22px; line-height: 0;">&#8679;</span>
+</button>
+
+
+<script>
+  // Show or hide button
+  window.addEventListener('scroll', () => {
+    const button = document.getElementById('backToTop');
+    if (window.scrollY > 250) {
+      button.style.display = 'block';
+    } else {
+      button.style.display = 'none';
+    }
+  });
+
+  // Scroll smoothly to top
+  document.getElementById('backToTop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+
+
+
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const storyCards = document.querySelectorAll(".story-card");
+  const tagButtons = document.querySelectorAll(".chip[data-tag]");
+  const categorySelect = document.getElementById("categorySelect");
+
+  function filterStories(selectedTag) {
+    // Show/hide stories smoothly
+    storyCards.forEach(card => {
+      const tags = card.getAttribute("data-tags") || "";
+      if (selectedTag === "all" || tags.includes(selectedTag)) {
+        card.style.display = "block";
+        setTimeout(() => card.classList.remove("hide"), 50);
+      } else {
+        card.classList.add("hide");
+        setTimeout(() => (card.style.display = "none"), 300);
+      }
+    });
+
+    // ✅ Always scroll to top of first visible card
+    setTimeout(() => {
+      const firstVisible = Array.from(storyCards).find(
+        c => c.style.display !== "none"
+      );
+      if (firstVisible) {
+        const rect = firstVisible.getBoundingClientRect();
+        const yOffset = window.innerWidth <= 768 ? -80 : -100; // offset for header
+        const y = rect.top + window.scrollY + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    }, 400); // wait until CSS transition completes
+  }
+
+  // 💠 Tag buttons
+  tagButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const selectedTag = btn.getAttribute("data-tag");
+      tagButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      filterStories(selectedTag);
+    });
+  });
+
+  // 📱 Mobile dropdown
+  if (categorySelect) {
+    categorySelect.addEventListener("change", e => {
+      const selectedTag = e.target.value;
+      filterStories(selectedTag);
+    });
+  }
+});
+</script>
+
+
+
+
+
 
 
 <script>

@@ -1181,6 +1181,37 @@
     <p>© 2025 Daily Pixel. All rights reserved.</p>
   </footer>
 
+
+
+
+
+<button id="backToTop" title="Go to top">
+  <span style="font-size: 22px; line-height: 0;">&#8679;</span>
+</button>
+
+
+<script>
+  // Show or hide button
+  window.addEventListener('scroll', () => {
+    const button = document.getElementById('backToTop');
+    if (window.scrollY > 250) {
+      button.style.display = 'block';
+    } else {
+      button.style.display = 'none';
+    }
+  });
+
+  // Scroll smoothly to top
+  document.getElementById('backToTop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+
+
+
+
+
 <script src="../js/storyFeatures.js"></script>
 </body>
 </html>
