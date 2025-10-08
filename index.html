@@ -23,6 +23,8 @@
 
 
 
+
+<!-- ✅ STORY GRID + CARDS -->
 <style>
 /* --- GRID LAYOUT --- */
 .content-grid {
@@ -32,7 +34,6 @@
   padding: 40px 5%;
   background: #fff;
   justify-items: center;
-  box-sizing: border-box;
 }
 
 /* --- CARD --- */
@@ -44,7 +45,6 @@
   border-radius: 14px;
   overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-  box-sizing: border-box;
 }
 
 .story-card:hover {
@@ -108,14 +108,11 @@
 @media (max-width: 600px) {
   .content-grid {
     grid-template-columns: 1fr;
-    padding: 20px 12px; /* reduced side padding */
-    justify-items: center;
+    padding: 25px 4%;
   }
 
   .story-card {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto; /* ensure true centering */
+    max-width: 95%;
     border-radius: 10px;
   }
 
@@ -132,6 +129,7 @@
   }
 }
 </style>
+
 
 
 
