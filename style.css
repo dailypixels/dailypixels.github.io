@@ -4980,6 +4980,32 @@ body {
     width: 40px;
   }
 }
+/* Sidebar title styling */
+.sidebar-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+/* Desktop-only sidebar */
+@media (max-width: 991px) {
+  #categories {
+    display: none !important;
+  }
+}
+/* Sidebar heading */
+.sidebar-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 16px;
+  text-align: center;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 /* Fix layout grid to separate columns properly */
 .container.layout {
   display: grid;
