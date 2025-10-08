@@ -70,6 +70,7 @@
     <!-- Left Sidebar: Categories -->
    <!-- Left Sidebar: Categories -->
 <aside aria-label="Categories" class="sidebar left" id="categories">
+    <h3 class="sidebar-title">Categories</h3>
   <div class="categories-slider">
     <button class="category-btn active" data-category="all">All</button>
     <button class="category-btn" data-category="nature">Nature</button>
@@ -8116,6 +8117,34 @@
 
 
 
+<script>
+document.querySelectorAll(".category-btn").forEach(button => {
+  button.addEventListener("click", e => {
+    e.preventDefault(); // stop jump to bottom
+
+    // Update active button
+    document.querySelectorAll(".category-btn").forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+
+    const selectedCategory = button.getAttribute("data-category");
+    const stories = document.querySelectorAll(".story-card");
+
+    // Instantly show all matching stories (no load more)
+    stories.forEach(story => {
+      const storyCategory = story.getAttribute("data-category");
+      if (selectedCategory === "all" || storyCategory === selectedCategory) {
+        story.style.display = "block";
+      } else {
+        story.style.display = "none";
+      }
+    });
+
+    // Hide "Load More" button when filtering
+    const loadMoreBtn = document.querySelector("#load-more-btn");
+    if (loadMoreBtn) loadMoreBtn.style.display = "none";
+  });
+});
+</script>
 
 
 
