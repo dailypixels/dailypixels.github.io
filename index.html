@@ -8097,37 +8097,21 @@
 
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const button = document.getElementById("backToTop");
-
-  // ✅ Show or hide button (works on all devices)
-  window.addEventListener("scroll", () => {
-    const scrollY = window.scrollY || document.documentElement.scrollTop;
-
-    if (scrollY > 250) {
-      button.style.display = "flex"; // flex keeps it centered in mobile
+  // Show or hide button
+  window.addEventListener('scroll', () => {
+    const button = document.getElementById('backToTop');
+    if (window.scrollY > 250) {
+      button.style.display = 'block';
     } else {
-      button.style.display = "none";
+      button.style.display = 'none';
     }
   });
 
-  // ✅ Scroll smoothly to top (cross-browser + mobile safe)
-  button.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+  // Scroll smoothly to top
+  document.getElementById('backToTop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-
-  // ✅ Ensure visible in mobile view even after orientation change
-  window.addEventListener("resize", () => {
-    if (window.innerWidth <= 768 && window.scrollY > 250) {
-      button.style.display = "flex";
-    }
-  });
-});
 </script>
-
 
 
 
