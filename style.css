@@ -4911,3 +4911,105 @@ body {
   background-color: #0056d6; /* slightly darker blue on hover */
   transform: translateY(-3px);
 }
+/* 💎 Slim + Light Featured Stories Bar */
+#stories .card.section.header-row {
+  background: linear-gradient(90deg, #dce9ff 0%, #f3f7ff 100%);
+  text-align: center;
+  padding: 10px 8px 14px;
+  border-radius: 6px;
+  margin: 0 auto 20px;
+  width: 95%;
+  max-width: 950px;
+  border: 1px solid rgba(180, 200, 255, 0.4);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+/* ✨ Gradient underline under title */
+#stories .card.section.header-row::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45px;
+  height: 2px;
+  background: linear-gradient(90deg, #007bff, #00b4ff);
+  border-radius: 1px;
+  opacity: 0.8;
+}
+
+/* 🩵 Title */
+#stories .card.section.header-row .section-title {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #002e73;
+  margin: 0;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+/* 💬 Subtitle */
+#stories .card.section.header-row .subtitle {
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #3a4f79;
+  margin: 3px auto 0;
+  line-height: 1.3;
+}
+
+/* 📱 Mobile adjustments */
+@media (max-width: 768px) {
+  #stories .card.section.header-row {
+    padding: 9px 6px 12px;
+    width: 92%;
+  }
+
+  #stories .card.section.header-row .section-title {
+    font-size: 1rem;
+  }
+
+  #stories .card.section.header-row .subtitle {
+    font-size: 0.8rem;
+  }
+
+  #stories .card.section.header-row::after {
+    bottom: 5px;
+    width: 40px;
+  }
+}
+/* Fix layout grid to separate columns properly */
+.container.layout {
+  display: grid;
+  grid-template-columns: 250px 1fr 250px; /* Left Sidebar | Main | Right Sidebar */
+  gap: 24px;
+  max-width: 1400px;
+  margin: 40px auto;
+  padding: 0 40px;
+  align-items: start; /* Prevent overlap */
+}
+
+/* Left Sidebar (Categories) */
+.sidebar.left {
+  grid-column: 1;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  padding: 22px;
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+  z-index: 2; /* keeps it above background but below content */
+}
+.sidebar-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 16px;
+  text-align: center;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

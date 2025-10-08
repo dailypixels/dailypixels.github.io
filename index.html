@@ -70,7 +70,7 @@
     <!-- Left Sidebar: Categories -->
    <!-- Left Sidebar: Categories -->
 <aside aria-label="Categories" class="sidebar left" id="categories">
-    <h3 class="sidebar-title">Categories</h3>
+      <h3 class="sidebar-title">Categories</h3>
   <div class="categories-slider">
     <button class="category-btn active" data-category="all">All</button>
     <button class="category-btn" data-category="nature">Nature</button>
@@ -8114,6 +8114,106 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 </script>
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.category-btn').forEach(button => {
+  button.addEventListener('click', e => {
+    e.preventDefault(); // stop jump
+    e.stopPropagation();
+
+    const category = button.getAttribute('data-category');
+    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+
+    const cards = document.querySelectorAll('.story-card');
+    cards.forEach(card => {
+      const match = category === 'all' || card.dataset.category === category;
+      card.style.display = match ? 'flex' : 'none';
+    });
+
+    // No scroll jump
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+</script>
+
+<script>
+const loadMoreBtn = document.getElementById('loadMoreBtn');
+document.querySelectorAll('.category-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.category-btn').forEach(button => {
+  button.addEventListener('click', e => {
+    e.preventDefault(); // stop jump
+    e.stopPropagation();
+
+    const category = button.getAttribute('data-category');
+    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+
+    const cards = document.querySelectorAll('.story-card');
+    cards.forEach(card => {
+      const match = category === 'all' || card.dataset.category === category;
+      card.style.display = match ? 'flex' : 'none';
+    });
+
+    // No scroll jump
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
