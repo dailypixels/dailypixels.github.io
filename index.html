@@ -73,6 +73,7 @@
       <h3 class="sidebar-title">Categories</h3>
   <div class="categories-slider">
     <button class="category-btn active" data-category="all">All</button>
+    <button class="category-btn" data-category="nature">Nature</button>
     <button class="category-btn" data-category="travel">Travel</button>
     <button class="category-btn" data-category="culture">Culture</button>
     <button class="category-btn" data-category="microfiction">Microfiction</button>
@@ -8226,24 +8227,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
   buttons.forEach(button => {
     button.addEventListener("click", event => {
-      event.preventDefault(); // stop link-like behavior
-      event.stopPropagation(); // stop scroll bubbling
-      window.scrollTo({ top: document.querySelector("#stories").offsetTop - 50, behavior: "instant" }); // stay near stories section
+      event.preventDefault();
+      event.stopPropagation();
 
-      // Remove active class from all, then add to clicked one
+      // Prevent jump — stay near stories
+      const storiesSection = document.querySelector("#stories");
+      const yOffset = storiesSection.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: yOffset, behavior: "smooth" });
+
+      // Switch active category
       buttons.forEach(btn => btn.classList.remove("active"));
       button.classList.add("active");
 
-      // Get category
       const category = button.getAttribute("data-category");
 
-      // Instantly show filtered stories (no fade or delay)
+      // Hide all first (with fade-out)
       cards.forEach(card => {
-        const show = category === "all" || card.dataset.category === category;
-        card.style.display = show ? "flex" : "none";
+        card.style.opacity = "0";
+        card.style.transform = "scale(0.98)";
+        setTimeout(() => {
+          const show = category === "all" || card.dataset.category === category;
+          card.style.display = show ? "flex" : "none";
+          if (show) {
+            // Fade-in effect
+            setTimeout(() => {
+              card.style.opacity = "1";
+              card.style.transform = "scale(1)";
+            }, 50);
+          }
+        }, 150);
       });
 
-      // Instantly hide Load More
+      // Hide Load More button
       if (loadMoreBtn) loadMoreBtn.style.display = "none";
     });
   });
