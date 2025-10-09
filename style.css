@@ -5380,3 +5380,63 @@ body {
 .story-card {
   transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
 }
+/* ======= Sticky Mobile Categories ======= */
+@media (max-width: 768px) {
+  #mobile-categories {
+    position: sticky;
+    top: 60px; /* below header */
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 0 0 14px 14px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Hide label & dropdown (you’re not using them) */
+  #mobile-categories label,
+  #mobile-categories select {
+    display: none;
+  }
+
+  /* Category buttons (pill style) */
+  .mobile-category-btn {
+    flex: 0 0 auto;
+    background: #f1f5f9;
+    border: none;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1f2937;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .mobile-category-btn:hover {
+    background: #e2e8f0;
+  }
+
+  .mobile-category-btn.active {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+  }
+
+  /* Prevent cards from hiding behind sticky bar */
+  #stories {
+    margin-top: 20px;
+    padding-bottom: 50px;
+  }
+
+  /* Smooth fade for story filtering */
+  .story-card {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+}
