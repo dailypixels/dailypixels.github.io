@@ -73,7 +73,6 @@
       <h3 class="sidebar-title">Categories</h3>
   <div class="categories-slider">
     <button class="category-btn active" data-category="all">All</button>
-    <button class="category-btn" data-category="nature">Nature</button>
     <button class="category-btn" data-category="travel">Travel</button>
     <button class="category-btn" data-category="culture">Culture</button>
     <button class="category-btn" data-category="microfiction">Microfiction</button>
@@ -8220,26 +8219,37 @@ document.querySelectorAll('.category-btn').forEach(btn => {
 
 
 <script>
-document.querySelectorAll('.category-btn').forEach(button => {
-  button.addEventListener('click', e => {
-    e.preventDefault(); // stop jump
-    e.stopPropagation();
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".category-btn");
+  const cards = document.querySelectorAll(".story-card");
+  const loadMoreBtn = document.getElementById("loadMoreBtn");
 
-    const category = button.getAttribute('data-category');
-    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-    button.classList.add('active');
+  buttons.forEach(button => {
+    button.addEventListener("click", event => {
+      event.preventDefault(); // stop link-like behavior
+      event.stopPropagation(); // stop scroll bubbling
+      window.scrollTo({ top: document.querySelector("#stories").offsetTop - 50, behavior: "instant" }); // stay near stories section
 
-    const cards = document.querySelectorAll('.story-card');
-    cards.forEach(card => {
-      const match = category === 'all' || card.dataset.category === category;
-      card.style.display = match ? 'flex' : 'none';
+      // Remove active class from all, then add to clicked one
+      buttons.forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      // Get category
+      const category = button.getAttribute("data-category");
+
+      // Instantly show filtered stories (no fade or delay)
+      cards.forEach(card => {
+        const show = category === "all" || card.dataset.category === category;
+        card.style.display = show ? "flex" : "none";
+      });
+
+      // Instantly hide Load More
+      if (loadMoreBtn) loadMoreBtn.style.display = "none";
     });
-
-    // No scroll jump
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 });
 </script>
+
 
 
 
@@ -8779,7 +8789,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 
-<script src="script.js"></script>
+
 <!-- Cookie Consent Banner -->
 <div id="cookie-banner" class="cookie-banner">
   <span>
@@ -8889,6 +8899,6 @@ document.getElementById("categorySelect").addEventListener("change", function() 
 </script>
 
 
-
+<script src="script.js"></script>
 </body>
 </html>
