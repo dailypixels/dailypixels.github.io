@@ -66,35 +66,30 @@
 
 
 
-<!-- Mobile Categories (below hero, above Featured Stories) -->
-<div id="mobile-categories" class="mobile-categories">
-  <select id="categorySelect">
-    <option value="all">All Categories</option>
-    <option value="nature">Nature</option>
-    <option value="travel">Travel</option>
-    <option value="culture">Culture</option>
-    <option value="microfiction">Microfiction</option>
-    <option value="interviews">Interviews</option>
-    <option value="mystery">Mystery</option>
-    <option value="horror">Horror</option>
-    <option value="funny">Funny</option>
-    <option value="friendship">Friendship</option>
-    <option value="romance">Romance</option>
-    <option value="thriller">Thriller</option>
-    <option value="inspirational">Inspirational</option>
-    <option value="adventure">Adventure</option>
-    <option value="sci-fi">Sci-Fi</option>
-    <option value="fantasy">Fantasy</option>
-    <option value="historical">Historical</option>
-    <option value="drama">Drama</option>
-    <option value="poetry">Poetry</option>
-    <option value="life">Life</option>
-    <option value="motivational">Motivational</option>
-    <option value="spiritual">Spiritual</option>
-    <option value="slice-of-life">Slice of Life</option>
-    <option value="uplifting">Uplifting</option>
-    <option value="comedy">Comedy</option>
-  </select>
+<!-- Sticky Mobile Categories -->
+<div id="mobile-categories">
+  <button class="mobile-category-btn active" data-category="all">All</button>
+  <button class="mobile-category-btn" data-category="nature">Nature</button>
+  <button class="mobile-category-btn" data-category="travel">Travel</button>
+  <button class="mobile-category-btn" data-category="culture">Culture</button>
+  <button class="mobile-category-btn" data-category="romance">Romance</button>
+  <button class="mobile-category-btn" data-category="mystery">Mystery</button>
+  <button class="mobile-category-btn" data-category="inspirational">Inspirational</button>
+  <button class="mobile-category-btn" data-category="fantasy">Fantasy</button>
+  <button class="mobile-category-btn" data-category="life">Life</button>
+  <button class="mobile-category-btn" data-category="horror">Horror</button>
+  <button class="mobile-category-btn" data-category="thriller">Thriller</button>
+  <button class="mobile-category-btn" data-category="microfiction">Microfiction</button>
+  <button class="mobile-category-btn" data-category="interviews">Interviews</button>
+  <button class="mobile-category-btn" data-category="funny">Funny</button>
+  <button class="mobile-category-btn" data-category="friendship">Friendship</button>
+  <button class="mobile-category-btn" data-category="historical">Historical</button>
+  <button class="mobile-category-btn" data-category="motivational">Motivational</button>
+  <button class="mobile-category-btn" data-category="spiritual">Spiritual</button>
+  <button class="mobile-category-btn" data-category="slice-of-life">Slice of Life</button>
+  <button class="mobile-category-btn" data-category="uplifting">Uplifting</button>
+  <button class="mobile-category-btn" data-category="comedy">Comedy</button>
+  <button class="mobile-category-btn" data-category="poetry">Poetry</button>
 </div>
 
 
@@ -8119,6 +8114,53 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 </script>
+
+
+
+
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const buttons = document.querySelectorAll(".mobile-category-btn");
+  const stories = document.querySelectorAll(".story-card");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // Remove active class from all buttons
+      buttons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const selectedCategory = btn.getAttribute("data-category");
+
+      // Smooth fade-out
+      stories.forEach((story) => {
+        story.style.opacity = "0";
+        setTimeout(() => {
+          // Show or hide stories
+          if (selectedCategory === "all" || story.dataset.category === selectedCategory) {
+            story.style.display = "flex";
+            setTimeout(() => (story.style.opacity = "1"), 150);
+          } else {
+            story.style.display = "none";
+          }
+        }, 150);
+      });
+
+      // Scroll smoothly to top of story list
+      const storiesSection = document.querySelector("#stories");
+      storiesSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+});
+</script>
+
+
+
+
+
 
 
 
