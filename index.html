@@ -58,16 +58,14 @@
     <p>Step inside a world of imagination — stories, articles, and blogs crafted to spark your mind.</p>
     <a href="#stories" class="hero-btn">Explore Stories</a>
   </div>
-  <!-- Search Section -->
-<section class="search-bar container">
-  <input type="text" id="searchInput" placeholder="Search stories, blogs, or articles...">
-</section>
 </section>
 
 
 
-<!-- Sticky Mobile Categories -->
+<!-- Mobile Categories Grid (auto-fit) -->
+     <h2 class="section-title"></h2>
 <div id="mobile-categories">
+<h3 class="mobile-categories-title">Categories</h3>
   <button class="mobile-category-btn active" data-category="all">All</button>
   <button class="mobile-category-btn" data-category="nature">Nature</button>
   <button class="mobile-category-btn" data-category="travel">Travel</button>
@@ -136,7 +134,10 @@
  <section id="stories" class="content">
   <div class="card section header-row">
     <h2 class="section-title">Featured Stories</h2>
-        <p class="subtitle">Handpicked tales that inspire, intrigue, and stay with you.</p>
+         <!-- Search Section -->
+<section class="search-bar container">
+  <input type="text" id="searchInput" placeholder="Search stories, blogs, or articles...">
+</section>
   </div>
 
 <!-- Story 534 -->
@@ -8123,89 +8124,44 @@
 
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const buttons = document.querySelectorAll(".mobile-category-btn");
-  const stories = document.querySelectorAll(".story-card");
-
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      // Remove active class from all buttons
-      buttons.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      const selectedCategory = btn.getAttribute("data-category");
-
-      // Smooth fade-out
-      stories.forEach((story) => {
-        story.style.opacity = "0";
-        setTimeout(() => {
-          // Show or hide stories
-          if (selectedCategory === "all" || story.dataset.category === selectedCategory) {
-            story.style.display = "flex";
-            setTimeout(() => (story.style.opacity = "1"), 150);
-          } else {
-            story.style.display = "none";
-          }
-        }, 150);
-      });
-
-      // Scroll smoothly to top of story list
-      const storiesSection = document.querySelector("#stories");
-      storiesSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  });
-});
-</script>
-
-<script>
 document.addEventListener("DOMContentLoaded", () => {
-  const mobileCategories = document.getElementById("mobile-categories");
-  const buttons = document.querySelectorAll(".mobile-category-btn");
-  const stories = document.querySelectorAll(".story-card");
-  const loadMoreBtn = document.querySelector("#load-more");
-
-  // Show "All" category first and active
   const allBtn = document.querySelector(".mobile-category-btn[data-category='all']");
-  if (allBtn) {
-    allBtn.classList.add("active");
-    mobileCategories.scrollLeft = 0; // ensure starts from left
-  }
+  const loadMoreBtn = document.querySelector("#load-more");
+  const stories = document.querySelectorAll(".story-card");
+  const buttons = document.querySelectorAll(".mobile-category-btn");
 
-  // Handle category clicks
+  // Show "All" as active when site loads
+  buttons.forEach(btn => btn.classList.remove("active"));
+  if (allBtn) allBtn.classList.add("active");
+
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      // Active state switch
       buttons.forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
 
-      const selectedCategory = btn.getAttribute("data-category");
+      const category = btn.getAttribute("data-category");
 
-      // Filter stories instantly
+      // Instantly filter stories (no jump, no reload)
       stories.forEach((story) => {
         const storyCategory = story.getAttribute("data-category");
-        if (selectedCategory === "all" || storyCategory === selectedCategory) {
-          story.style.display = "block";
-          story.style.opacity = "1";
-          story.style.transform = "translateY(0)";
-        } else {
-          story.style.display = "none";
-        }
+        story.style.display =
+          category === "all" || storyCategory === category ? "block" : "none";
       });
 
-      // Hide Load More button when filtering
+      // Hide Load More on category click
       if (loadMoreBtn) {
-        loadMoreBtn.style.display =
-          selectedCategory === "all" ? "block" : "none";
+        loadMoreBtn.style.display = category === "all" ? "block" : "none";
       }
-
-      // Stay in same scroll position
-      window.scrollTo({ top: window.scrollY, behavior: "instant" });
     });
   });
+
+  // ✅ Ensure "All" button scrolls into view first
+  const container = document.getElementById("mobile-categories");
+  if (container && allBtn) {
+    container.scrollLeft = 0;
+  }
 });
 </script>
-
-
 
 
 

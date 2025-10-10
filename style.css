@@ -5150,17 +5150,17 @@ body {
 
   /* Search bar */
   .search-bar {
-    padding: 0 14px;
+    padding: 0 10px;
     margin: 12px auto 22px;
     width: 100%;
   }
 
   #searchInput {
     width: 100%;
-    padding: 14px 18px;
-    border-radius: 14px;
+    padding: 5px 20px;
+    border-radius: 5px;
     border: 1.8px solid #e2e8f0;
-    font-size: 16px;
+    font-size: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     outline: none;
     transition: all 0.25s ease;
@@ -5182,16 +5182,16 @@ body {
   /* FEATURED STORIES HEADER */
   #stories .card.section.header-row {
     text-align: center;
-    padding: 18px 16px;
+    padding: 0px 16px;
     background: linear-gradient(135deg, #f9fafb, #f1f5f9);
-    border-radius: 14px;
+    border-radius: 1px;
     margin-bottom: 14px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   }
 
   #stories .section-title {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 1px;
+    font-weight: 300;
     background: linear-gradient(135deg, #2563eb, #3b82f6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -5295,65 +5295,73 @@ body {
 }
 
 
-/* ======= Sticky Mobile Categories ======= */
+/* ======= Perfectly Centered Mobile Categories Section ======= */
 @media (max-width: 768px) {
+  /* Container spacing below hero */
+  .mobile-categories-section {
+    margin-top: 18px; /* space below hero section */
+  }
+
+  /* Heading Styling */
+  .mobile-categories-title {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e3a8a;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.4px;
+    margin: 0 auto 8px auto;
+    display: block;
+    width: 100%;
+  }
+
+  /* Categories container */
   #mobile-categories {
-    position: sticky;
-    top: 60px; /* below header */
-    z-index: 999;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(12px);
     display: flex;
-    overflow-x: auto;
-    gap: 10px;
-    padding: 10px 14px;
-    border-radius: 0 0 14px 14px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin; /* Firefox */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 12px;
+    margin: 0 auto 10px auto;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(12px);
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    max-width: 92%;
   }
 
-  #mobile-categories::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  #mobile-categories::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 20px;
-  }
-
+  /* Category buttons */
   .mobile-category-btn {
-    flex: 0 0 auto;
-    background: #f1f5f9;
-    border: none;
+    background: #f9fafb;
+    border: 1px solid #e2e8f0;
     border-radius: 999px;
-    padding: 8px 18px;
-    font-size: 14px;
+    padding: 4px 9px; /* slightly smaller */
+    font-size: 11px;
     font-weight: 500;
-    color: #1f2937;
-    white-space: nowrap;
+    color: #1e293b;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    line-height: 1.1;
+    transition: all 0.25s ease-in-out;
   }
 
   .mobile-category-btn:hover {
     background: #e2e8f0;
+    border-color: #d1d5db;
   }
 
   .mobile-category-btn.active {
     background: linear-gradient(135deg, #2563eb, #3b82f6);
+    border: none;
     color: #fff;
-    box-shadow: 0 2px 8px rgba(37,99,235,0.3);
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);
   }
 
-  /* Prevent content overlap */
+  /* Adjust space before stories */
   #stories {
-    margin-top: 20px;
-    padding-bottom: 50px;
-  }
-
-  .story-card {
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    margin-top: 16px;
   }
 }
+
