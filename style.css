@@ -5365,3 +5365,37 @@ body {
   }
 }
 
+/* ===== Animate Categories & Feature Stories with Hero ===== */
+
+/* Initial hidden state (before animation) */
+.categories,
+.feature-stories {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* When visible (after hero animation triggers) */
+.show-sections .categories,
+.show-sections .feature-stories {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ===== Smooth Mobile Scrolling (like Facebook) ===== */
+@media (max-width: 768px) {
+  html, body {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* iOS smooth momentum scrolling */
+    overscroll-behavior: none; /* prevent janky bounce at edges */
+  }
+
+  * {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent; /* remove tap flash */
+  }
+
+  body {
+    scroll-snap-type: none;
+    transition: scroll 0.3s ease-out;
+  }
+}

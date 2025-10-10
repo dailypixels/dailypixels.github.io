@@ -1306,3 +1306,6 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
     console.error("Logout Error:", error.message);
   }
 });
+setTimeout(() => {
+  document.body.classList.add('show-sections');
+}, 600); // adjust delay to match hero animation end
