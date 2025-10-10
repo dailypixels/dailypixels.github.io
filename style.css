@@ -5295,8 +5295,7 @@ body {
 }
 
 
-  
-/* ======= Sticky Mobile Categories (Fixed & Improved) ======= */
+/* ======= Sticky Mobile Categories ======= */
 @media (max-width: 768px) {
   #mobile-categories {
     position: sticky;
@@ -5305,35 +5304,31 @@ body {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(12px);
     display: flex;
-    flex-wrap: nowrap; /* single-row scroll */
     overflow-x: auto;
-    overflow-y: hidden;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 0 0 14px 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    gap: 10px;
-    padding: 12px 14px;
-    border-radius: 0 0 14px 14px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    scrollbar-width: thin; /* Firefox */
   }
 
-  /* Always start scrolled to left (All visible first) */
   #mobile-categories::-webkit-scrollbar {
-    height: 0; /* hide scrollbar for cleaner UI */
+    height: 6px;
   }
 
-  /* Hide label & select (not used) */
-  #mobile-categories label,
-  #mobile-categories select {
-    display: none;
+  #mobile-categories::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 20px;
   }
 
-  /* Category buttons (pill style) */
   .mobile-category-btn {
     flex: 0 0 auto;
-    background: #f3f4f6;
+    background: #f1f5f9;
     border: none;
     border-radius: 999px;
-    padding: 9px 18px;
+    padding: 8px 18px;
     font-size: 14px;
     font-weight: 500;
     color: #1f2937;
@@ -5346,20 +5341,18 @@ body {
     background: #e2e8f0;
   }
 
-  /* Active button */
   .mobile-category-btn.active {
     background: linear-gradient(135deg, #2563eb, #3b82f6);
     color: #fff;
-    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 2px 8px rgba(37,99,235,0.3);
   }
 
-  /* Fix layout spacing for stories */
+  /* Prevent content overlap */
   #stories {
-    margin-top: 25px;
+    margin-top: 20px;
     padding-bottom: 50px;
   }
 
-  /* Smooth fade for story filtering */
   .story-card {
     transition: opacity 0.25s ease, transform 0.25s ease;
   }

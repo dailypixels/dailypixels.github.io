@@ -8157,6 +8157,53 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const mobileCategories = document.getElementById("mobile-categories");
+  const buttons = document.querySelectorAll(".mobile-category-btn");
+  const stories = document.querySelectorAll(".story-card");
+  const loadMoreBtn = document.querySelector("#load-more");
+
+  // Show "All" category first and active
+  const allBtn = document.querySelector(".mobile-category-btn[data-category='all']");
+  if (allBtn) {
+    allBtn.classList.add("active");
+    mobileCategories.scrollLeft = 0; // ensure starts from left
+  }
+
+  // Handle category clicks
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // Active state switch
+      buttons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const selectedCategory = btn.getAttribute("data-category");
+
+      // Filter stories instantly
+      stories.forEach((story) => {
+        const storyCategory = story.getAttribute("data-category");
+        if (selectedCategory === "all" || storyCategory === selectedCategory) {
+          story.style.display = "block";
+          story.style.opacity = "1";
+          story.style.transform = "translateY(0)";
+        } else {
+          story.style.display = "none";
+        }
+      });
+
+      // Hide Load More button when filtering
+      if (loadMoreBtn) {
+        loadMoreBtn.style.display =
+          selectedCategory === "all" ? "block" : "none";
+      }
+
+      // Stay in same scroll position
+      window.scrollTo({ top: window.scrollY, behavior: "instant" });
+    });
+  });
+});
+</script>
 
 
 
@@ -8374,61 +8421,6 @@ document.querySelectorAll(".category-btn").forEach(button => {
 
 
 
-
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const storyCards = document.querySelectorAll(".story-card");
-  const tagButtons = document.querySelectorAll(".chip[data-tag]");
-  const categorySelect = document.getElementById("categorySelect");
-
-  function filterStories(selectedTag) {
-    // Show/hide stories smoothly
-    storyCards.forEach(card => {
-      const tags = card.getAttribute("data-tags") || "";
-      if (selectedTag === "all" || tags.includes(selectedTag)) {
-        card.style.display = "block";
-        setTimeout(() => card.classList.remove("hide"), 50);
-      } else {
-        card.classList.add("hide");
-        setTimeout(() => (card.style.display = "none"), 300);
-      }
-    });
-
-    // ✅ Always scroll to top of first visible card
-    setTimeout(() => {
-      const firstVisible = Array.from(storyCards).find(
-        c => c.style.display !== "none"
-      );
-      if (firstVisible) {
-        const rect = firstVisible.getBoundingClientRect();
-        const yOffset = window.innerWidth <= 768 ? -80 : -100; // offset for header
-        const y = rect.top + window.scrollY + yOffset;
-        window.scrollTo({ top: y, behavior: "smooth" });
-      }
-    }, 400); // wait until CSS transition completes
-  }
-
-  // 💠 Tag buttons
-  tagButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const selectedTag = btn.getAttribute("data-tag");
-      tagButtons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      filterStories(selectedTag);
-    });
-  });
-
-  // 📱 Mobile dropdown
-  if (categorySelect) {
-    categorySelect.addEventListener("change", e => {
-      const selectedTag = e.target.value;
-      filterStories(selectedTag);
-    });
-  }
-});
-
-</script>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
