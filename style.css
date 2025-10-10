@@ -5150,18 +5150,18 @@ body {
 
   /* Search bar */
   .search-bar {
-    padding: 0 10px;
-    margin: 12px auto 22px;
+    padding: 0 20px;
+    margin: 10px auto 22px;
     width: 100%;
   }
 
   #searchInput {
     width: 100%;
-    padding: 5px 20px;
+    padding: 10px 20px;
     border-radius: 5px;
     border: 1.8px solid #e2e8f0;
-    font-size: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    font-size: 11px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     outline: none;
     transition: all 0.25s ease;
   }
@@ -5182,7 +5182,7 @@ body {
   /* FEATURED STORIES HEADER */
   #stories .card.section.header-row {
     text-align: center;
-    padding: 0px 16px;
+    padding: 10px 16px;
     background: linear-gradient(135deg, #f9fafb, #f1f5f9);
     border-radius: 1px;
     margin-bottom: 14px;
