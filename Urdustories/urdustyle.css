@@ -1087,18 +1087,176 @@ body {
 .btn:hover{transform:translateY(-2px); box-shadow:var(--shadow)}
 .btn-primary{background:var(--primary); color:#fff; border-color:transparent}
 .btn-primary:hover{background:var(--primary-600)}
-/* Urdu Footer Styling - Centered */
-.urdu-footer {
-  background: #ffffff;
-  text-align: center;               /* force center */
-  padding: 20px 10px;
-  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
-  font-size: 16px;
-  color: #444;
-  border-top: 1px solid #eaeaea;
+/* ===== Slim & Responsive Urdu Categories Section ===== */
+.urdu-categories {
+  direction: rtl;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 25px;
+  padding: 0 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
 
-.urdu-footer p {
-  margin: 0;
-  text-align: center;               /* double ensure center */
+.show-sections .urdu-categories {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.urdu-categories-heading {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 16px;
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
+  letter-spacing: 0.3px;
+}
+
+/* Grid / Flex layout for slim buttons */
+.urdu-categories-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  row-gap: 10px;
+}
+
+/* Slim, minimal buttons */
+.urdu-category-btn {
+  background: #f9fafb;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 0.95rem;
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
+  color: #1e3a8a;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  min-width: 70px;
+  box-shadow: 0 1px 3px rgba(30, 58, 138, 0.05);
+}
+
+.urdu-category-btn:hover {
+  background: #1e3a8a;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* ===== Responsive Design ===== */
+
+/* Mobile view: tighter layout */
+@media (max-width: 480px) {
+  .urdu-categories-heading {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+
+  .urdu-category-btn {
+    font-size: 0.85rem;
+    padding: 15px 8px;
+    border-radius: 6px;
+    min-width: 60px;
+  }
+}
+
+/* Desktop view: centered & evenly spaced */
+@media (min-width: 768px) {
+  .urdu-categories-grid {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .urdu-category-btn {
+    font-size: 0.95rem;
+    padding: 6px 12px;
+  }
+}
+/* ===== Slim & Responsive Urdu Categories Section ===== */
+.urdu-categories {
+  direction: rtl;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 25px;
+  padding: 0 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.show-sections .urdu-categories {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.urdu-categories-heading {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 16px;
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
+}
+
+/* Layout */
+.urdu-categories-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  row-gap: 10px;
+}
+
+/* Slim buttons */
+.urdu-category-btn {
+  background: #f9fafb;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 0.95rem;
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
+  color: #1e3a8a;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  min-width: 70px;
+  box-shadow: 0 1px 3px rgba(30, 58, 138, 0.05);
+}
+
+.urdu-category-btn:hover {
+  background: #1e3a8a;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Active state */
+.urdu-category-btn.active {
+  background: #1e3a8a;
+  color: #ffffff;
+  border-color: #1e3a8a;
+  box-shadow: 0 2px 6px rgba(30, 58, 138, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .urdu-categories-heading {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+
+  .urdu-category-btn {
+    font-size: 0.85rem;
+    padding: 5px 8px;
+    border-radius: 6px;
+    min-width: 60px;
+  }
+}
+
+/* Desktop layout */
+@media (min-width: 768px) {
+  .urdu-categories-grid {
+    max-width: 700px;
+    margin: 0 auto;
+  }
 }

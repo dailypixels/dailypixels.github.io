@@ -810,6 +810,68 @@
     font-size: 17px;
   }
 }
+/* Urdu Categories Section */
+.urdu-categories {
+  direction: rtl;
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 40px;
+  padding: 0 20px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.show-sections .urdu-categories {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.urdu-categories-heading {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 25px;
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
+}
+
+.urdu-categories-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.urdu-category-btn {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 1rem;
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
+  color: #1e3a8a;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(30, 58, 138, 0.05);
+}
+
+.urdu-category-btn:hover {
+  background: #1e3a8a;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 480px) {
+  .urdu-categories-heading {
+    font-size: 1.3rem;
+  }
+  .urdu-category-btn {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+  }
+}
 
   </style>
   <!-- Google tag (gtag.js) -->
@@ -856,1254 +918,1634 @@
   </div>
 </section>
 
+
+<!-- ===== Urdu Categories Section ===== -->
+<section class="urdu-categories">
+  <h2 class="urdu-categories-heading">زمرے</h2>
+  <div class="urdu-categories-grid">
+    <button class="urdu-category-btn active">تمام</button>
+    <button class="urdu-category-btn">انٹرویوز</button>
+    <button class="urdu-category-btn">ڈرامہ</button>
+    <button class="urdu-category-btn">راز</button>
+    <button class="urdu-category-btn">احساسات</button>
+    <button class="urdu-category-btn">زندگی</button>
+    <button class="urdu-category-btn">ادب</button>
+    <button class="urdu-category-btn">تاریخ</button>
+    <button class="urdu-category-btn">سفرنامہ</button>
+    <button class="urdu-category-btn">افسانے</button>
+  </div>
+</section>
+
+
+
+
   <!-- Stories Grid -->
   <main class="page-section">
     <div class="post-grid">
 
 <a href="urdustory2.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="فطرت" data-tags="دریا، خاموشی، یاد" data-title="خاموش دریا">
+
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1616044983295-419bc4c78684?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fCVEOCVBOCVEOCVBNyVEOCVCMSVEOCVCNCUyMCVEQSVBOSVEQiU4QyUyMCVEOCVCMSVEOCVBNyVEOCVBQXxlbnwwfHwwfHx8MA%3D%3D" alt="بارش میں جلتی سڑک کی روشنی" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1653997219086-017135f69dd2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fCVEOCVBRiVEQSVCRSVEOSU4NiVEOCVBRiUyMCVEOCVCMyVEQiU5MiUyMCVEOSU4NCVEOSVCRSVEOSVCOSVEOCVBNyUyMCVEOCVBNyVEQiU4QyVEQSVBOSUyMCVEOCVBRiVEOCVCMSVEQiU4QyVEOCVBNyUyMCVEOCVBQyVEOSU4OCUyMCVEOSVCRSVEQiU4MSVEOCVBNyVEQSU5MSVEOSU4OCVEQSVCQSUyMCVEQSVBOSVEQiU5MiUyMCVEOCVBOCVEQiU4QyVEQSU4NiUyMCVEOCVBOCVEQiU4MSVEOCVBQSVEOCVBNyUyMCVEQiU4MSVEQiU5MiVEOCU4QyUyMCVEOCVBQyVEQiU4QyVEOCVCMyVEQiU5MiUyMCVEOSU4OCVEOSU4MiVEOCVBQSUyMCVEOSU4NiVEQiU5MiUyMCVEOCVBRSVEOSU4OCVEOCVBRiUyMCVEQSVBOSVEOSU4OCUyMCVEOCVBOCVEQiU4MSVEOSU4NiVEQiU5MiUyMCVEOCVCMyVEQiU5MiUyMCVEOCVCMSVEOSU4OCVEQSVBOSUyMCVEOSU4NCVEQiU4QyVEOCVBNyUyMCVEQiU4MSVEOSU4OHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=500" alt="دھند سے لپٹا ایک دریا جو پہاڑوں کے بیچ بہتا ہے، جیسے وقت نے خود کو بہنے سے روک لیا ہو۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">بارش کی رات</h3>
-      <p class="post-meta-urdu">11 ستمبر 2025 • علی حسن</p>
-      <p class="post-excerpt-urdu">بارش کی رات، پرانے خط کی خوشبو اور شہر کی بھیگی روشنیوں میں چھپی ہوئی یادوں کا قصہ۔</p>
+      <h3 class="post-title-urdu">خاموش دریا</h3>
+      <p class="post-meta-urdu">20 اپریل، 2026 • ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">  ایک عورت ایک ایسے دریا کے کنارے پہنچتی ہے جس کے بارے میں کہا جاتا ہے کہ وہ صرف ان سے بات کرتا ہے جو سننا جانتے ہیں۔</p>
     </div>
   </article>
 </a>
 
 <a href="urdustory3.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="احساسات" data-tags="احساس،خاموشی،جدائی" data-title="نہ کہا ہوا جملہ">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1580993306001-65a9eaedb1d8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8JUQ5JUJFJURCJTgxJUQ4JUE3JURBJTkxJUQ5JTg4JURBJUJBJTIwJURBJUE5JURCJTkyJTIwJUQ4JUIzJUQ4JUE3JUQ4JUE2JURCJTkyJTIwJUQ5JTg1JURCJThDJURBJUJBJTIwJUQ4JUIzJURBJUE5JUQ5JTg4JUQ5JTg2fGVufDB8fDB8fHww" alt="پہاڑوں کے درمیان ایک پرسکون جھیل کا منظر" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1565231952678-923294d26ce5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fCVEOCVBOCVEOCVBNyVEOCVCMSVEOCVCNCUyMCVEQSVBOSVEQiU5MiUyMCVEOCVBOCVEOCVCOSVEOCVBRiUyMCVEOCVBNyVEQiU4QyVEQSVBOSUyMCVEQSVBOSVEQSVCRSVEQSU5MSVEQSVBOSVEQiU4QyUyMCVEOSVCRSVEOCVCMSUyMCVEOSVCOSVEQSVCRSVEQiU4MSVEOCVCMSVEQiU5MiUyMCVEOSVCRSVEOCVBNyVEOSU4NiVEQiU4QyUyMCVEQSVBOSVEQiU5MiUyMCVEOSU4MiVEOCVCNyVEOCVCMSVEQiU5MiVEOCU4QyUyMCVEOCVBQyVEOSU4NiUyMCVEOSU4NSVEQiU4QyVEQSVCQSUyMCVEOCVCNCVEOCVBNyVEOSU4NSUyMCVEQSVBOSVEOCVBNyUyMCVEOCVBMiVEOCVCMyVEOSU4NSVEOCVBNyVEOSU4NiUyMCVEOCVBRiVEQSVCRSVEOSU4NiVEOCVBRiVEOSU4NCVEOCVBNyUyMCVEOCVCMyVEOCVBNyUyMCVEOCVBQyVEQSVCRSVEOSU4NCVEQSVBOSUyMCVEOCVCMSVEQiU4MSVEOCVBNyUyMCVEQiU4MSVEOSU4OCVEQiU5NHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=500" alt="بارش کے بعد ایک کھڑکی پر ٹھہرے پانی کے قطرے، جن میں شام کا آسمان دھندلا سا جھلک رہا ہو۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">پہاڑوں کے سائے میں سکون</h3>
-      <p class="post-meta-urdu">12 ستمبر 2025 • زارا نعیم</p>
-      <p class="post-excerpt-urdu">پہاڑوں کی خاموشی اور سبزہ دل کو سکون دیتا ہے۔ یہ کہانی قدرت کے حسین مناظر اور زندگی کے اصل سکون کو دریافت کرنے کے بارے میں ہے۔</p>
+      <h3 class="post-title-urdu">نہ کہا ہوا جملہ</h3>
+      <p class="post-meta-urdu">27 اپریل، 2025 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">کبھی کبھی سب سے گہرا احساس وہ ہوتا ہے جو ہم زبان سے نہیں کہہ پاتے — صرف نگاہوں کے درمیان ٹھہر جاتا ہے۔</p>
     </div>
   </article>
 </a>
 
 <a href="urdustory4.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="ڈرامہ" data-tags="خواب،اداکاری،حقیقت" data-title="آخری منظر">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1421344424210-2db540391216?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8JUQ4JUE4JUQ4JUE3JUQ4JUIxJUQ4JUI0JTIwJURBJUE5JURCJTkyJTIwJUQ5JTgyJUQ4JUI3JUQ4JUIxJUQ5JTg4JURBJUJBJTIwJURBJUE5JURCJThDJTIwJURBJUE5JURCJTgxJUQ4JUE3JUQ5JTg2JURCJThDfGVufDB8fDB8fHww" alt="بارش میں بھیگی سڑک اور روشنیاں" loading="lazy">
+      <img src="https://plus.unsplash.com/premium_photo-1726848094123-b69f8c83b824?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fEFuJTIwZW1wdHklMjB0aGVhdGVyJTIwc3RhZ2UlMkMlMjB3aGVyZSUyMGElMjBzaW5nbGUlMjBjaGFpciUyMGlzJTIwbGl0JTIwYnklMjBhJTIwc3BvdGxpZ2h0JTJDJTIwdGhlJTIwcmVzdCUyMGRyb3duZWQlMjBpbiUyMGRhcmtuZXNzLnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=500" alt="خالی تھیٹر کا اسٹیج، جہاں ایک واحد کرسی پر اسپاٹ لائٹ پڑ رہی ہے، باقی سب اندھیرے میں ڈوبا ہوا۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">بارش کے قطروں کی کہانی</h3>
-      <p class="post-meta-urdu">13 ستمبر 2025 • حمزہ فاروق</p>
-      <p class="post-excerpt-urdu">بارش کی بوندیں زمین پر گریں تو پرانی یادیں اور خوشبوئیں ہوا میں تیرنے لگیں۔ یہ کہانی بارش اور لمحوں کے درمیان ایک خاموش مکالمہ ہے۔</p>
+      <h3 class="post-title-urdu">آخری منظر</h3>
+      <p class="post-meta-urdu">مئی، 2026 • تحریر: ماہِرہ انصاری10</p>
+      <p class="post-excerpt-urdu">ایک اداکارہ اپنی زندگی کا آخری منظر کھیلنے کے لیے اسٹیج پر واپس آتی ہے — مگر اس بار ڈائیلاگ نہیں، صرف سچ بولنا ہے۔</p>
     </div>
   </article>
 </a>
 
 <a href="urdustory5.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="راز" data-tags="اندھیرا، ماضی، سچ" data-title="روشنی کا سایہ">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1643312108386-54be21c5ea78?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fCVEOSU4MiVEQiU4MSVEOSU4OCVEQiU4MSUyMCVEOCVBRSVEOCVBNyVEOSU4NiVEQiU4MSUyMCVEQSVBOSVEQiU4QyUyMCVEOCVBMiVEOCVBRSVEOCVCMSVEQiU4QyUyMCVEOCVCNCVEOCVBNyVEOSU4NXxlbnwwfHwwfHx8MA%3D%3D" alt="پرانے قہوہ خانہ کا اندرونی منظر" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1757619852412-d347cee776e0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fEFuJTIwb2xkJTIwcm9vbSUyMHdpdGglMjBhJTIwc3dpbmdpbmclMjBidWxiJTJDJTIwYW5kJTIwYSUyMHNoYWRvdyUyMG9uJTIwdGhlJTIwZmxvb3IlMjB1bmRlciUyMHRoZSUyMGxpZ2h0JTIwJUUyJTgwJTk0JTIwYnV0JTIwaXQlMjBpcyUyMG5vdCUyMGF0dGFjaGVkJTIwdG8lMjBhbnlvbmUncyUyMGJvZHkufGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=500" alt="ایک پرانا کمرہ، جس میں ایک بلب جھول رہا ہے، اور روشنی کے نیچے زمین پر ایک سایہ ہے — مگر وہ کسی کے جسم سے نہیں جڑا۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">قہوہ خانہ کی آخری شام</h3>
-      <p class="post-meta-urdu">15 ستمبر 2025 • زارا خان</p>
-      <p class="post-excerpt-urdu">ایک پرانے قہوہ خانہ کی آخری شام جہاں یادیں اور کہانیاں دیواروں سے جھانکتی ہیں۔</p>
+      <h3 class="post-title-urdu">روشنی کا سایہ</h3>
+      <p class="post-meta-urdu">22 مئی، 2026 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">جب ایک فوٹوگرافر ایک بھولے ہوئے مکان میں روشنی قید کرنے گیا، تو اس کے کیمرے نے کچھ ایسا قید کر لیا جو کبھی نظر نہیں آنا چاہیے تھا۔</p>
     </div>
   </article>
 </a>
 
 <a href="urdustory6.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="زندگی" data-tags="وقت، تنہائی، چائے" data-title="وقت کا کپ">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1676401858560-82412607495f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fCVEOCVCMyVEOSU4NiVEOCVCMyVEOCVBNyVEOSU4NiUyMCVEOCVCMSVEQiU4QyVEOSU4NCVEOSU4OCVEQiU5MiUyMCVEOCVBNyVEOCVCMyVEOSVCOSVEQiU4QyVEOCVCNCVEOSU4NnxlbnwwfHwwfHx8MA%3D%3D" alt="سنسان ریلوے اسٹیشن" loading="lazy">
+      <img src="https://media.istockphoto.com/id/2193286013/photo/slow-motion-of-a-steaming-cup-of-coffee-sits-on-a-wooden-surface-surrounded-by-lush-green.webp?a=1&b=1&s=612x612&w=0&k=20&c=wMD1LUBIzZFoX3dgg5MaqGt99RjT1akhbEE5dhBq838=" alt="ایک پرانی لکڑی کی میز پر رکھا ہوا چائے کا کپ، جس سے بھاپ اوپر اٹھ رہی ہے، اور پیچھے دھندلا سا سورج طلوع ہو رہا ہے۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">سنسان ریلوے اسٹیشن</h3>
-      <p class="post-meta-urdu">18 ستمبر 2025 • حارث ندیم</p>
-      <p class="post-excerpt-urdu">پرانے ریلوے اسٹیشن پر ایک خاموش سفر، جہاں یادیں وقت کے سفر سے زیادہ قیمتی لگتی ہیں۔</p>
+      <h3 class="post-title-urdu">وقت کا کپ</h3>
+      <p class="post-meta-urdu">4 جون، 2026 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">کبھی کبھی زندگی کسی ایک کپ چائے میں سمٹ آتی ہے — اور وقت، بھاپ کی طرح، آہستہ آہستہ غائب ہو جاتا ہے۔</p>
     </div>
   </article>
 </a>
 
 <a href="urdustory7.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="ادب" data-tags="تحریر، خاموشی، ادھورا جملہ" data-title="آخری جملہ">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1679987992432-873618102409?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fCVEOCVBOCVEOCVBNyVEOCVCMSVEOCVCNCUyMCVEOSU4NSVEQiU4QyVEQSVCQSUyMCVEQSVBOSVEQSVCRSVEOSU4OCVEQiU4QyVEOCVBNyUyMCVEQiU4MSVEOSU4OCVEOCVBNyUyMCVEOCVCNCVEQiU4MSVEOCVCMXxlbnwwfHwwfHx8MA%3D%3D" alt="بارش میں کھویا ہوا شہر" loading="lazy">
+      <img src="https://media.istockphoto.com/id/155283668/photo/mormon-school-bench-with-chalk-and-ink-glass-in-utah.webp?a=1&b=1&s=612x612&w=0&k=20&c=CnxI12xmtVaYkzNnfsM1vLOPv_zq1eJwG2tily76N30=" alt="ایک میز پر رکھی سیاہی کی دوات، جس کے پاس ادھورا لکھا ہوا صفحہ پڑا ہے، اور کھڑکی سے شام کی روشنی اندر آ رہی ہے۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">بارش میں کھویا ہوا شہر</h3>
-      <p class="post-meta-urdu">20 ستمبر 2025 • مہک رحمان</p>
-      <p class="post-excerpt-urdu">بارش میں ڈوبا ہوا شہر، جہاں یادیں اور خواب بارش کی بوندوں میں جھلکتے ہیں۔</p>
+      <h3 class="post-title-urdu">آخری جملہ</h3>
+      <p class="post-meta-urdu">18 جون، 2035 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">ایک مصنف اپنے ادھورے ناول کا آخری جملہ لکھنے بیٹھتا ہے — مگر کہانی ختم کرنے سے پہلے، وہ خود کہانی کا کردار بن جاتا ہے۔</p>
     </div>
   </article>
 </a>
 
 <a href="urdustory8.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="تاریخ" data-tags="جنگ، ماضی، یادیں" data-title="ریت میں نام">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1664413584681-ff51a2007be7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fCVEOSVCRSVEOCVCMSVEOCVBNyVEOSU4NiVEQiU5MiUyMCVEOCVBRiVEOCVCMSVEOCVBRSVEOCVBQSUyMCVEQSVBOSVEQiU4QyUyMCVEOCVCMyVEOCVCMSVEQSVBRiVEOSU4OCVEOCVCNCVEQiU4Q3xlbnwwfHwwfHx8MA%3D%3D" alt="پرانے درخت کی سرگوشی" loading="lazy">
+      <img src="https://media.istockphoto.com/id/1371933359/photo/deadly-chess-interrupted-gameplay-in-desert-camp.webp?a=1&b=1&s=612x612&w=0&k=20&c=IHzIC4qLZS8i2XK6SRUnc4GiILc1hg2XztvVnkiG2QI=" alt="سنہری ریت پر پڑا ایک زنگ آلود سپاہی کا ہیلمٹ، جس کے قریب آدھا دفن خط جھلک رہا ہو۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">پرانے درخت کی سرگوشی</h3>
-      <p class="post-meta-urdu">22 ستمبر 2025 • زین العابدین</p>
-      <p class="post-excerpt-urdu">ایک پرانے درخت کے نیچے چھپی کہانی، جو وقت کے راز سناتی ہے۔</p>
+      <h3 class="post-title-urdu">ریت میں نام</h3>
+      <p class="post-meta-urdu">2 جولائی، 2026 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">جب ایک مؤرخ پرانے میدانِ جنگ کا دورہ کرتا ہے،
+تو وہ وہاں صرف تاریخ نہیں پاتا — بلکہ ایک ایسا نام جو ابھی تک مٹایا نہیں جا سکا۔</p>
     </div>
   </article>
 </a>
+
 <a href="urdustory9.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="سفرنامہ" data-tags="سفر، یاد، خاموشی" data-title="راستوں کے پار">
     <div class="post-media">
-      <img src="https://plus.unsplash.com/premium_photo-1750360905993-96da7cf34465?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fCVEQSVBOSVEOCVBQSVEOCVBNyVEOCVBOCVEOSU4OCVEQSVCQSUyMCVEQSVBOSVEQiU4QyUyMCVEOSVCRSVEOCVCMSVEOCVBNyVEOSU4NiVEQiU4QyUyMCVEOCVBRSVEOSU4OCVEOCVCNCVEOCVBOCVEOSU4OHxlbnwwfHwwfHx8MA%3D%3D" alt="کتابوں کی پرانی خوشبو" loading="lazy">
+      <img src="https://media.istockphoto.com/id/1010415592/photo/traveler-sits-on-top-of-a-rock-admiring-the-moutain.webp?a=1&b=1&s=612x612&w=0&k=20&c=GzY1wKVa2sVU3mrxkd5Qbfrro92OHaV_8gHX319ynbA=" alt="دھند میں لپٹے پہاڑوں کے درمیان بل کھاتی سڑک، جس پر ایک اکیلا مسافر چل رہا ہو، کاندھے پر بیگ اور دل میں خواب۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">کتابوں کی پرانی خوشبو</h3>
-      <p class="post-meta-urdu">24 ستمبر 2025 • عائشہ فاروق</p>
-      <p class="post-excerpt-urdu">پرانے کتابوں کے دکان کی کہانی، جہاں ہر صفحہ ایک نیا راز سناتا ہے۔</p>
+      <h3 class="post-title-urdu">راستوں کے پار</h3>
+      <p class="post-meta-urdu">16 جولائی، 2026 • تحریر: ماہِرہ انصاری </p>
+      <p class="post-excerpt-urdu">یہ ایک ایسے مسافر کی داستان ہے جو منزل کی تلاش میں نکلا —
+مگر آخر میں جانا کہ سفر ہی اصل منزل ہوتا ہے۔</p>
     </div>
   </article>
 </a>
 
 <a href="urdustory10.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="افسانے" data-tags="خواب، حقیقت، وقت" data-title="آئینے کے پار">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1585296670653-a9ae436eb6a9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fCVEOCVCMSVEOSU4OCVEOCVCNCVEOSU4NiVEQiU4QyVEOSU4OCVEQSVCQSUyMCVEQSVBOSVEOCVBNyUyMCVEOSVCRSVEOSU4NHxlbnwwfHwwfHx8MA%3D%3D" alt="روشنیوں کا پل" loading="lazy">
+      <img src="https://plus.unsplash.com/premium_photo-1706559880104-8ef9fb87c349?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8QW4lMjBvbGQlMjBtaXJyb3IlMjBwbGFjZWQlMjBpbiUyMGElMjByb29tJTJDJTIwaW4lMjB3aGljaCUyMHNvbWVvbmUncyUyMHJlZmxlY3Rpb24lMjBpcyUyMGNsZWFybHklMjB2aXNpYmxlJTIwJUUyJTgwJTk0JTIwYnV0JTIwbm8lMjBvbmUlMjBpcyUyMHByZXNlbnQlMjBpbiUyMHRoZSUyMHJvb20ufGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=500" alt="ایک کمرے میں رکھا پرانا آئینہ، جس میں کسی کا عکس صاف دکھائی دے رہا ہے — مگر کمرے میں کوئی موجود نہیں۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">روشنیوں کا پل</h3>
-      <p class="post-meta-urdu">26 ستمبر 2025 • عدنان سلیم</p>
-      <p class="post-excerpt-urdu">شہر کے پل پر روشنیوں کے بیچ ایک لمحے کی کہانی، جو دل کو سکون دیتی ہے۔</p>
+      <h3 class="post-title-urdu">آئینے کے پار</h3>
+      <p class="post-meta-urdu">30 جولائی، 2025 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">جب انسان اپنے عکس سے باتیں کرنے لگے،
+تو کہانی محض کہانی نہیں رہتی — وہ ایک راز بن جاتی ہے۔</p>
     </div>
   </article>
 </a>
+
 <a href="urdustory11.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="انٹرویوز" data-tags="وقت، سوال، زندگی" data-title="آخری سوال">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1668241514626-f0add2bc6f5d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fCVEOCVCMSVEQiU4QyVEOSU4NCUyMCVEQSVBRiVEOCVBNyVEQSU5MSVEQiU4QyUyMCVEQSVBOSVEOCVBNyUyMCVEOCVCMyVEOSU4MSVEOCVCMXxlbnwwfHwwfHx8MA%3D%3D" alt="ریل گاڑی کا سفر" loading="lazy">
+      <img src="https://media.istockphoto.com/id/2223069597/photo/home-recording.webp?a=1&b=1&s=612x612&w=0&k=20&c=VVJoddDAKfyUuls-aAFCplJtIpZsFTTbX1W6Mza0npA=" alt="ایک پرانی لکڑی کی میز پر رکھا مائیکروفون، جس کے پیچھے خالی کرسی پر دھوپ پڑ رہی ہے۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">ریل گاڑی کا سفر</h3>
-      <p class="post-meta-urdu">28 ستمبر 2025 • سارہ نعیم</p>
-      <p class="post-excerpt-urdu">ریل گاڑی کی کھڑکی سے گزرتے منظر اور یادوں کی خوشبو پر مبنی ایک کہانی۔</p>
+      <h3 class="post-title-urdu">آخری سوال</h3>
+      <p class="post-meta-urdu">12 اگست، 2025 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">ایک صحافی اپنے کیریئر کے آخری انٹرویو کے لیے گیا —
+لیکن جس شخص سے وہ بات کرنے آیا تھا، وہ صرف وقت تھا۔</p>
     </div>
   </article>
 </a>
+
 <a href="urdustory12.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="ڈرامہ" data-tags="تھیٹر، خواب، قربانی" data-title="پردہ گرا نہیں تھا">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1649601999043-57f1970f9bfe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8JUQ4JUE4JUQ4JUE3JUQ4JUIxJUQ4JUI0JTIwJURBJUE5JURCJThDJTIwJUQ4JUIxJUQ4JUE3JUQ4JUFBfGVufDB8fDB8fHww" alt="بارش کی رات" loading="lazy">
+      <img src="https://plus.unsplash.com/premium_photo-1747668414520-efa907087dd9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8T24lMjB0aGUlMjBlbXB0eSUyMHN0YWdlJTJDJTIwYSUyMGxvbmUlMjBsYW1wJTIwaXMlMjBidXJuaW5nJTJDJTIwd2l0aCUyMHRoZSUyMHNoYWRvdyUyMG9mJTIwYSUyMHdvbWFuJTIwc2l0dGluZyUyMG9uJTIwYW4lMjBvbGQlMjBjaGFpciUyQyUyMGdsYW5jaW5nJTIwYmFjay58ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=500" alt="خالی اسٹیج پر اکیلا لیمپ جل رہا ہے، ایک پرانی کرسی پر مڑ کر دیکھتی ہوئی عورت کے سائے کے ساتھ۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">بارش کی رات</h3>
-      <p class="post-meta-urdu">29 ستمبر 2025 • علی حسن</p>
-      <p class="post-excerpt-urdu">بارش کی بوندیں، یادوں کی گھنٹیاں اور محبت کی خوشبو سے بھری ایک رات۔</p>
+      <h3 class="post-title-urdu">پردہ گرا نہیں تھا</h3>
+      <p class="post-meta-urdu">20 اگست، 2026 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">ایک اداکارہ جس نے تالیوں کے شور میں خود کو کھو دیا،
+اب خاموش اسٹیج پر اپنی آخری پرفارمنس دینے آئی ہے —
+مگر آج ناظرین نہیں، صرف اس کا ماضی موجود ہے۔</p>
     </div>
   </article>
 </a>
+
 <a href="urdustory13.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="احساسات" data-tags="جدائی، خاموشی، یاد" data-title="بارش کے بعد">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1592845351216-3ee5b3fba749?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8JURBJUFGJUQ4JUE3JUQ4JUE0JURBJUJBJTIwJURBJUE5JUQ4JUE3JTIwJUQ5JUJFJUQ5JThGJUQ4JUIxJTIwJUQ4JUIzJURBJUE5JUQ5JTg4JUQ5JTg2JTIwJUQ4JUFGJUQ5JTg2JTNDJTJGdGl0bGUlM0V8ZW58MHx8MHx8fDA%3D" alt="گاؤں کا پُر سکون دن" loading="lazy">
+      <img src="https://media.istockphoto.com/id/1077158168/photo/rain-drops.jpg?s=612x612&w=0&k=20&c=nhZDOew1avwJ7Yt_Bb5rPxJb94xuQtAZklO6eyXzEsw=" alt="کھڑکی پر بارش کے قطرے، ایک ادھورا خط میز پر رکھا ہے جس کے کنارے بھیگ چکے ہیں۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">گاؤں کا پُر سکون دن</h3>
-      <p class="post-meta-urdu">30 ستمبر 2025 • زینب ملک</p>
-      <p class="post-excerpt-urdu">گاؤں کی فضا اور یادوں کی خوشبو میں ڈوبی ایک پُر سکون کہانی۔</p>
+      <h3 class="post-title-urdu">بارش کے بعد</h3>
+      <p class="post-meta-urdu">28 اگست، 2026 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">وہ بارش جو برسوں بعد آئی،
+محبت نہیں لوٹائی — مگر یاد ضرور جگا گئی۔</p>
     </div>
   </article>
 </a>
+
 <a href="urdustory14.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="زندگی" data-tags="امید، درد، آغاز" data-title="روشنی کا وعدہ">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1707336666897-fcbfef7bdf56?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fCUzQ3RpdGxlJTNFJURBJTg2JUQ4JUE3JUQ4JUE2JURCJTkyJTIwJUQ4JUFFJUQ4JUE3JUQ5JTg2JURCJTgxJTIwJURBJUE5JUQ4JUE3JTIwJUQ4JUIxJUQ4JUE3JUQ4JUIyJTNDJTJGdGl0bGUlM0V8ZW58MHx8MHx8fDA%3D" alt="چائے خانہ کا راز" loading="lazy">
+      <img src="https://media.istockphoto.com/id/1258680177/photo/open-spring-bound-notebook-in-sunlight.webp?a=1&b=1&s=612x612&w=0&k=20&c=Eus27RAAPOVi7wgqDq-KdNqaMc0j72OauBKetQIBmXs=" alt="سورج کی پہلی کرن کسی ٹوٹی ہوئی کھڑکی سے اندر آ رہی ہے، اور روشنی ایک پرانے نوٹ بُک پر پڑی ہے۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">چائے خانہ کا راز</h3>
-      <p class="post-meta-urdu">1 اکتوبر 2025 • فہد جاوید</p>
-      <p class="post-excerpt-urdu">شہر کے پرانے چائے خانہ کی دیواروں میں چھپی کہانیوں پر مبنی ایک پراثر تحریر۔</p>
+      <h3 class="post-title-urdu">روشنی کا وعدہ</h3>
+      <p class="post-meta-urdu">2 ستمبر، 2026 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">وہ سب کچھ چھوڑ چکی تھی — خواب، لوگ، یقین۔
+مگر ایک دن، روشنی نے دروازہ دوبارہ کھٹکھٹایا۔</p>
     </div>
   </article>
 </a>
+
 <a href="urdustory15.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="ادب" data-tags="لفظ، خط، محبت" data-title="نامکمل جملہ">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1751723349999-bed57534130f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8JTNDdGl0bGUlM0UlRDglQjQlREIlODElRDglQjElMjAlREElQTklREIlOEMlMjAlRDglQUUlRDglQTclRDklODUlRDklODglRDglQjQlMjAlREElQUYlRDklODQlREIlOEMlRDglQTclREElQkElM0MlMkZ0aXRsZSUzRXxlbnwwfHwwfHx8MA%3D%3D" alt="شہر کی خاموش گلیاں" loading="lazy">
+      <img src="https://media.istockphoto.com/id/921338310/photo/studying-math-concept-on-dark-wooden-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=dj2otyQCrPAxpTeBADp_JyfGy2bXLQR75mUjghBXjkc=" alt="لکڑی کی میز پر رکھے پرانے خطوط، ایک کھلا ہوا صفحہ جس پر آخری جملہ ادھورا ہے۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">شہر کی خاموش گلیاں</h3>
-      <p class="post-meta-urdu">2 اکتوبر 2025 • ثمر عباس</p>
-      <p class="post-excerpt-urdu">رات کے آخری پہر کی خاموشی اور سنسان گلیوں میں چھپے راز۔</p>
+      <h3 class="post-title-urdu">نامکمل جملہ</h3>
+      <p class="post-meta-urdu">6 ستمبر، 2026 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">ایک ادیب کی زندگی کا آخری خط —
+جو کبھی بھیج نہیں پایا، کیونکہ جملہ مکمل کرنے کی ہمت ہی نہ ہوئی۔</p>
     </div>
   </article>
 </a>
 
 <a href="urdustory16.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="تاریخ" data-tags="ماضی، راز، آثار" data-title="ریت میں دفن شہر">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1714477917328-37b74a31c115?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fCUzQ3RpdGxlJTNFJUQ5JUJFJUQ4JUIxJUQ4JUE3JUQ5JTg2JUQ4JUE3JTIwJUQ4JUE3JUQ4JUIzJUQ5JUI5JURCJThDJUQ4JUI0JUQ5JTg2JTNDJTJGdGl0bGUlM0V8ZW58MHx8MHx8fDA%3D" alt="پرانا اسٹیشن" loading="lazy">
+      <img src="https://media.istockphoto.com/id/1318314090/photo/poles-in-petten.webp?a=1&b=1&s=612x612&w=0&k=20&c=n4Bliq1xJAYyaDsXdtg4xXUw9vHBN6lrCNLkC9uIDPc=" alt="ریت کے طوفان میں ابھرتے قدیم ستون، آسمان پر سورج مدھم سنہری روشنی بکھیر رہا ہے۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">پرانا اسٹیشن</h3>
-      <p class="post-meta-urdu">3 اکتوبر 2025 • شازیہ خان</p>
-      <p class="post-excerpt-urdu">پرانے اسٹیشن کی گونجتی یادیں اور وقت کا ایک ٹکڑا جو کبھی پرانا نہیں ہوتا۔</p>
+      <h3 class="post-title-urdu">ریت میں دفن شہر</h3>
+      <p class="post-meta-urdu">10 ستمبر، 2025 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">ایک مورخ صحرا میں ایک گمشدہ شہر کی تلاش میں نکلا،
+مگر جو ملا — وہ صرف پتھر نہیں، انسانیت کا آئینہ تھا۔</p>
     </div>
   </article>
 </a>
 
 <a href="urdustory17.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="سفرنامہ" data-tags="سفر، تلاش، تنہائی" data-title="راستہ جو واپس لے گیا">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1642775417271-0f1e47248c9c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8JTNDaDElMjBjbGFzcyUzRCUyMnN0b3J5JTIwdGl0bGUlMjIlM0UlREElQUYlRDklODUlRDglQjQlRDglQUYlREIlODElMjAlREElQTklRDglQUElRDglQTclRDglQTglM0MlMkZoMSUzRXxlbnwwfHwwfHx8MA%3D%3D" alt="گمشدہ کتاب" loading="lazy">
+      <img src="https://media.istockphoto.com/id/1375219375/photo/single-hiker-standing-or-walking-on-grass-slope-in-sunset-time.webp?a=1&b=1&s=612x612&w=0&k=20&c=z_jQPfAzMkZe4VtR1tcO0LE8pb7M5Z3x1Aj8k3BVwws=" alt="پہاڑوں کے بیچ ایک سنہری شام، ایک اکیلا مسافر بیک پیک کے ساتھ وادی کی طرف دیکھ رہا ہے۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">گمشدہ کتاب</h3>
-      <p class="post-meta-urdu">4 اکتوبر 2025 • یوسف کمال</p>
-      <p class="post-excerpt-urdu">کتاب جو محض کہانی نہیں بلکہ ایک خاموش دل کی آواز نکلی۔</p>
+      <h3 class="post-title-urdu">راستہ جو واپس لے گیا</h3>
+      <p class="post-meta-urdu">15 ستمبر، 2025 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">وہ سفر پر نکلا تھا بھولنے کے لیے —
+مگر جو یاد لوٹی، وہی اس کی منزل بن گئی۔</p>
     </div>
   </article>
 </a>
 
 <a href="urdustory18.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="افسانے" data-tags="محبت، خاموشی، یاد" data-title="آخری خط">
     <div class="post-media">
-      <img src="https://plus.unsplash.com/premium_photo-1669018130028-3ca3d9ab8aa2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fCUzQ3RpdGxlJTNFJUQ5JTg2JUQ4JUFGJURCJThDJTIwJURBJUE5JURCJTkyJTIwJURBJUE5JUQ5JTg2JUQ4JUE3JUQ4JUIxJURCJTkyJTIwJURBJUE5JURCJThDJTIwJUQ4JUI0JUQ4JUE3JUQ5JTg1JTNDJTJGdGl0bGUlM0V8ZW58MHx8MHx8fDA%3D" alt="ندی کے کنارے کی شام" loading="lazy">
+      <img src="https://media.istockphoto.com/id/840841422/photo/sheet-of-blank-paper-lies-on-a-wooden-table-on-the-background-of-list-of-papers-and-burning.webp?a=1&b=1&s=612x612&w=0&k=20&c=7vcUh4i0HEJ7N5NhkMnyigidzxhWJIZclsBDCDpUS9o=" alt="پرانی لکڑی کی میز پر ایک ادھورا خط، پاس جلتی ہوئی موم بتی، اور کھڑکی سے آتی ہلکی ہوا۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">ندی کے کنارے کی شام</h3>
-      <p class="post-meta-urdu">5 اکتوبر 2025 • حنا نور</p>
-      <p class="post-excerpt-urdu">ندی کے کنارے کی شام اور یادوں کی وہ خوشبو جو وقت کو تھما دیتی ہے۔</p>
+      <h3 class="post-title-urdu">آخری خط</h3>
+      <p class="post-meta-urdu">22 اکتوبر، 2025 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">کبھی کبھی ایک خط وہ سب کہہ جاتا ہے،
+جو برسوں کی گفتگو نہیں کہہ پاتی۔</p>
     </div>
   </article>
 </a>
 
 <a href="urdustory19.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="ادب" data-tags="الفاظ، خاموشی، وقت" data-title="لفظ جو رہ گئے">
     <div class="post-media">
-      <img src="https://plus.unsplash.com/premium_photo-1728221048817-c3e0a37c5faa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fCUzQ3RpdGxlJTNFJUQ5JUJFJUQ4JUIxJUQ4JUE3JUQ5JTg2JURCJThDJTIwJUQ4JUFEJUQ5JTg4JURCJThDJUQ5JTg0JURCJThDJTIwJURBJUE5JUQ4JUE3JTIwJUQ4JUIxJUQ4JUE3JUQ4JUIyJTNDJTJGdGl0bGUlM0V8ZW58MHx8MHx8fDA%3D" alt="پرانی حویلی کا راز" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1589730880765-6adf993bb581?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fCVEOSU4NSVEQiU4QyVEOCVCMiUyMCVEOSVCRSVEOCVCMSUyMCVEQSVBOSVEQSVCRSVEOSU4NCVEQiU4QyUyMCVEOCVBNyVEQiU4QyVEQSVBOSUyMCVEOSVCRSVEOCVCMSVEOCVBNyVEOSU4NiVEQiU4QyUyMCVEQSVBOSVEOCVBQSVEOCVBNyVEOCVBOCVEOCU4QyUyMCVEOCVBNyVEOCVCMyUyMCVEQSVBOSVEQiU5MiUyMCVEOCVBNyVEOSU4OCVEOCVCMSVEOCVBNyVEOSU4MiUyMCVEQSVBOSVEQiU5MiUyMCVEOCVBRiVEOCVCMSVEOSU4NSVEQiU4QyVEOCVBNyVEOSU4NiUyMCVEOCVCMSVEQSVBOSVEQSVCRSVEQiU5MiUyMCVEQiU4MSVEOSU4OCVEOCVBNiVEQiU5MiUyMCVEOSU4NSVEOCVCMSVEOCVBQyVEQSVCRSVEOCVBNyVEOCVBNiVEQiU5MiUyMCVEQSVBRiVEOSU4NCVEOCVBNyVEOCVBOCUyMCVEQSVBOSVEQiU5MiUyMCVEOSVCRSVEOCVBQSVEQiU5MiVEQiU5NHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=500" alt="میز پر کھلی ایک پرانی کتاب، اس کے اوراق کے درمیان رکھے ہوئے مرجھائے گلاب کے پتے۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">پرانی حویلی کا راز</h3>
-      <p class="post-meta-urdu">6 اکتوبر 2025 • عدیل زیدی</p>
-      <p class="post-excerpt-urdu">گاؤں کی پرانی حویلی کا راز جو خوف سے زیادہ محبت اور درد کی کہانی نکلا۔</p>
+      <h3 class="post-title-urdu">لفظ جو رہ گئے</h3>
+      <p class="post-meta-urdu">25 اکتوبر، 2025 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">کچھ کہانیاں لکھی نہیں جاتیں،
+وہ صرف دل کے اندر سانس لیتی ہیں —
+ادب ان خاموش سانسوں کا نام ہے۔</p>
     </div>
   </article>
 </a>
 
 <a href="urdustory20.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="تاریخ" data-tags="تاریخ، زوال، بادشاہت" data-title="محل کی آخری روشنی">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1621061973445-3d33dcee6d23?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fCVEOCVBOCVEOCVCMSVEOSU4MSVEOCVBNyVEOSU4NiVEQiU4QyUyMCVEOSU4MiVEOCVCNSVEOCVBOCVEQiU5MiUyMCVEQSVBOSVEQiU4QyUyMCVEOCVCMSVEOCVBNyVEOCVBQXxlbnwwfHwwfHx8MA%3D%3D" alt="برفانی قصبے کی رات" loading="lazy">
+      <img src="https://media.istockphoto.com/id/93160879/photo/country-seat.webp?a=1&b=1&s=612x612&w=0&k=20&c=7fUrucmX1ibtuo5gGCC5Id7D0GxORdD4WBBymXtiGeI=" alt="ایک پرانا محل، جس کی دیواروں پر شام کی آخری روشنی پڑ رہی ہو — جیسے ماضی الوداع کہہ رہا ہو۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">برفانی قصبے کی رات</h3>
-      <p class="post-meta-urdu">7 اکتوبر 2025 • مریم انور</p>
-      <p class="post-excerpt-urdu">چھوٹے برفانی قصبے کی خاموشی میں چھپی کہانی اور سکون۔</p>
+      <h3 class="post-title-urdu">محل کی آخری روشنی</h3>
+      <p class="post-meta-urdu">28 اکتوبر، 2025 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">جب تخت ٹوٹتے ہیں، تو صرف بادشاہ نہیں گرتے — خواب بھی مٹی میں تحلیل ہو جاتے ہیں۔</p>
     </div>
   </article>
 </a>
 
 <a href="urdustory21.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="سفرنامہ" data-tags="فطرت، سفر، تنہائی" data-title="خاموش وادی">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1603947214066-71b4061f5771?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8JURBJTg2JUQ4JUIxJUQ4JUE3JUQ4JUJBJUQ5JTg4JURBJUJBJTIwJURBJUE5JURCJThDJTIwJUQ5JTg4JUQ4JUE3JUQ4JUFGJURCJThDfGVufDB8fDB8fHww" alt="چراغوں کی وادی" loading="lazy">
+      <img src="https://media.istockphoto.com/id/611289054/photo/wandering-in-the-wilderness.jpg?s=612x612&w=0&k=20&c=1dAwduHxgqpYcS2gRVGmHlq-99pSeaKmRGw93O5gDTs=" alt="صبح کی نرم روشنی میں ڈوبی ہوئی ایک وادی، پہاڑوں کے بیچ بہتا ہوا نیلا دریا، اور ایک تنہا مسافر جس کے کندھے پر بستہ ہے۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">چراغوں کی وادی</h3>
-      <p class="post-meta-urdu">8 اکتوبر 2025 • صبا خان</p>
-      <p class="post-excerpt-urdu">چراغوں سے روشن ایک پرسکون وادی جہاں ہر روشنی ایک دعا کی علامت ہے۔</p>
+      <h3 class="post-title-urdu">خاموش وادی</h3>
+      <p class="post-meta-urdu">30 اکتوبر، 2025 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">کچھ سفر راستوں پر نہیں کیے جاتے —
+وہ دل کے اندر شروع ہوتے ہیں اور خاموشی میں ختم۔</p>
     </div>
   </article>
 </a>
 
 <a href="urdustory22.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="افسانے" data-tags="وقت، یاد، خواب" data-title="ریت کی گھڑی">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1728063100710-b60923a278d3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzd8fCVEOSVCRSVEOCVCMSVEOCVBNyVEOSU4NiVEOCVBNyUyMCVEOCVCMSVEQiU4QyVEOSU4NCVEOSU4OCVEQiU5MiUyMCVEOCVBNyVEOCVCMyVEOSVCOSVEQiU4QyVEOCVCNCVEOSU4NnxlbnwwfHwwfHx8MA%3D%3D" alt="پرانا ریلوے اسٹیشن" loading="lazy">
+      <img src="https://media.istockphoto.com/id/1302429401/photo/wooden-desk-with-vintage-sandglass-and-old-letter.jpg?s=612x612&w=0&k=20&c=npsPt4wXA4YjCyk73bxGTjwxI0_YpHfxNNVIRZUc2Jw=" alt="ایک پرانی میز پر رکھی ریت کی گھڑی، جس میں ریت آہستہ آہستہ بہہ رہی ہے، اور کھڑکی سے سورج کی آخری کرن اندر آرہی ہے۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">پرانا ریلوے اسٹیشن</h3>
-      <p class="post-meta-urdu">9 اکتوبر 2025 • فہد عباس</p>
-      <p class="post-excerpt-urdu">ایک پرانے ریلوے اسٹیشن کی کہانی جہاں وقت کی بازگشت آج بھی سنائی دیتی ہے۔</p>
+      <h3 class="post-title-urdu">ریت کی گھڑی</h3>
+      <p class="post-meta-urdu">2 نومبر، 2025 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">وقت ہمیشہ بہتا نہیں — کبھی کبھی وہ رک کر ہمیں دیکھتا ہے۔</p>
     </div>
   </article>
 </a>
 
 <a href="urdustory23.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="انٹرویوز" data-tags="شاعری، خاموشی، یاد" data-title="خاموش شاعر">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1618108345761-031721b1ca3c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8JUQ4JUIxJURCJThDJUQ4JUFBJTIwJURBJUE5JUQ4JUE3JTIwJUQ5JTgyJUQ5JTg0JUQ4JUI5JURCJTgxfGVufDB8fDB8fHww" alt="ریت کا قلعہ" loading="lazy">
+      <img src="https://media.istockphoto.com/id/655113276/photo/bearded-writer-in-glasses-smoking-a-pipe.jpg?s=612x612&w=0&k=20&c=OmaoUzBOKHRF311f5GFzqXmXHRHPm6PyoSWsDRde_9s=" alt="نیم اندھیرے کمرے میں ایک پرانا شاعر بیٹھا ہے، اردگرد کتابیں، کھلی سیاہی کی دوات، اور ایک بجھا ہوا چراغ۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">ریت کا قلعہ</h3>
-      <p class="post-meta-urdu">10 اکتوبر 2025 • افشاں قریشی</p>
-      <p class="post-excerpt-urdu">صحرا کے بیچ کھڑا ایک قدیم قلعہ اور اس کے پتھروں میں چھپی صدیوں پرانی داستانیں۔</p>
+      <h3 class="post-title-urdu">خاموش شاعر</h3>
+      <p class="post-meta-urdu">5 نومبر، 2025 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">ایک نوجوان صحافی جب ایک مشہور مگر گمشدہ شاعر سے ملنے جاتا ہے،
+تو اسے احساس ہوتا ہے کہ بعض شاعریاں لفظوں میں نہیں — خاموشیوں میں لکھی جاتی ہیں۔</p>
     </div>
   </article>
 </a>
 
 <a href="urdustory24.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="ڈرامہ" data-tags="خاندان، وقت، یاد" data-title="دروازہ بند رکھنا">
     <div class="post-media">
-      <img src="https://plus.unsplash.com/premium_photo-1671229455482-c9e2959581ae?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8JURBJTg2JUQ4JUE3JUQ5JTg2JUQ4JUFGJUQ5JTg2JURCJThDJTIwJUQ4JUIxJUQ4JUE3JUQ4JUFBJTIwJURBJUE5JUQ4JUE3JTIwJUQ4JUIxJUQ4JUE3JUQ4JUIyfGVufDB8fDB8fHww" alt="چاندنی رات کا راز" loading="lazy">
+      <img src="https://media.istockphoto.com/id/1273448833/photo/old-jacket-hanging-on-an-antique-armchair-with-faded-natural-light.jpg?s=612x612&w=0&k=20&c=8hM8ZL1gVkt0JS44ZMILicE-7reNzud4zSlbjUpaxNQ=" alt="پرانے گھر کا آنگن، ٹوٹی کرسی پر رکھا ایک پرانا رومال، دروازے سے آتی سورج کی دھندلی روشنی۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">چاندنی رات کا راز</h3>
-      <p class="post-meta-urdu">11 اکتوبر 2025 • نادیہ حسن</p>
-      <p class="post-excerpt-urdu">چاندنی رات میں پرانی حویلی کے باغ میں چھپا ایک راز جو محبت کی کہانی سناتا ہے۔</p>
+      <h3 class="post-title-urdu">دروازہ بند رکھنا</h3>
+      <p class="post-meta-urdu">8 نومبر، 2025 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">ایک گھر، ایک بند دروازہ، اور تین کردار —
+کبھی کبھی سب سے لمبا فاصلہ، ایک ہی دیوار کے بیچ ہوتا ہے۔</p>
     </div>
   </article>
 </a>
 
 <a href="urdustory25.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="احساسات" data-tags="یاد، محبت، خاموشی" data-title="پت جھڑ کی خوشبو">
     <div class="post-media">
-      <img src="https://plus.unsplash.com/premium_photo-1700924887806-a1154597cbc2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8JUQ5JUJFJURCJTgxJUQ4JUE3JURBJTkxJTIwJURBJUE5JURCJThDJTIwJUQ4JUFFJUQ4JUE3JUQ5JTg1JUQ5JTg4JUQ4JUI0JURCJThDfGVufDB8fDB8fHww" alt="پہاڑ کی خاموشی" loading="lazy">
+      <img src="https://media.istockphoto.com/id/994778554/photo/autumn-background-with-umbrella.webp?a=1&b=1&s=612x612&w=0&k=20&c=j-GtAwO2bueyWDnNiVujjHBAPv2rip998wk073t1QXc=" alt="بارش کے بعد گرے ہوئے زرد پتوں کے درمیان رکھی ایک نیلی چادر، جس پر نمی کی خوشبو بسی ہوئی ہے۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">پہاڑ کی خاموشی</h3>
-      <p class="post-meta-urdu">12 اکتوبر 2025 • علی ہاشمی</p>
-      <p class="post-excerpt-urdu">پہاڑ کی چوٹی پر بیٹھے ایک شخص کی کہانی جو سکون اور خاموشی کی طاقت کو محسوس کرتا ہے۔</p>
+      <h3 class="post-title-urdu">پت جھڑ کی خوشبو</h3>
+      <p class="post-meta-urdu">12 نومبر، 2025 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">کچھ محبتیں ختم نہیں ہوتیں، وہ صرف موسم بدل لیتی ہیں۔</p>
     </div>
   </article>
 </a>
 
 <a href="urdustory26.html" class="post-link">
-  <article class="post-card-urdu">
+  <article class="post-card-urdu" data-category="زندگی" data-tags="فلسفہ، احساس، زندگی" data-title="ایک لمحے کا سکون">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1627615377483-803b1414d111?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fCVEOSVCRSVEOCVBNyVEOSU4NiVEQiU4QyVEOSU4OCVEQSVCQSUyMCVEQSVBOSVEOCVBNyUyMCVEQSVBRiVEQiU4QyVEOCVBQXxlbnwwfHwwfHx8MA%3D%3D" alt="پانیوں کا گیت" loading="lazy">
+      <img src="https://media.istockphoto.com/id/1170764339/photo/woman-on-the-top-of-mountains-in-the-sunset-in-nacional-park-serra-dos-orgaos-rio-de-janeiro.jpg?s=612x612&w=0&k=20&c=CQfD4Yhl3RHeQoR4Wc1J78lZHoikhQAVyciZ7THV6sg=" alt="ایک پہاڑی گاؤں کا منظر، جہاں سورج غروب ہو رہا ہے، اور ایک مسافر پتھروں پر بیٹھا مسکرا رہا ہے۔" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">پانیوں کا گیت</h3>
-      <p class="post-meta-urdu">13 اکتوبر 2025 • مریم فاطمہ</p>
-      <p class="post-excerpt-urdu">ندی کے کنارے بیٹھ کر پانی کے بہاؤ میں زندگی کا پیغام تلاش کرنے والی ایک لڑکی کی کہانی۔</p>
-    </div>
-  </article>
-</a>
-
-
-<a href="urdustory28.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1701857671568-a4df936698ca?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8JUQ4JUE4JUQ4JUE3JUQ4JUIxJUQ4JUI0JTIwJURBJUE5JUQ4JUE3JTIwJUQ5JTg4JUQ4JUI5JUQ4JUFGJURCJTgxfGVufDB8fDB8fHww" alt="بارش کا وعدہ" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">بارش کا وعدہ</h3>
-      <p class="post-meta-urdu">15 اکتوبر 2025 • سارہ عمران</p>
-      <p class="post-excerpt-urdu">بارش کے قطروں میں چھپی یادوں اور وعدوں کی کہانی جو وقت کے ساتھ بھی ختم نہیں ہوئی۔</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory29.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://plus.unsplash.com/premium_photo-1675722951142-46867b79a188?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8JURBJUFGJUQ5JTg0JURCJThDJUQ5JTg4JURBJUJBJTIwJURBJUE5JURCJThDJTIwJURBJUE5JURCJTgxJUQ4JUE3JUQ5JTg2JURCJThDJUQ4JUE3JURBJUJBfGVufDB8fDB8fHww" alt="گلیوں کی کہانیاں" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">گلیوں کی کہانیاں</h3>
-      <p class="post-meta-urdu">16 اکتوبر 2025 • ہانیہ یوسف</p>
-      <p class="post-excerpt-urdu">پرانے محلے کی گلیوں میں چھپی بچپن کی یادوں کی کہانی جو آج بھی زندہ ہیں۔</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory30.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://plus.unsplash.com/premium_photo-1663946447775-d2a5c0c92384?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8JUQ4JUIxJUQ5JTg4JUQ4JUI0JUQ5JTg2JURCJThDJTIwJURBJUE5JUQ4JUE3JTIwJUQ4JUIzJUQ5JTgxJUQ4JUIxfGVufDB8fDB8fHww" alt="روشنی کا سفر" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">روشنی کا سفر</h3>
-      <p class="post-meta-urdu">17 اکتوبر 2025 • ناصر بلال</p>
-      <p class="post-excerpt-urdu">اندھیروں سے روشنی کی طرف ایک مسافر کا سفر جو امید اور حوصلے کا پیغام دیتا ہے۔</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory31.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1692259377318-396cd6fdf2b9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fCVEOSVCOSVEOSU4OCVEOSVCOSVEQiU5MiUyMCVEQiU4MSVEOSU4OCVEOCVBNiVEQiU5MiUyMCVEOCVBRSVEOSU4OCVEOCVBNyVEOCVBOHxlbnwwfHwwfHx8MA%3D%3D" alt="ٹوٹے ہوئے خواب" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">ٹوٹے ہوئے خواب</h3>
-      <p class="post-meta-urdu">18 اکتوبر 2025 • مریم فاروق</p>
-      <p class="post-excerpt-urdu">مایوسی اور ناکامی کے باوجود خوابوں کو پورا کرنے کی جدوجہد کی کہانی۔</p>
+      <h3 class="post-title-urdu">ایک لمحے کا سکون</h3>
+      <p class="post-meta-urdu">18 نومبر، 2025 • تحریر: ماہِرہ انصاری</p>
+      <p class="post-excerpt-urdu">کبھی کبھی زندگی بدلنے کے لیے کسی بڑے واقعے کی ضرورت نہیں ہوتی — صرف ایک لمحے کی خاموشی کافی ہوتی ہے۔</p>
     </div>
   </article>
 </a>
 
-<!-- Urdu Story Card 32 -->
-<a href="urdustory32.html" class="post-link">
-  <article class="post-card-urdu">
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1737912752173-447f72f5c0b6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fCVEOSU4OCVEOSU4MiVEOCVBQSUyMCVEQSVBOSVEOCVBNyUyMCVEOCVCMyVEOSU4MSVEOCVCMXxlbnwwfHwwfHx8MA%3D%3D" 
-           alt="وقت کا سفر" 
-           loading="lazy">
+      <img src="" alt="" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">وقت کا سفر</h3>
-      <p class="post-meta-urdu">08 اکتوبر 2025 • نورین شاہ</p>
-      <p class="post-excerpt-urdu">وقت کی رفتار اور انسان کے فیصلوں پر ایک سوچ انگیز کہانی۔</p>
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
     </div>
   </article>
 </a>
 
-
-
-<a href="urdustory33.html" class="post-link">
-  <article class="post-card-urdu">
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
     <div class="post-media">
-      <img src="https://plus.unsplash.com/premium_photo-1675468310289-a72bc97c3e97?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fCVEOCVBOCVEOCVBNyVEOCVCMSVEOCVCNCUyMCVEQiU4QyUyMCVEOSVCRSVEQiU4MSVEOSU4NCVEQiU4QyUyMCVEOCVBRSVEOSU4OCVEOCVCNCVEOCVBOCVEOSU4OHxlbnwwfHwwfHx8MA%3D%3D" alt="بارش کی پہلی خوشبو" loading="lazy">
+      <img src="" alt="" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">بارش کی پہلی خوشبو</h3>
-      <p class="post-meta-urdu">20 اکتوبر 2025 • سحر ناز</p>
-      <p class="post-excerpt-urdu">بارش کی پہلی بوندوں اور مٹی کی خوشبو سے جڑی ایک پر سکون اور یادگار کہانی۔</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory34.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1588070868290-b7dd4472a042?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8JTNFJUQ4JUIxJURCJThDJUQ5JTg0JUQ5JTg4JURCJTkyJTIwJUQ4JUE3JUQ4JUIzJUQ5JUI5JURCJThDJUQ4JUI0JUQ5JTg2JTIwJURBJUE5JURCJThDJTIwJUQ4JUEyJUQ4JUFFJUQ4JUIxJURCJThDJTIwJUQ4JUIzJURCJThDJUQ5JUI5JURCJThDfGVufDB8fDB8fHww" alt="ریلوے اسٹیشن کی آخری سیٹی" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">ریلوے اسٹیشن کی آخری سیٹی</h3>
-      <p class="post-meta-urdu">25 اکتوبر 2025 • زین رضوی</p>
-      <p class="post-excerpt-urdu">ایک پرانے ریلوے اسٹیشن کی شام، یادوں اور زندگی کے سفر کی کہانی۔</p>
-    </div>
-  </article>
-</a>
-<!-- Urdu Story Card 35 -->
-<a href="urdustory35.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://plus.unsplash.com/premium_photo-1750233375998-326cd07a5ef2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8JTNFJUQ4JUFFJUQ4JUE3JUQ5JTg1JUQ5JTg4JUQ4JUI0JTIwJURBJUFGJUQ5JTg0JURCJThDJTIwJURBJUE5JURCJThDJTIwJUQ4JUI1JUQ4JUFGJUQ4JUE3fGVufDB8fDB8fHww" 
-           alt="خاموش گلی کی صدا" 
-           loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">خاموش گلی کی صدا</h3>
-      <p class="post-meta-urdu">15 اکتوبر 2025 • فاطمہ رفیق</p>
-      <p class="post-excerpt-urdu">شہر کی ایک پرانی گلی جو خاموشی میں ہزاروں کہانیاں سناتی ہے۔</p>
-    </div>
-  </article>
-</a>
-<!-- Urdu Story Card 36 -->
-<a href="urdustory36.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://plus.unsplash.com/premium_photo-1732668021237-89dc3845574c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8JUQ4JUE4JUQ4JUE3JUQ4JUIxJUQ4JUI0JTIwJURBJUE5JURCJThDJTIwJUQ4JUIxJUQ4JUE3JUQ4JUFBJTIwJURBJUE5JUQ4JUE3JTIwJUQ5JTg4JUQ4JUI5JUQ4JUFGJURCJTgxfGVufDB8fDB8fHww" 
-           alt="بارش کی رات کا وعدہ" 
-           loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">بارش کی رات کا وعدہ</h3>
-      <p class="post-meta-urdu">20 اکتوبر 2025 • زبیر حسین</p>
-      <p class="post-excerpt-urdu">بارش کی ایک رات جو پرانے وعدے اور یادیں واپس لے آئی۔</p>
-    </div>
-  </article>
-</a>
-<!-- Urdu Story Card 37 -->
-<a href="urdustory37.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1630446013375-8019098fb720?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fCVEOSVCRSVEOCVCMSVEOCVBNyVEOSU4NiVEOCVBNyUyMCVEOCVCMSVEQiU4QyVEQSU4OCVEQiU4QyVEOSU4OCUyMCVEOCVBNyVEOSU4OCVEOCVCMSUyMCVEOCVBMiVEOCVBRSVEOCVCMSVEQiU4QyUyMCVEOSVCRSVEQiU4QyVEOCVCQSVEOCVBNyVEOSU4NXxlbnwwfHwwfHx8MA%3D%3D" 
-           alt="پرانا ریڈیو اور آخری پیغام" 
-           loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">پرانا ریڈیو اور آخری پیغام</h3>
-      <p class="post-meta-urdu">22 اکتوبر 2025 • زبیر حسین</p>
-      <p class="post-excerpt-urdu">پرانے ریڈیو سے ملنے والا ایک پیغام جو نسلوں کو جوڑ دیتا ہے۔</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory38.html" class="post-link">
-  <article class="post-card urdu-card">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1716651333712-d78aff70f4d7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8JURBJUFGJUQ5JTg0JURCJThDJTIwJURBJUE5JUQ5JTg4JURBJTg2JUQ5JTg4JURBJUJBJTIwJURBJUE5JUQ4JUE3JTIwJUQ5JTgyJUQ4JUE3JUQ5JTgxJURCJThDJURCJTgxfGVufDB8fDB8fHww" alt="پرانے شہر کی گلیاں" loading="lazy" />
-    </div>
-    <div class="post-content">
-      <h3 class="post-title">گلی کوچوں کا قافیہ</h3>
-      <p class="post-meta">۱۸ ستمبر ۲۰۲۵ • صبا خان</p>
-      <p class="post-excerpt">شہر کی تنگ گلیاں اور چھپی ہوئی کہانیاں جہاں یادیں وقت کو چیلنج کرتی ہیں...</p>
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
     </div>
   </article>
 </a>
 
-<!-- Urdu Story Card 39 -->
-<a href="urdustory39.html" class="post-link">
-  <article class="post-card-urdu">
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
     <div class="post-media">
-      <img src="https://plus.unsplash.com/premium_photo-1666717576644-5701d3406840?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fCVEQiU4QyVEOCVBNyVEOCVBRiVEOSU4OCVEQSVCQSUyMCVEQSVBOSVEOCVBNyUyMCVEQSU4NiVEOCVCMSVEOCVBNyVEOCVCQXxlbnwwfHwwfHx8MA%3D%3D" 
-           alt="یادوں کا چراغ" 
-           loading="lazy">
+      <img src="" alt="" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">یادوں کا چراغ</h3>
-      <p class="post-meta-urdu">26 اکتوبر 2025 • احسن رضا</p>
-      <p class="post-excerpt-urdu">ایک پرانے چراغ کے گرد بچپن کی کہانیوں، خوابوں اور نسلوں کے رشتے کا سفر۔</p>
-    </div>
-  </article>
-</a>
-<!-- Urdu Story Card 40 -->
-<a href="urdustory40.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1604574190789-3cb0813c925f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fCVEOCVCMSVEQiU4QyVEOCVBQSUyMCVEOSVCRSVEOCVCMSUyMCVEOSU4NCVEQSVBOSVEQSVCRSVEQiU4QyUyMCVEOCVBRiVEOCVCOSVEOCVBNyVEOCVBNiVEQiU4QyVEQSVCQXxlbnwwfHwwfHx8MA%3D%3D" 
-           alt="ریت پر لکھی دعائیں" 
-           loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">ریت پر لکھی دعائیں</h3>
-      <p class="post-meta-urdu">27 اکتوبر 2025 • زینب بانو</p>
-      <p class="post-excerpt-urdu">سمندر کے کنارے لکھی ایک دعا جو وقت اور فاصلے سے اوپر جا کر قبولیت کا پیغام لاتی ہے۔</p>
-    </div>
-  </article>
-</a>
-<!-- Urdu Story Card 41 -->
-<a href="urdustory41.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1643100458260-1da013dcf803?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8JUQ4JUE4JUQ4JUE3JUQ4JUIxJUQ4JUI0JTIwJURBJUE5JURCJTkyJTIwJUQ4JUE4JUQ4JUI5JUQ4JUFGJTIwJURBJUE5JURCJThDJTIwJUQ4JUFFJUQ5JTg4JUQ4JUI0JUQ4JUE4JUQ5JTg4fGVufDB8fDB8fHww" 
-           alt="بارش کے بعد کی خوشبو" 
-           loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">بارش کے بعد کی خوشبو</h3>
-      <p class="post-meta-urdu">2 نومبر 2025 • حامد رشید</p>
-      <p class="post-excerpt-urdu">بارش کے بعد کی خاموشی، شہر کی خوشبو، اور یادوں سے بھری تصویریں۔</p>
-    </div>
-  </article>
-</a>
-<!-- Urdu Story Card 42 -->
-<a href="urdustory42.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://plus.unsplash.com/premium_photo-1677646751089-32543b4ef3c2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8JURBJTg2JURBJUJFJUQ4JUFBJTIwJUQ5JUJFJUQ4JUIxJTIwJURBJUFGJUQ5JTg1JTIwJUQ4JUI0JUQ4JUFGJURCJTgxJTIwJUQ5JUJFJUQ4JUFBJUQ5JTg2JURBJUFGfGVufDB8fDB8fHww" 
-           alt="چھت پر گم شدہ پتنگ" 
-           loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">چھت پر گم شدہ پتنگ</h3>
-      <p class="post-meta-urdu">5 نومبر 2025 • مریم فاطمہ</p>
-      <p class="post-excerpt-urdu">دوستوں کی شرارت، چھت پر چھپی یادیں، اور ایک کھوئی ہوئی پتنگ کی کہانی۔</p>
-    </div>
-  </article>
-</a>
-<!-- Urdu Story Card 43 -->
-<a href="urdustory43.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1558981285-6f0c94958bb6?w=800&auto=format&fit=crop&q=80" 
-           alt="اندھی گلی کا راز" 
-           loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">اندھی گلی کا راز</h3>
-      <p class="post-meta-urdu">8 نومبر 2025 • عمران جاوید</p>
-      <p class="post-excerpt-urdu">شہر کی پرانی گلی، پراسرار آوازیں، اور ایک ایسا راز جو سو سال پرانا ہے۔</p>
-    </div>
-  </article>
-</a>
-<!-- Urdu Story Card 44 -->
-<a href="urdustory44.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1675001077167-ba5dd533be2f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8JURBJTg2JUQ4JUE3JURBJTg2JUQ4JUE3JTIwJURBJUE5JUQ4JUIxJURCJThDJUQ5JTg1JTIwJURBJUE5JUQ4JUE3JTIwJUQ4JUFDJUQ4JUE3JUQ4JUFGJUQ5JTg4JUQ4JUE2JURCJThDJTIwJUQ4JUFBJUQ5JTg2JUQ4JUFGJUQ5JTg4JUQ4JUIxfGVufDB8fDB8fHww" 
-           alt="چاچا کریم کا جادوئی تندور" 
-           loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">چاچا کریم کا جادوئی تندور</h3>
-      <p class="post-meta-urdu">9 نومبر 2025 • سمیعہ افتخار</p>
-      <p class="post-excerpt-urdu">چاچا کریم اور ان کے جادوئی تندور کی دلچسپ کہانی جو محلے کو محبت اور ہنسی میں باندھے رکھتی ہے۔</p>
-    </div>
-  </article>
-</a>
-<!-- Urdu Story Card 45 -->
-<a href="urdustory45.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1607437817193-3b3b029b5b75?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fCVEQiU4QyVEOCVBNyVEOCVBRiVEOSU4OCVEQSVCQSUyMCVEQSVBOSVEOCVBNyUyMCVEOCVCNSVEOSU4NiVEOCVBRiVEOSU4OCVEOSU4MnxlbnwwfHwwfHx8MA%3D%3D" 
-           alt="یادوں کا صندوق" 
-           loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">یادوں کا صندوق</h3>
-      <p class="post-meta-urdu">9 نومبر 2025 • فرحان احمد</p>
-      <p class="post-excerpt-urdu">ایک جذباتی کہانی جو ایک بوسیدہ صندوق سے جڑی یادوں کے ذریعے ماضی کی محبت اور قربت کو تازہ کرتی ہے۔</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory46.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1522471018616-586197f1ba65?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fCVEQSVBRiVEOSU4NCVEQiU4QyUyMCVEOSU4NiVEOSU4NSVEOCVBOCVEOCVCMSUyMCVEOCVBQSVEQiU4QyVEOCVCMSVEQiU4MSUyMCVEQSVBOSVEOCVBNyUyMCVEOCVCMyVEOCVBNyVEQiU4QyVEQiU4MXxlbnwwfHwwfHx8MA%3D%3D" alt="اندھیری گلی کا منظر" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">گلی نمبر تیرہ کا سایہ</h3>
-      <p class="post-meta-urdu">10 نومبر 2025 • سارہ ملک</p>
-      <p class="post-excerpt-urdu">پرانے شہر کی گلی نمبر تیرہ پر ایک خوفناک داستان کا سایہ تھا۔ ایک نڈر صحافی نے اس کے پیچھے چھپے سچ کو تلاش کرنے کی کوشش کی...</p>
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
     </div>
   </article>
 </a>
 
-
-<!-- Story 47 -->
-<a href="urdustory47.html" class="post-link">
-  <article class="post-card urdu-card">
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1532425235027-402f0937ff7d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8JURBJTg2JUQ4JUE3JURBJTg2JUQ4JUE3JTIwJUQ4JUIxJUQ4JUI0JURCJThDJUQ4JUFGJTIwJUQ4JUE3JUQ5JTg4JUQ4JUIxJTIwJURBJUFGJUQ5JTg1JUQ4JUI0JUQ4JUFGJURCJTgxJTIwJUQ4JUE4JURBJUE5JUQ4JUIxJURCJThDfGVufDB8fDB8fHww" alt="بکری اور دیہاتی" loading="lazy">
+      <img src="" alt="" loading="lazy">
     </div>
-    <div class="post-content">
-      <h3 class="post-title">انکل کی بکری اور شہر کا چکر</h3>
-      <p class="post-meta">11 نومبر 2025 • زاہد حسین</p>
-      <p class="post-excerpt">انکل رحمت کی ذہین بکری شہر کی گلیوں میں ایسی حرکتیں کرتی ہے کہ لوگ ہنس ہنس کر لوٹ پوٹ ہو جاتے ہیں۔</p>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
     </div>
   </article>
 </a>
 
-<!-- Story 48 -->
-<a href="urdustory48.html" class="post-link">
-  <article class="post-card urdu-card">
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1508556919487-845f191e5742?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDN8fCVEOCVBOCVEOCVBNyVEOCVCMSVEOCVCNCUyMCVEQSVBOSVEQiU5MiUyMCVEOSU4MiVEOCVCNyVEOCVCMSVEQiU5MiUyMCVEOCVBNyVEOSU4OCVEOCVCMSUyMCVEOCVBMiVEOCVBRSVEOCVCMSVEQiU4QyUyMCVEOCVBRSVEOCVCN3xlbnwwfHwwfHx8MA%3D%3D" alt="بارش اور خط" loading="lazy">
+      <img src="" alt="" loading="lazy">
     </div>
-    <div class="post-content">
-      <h3 class="post-title">بارش کے قطرے اور آخری خط</h3>
-      <p class="post-meta">12 نومبر 2025 • انعم شاہ</p>
-      <p class="post-excerpt">عائشہ بارش کے قطروں کے بیچ بیٹھ کر اپنے شوہر کے آخری خط کو سینے سے لگائے، محبت کی لازوال کہانی کو یاد کرتی ہے۔</p>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
     </div>
   </article>
 </a>
 
-<!-- Story 49 -->
-<a href="urdustory49.html" class="post-link">
-  <article class="post-card urdu-card">
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1520685303244-0461943ece6e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fCVEOCVBRiVEOSU4OCVEOCVCMyVEOCVBQSVEOSU4OCVEQSVCQSUyMCVEQSVBOSVEQiU4QyUyMCVEOCVCOSVEQiU4QyVEOCVBRiUyMCVEQSVBOSVEOCVBNyUyMCVEOSU4NSVEOSU4NiVEOCVCNSVEOSU4OCVEOCVBOCVEQiU4MXxlbnwwfHwwfHx8MA%3D%3D" alt="دوستوں کی عید" loading="lazy">
+      <img src="" alt="" loading="lazy">
     </div>
-    <div class="post-content">
-      <h3 class="post-title">دوستوں کی عید کا منصوبہ</h3>
-      <p class="post-meta">13 نومبر 2025 • کامران رضا</p>
-      <p class="post-excerpt">عید کی پارٹی کا منصوبہ تین دوستوں کے لیے مزاحیہ ایڈونچر بن گیا، جب سب کچھ الٹا ہو گیا لیکن یادگار لمحے بن گئے۔</p>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
     </div>
   </article>
 </a>
 
-<!-- Story 50 -->
-<a href="urdustory50.html" class="post-link">
-  <article class="post-card urdu-card">
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
     <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1605950931390-83f4107ea7a0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fCVEOCVBRiVEOCVBNyVEOCVBRiVEOCVBNyUyMCVEQSVBOSVEQiU4QyUyMCVEOCVBMiVEOCVBRSVEOCVCMSVEQiU4QyUyMCVEOSU4NiVEOCVCNSVEQiU4QyVEOCVBRCVEOCVBQXxlbnwwfHwwfHx8MA%3D%3D" alt="دادا کی نصیحت" loading="lazy">
-    </div>
-    <div class="post-content">
-      <h3 class="post-title">دادا کی آخری نصیحت</h3>
-      <p class="post-meta">14 نومبر 2025 • شازیہ تبسم</p>
-      <p class="post-excerpt">دادا کی آخری نصیحت نے ایک بکھرتے ہوئے خاندان کو جوڑ دیا، اور سب کو رشتوں کی اہمیت یاد دلا دی۔</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory51.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://plus.unsplash.com/premium_photo-1668293496341-de63c9043287?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8JURCJThDJUQ4JUE3JUQ4JUFGJUQ5JTg4JURBJUJBJTIwJURBJUE5JUQ4JUE3JTIwJUQ4JUI1JUQ5JTg2JUQ4JUFGJUQ5JTg4JUQ5JTgyfGVufDB8fDB8fHww" alt="یادوں کا صندوق" loading="lazy">
+      <img src="" alt="" loading="lazy">
     </div>
     <div class="post-content-urdu">
-      <h3 class="post-title-urdu">یادوں کا صندوق</h3>
-      <p class="post-meta-urdu">10 اکتوبر 2025 • سارہ مرزا</p>
-      <p class="post-excerpt-urdu">چھت کے کمرے میں رکھا پرانا لکڑی کا صندوق صرف اشیاء کا مجموعہ نہیں، بلکہ محبت اور قربانی کی داستان ہے۔</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory52.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1676401858560-82412607495f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8JUQ4JUFFJUQ5JTg4JUQ4JUE3JUQ4JUE4JUQ5JTg4JURBJUJBJTIwJURBJUE5JUQ4JUE3JTIwJUQ4JUIxJURCJThDJUQ5JTg0JUQ5JTg4JURCJTkyJTIwJUQ4JUE3JUQ4JUIzJUQ5JUI5JURCJThDJUQ4JUI0JUQ5JTg2fGVufDB8fDB8fHww" alt="خوابوں کا ریلوے اسٹیشن" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">خوابوں کا ریلوے اسٹیشن</h3>
-      <p class="post-meta-urdu">11 اکتوبر 2025 • نعمان فاروق</p>
-      <p class="post-excerpt-urdu">زید کا خوابوں کی تلاش میں گھر سے نکلنا، اندھیری رات، پرانی ریل گاڑی اور نئی منزلوں کی کہانی۔</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory53.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://plus.unsplash.com/premium_photo-1675468310289-a72bc97c3e97?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8JTNDdGl0bGUlM0UlRDglQTglRDglQTclRDglQjElRDglQjQlMjAlREElQTklREIlOTIlMjAlRDglQTglRDglQjklRDglQUYlMjAlREElQTklREIlOEMlMjAlRDglQUUlRDklODglRDglQjQlRDglQTh8ZW58MHx8MHx8fDA%3D" alt="بارش کے بعد کی خوشبو" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">بارش کے بعد کی خوشبو</h3>
-      <p class="post-meta-urdu">12 اکتوبر 2025 • مہوش انصاری</p>
-      <p class="post-excerpt-urdu">بارش کے بعد مٹی کی خوشبو اور پرانی گلی کی یادیں، مہوش کو ماضی اور محبت کی خوشبو کا احساس دلاتی ہیں۔</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory54.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://plus.unsplash.com/premium_photo-1749113495958-2c906e60be08?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8JUQ4JUE3JUQ5JTg2JUQ4JUFGJURBJUJFJURCJThDJTIwJURBJUFGJUQ5JTg0JURCJThDJTIwJURBJUE5JUQ4JUE3JTIwJUQ4JUIzJUQ4JUE3JURCJThDJURCJTgxfGVufDB8fDB8fHww" alt="اندھی گلی کا سایہ" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">اندھی گلی کا سایہ</h3>
-      <p class="post-meta-urdu">13 اکتوبر 2025 • احمر رضا</p>
-      <p class="post-excerpt-urdu">شہر کی پرانی اندھی گلی، ایک پراسرار دروازہ، اور احمر کا ایسا راز جو اس کی زندگی بدل دے گا۔</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory55.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1610657531613-944c1b632bfe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8JURBJTg2JURBJUJFJUQ4JUFBJTIwJURBJUE5JUQ4JUE3JTIwJUQ4JUEyJUQ4JUFFJUQ4JUIxJURCJThDJTIwJURBJTg2JUQ4JUIxJUQ4JUE3JUQ4JUJBfGVufDB8fDB8fHww" alt="چھت کا آخری چراغ" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">چھت کا آخری چراغ</h3>
-      <p class="post-meta-urdu">14 اکتوبر 2025 • سارہ مجید</p>
-      <p class="post-excerpt-urdu">پرانی چھت کا چراغ جو ایک خاندان کی محبتوں، کہانیوں اور یادوں کو آج بھی زندہ رکھے ہوئے ہے۔</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory56.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&auto=format&fit=crop" alt="دوستوں کا سرپرائز ڈنر" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">دوستوں کا "سرپرائز" ڈنر</h3>
-      <p class="post-meta-urdu">15 اکتوبر 2025 • زین احمد</p>
-      <p class="post-excerpt-urdu">احمد کے گھر کا سرپرائز ڈنر بریانی کے دھویں اور دوستوں کی ہنسی سے یادگار بن گیا۔</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory57.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1751723349999-bed57534130f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8JUQ4JUE3JUQ5JTg2JUQ4JUFGJURBJUJFJURCJThDJTIwJURBJUFGJUQ5JTg0JURCJThDJTIwJURBJUE5JUQ4JUE3JTIwJUQ4JUIzJUQ4JUE3JURCJThDJURCJTgxfGVufDB8fDB8fHww" alt="اندھی گلی کا سایہ" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">اندھی گلی کا سایہ</h3>
-      <p class="post-meta-urdu">16 اکتوبر 2025 • سارہ رشید</p>
-      <p class="post-excerpt-urdu">حنا نے اندھی گلی کا راستہ چنا، مگر وہاں جو سایہ اور ڈائری ملی، اس نے سب کچھ بدل دیا۔</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory58.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1600682234439-63ccd971ae49?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fCVEOCVBOCVEOCVBNyVEOCVBOCVEOCVBNyUyMCVEQSVBOSVEQiU4QyUyMCVEOCVBMiVEOCVBRSVEOCVCMSVEQiU4QyUyMCVEQSU4NiVEOCVBNyVEOCVBNiVEQiU5MnxlbnwwfHwwfHx8MA%3D%3D" alt="بابا کی آخری چائے" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">بابا کی آخری چائے</h3>
-      <p class="post-meta-urdu">18 اکتوبر 2025 • ہمایوں سلیم</p>
-      <p class="post-excerpt-urdu">بابا کی آخری چائے نے بیٹے کو زندگی کے سب سے قیمتی سبق سکھا دیے۔</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory59.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://plus.unsplash.com/premium_photo-1732020535097-9d08519f20fd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODV8fCVEQSU4NiVEOCVBNyVEOCVBNiVEQiU5MiUyMCVEOCVBRSVEOCVBNyVEOSU4NiVEQiU4MSUyMCVEOCVBNyVEOSU4OCVEOCVCMSUyMCVEOCVBRiVEOSU4OCVEOCVCMyVEOCVBQSVEOSU4OCVEQSVCQSUyMCVEQSVBOSVEQiU4QyUyMCVEOCVCNCVEOCVCMSVEOCVBNyVEOCVCMSVEOCVBQXxlbnwwfHwwfHx8MA%3D%3D" alt="چائے خانہ اور دوستوں کی شرارت" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">چائے خانہ اور دوستوں کی شرارت</h3>
-      <p class="post-meta-urdu">19 اکتوبر 2025 • مریم زاہد</p>
-      <p class="post-excerpt-urdu">دوستوں کی محفل، ایک چائے خانہ، اور شرارت سے بھرا ہوا ایک ایسا قصہ جو کبھی پرانا نہیں ہوتا۔</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory60.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1709869919442-82c3b871ab3d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fCVEOCVBNyVEOSU4NiVEOCVBRiVEQSVCRSVEQiU4QyUyMCVEQSVBRiVEOSU4NCVEQiU4QyUyMCVEQSVBOSVEOCVBNyUyMCVEOCVCMyVEOCVBNyVEQiU4QyVEQiU4MXxlbnwwfHwwfHx8MA%3D%3D" alt="اندھی گلی کا راز" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">اندھی گلی کا راز</h3>
-      <p class="post-meta-urdu">20 اکتوبر 2025 • احمد رشید</p>
-      <p class="post-excerpt-urdu">اندھی گلی کے سناٹے میں چھپا ایک ایسا راز، جسے جان کر کوئی زندہ نہیں بچتا…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory61.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://plus.unsplash.com/premium_photo-1723888835240-abcd5c881a9b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8JUQ4JUEyJUQ4JUFFJUQ4JUIxJURCJThDJTIwJUQ4JUFFJUQ4JUI3fGVufDB8fDB8fHww" alt="آخری خط" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">آخری خط</h3>
-      <p class="post-meta-urdu">21 اکتوبر 2025 • فاطمہ بانو</p>
-      <p class="post-excerpt-urdu">صائمہ کو والد کا آخری خط ملا جس نے برسوں پرانی یادوں اور محبت کی خاموش قربانیوں کو زندہ کر دیا…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory62.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1737640665064-652965b8edc7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fCUzQ3RpdGxlJTNFJURBJTg2JUQ4JUE3JUQ4JUE2JURCJTkyJTIwJURBJUE5JURCJThDJTIwJUQ5JUJFJURCJThDJUQ4JUE3JUQ5JTg0JURCJThDJTIwJURBJUE5JUQ4JUE3JTIwJUQ4JUE3JUQ5JTg2JUQ5JTgyJUQ5JTg0JUQ4JUE3JUQ4JUE4JTNDJTJGdGl0bGUlM0V8ZW58MHx8MHx8fDA%3D" alt="چائے کی پیالی کا انقلاب" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">چائے کی پیالی کا انقلاب</h3>
-      <p class="post-meta-urdu">22 اکتوبر 2025 • نبیل قریشی</p>
-      <p class="post-excerpt-urdu">علی کی سونف والی چائے نے دوستوں کے گروپ میں قہقہے لگا دیے، اور وہ دن ہمیشہ کے لیے یادگار بن گیا…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory63.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1714568417835-81722f7fc6dc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8JTNDdGl0bGUlM0UlRDglQTIlRDglQUUlRDglQjElREIlOEMlMjAlRDklODElRDklODglRDklODYlMjAlREElQTklRDglQTclRDklODQlM0MlMkZ0aXRsZSUzRXxlbnwwfHwwfHx8MA%3D%3D" alt="آخری فون کال" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">آخری فون کال</h3>
-      <p class="post-meta-urdu">23 اکتوبر 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">حارث کو رات گئے ایک فون کال ملی — اور وہ کال اس کی زندگی بدل گئی…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory64.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://plus.unsplash.com/premium_photo-1731960192390-22d05bd0dede?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8JUQ4JUE3JUQ5JTg2JUQ4JUFGJURBJUJFJURCJThDJUQ4JUIxJURCJTkyJTIwJURBJUE5JURCJThDJTIwJUQ4JUIzJUQ4JUIxJURBJUFGJUQ5JTg4JUQ4JUI0JURCJThDJUQ4JUE3JURBJUJBfGVufDB8fDB8fHww" alt="اندھیرے کی سرگوشیاں" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">اندھیرے کی سرگوشیاں</h3>
-      <p class="post-meta-urdu">28 اکتوبر 2025 • حنا جعفری</p>
-      <p class="post-excerpt-urdu">ندا ایک پرانے مکان میں داخل ہوئی، جہاں آئینے کے پیچھے چھپی حقیقت اس کا انتظار کر رہی تھی…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory65.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://plus.unsplash.com/premium_photo-1731914220405-b643bb0f4cf8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8JUQ4JUE4JUQ5JTg2JUQ4JUFGJTIwJURBJUE5JUQ5JTg1JUQ4JUIxJURCJTkyJTIwJURBJUE5JUQ4JUE3JTIwJUQ4JUIxJUQ4JUE3JUQ4JUIyfGVufDB8fDB8fHww" alt="بند کمرے کا راز" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">بند کمرے کا راز</h3>
-      <p class="post-meta-urdu">3 نومبر 2025 • علی رضا</p>
-      <p class="post-excerpt-urdu">حمزہ نے پرانی حویلی کے بند کمرے میں قدم رکھا، جہاں ایک صندوق نے سب کچھ بدل دیا…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory66.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1713718458635-f2cb155dec5d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8JUQ4JUE4JUQ4JUE3JUQ4JUIxJUQ4JUI0JTIwJUQ5JTg1JURCJThDJURBJUJBJTIwJUQ5JTg4JUQ4JUI5JUQ4JUFGJURCJTgxfGVufDB8fDB8fHww" alt="بارش میں وعدہ" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">بارش میں وعدہ</h3>
-      <p class="post-meta-urdu">10 نومبر 2025 • مریم فاطمہ</p>
-      <p class="post-excerpt-urdu">بارش میں بھیگتے لمحے، ایک وعدہ، اور دو دل جو ہمیشہ کے لیے جڑ گئے…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory67.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1733944191274-6f3a924cfc24?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fCVEQSU4NiVEOCVBNyVEOCVBNiVEQiU5MiUyMCVEQSVBOSVEOCVBNyUyMCVEOCVCMSVEOCVBNyVEOCVCMnxlbnwwfHwwfHx8MA%3D%3D" alt="چائے کا راز" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">چائے کا راز</h3>
-      <p class="post-meta-urdu">15 نومبر 2025 • ہارون قریشی</p>
-      <p class="post-excerpt-urdu">عمران نے دوستوں کو اپنی ‘مشہور’ چائے پلائی — لیکن کپ میں کچھ اور ہی نکلا!</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory68.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1655778535985-5ae945b3cbea?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fCVEQSVBOSVEQSVCRSVEQSU5MSVEQSVBOSVEQiU4QyUyMCVEQSVBOSVEQiU5MiUyMCVEOSVCRSVEQiU4QyVEQSU4NiVEQSVCRSVEQiU5MnxlbnwwfHwwfHx8MA%3D%3D" alt="کھڑکی کے پیچھے" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">کھڑکی کے پیچھے</h3>
-      <p class="post-meta-urdu">20 نومبر 2025 • سارا نعیم</p>
-      <p class="post-excerpt-urdu">ہر رات کھڑکی پر دستک، اور ایک سایہ جو عائشہ کی زندگی بدلنے والا تھا…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory69.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&auto=format&fit=crop" alt="چراغ کی روشنی" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">چراغ کی روشنی</h3>
-      <p class="post-meta-urdu">25 نومبر 2025 • حمیرا انصاری</p>
-      <p class="post-excerpt-urdu">غربت میں پلی زینب نے چراغ کی روشنی میں خواب سجائے، اور ایک دن پورے گاؤں کی امید بن گئی…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory70.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1525182008055-f88b95ff7980?w=800&auto=format&fit=crop" alt="بابا جی کا نیا موبائل" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">بابا جی کا نیا موبائل</h3>
-      <p class="post-meta-urdu">28 نومبر 2025 • حارث جاوید</p>
-      <p class="post-excerpt-urdu">بابا جی نے اسمارٹ فون لیا، لیکن سیلفی اور ویڈیو کال کے مزے سب خاندان نے اٹھائے…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory71.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?w=800&auto=format&fit=crop" alt="اندھیرا سایہ" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">اندھیرا سایہ</h3>
-      <p class="post-meta-urdu">30 نومبر 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">نیم شب کی سنسان گلی میں علی کے پیچھے چلتا سایہ… کون تھا وہ؟</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory72.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop" alt="بارش کے قطرے" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">بارش کے قطرے</h3>
-      <p class="post-meta-urdu">2 دسمبر 2025 • عائشہ زہرا</p>
-      <p class="post-excerpt-urdu">بارش کی ہلکی بوندوں کے بیچ ماہم اور عارف کے دلوں نے ایک خاموش عہد باندھ لیا…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory73.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1494415859740-21e878dd929d?w=800&auto=format&fit=crop" alt="چائے کا کپ" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">چائے کا کپ</h3>
-      <p class="post-meta-urdu">4 دسمبر 2025 • اویس خان</p>
-      <p class="post-excerpt-urdu">خالہ جان کی نمک والی چائے پورے خاندان کے لیے ہنسی کا نیا بہانہ بن گئی…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory74.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1496317899792-9d7dbcd928a1?w=800&auto=format&fit=crop" alt="سنسان مکان" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">سنسان مکان</h3>
-      <p class="post-meta-urdu">7 دسمبر 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">عادل نے سنسان مکان کی کہانیوں کو مذاق سمجھا، لیکن رات وہاں گزارنے کا فیصلہ اس کی زندگی بدل گیا…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory75.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop" alt="صبح کی روشنی" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">صبح کی روشنی</h3>
-      <p class="post-meta-urdu">9 دسمبر 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">اندھیری رات کے بعد آنے والی پہلی روشنی ہمیشہ امید کا پیغام لاتی ہے…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory76.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1529078155058-5d716f45d604?w=800&auto=format&fit=crop" alt="چائے کا کپ اور بلی" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">چائے کا کپ اور بلی</h3>
-      <p class="post-meta-urdu">12 دسمبر 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">احسن نے سوچا سکون سے چائے پی جائے، لیکن بلی کے الگ ہی پلان تھے…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory77.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&auto=format&fit=crop" alt="اندھی گلی" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">اندھی گلی</h3>
-      <p class="post-meta-urdu">15 دسمبر 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">فہد نے شارٹ کٹ لینے کے لیے اندھیری گلی کا رخ کیا، لیکن وہاں کوئی اس کا انتظار کر رہا تھا…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory78.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1494905998402-395d579af36f?w=800&auto=format&fit=crop" alt="ٹیکسی والا اور جی پی ایس" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">ٹیکسی والا اور جی پی ایس</h3>
-      <p class="post-meta-urdu">18 دسمبر 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">علی نے دفتر جانے کے لیے ٹیکسی لی، لیکن جی پی ایس کے مزاج الگ ہی نکلے…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory79.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=800&auto=format&fit=crop" alt="پرانا اسٹیشن" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">پرانا اسٹیشن</h3>
-      <p class="post-meta-urdu">21 دسمبر 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">اجمل کو ایک پراسرار نوٹ ملا، جو اسے رات کے وقت بند ریلوے اسٹیشن لے آیا…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory80.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&auto=format&fit=crop" alt="روشنی کا وعدہ" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">روشنی کا وعدہ</h3>
-      <p class="post-meta-urdu">25 دسمبر 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">اندھیروں کے بعد روشنی آتی ہے۔ علی نے اپنی بیٹی کی مسکراہٹ سے زندگی کا نیا سبق سیکھا…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory81.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1513639725746-c5d3e861f32a?w=800&auto=format&fit=crop" alt="چائے کا کپ اور قہقہے" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">چائے کا کپ اور قہقہے</h3>
-      <p class="post-meta-urdu">28 دسمبر 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">فیضان کی نئی ڈائٹ کے انوکھے راز نے پورے ہوٹل میں قہقہے بکھیر دیے…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory82.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&auto=format&fit=crop" alt="چھٹی منزل کا دروازہ" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">چھٹی منزل کا دروازہ</h3>
-      <p class="post-meta-urdu">30 دسمبر 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">ندا کی لفٹ چھٹی منزل پر رکی، جہاں جانے کی ہمت کسی نے برسوں سے نہیں کی تھی…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory83.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&auto=format&fit=crop" alt="بارش کے بعد کی خوشبو" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">بارش کے بعد کی خوشبو</h3>
-      <p class="post-meta-urdu">2 جنوری 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">بارش کے بعد کی خوشبو اور ایک پرانے دوست کا پیغام حنا کے دل میں امید جگا گئے…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory84.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&auto=format&fit=crop" alt="امی کی نئی ٹیکنالوجی" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">امی کی نئی ٹیکنالوجی</h3>
-      <p class="post-meta-urdu">5 جنوری 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">امی کے اسمارٹ فون کے تجربات نے گھر میں قہقہوں کا میلہ لگا دیا…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory85.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&auto=format&fit=crop" alt="کھڑکی میں سایہ" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">کھڑکی میں سایہ</h3>
-      <p class="post-meta-urdu">8 جنوری 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">زارا نے نئی گلی میں نیا گھر لیا، مگر ہر رات کھڑکی میں ایک سایہ اس کو گھورتا رہا…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory86.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop" alt="صبح کی روشنی" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">صبح کی روشنی</h3>
-      <p class="post-meta-urdu">10 جنوری 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">علی نے ایک صبح طلوع آفتاب دیکھ کر فیصلہ کیا کہ وہ اپنی زندگی نئے سرے سے شروع کرے گا…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory87.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1556912998-6e6a5f19d02c?w=800&auto=format&fit=crop" alt="امی کی خفیہ ترکیب" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">امی کی خفیہ ترکیب</h3>
-      <p class="post-meta-urdu">12 جنوری 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">علی نے امی کے کچن کے خفیہ راز کا پتہ لگانے کی کوشش کی، اور نتیجہ سب کے لیے ہنسی کا باعث بن گیا۔</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory88.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1606041008023-472dfb5e530f?w=800&auto=format&fit=crop" alt="گلی کے آخر میں مکان" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">گلی کے آخر میں مکان</h3>
-      <p class="post-meta-urdu">15 جنوری 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">آمنہ کو لگا پرانے مکان میں کوئی نہیں رہتا، مگر ایک رات دروازے سے سرگوشی آئی: 'میں تمہیں جانتی ہوں…'</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory89.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&auto=format&fit=crop" alt="دادی کا موبائل" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">دادی کا موبائل</h3>
-      <p class="post-meta-urdu">18 جنوری 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">دادی نے یوٹیوب سے پکوان سیکھا، لیکن جو کھانا دسترخوان پر آیا اس نے سب کو حیران کر دیا!</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory90.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1497215842964-222b430dc094?w=800&auto=format&fit=crop" alt="خاموش پیغام" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">خاموش پیغام</h3>
-      <p class="post-meta-urdu">20 جنوری 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">عمر کو گاڑی پر ایک پرسرار کاغذ ملا: 'وقت ختم۔' لیکن اصل پیغام ابھی آنا باقی تھا…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory91.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&auto=format&fit=crop" alt="روشنی کی کرن" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">روشنی کی کرن</h3>
-      <p class="post-meta-urdu">21 جنوری 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">سعد کے لیے زندگی مشکل ہو چکی تھی، لیکن سورج کی ایک کرن نے سب بدل دیا…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory92.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&auto=format&fit=crop" alt="کھڑکی کے پیچھے" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">کھڑکی کے پیچھے</h3>
-      <p class="post-meta-urdu">22 جنوری 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">نبیل نے رات گئے کھڑکی پر دستک سنی۔ باہر اندھیرا تھا، لیکن کوئی اندر آ چکا تھا…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory93.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=800&auto=format&fit=crop" alt="چائے کا کپ اور بڑی بات" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">چائے کا کپ اور بڑی بات</h3>
-      <p class="post-meta-urdu">23 جنوری 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">کاشف کی صبح کی چائے کا قصہ جگ، کپ اور قہقہوں کے ساتھ…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory94.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&auto=format&fit=crop" alt="اندھی گلی کا راز" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">اندھی گلی کا راز</h3>
-      <p class="post-meta-urdu">24 جنوری 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">عائشہ ایک سنسان گلی میں پہنچی، جہاں ایک پراسرار دروازہ اس کا انتظار کر رہا تھا…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory95.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=800&auto=format&fit=crop" alt="پھولوں کا وعدہ" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">پھولوں کا وعدہ</h3>
-      <p class="post-meta-urdu">25 جنوری 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">ہانیہ نے سوکھے باغ کو زندہ کرنے کا فیصلہ کیا، اور اس کے ساتھ اپنی زندگی کو بھی…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory96.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?w=800&auto=format&fit=crop" alt="اندھیروں کا سایہ" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">اندھیروں کا سایہ</h3>
-      <p class="post-meta-urdu">28 جنوری 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">زاہد جنگل کے کمرے میں چھپا ہوا تھا، لیکن اندھیرا صرف باہر نہیں، اندر بھی تھا…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory97.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4a?w=800&auto=format&fit=crop" alt="پیزا کا جن" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">پیزا کا جن</h3>
-      <p class="post-meta-urdu">1 فروری 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">حمزہ نے پیزا گرم کیا، لیکن اس کے ساتھ ایک جن بھی نکل آیا…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory98.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?w=800&auto=format&fit=crop" alt="سیاہ گلی کا راز" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">سیاہ گلی کا راز</h3>
-      <p class="post-meta-urdu">5 فروری 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">سمیرا کو اندھیری گلی سے گزرتے ہوئے ایک ایسا راز ملا جس نے اس کی دنیا بدل دی…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory99.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&auto=format&fit=crop" alt="جادوئی چھتری" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">جادوئی چھتری</h3>
-      <p class="post-meta-urdu">10 فروری 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">علی نے ایک پرانی چھتری خریدی، لیکن یہ عام چھتری نہیں تھی…</p>
-    </div>
-  </article>
-</a>
-<a href="urdustory100.html" class="post-link">
-  <article class="post-card-urdu">
-    <div class="post-media">
-      <img src="https://images.unsplash.com/photo-1524492449090-1a065f3a2fae?w=800&auto=format&fit=crop" alt="آخری دروازہ" loading="lazy">
-    </div>
-    <div class="post-content-urdu">
-      <h3 class="post-title-urdu">آخری دروازہ</h3>
-      <p class="post-meta-urdu">15 فروری 2025 • زین عابدی</p>
-      <p class="post-excerpt-urdu">احمد ایک پرانی حویلی کی تفتیش کر رہا تھا، لیکن اس کا آخری دروازہ سب کچھ بدلنے والا تھا…</p>
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
     </div>
   </article>
 </a>
 
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
+
+<a href="urdustory3.html" class="post-link">
+  <article class="post-card-urdu" data-category="" data-tags="" data-title="">
+    <div class="post-media">
+      <img src="" alt="" loading="lazy">
+    </div>
+    <div class="post-content-urdu">
+      <h3 class="post-title-urdu">    </h3>
+      <p class="post-meta-urdu">   </p>
+      <p class="post-excerpt-urdu">  </p>
+    </div>
+  </article>
+</a>
     </div>
   </main>
 
@@ -2255,6 +2697,64 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+</script>
+
+
+<script>
+setTimeout(() => {
+  document.body.classList.add('show-sections');
+}, 600);
+// Urdu Categories Active Button
+document.addEventListener("DOMContentLoaded", function () {
+  const buttons = document.querySelectorAll(".urdu-category-btn");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      buttons.forEach((b) => b.classList.remove("active")); // remove from all
+      this.classList.add("active"); // set new active
+    });
+  });
+});
+// Urdu Story Filter by Category
+document.addEventListener("DOMContentLoaded", function () {
+  const buttons = document.querySelectorAll(".urdu-category-btn");
+  const posts = document.querySelectorAll(".post-card-urdu");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // Remove active state from all buttons
+      buttons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const selectedCategory = btn.textContent.trim();
+
+      // Show all stories if "تمام" is selected
+      if (selectedCategory === "تمام") {
+        posts.forEach((post) => {
+          post.style.display = "block";
+          post.style.opacity = 1;
+          post.style.transform = "translateY(0)";
+        });
+        return;
+      }
+
+      // Filter stories by category
+      posts.forEach((post) => {
+        const postCategory = post.getAttribute("data-category")?.trim();
+        if (postCategory === selectedCategory) {
+          post.style.display = "block";
+          post.style.opacity = 1;
+          post.style.transform = "translateY(0)";
+        } else {
+          post.style.opacity = 0;
+          post.style.transform = "translateY(15px)";
+          setTimeout(() => (post.style.display = "none"), 300);
+        }
+      });
+    });
+  });
+});
+
 </script>
 
 <script src="../js/storyFeatures.js"></script>
