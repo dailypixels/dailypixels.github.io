@@ -1260,3 +1260,35 @@ body {
     margin: 0 auto;
   }
 }
+/* Center the Urdu footer in story pages */
+.urdu-footer {
+  width: 100%;
+  text-align: center;        /* center the text */
+  position: relative;
+  left: 0;
+  bottom: 0;
+  margin: 20px 0;            /* vertical spacing above/below */
+  padding: 10px 0;
+  font-size: 0.9rem;
+  color: #555;
+  /* add background or border if needed to match your theme */
+}
+
+/* If you want it to always stick at bottom of viewport (optional) */
+.urdu-footer.sticky {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;          /* or transparent or match page background */
+  z-index: 500;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .urdu-footer {
+    font-size: 0.8rem;
+    margin: 12px 0;
+  }
+}
