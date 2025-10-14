@@ -39,6 +39,27 @@
   transform: translateY(0);
   display: block;
 }
+.success-message {
+  display: none;
+  background: #e0f2fe;
+  color: #1e3a8a;
+  font-weight: 500;
+  padding: 14px 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  border: 1px solid #93c5fd;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.5s ease;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.success-message.show {
+  opacity: 1;
+  transform: translateY(0);
+  display: block;
+}
 
 </style>
 <!-- Google tag (gtag.js) -->
@@ -85,7 +106,7 @@
   </div>
 </section>
 
-  <!-- ============ Submission Form ============ -->
+ <!-- ============ Submission Form ============ -->
 <main class="submit-section">
   <form id="storyForm" action="https://formspree.io/f/xkgvkele" method="POST" class="submit-form">
 
@@ -112,7 +133,7 @@
 
     <!-- Custom Success Message -->
     <p id="successMessage" class="success-message" style="display:none;">
-      🎉 شکریہ! آپ کی کہانی کامیابی سے جمع ہو گئی ہے۔ <br> ہم جلد ہی اسے دیکھیں گے۔
+      ✅ Thank you! Your story has been submitted successfully. <br> We’ll review it soon.
     </p>
 
   </form>
@@ -171,7 +192,7 @@
           successMsg.classList.remove("show");
           setTimeout(() => {
             successMsg.style.display = "none";
-          }, 500); // Wait for fade-out animation
+          }, 500);
         }, 3000);
 
       } else {
