@@ -17,6 +17,29 @@
   opacity: 1;
   transform: translateY(0);
 }
+.success-message {
+  display: none;
+  background: #e0f2fe;
+  color: #1e3a8a;
+  font-weight: 500;
+  padding: 14px 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  border: 1px solid #93c5fd;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.5s ease;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Visible State */
+.success-message.show {
+  opacity: 1;
+  transform: translateY(0);
+  display: block;
+}
+
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GZ3CFNHDLS"></script>
@@ -63,31 +86,37 @@
 </section>
 
   <!-- ============ Submission Form ============ -->
-  <main class="submit-section">
-    <form action="https://formspree.io/f/xkgvkele" method="POST" class="submit-form">
+<main class="submit-section">
+  <form id="storyForm" action="https://formspree.io/f/xkgvkele" method="POST" class="submit-form">
 
-      <label for="title">Story Title</label>
-      <input type="text" id="title" name="title" placeholder="Enter your story title" required>
+    <label for="title">Story Title</label>
+    <input type="text" id="title" name="title" placeholder="Enter your story title" required>
 
-      <label for="description">Short Description</label>
-      <textarea id="description" name="description" rows="4" placeholder="Write a short summary of your story..." required></textarea>
+    <label for="description">Short Description</label>
+    <textarea id="description" name="description" rows="4" placeholder="Write a short summary of your story..." required></textarea>
 
-      <label for="category">Select Category</label>
-      <select id="category" name="category" required>
-        <option value="">Choose a category</option>
-        <option value="blog">Blog</option>
-        <option value="article">Article</option>
-        <option value="story">Story</option>
-        <option value="poetry">Poetry</option>
-        <option value="art">Art</option>
-      </select>
+    <label for="category">Select Category</label>
+    <select id="category" name="category" required>
+      <option value="">Choose a category</option>
+      <option value="blog">Blog</option>
+      <option value="article">Article</option>
+      <option value="story">Story</option>
+      <option value="poetry">Poetry</option>
+      <option value="art">Art</option>
+    </select>
 
-      <label for="email">Your Email (optional)</label>
-      <input type="email" id="email" name="email" placeholder="your@email.com">
+    <label for="email">Your Email (optional)</label>
+    <input type="email" id="email" name="email" placeholder="your@email.com">
 
-      <button type="submit" class="submit-btn">Submit Story</button>
-    </form>
-  </main>
+    <button type="submit" class="submit-btn">Submit Story</button>
+
+    <!-- Custom Success Message -->
+    <p id="successMessage" class="success-message" style="display:none;">
+      🎉 شکریہ! آپ کی کہانی کامیابی سے جمع ہو گئی ہے۔ <br> ہم جلد ہی اسے دیکھیں گے۔
+    </p>
+
+  </form>
+</main>
 
   <!-- ============ Footer ============ -->
   <footer class="site-footer">
@@ -109,5 +138,53 @@
   });
 </script>
 
+<script>
+  const form = document.getElementById("storyForm");
+  const successMsg = document.getElementById("successMessage");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const submitBtn = form.querySelector(".submit-btn");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting...";
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        form.reset();
+        submitBtn.textContent = "Submit Story";
+        submitBtn.disabled = false;
+
+        // Show success message
+        successMsg.style.display = "block";
+        successMsg.classList.add("show");
+
+        // Hide after 3 seconds
+        setTimeout(() => {
+          successMsg.classList.remove("show");
+          setTimeout(() => {
+            successMsg.style.display = "none";
+          }, 500); // Wait for fade-out animation
+        }, 3000);
+
+      } else {
+        alert("There was a problem submitting your story. Please try again.");
+        submitBtn.textContent = "Submit Story";
+        submitBtn.disabled = false;
+      }
+    } catch (error) {
+      alert("Something went wrong. Please check your connection.");
+      submitBtn.textContent = "Submit Story";
+      submitBtn.disabled = false;
+    }
+  });
+</script>
 </body>
 </html>
