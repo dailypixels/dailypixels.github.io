@@ -1292,3 +1292,93 @@ body {
     margin: 12px 0;
   }
 }
+/* Urdu Story Cards — Premium Modern Style */
+.post-card-urdu {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.post-card-urdu:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Image Section */
+.post-media {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.post-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  border: 4px solid #ffffff; /* White stroke around image */
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  transition: transform 0.5s ease;
+}
+
+.post-card-urdu:hover .post-media img {
+  transform: scale(1.05);
+}
+
+/* Urdu Text Section */
+.post-content-urdu {
+  padding: 16px 18px 20px;
+  direction: rtl;
+  text-align: right;
+  font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", serif;
+  color: #1f2937;
+}
+
+.post-title-urdu {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.post-meta-urdu {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 10px;
+}
+
+.post-excerpt-urdu {
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.8;
+}
+
+/* Hover Accent */
+.post-card-urdu:hover .post-title-urdu {
+  color: #0f172a;
+}
+
+/* Smooth Shadow Lift on Hover */
+.post-link {
+  text-decoration: none;
+  display: block;
+  transition: all 0.4s ease;
+}
+
+.post-link:hover {
+  transform: translateY(-4px);
+}
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 22px;
+  padding: 30px;
+}

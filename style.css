@@ -5399,3 +5399,9 @@ body {
     transition: scroll 0.3s ease-out;
   }
 }
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 22px;
+  padding: 30px;
+}
