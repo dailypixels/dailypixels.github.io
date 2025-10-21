@@ -5695,3 +5695,96 @@ body {
     padding: 5px 10px;
   }
 }
+/* =================== Sidebar Styling =================== */
+
+/* Desktop: sticky sidebar */
+@media (min-width: 768px) {
+  .sidebar.right {
+    position: sticky;
+    top: 20px;          /* distance from top of viewport */
+    max-height: calc(100vh - 40px); /* full height minus margin */
+    overflow-y: auto;   /* scroll if content exceeds viewport */
+  }
+}
+
+/* Mobile: responsive stack */
+@media (max-width: 767px) {
+  .sidebar.right {
+    display: block;       /* ensure visible */
+    width: 100%;          /* full width below main content */
+    margin: 15px 0;       /* spacing from content */
+    order: 2;             /* appear after main content if using flex */
+    position: relative;   /* reset sticky */
+    max-height: none;     /* remove height limit */
+    overflow: visible;    /* scroll naturally with page */
+  }
+
+  /* Cards inside sidebar */
+  .sidebar.right .card {
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  }
+
+  /* Section titles */
+  .sidebar.right .section-title {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  /* Recent posts links */
+  .sidebar.right .link-list li {
+    margin-bottom: 8px;
+  }
+
+  .sidebar.right .link-list a {
+    font-size: 0.95rem;
+    color: #111827;
+    text-decoration: none;
+  }
+
+  .sidebar.right .link-list a:hover {
+    color: #2563eb;
+    text-decoration: underline;
+  }
+
+  /* Tags / chips */
+  .sidebar.right .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .sidebar.right .chip {
+    font-size: 0.85rem;
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 1px solid #d1d5db;
+    background-color: #f9fafb;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .sidebar.right .chip:hover {
+    background-color: #2563eb;
+    color: #fff;
+    border-color: #2563eb;
+  }
+}
+html {
+  scroll-behavior: smooth; /* smooth scrolling across the page */
+}
+/* Initial hidden state */
+.story-card {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* When card becomes visible */
+.story-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
