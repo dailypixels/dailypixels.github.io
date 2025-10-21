@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Urdu Stories | Daily Pixel</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css" />
 
@@ -1103,13 +1103,14 @@
         <li><a href="../Urdustories/index.html"class="active">Urdu Stories</a></li>
         <li><a href="../Articles/index.html">Articles</a></li>
         <li><a href="../Blogs/index.html">Blogs</a></li>
+        <li><a href="../Reviews/index.html">Reviews</a></li>
         <li><a href="../submission/index.html" >Submit</a></li>
         <li><a href="../about.html">About</a></li>
         <li><a href="../contact.html">Contact</a></li>
         <li><a href="index.html#newsletter"class="active">Subscribe</a></li>
       </ul>
     </nav>
-<a href="../index.html" class="menu-btn">☰</a>
+    <button class="menu-toggle" id="menu-toggle">&#9776;</button>
   </div>
 </header>
 
@@ -2771,7 +2772,20 @@
 
 
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("menu-toggle");
+  const nav = document.querySelector(".main-nav");
 
+  // Check if elements exist
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      // Toggle 'open' class on nav
+      nav.classList.toggle("open");
+    });
+  }
+});
+</script>
 
 
 
