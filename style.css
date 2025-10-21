@@ -5657,3 +5657,41 @@ body {
 .story-card .text-link:hover {
   text-decoration: underline;
 }
+/* =================== Mobile Sidebar Fix =================== */
+@media (max-width: 767px) {
+  /* Make sidebar visible and full width */
+  .sidebar.right {
+    display: block;       /* ensure it shows */
+    width: 100%;          /* full width for mobile */
+    margin: 15px 0;       /* spacing from main content */
+    order: 2;             /* appear after main content if using flex */
+  }
+
+  /* Adjust the card inside sidebar for mobile */
+  .sidebar.right .card {
+    padding: 15px;
+  }
+
+  /* Section titles */
+  .sidebar.right .section-title {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  /* Recent posts links */
+  .sidebar.right .link-list li {
+    margin-bottom: 8px;
+  }
+
+  /* Tags / chips */
+  .sidebar.right .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .sidebar.right .chip {
+    font-size: 0.85rem;
+    padding: 5px 10px;
+  }
+}
