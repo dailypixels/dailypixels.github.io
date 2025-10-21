@@ -8,83 +8,127 @@
   <link rel="stylesheet" href="../style.css"> <!-- Link to your main CSS -->
   <style>
     /* ===== Reviews Grid ===== */
+/* Reviews Grid */
+/* ===== Reviews Grid ===== */
 .reviews-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Center the cards horizontally */
-  gap: 20px;
+  justify-content: center; /* center the cards */
+  gap: 20px;               /* space between cards */
   margin: 40px 0;
 }
 
-/* Review Card */
+/* ===== Review Card ===== */
 .review-card {
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
-  width: calc(33.33% - 20px); /* 3 cards per row minus gap */
+  width: 280px;           /* fixed small card width */
   display: flex;
   flex-direction: column;
 }
 
 .review-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
 }
 
-.review-card img {
+/* Thumbnail Image */
+.review-card .thumb {
+  display: block;
   width: 100%;
-  height: 200px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.review-card .thumb img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  transition: transform 0.3s;
 }
 
-.review-card .content {
-  padding: 15px 20px;
+.review-card:hover .thumb img {
+  transform: scale(1.05);
 }
 
-.review-card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 8px;
-  color: #111827;
+/* Card Body */
+.review-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
-.review-card h3 a {
+.review-body h3 {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  line-height: 1.3;
+}
+
+.review-body h3 a {
+  color: #1e3a8a;
   text-decoration: none;
-  color: inherit;
 }
 
-.review-card h3 a:hover {
-  color: #2563eb;
+.review-body h3 a:hover {
+  text-decoration: underline;
 }
 
-.review-card p {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #374151;
+.review-body .meta {
+  font-size: 0.8rem;
+  color: #555;
   margin-bottom: 10px;
 }
 
-.review-card a.text-link {
-  font-weight: 500;
-  color: #2563eb;
-  text-decoration: none;
+.review-body .excerpt {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 10px;
+  line-height: 1.4;
 }
 
-.review-card a.text-link:hover {
+.review-body .text-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1e3a8a;
+  text-decoration: none;
+  margin-top: auto;
+}
+
+.review-body .text-link:hover {
   text-decoration: underline;
 }
 
 /* ===== Responsive ===== */
 @media (max-width: 1024px) {
   .review-card {
-    width: calc(50% - 20px); /* 2 cards per row on tablet */
+    width: 45%; /* 2 per row on tablet */
   }
 }
 
 @media (max-width: 600px) {
   .review-card {
-    width: 100%; /* 1 card per row on mobile */
+    width: 95%; /* 1 per row on mobile */
+    max-width: 320px;
+  }
+
+  .review-card .thumb {
+    height: 140px;
+  }
+
+  .review-body h3 {
+    font-size: 1rem;
+  }
+
+  .review-body .excerpt {
+    font-size: 0.85rem;
+  }
+
+  .review-body .text-link {
+    font-size: 0.85rem;
   }
 }
 
@@ -127,76 +171,117 @@
 
 <!-- Reviews Grid -->
 <section class="reviews-grid">
-  <!-- Review Card 1 -->
-  <article class="review-card">
-    <img src="https://images.unsplash.com/photo-1521747116042-5a810fda9664" alt="Review 1">
-    <div class="content">
-      <h3><a href="review1.html">The Hidden Truth in Literature</a></h3>
-      <p>Explore the layers of meaning in this thought-provoking novel.</p>
-      <a href="review1.html">Read More →</a>
-    </div>
-  </article>
-
-  <!-- Review Card 2 -->
-  <article class="review-card">
-    <img src="https://images.unsplash.com/photo-1517430816045-df4b7de1d2c6" alt="Review 2">
-    <div class="content">
-      <h3><a href="review2.html">Cinematic Journeys: A Review</a></h3>
-      <p>A deep dive into the storytelling and visuals of the latest film.</p>
-      <a href="review2.html">Read More →</a>
-    </div>
-  </article>
-
-  <!-- Review Card 2 -->
-  <article class="review-card">
-    <img src="https://images.unsplash.com/photo-1517430816045-df4b7de1d2c6" alt="Review 2">
-    <div class="content">
-      <h3><a href="review2.html">Cinematic Journeys: A Review</a></h3>
-      <p>A deep dive into the storytelling and visuals of the latest film.</p>
-      <a href="review2.html">Read More →</a>
-    </div>
-  </article>
-
-  <!-- Review Card 2 -->
-  <article class="review-card">
-    <img src="https://images.unsplash.com/photo-1517430816045-df4b7de1d2c6" alt="Review 2">
-    <div class="content">
-      <h3><a href="review2.html">Cinematic Journeys: A Review</a></h3>
-      <p>A deep dive into the storytelling and visuals of the latest film.</p>
-      <a href="review2.html">Read More →</a>
-    </div>
-  </article>
-
-  <!-- Review Card 2 -->
-  <article class="review-card">
-    <img src="https://images.unsplash.com/photo-1517430816045-df4b7de1d2c6" alt="Review 2">
-    <div class="content">
-      <h3><a href="review2.html">Cinematic Journeys: A Review</a></h3>
-      <p>A deep dive into the storytelling and visuals of the latest film.</p>
-      <a href="review2.html">Read More →</a>
-    </div>
-  </article>
+<!-- Review 1 Card -->
+<article class="review-card" data-category="literature" data-tags="review, history, mystery">
+  <a class="thumb" href="review1.html">
+    <img src="https://media.istockphoto.com/id/1364581246/photo/old-quill-pen-with-inkwell-and-papers-on-wooden-desk-against-vintage-bookcase-retro-style.webp?a=1&b=1&s=612x612&w=0&k=20&c=vaaeG1rMi2YWKaYpLJekgIgtzCEZjicJRerP0njUzmo=" alt="Ancient manuscript on a desk with a quill pen and ink bottle, dimly lit room.">
+  </a>
+  <div class="review-body">
+    <h3><a href="review1.html">The Forgotten Manuscript</a></h3>
+    <p class="meta">October 21, 2025 • By Samira Khan</p>
+    <p class="excerpt">
+  “The Forgotten Manuscript” blends history and mystery, following a historian uncovering long-lost secrets.
+</p>
+    <a class="text-link" href="review1.html">Read More →</a>
+  </div>
+</article>
 
 
-<!-- Review Card 2 -->
-  <article class="review-card">
-    <img src="https://images.unsplash.com/photo-1517430816045-df4b7de1d2c6" alt="Review 2">
-    <div class="content">
-      <h3><a href="review2.html">Cinematic Journeys: A Review</a></h3>
-      <p>A deep dive into the storytelling and visuals of the latest film.</p>
-      <a href="review2.html">Read More →</a>
-    </div>
-  </article>
+ <!-- Review 2 Card -->
+<article class="review-card" data-category="literature" data-tags="review, adventure, culture">
+  <a class="thumb" href="review2.html">
+    <img src="https://media.istockphoto.com/id/1284395343/photo/ancient-ruins-in-the-morning-light.webp?a=1&b=1&s=612x612&w=0&k=20&c=RbXjC2H30TgS73hS9vG9S7vY4O2r7efh1eF0tYMoTvE=" alt="Sunlight falling on ancient ruins, highlighting arches and crumbling walls.">
+  </a>
+  <div class="review-body">
+    <h3><a href="review2.html">Echoes of the Forgotten City</a></h3>
+    <p class="meta">October 22, 2025 • By Arman Shah</p>
+    <p class="excerpt">
+      “Echoes of the Forgotten City” follows an archaeologist uncovering secrets of a lost civilization, blending adventure and history.
+    </p>
+    <a class="text-link" href="review2.html">Read More →</a>
+  </div>
+</article>
 
-  <!-- Review Card 2 -->
-  <article class="review-card">
-    <img src="https://images.unsplash.com/photo-1517430816045-df4b7de1d2c6" alt="Review 2">
-    <div class="content">
-      <h3><a href="review2.html">Cinematic Journeys: A Review</a></h3>
-      <p>A deep dive into the storytelling and visuals of the latest film.</p>
-      <a href="review2.html">Read More →</a>
-    </div>
-  </article>
+<!-- Review 3 Card -->
+<article class="review-card" data-category="thriller" data-tags="review, espionage, suspense">
+  <a class="thumb" href="review3.html">
+    <img src="https://media.istockphoto.com/id/1419106741/photo/young-writer-sitting-in-his-room-at-his-house-writing-a-story-on-his-old-typewriter-thinking.webp?a=1&b=1&s=612x612&w=0&k=20&c=9lyBymtkmbJANXTpSd8_VXW-LM3uY7mWsyIzTWKlRnY=" alt="A shadowy figure typing on an old typewriter, surrounded by stacks of encrypted documents and dim light.">
+  </a>
+  <div class="review-body">
+    <h3><a href="review3.html">The Cipher in the Shadows</a></h3>
+    <p class="meta">January 26, 2025 • By Rowan Pierce</p>
+    <p class="excerpt">
+      A thrilling tale of cryptography, espionage, and global conspiracy, following a lone cryptographer uncovering deadly secrets.
+    </p>
+    <a class="text-link" href="review3.html">Read More →</a>
+  </div>
+</article>
+
+
+ <!-- Review 4 Card -->
+<article class="review-card" data-category="inspirational" data-tags="review, courage, journey">
+  <a class="thumb" href="review4.html">
+    <img src="https://plus.unsplash.com/premium_photo-1706625669518-664f071e02af?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8QSUyMGxvbmUlMjB0cmF2ZWxlciUyMHN0YW5kaW5nJTIwb24lMjBhJTIwbW91bnRhaW4lMjBwZWFrJTIwYXQlMjBzdW5yaXNlJTJDJTIwb3Zlcmxvb2tpbmclMjBhJTIwdmFzdCUyMHZhbGxleS58ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=500" alt="A lone traveler standing on a mountain peak at sunrise, overlooking a vast valley.">
+  </a>
+  <div class="review-body">
+    <h3><a href="review4.html">Rising Beyond the Horizon</a></h3>
+    <p class="meta">October 28, 2025 • By Leila Ahmed</p>
+    <p class="excerpt">
+      “Rising Beyond the Horizon” tells the inspiring journey of an individual overcoming immense challenges to achieve self-discovery and purpose.
+    </p>
+    <a class="text-link" href="review4.html">Read More →</a>
+  </div>
+</article>
+
+
+  <!-- Review 5 Card -->
+<article class="review-card" data-category="technology" data-tags="review, innovation, AI, future">
+  <a class="thumb" href="review5.html">
+    <img src="https://media.istockphoto.com/id/2165761852/photo/artificial-intelligence-and-machine-learning-concept.webp?a=1&b=1&s=612x612&w=0&k=20&c=j6iq7gGJfJOu3K_NhQm1Dqnsa3XbGnV6IRxDIRsCark=" alt="Futuristic AI interface with glowing holographic screens and data streams.">
+  </a>
+  <div class="review-body">
+    <h3><a href="review5.html">Artificial Minds: The Rise of AI</a></h3>
+    <p class="meta">October 30, 2025 • By Ayaan Malik</p>
+    <p class="excerpt">
+      “Artificial Minds” explores the transformative impact of AI on society, ethics, and the future of human innovation.
+    </p>
+    <a class="text-link" href="review5.html">Read More →</a>
+  </div>
+</article>
+
+
+
+<!-- Review 6 Card -->
+<article class="review-card" data-category="adventure" data-tags="review, travel, exploration, journey">
+  <a class="thumb" href="review6.html">
+    <img src="https://plus.unsplash.com/premium_photo-1720903698659-823408050cab?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8QSUyMGxvbmUlMjBoaWtlciUyMHN0YW5kaW5nJTIwYXQlMjB0aGUlMjBlZGdlJTIwb2YlMjBhJTIwY2xpZmYlMkMlMjBsb29raW5nJTIwb3ZlciUyMGElMjB2YXN0JTIwbW91bnRhaW4lMjByYW5nZSUyMGR1cmluZyUyMHN1bnJpc2UufGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=500" alt="A lone hiker standing at the edge of a cliff, looking over a vast mountain range during sunrise.">
+  </a>
+  <div class="review-body">
+    <h3><a href="review6.html">Beyond the Edge: A Journey into the Wild</a></h3>
+    <p class="meta">November 2, 2025 • By Zara Ali</p>
+    <p class="excerpt">
+      “Beyond the Edge” chronicles a breathtaking adventure across untamed landscapes, highlighting courage, discovery, and the human spirit.
+    </p>
+    <a class="text-link" href="review6.html">Read More →</a>
+  </div>
+</article>
+
+
+ <!-- Review 7 Card -->
+<article class="review-card" data-category="romance" data-tags="review, love, relationships, emotional">
+  <a class="thumb" href="review7.html">
+    <img src="https://media.istockphoto.com/id/1022416968/photo/held-hands-in-the-background-of-the-sun.webp?a=1&b=1&s=612x612&w=0&k=20&c=M0mU784PR0FiVorJ-tRIibKz1jzsoTa_2MUiz3gpaYY=" alt="Two hands holding each other against a sunset background, symbolizing love and connection.">
+  </a>
+  <div class="review-body">
+    <h3><a href="review7.html">Hearts Entwined: A Journey of Love</a></h3>
+    <p class="meta">November 5, 2025 • By Sara Khan</p>
+    <p class="excerpt">
+      “Hearts Entwined” explores the delicate balance of love, trust, and emotional growth in a beautifully tender narrative.
+    </p>
+    <a class="text-link" href="review7.html">Read More →</a>
+  </div>
+</article>
+
 
   <!-- Review Card 2 -->
   <article class="review-card">
