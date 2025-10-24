@@ -30,7 +30,7 @@
         
         </ul>
       </nav>
-<a href="index.html" class="menu-btn">☰</a>
+    <button class="menu-toggle" id="menu-toggle">&#9776;</button>
     </div>
   </header>
 
@@ -86,5 +86,30 @@
   <footer class="site-footer">
     <p>&copy; 2025 Daily Pixel. All rights reserved.</p>
   </footer>
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("menu-toggle");
+  const nav = document.querySelector(".main-nav");
+
+  // Check if elements exist
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      // Toggle 'open' class on nav
+      nav.classList.toggle("open");
+    });
+  }
+});
+</script>
+
+
+
+
+
+
+
 </body>
 </html>

@@ -132,7 +132,7 @@
   <div class="hero-content container">
     <h1>Interviews</h1>
     <p>Exclusive conversations with authors, creatives, and thought leaders.</p>
-      <a href="#reviews" class="hero-btn">Explore Interviews</a>
+      <a href="#interviews" class="hero-btn">Explore Interviews</a>
   </div>
 </section>
 
@@ -879,5 +879,28 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 </script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const interviewsBtn = document.querySelector(".hero-btn[href='#interviews']");
+  
+  interviewsBtn.addEventListener("click", (e) => {
+    e.preventDefault(); // Prevent default jump
+    const target = document.querySelector("#interviews");
+    const headerOffset = 80; // Adjust if you have a fixed header height
+    const elementPosition = target.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth"
+    });
+  });
+});
+</script>
+
+
+
 </body>
 </html>

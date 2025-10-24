@@ -1193,6 +1193,27 @@
   <span style="font-size: 22px; line-height: 0;">&#8679;</span>
 </button>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const articleBtn = document.querySelector(".hero-btn[href='#stories']");
+  
+  articleBtn.addEventListener("click", (e) => {
+    e.preventDefault(); // Prevent default jump
+    const target = document.querySelector(".articles-grid");
+    const headerOffset = 80; // Adjust if you have a fixed header height
+    const elementPosition = target.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth"
+    });
+  });
+});
+</script>
+
+
+
 
 <script>
   // Show or hide button
