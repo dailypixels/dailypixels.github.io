@@ -225,6 +225,103 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<!-- Cookie Consent Banner -->
+<div id="cookie-banner" class="cookie-banner">
+  <span>
+    🍪 This site uses cookies to improve your experience. By continuing to browse, 
+    you accept our <a href="privacy.html">Privacy Policy</a>.
+  </span>
+  <button id="cookie-btn">Got it ✅</button>
+</div>
+
+<style>
+  /* Cookie Banner Styling */
+  .cookie-banner {
+    position: fixed;
+    bottom: -100px; /* hidden initially */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 800px;
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+    font-size: 14px;
+
+    /* animation */
+    opacity: 0;
+    transition: all 0.6s ease-in-out;
+  }
+  .cookie-banner.show {
+    bottom: 20px; /* slides up */
+    opacity: 1;
+  }
+
+  .cookie-banner a {
+    color: #ffeb3b;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  #cookie-btn {
+    background: white;
+    color: #007bff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  #cookie-btn:hover {
+    background: #f1f1f1;
+    transform: scale(1.05);
+  }
+
+  /* 📱 Mobile Responsive */
+  @media (max-width: 600px) {
+    .cookie-banner {
+      flex-direction: column;
+      text-align: center;
+      gap: 12px;
+      padding: 12px;
+      font-size: 13px;
+    }
+    #cookie-btn {
+      width: 100%;
+      padding: 10px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const cookieBanner = document.getElementById("cookie-banner");
+    const cookieButton = document.getElementById("cookie-btn");
+
+    // Show banner if not accepted
+    if (localStorage.getItem("cookieConsent") !== "true") {
+      setTimeout(() => {
+        cookieBanner.classList.add("show");
+      }, 1000); // delay 1s before sliding in
+    }
+
+    // On button click
+    cookieButton.addEventListener("click", function () {
+      cookieBanner.classList.remove("show");
+      localStorage.setItem("cookieConsent", "true");
+    });
+  });
+</script>
 
 </body>
 </html>

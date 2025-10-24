@@ -131,6 +131,46 @@
     font-size: 0.85rem;
   }
 }
+.reviews-intro {
+  text-align: center;
+  padding: 30px 20px 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.reviews-intro .intro-line {
+  font-size: 1.2rem;
+  color: #1e3a8a;
+  margin-bottom: 15px;
+}
+
+.reviews-intro .categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.category-chip {
+  background: #1e3a8a;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: inline-block;
+  transition: background 0.3s;
+}
+
+.category-chip.active {
+  background: #ff6b6b; /* Highlight selected */
+}
+
+.category-chip:hover {
+  background: #324db8;
+}
 
   </style>
 </head>
@@ -169,6 +209,33 @@
       <a href="#reviews" class="hero-btn">Explore Reviews</a>
   </div>
 </section>
+
+
+
+<section class="reviews-intro">
+  <div class="container">
+    <p class="intro-line">
+      Explore the most <strong>trending reviews of 2025</strong> — click a category to see related reviews.
+    </p>
+
+    <div class="categories">
+      <span class="category-chip active" data-category="all">All</span>
+      <span class="category-chip" data-category="literature">Literature</span>
+      <span class="category-chip" data-category="films">Films</span>
+      <span class="category-chip" data-category="tech">Tech & Gadgets</span>
+      <span class="category-chip" data-category="wellness">Wellness</span>
+      <span class="category-chip" data-category="gaming">Gaming</span>
+      <span class="category-chip" data-category="art">Art & Culture</span>
+      <span class="category-chip" data-category="adventure">Adventure</span>
+      <span class="category-chip" data-category="romance">Romance</span>
+    </div>
+  </div>
+</section>
+
+
+
+
+
 
 <!-- Reviews Grid -->
 <section class="reviews-grid">
@@ -1208,6 +1275,134 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const categoryChips = document.querySelectorAll(".category-chip");
+  const reviewCards = document.querySelectorAll(".review-card");
+
+  categoryChips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      // Remove active from all chips
+      categoryChips.forEach(c => c.classList.remove("active"));
+      // Add active to clicked chip
+      chip.classList.add("active");
+
+      const category = chip.getAttribute("data-category");
+
+      reviewCards.forEach(card => {
+        const cardCategory = card.getAttribute("data-category");
+        if (category === "all" || cardCategory === category) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
+});
+</script>
+
+
+<!-- Cookie Consent Banner -->
+<div id="cookie-banner" class="cookie-banner">
+  <span>
+    🍪 This site uses cookies to improve your experience. By continuing to browse, 
+    you accept our <a href="privacy.html">Privacy Policy</a>.
+  </span>
+  <button id="cookie-btn">Got it ✅</button>
+</div>
+
+<style>
+  /* Cookie Banner Styling */
+  .cookie-banner {
+    position: fixed;
+    bottom: -100px; /* hidden initially */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 800px;
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+    font-size: 14px;
+
+    /* animation */
+    opacity: 0;
+    transition: all 0.6s ease-in-out;
+  }
+  .cookie-banner.show {
+    bottom: 20px; /* slides up */
+    opacity: 1;
+  }
+
+  .cookie-banner a {
+    color: #ffeb3b;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  #cookie-btn {
+    background: white;
+    color: #007bff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  #cookie-btn:hover {
+    background: #f1f1f1;
+    transform: scale(1.05);
+  }
+
+  /* 📱 Mobile Responsive */
+  @media (max-width: 600px) {
+    .cookie-banner {
+      flex-direction: column;
+      text-align: center;
+      gap: 12px;
+      padding: 12px;
+      font-size: 13px;
+    }
+    #cookie-btn {
+      width: 100%;
+      padding: 10px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const cookieBanner = document.getElementById("cookie-banner");
+    const cookieButton = document.getElementById("cookie-btn");
+
+    // Show banner if not accepted
+    if (localStorage.getItem("cookieConsent") !== "true") {
+      setTimeout(() => {
+        cookieBanner.classList.add("show");
+      }, 1000); // delay 1s before sliding in
+    }
+
+    // On button click
+    cookieButton.addEventListener("click", function () {
+      cookieBanner.classList.remove("show");
+      localStorage.setItem("cookieConsent", "true");
+    });
+  });
+</script>
+
+
+
 
 </body>
 </html>
