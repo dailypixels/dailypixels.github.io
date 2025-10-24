@@ -244,6 +244,39 @@
     box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
   }
 }
+/* ===== Blogs Heading ===== */
+.blogs-heading {
+  text-align: center;
+  padding: 40px 20px 20px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.blogs-heading h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e3a8a; /* consistent deep rich color */
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.blogs-heading p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .blogs-heading h2 {
+    font-size: 2rem;
+  }
+  .blogs-heading p {
+    font-size: 1rem;
+  }
+}
 
 </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
@@ -294,25 +327,27 @@
   </div>
 </section>
  
+<!-- Section Heading Before Blogs -->
+<section class="blogs-heading">
+  <div class="container">
+    <h2>Insights, Stories & Expert Perspectives</h2>
+    <p>Explore our curated selection of blogs covering diverse topics — from technology and lifestyle to health, culture, and inspiring narratives.</p>
+  </div>
+</section>
 
-<div class="filter-buttons">
-  <button class="filter-button active" data-filter="all">All</button>
-  <button class="filter-button" data-filter="Health & Wellness">Health & Wellness</button>
-  <button class="filter-button" data-filter="Technology & Innovation">Technology & Innovation</button>
-  <button class="filter-button" data-filter="Travel & Adventure">Travel & Adventure</button>
-  <button class="filter-button" data-filter="Food & Nutrition">Food & Nutrition</button>
-  <button class="filter-button" data-filter="Self-Improvement & Productivity">Self-Improvement & Productivity</button>
-  <button class="filter-button" data-filter="Arts & Entertainment">Arts & Entertainment</button>
-  <button class="filter-button" data-filter="Environment & Sustainability">Environment & Sustainability</button>
-</div>
+
+
 
 <div class="search-container">
   <input type="text" id="search-input" placeholder="Search posts..." />
 </div>
 
+
+
+
+
 <!-- Blogs Grid -->
 <main class="page-section">
-  <h2 class="section-title">All Blogs</h2>
   <div class="post-grid">
 
    <!-- Blog 1 -->

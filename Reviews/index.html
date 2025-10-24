@@ -131,45 +131,38 @@
     font-size: 0.85rem;
   }
 }
-.reviews-intro {
+/* ===== Reviews Heading ===== */
+.reviews-heading {
   text-align: center;
-  padding: 30px 20px 20px;
-  background: #f9f9f9;
-  border-radius: 12px;
-  margin-bottom: 30px;
+  padding: 40px 20px 20px 20px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.reviews-intro .intro-line {
-  font-size: 1.2rem;
-  color: #1e3a8a;
+.reviews-heading h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e3a8a; /* deep rich color to match Interviews */
   margin-bottom: 15px;
+  line-height: 1.2;
 }
 
-.reviews-intro .categories {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 10px;
+.reviews-heading p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
-.category-chip {
-  background: #1e3a8a;
-  color: #fff;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  display: inline-block;
-  transition: background 0.3s;
-}
-
-.category-chip.active {
-  background: #ff6b6b; /* Highlight selected */
-}
-
-.category-chip:hover {
-  background: #324db8;
+/* Responsive */
+@media (max-width: 768px) {
+  .reviews-heading h2 {
+    font-size: 2rem;
+  }
+  .reviews-heading p {
+    font-size: 1rem;
+  }
 }
 
   </style>
@@ -212,25 +205,14 @@
 
 
 
-<section class="reviews-intro">
+<!-- Section Heading Before Reviews -->
+<section class="reviews-heading">
   <div class="container">
-    <p class="intro-line">
-      Explore the most <strong>trending reviews of 2025</strong> — click a category to see related reviews.
-    </p>
-
-    <div class="categories">
-      <span class="category-chip active" data-category="all">All</span>
-      <span class="category-chip" data-category="literature">Literature</span>
-      <span class="category-chip" data-category="films">Films</span>
-      <span class="category-chip" data-category="tech">Tech & Gadgets</span>
-      <span class="category-chip" data-category="wellness">Wellness</span>
-      <span class="category-chip" data-category="gaming">Gaming</span>
-      <span class="category-chip" data-category="art">Art & Culture</span>
-      <span class="category-chip" data-category="adventure">Adventure</span>
-      <span class="category-chip" data-category="romance">Romance</span>
-    </div>
+    <h2>In-Depth Analyses & Trending Insights</h2>
+    <p>Discover expert critiques, thoughtful perspectives, and detailed reviews of the latest books, films, and cultural phenomena shaping our world today.</p>
   </div>
 </section>
+
 
 
 
@@ -409,7 +391,7 @@
 <!-- Review 39 Card -->
 <article class="review-card" data-category="Eco-Wellbeing" data-tags="environmental psychology, sensory design, nature therapy, sustainability, emotion science">
   <a class="thumb" href="review39.html">
-    <img src="https://images.unsplash.com/photo-1601972599720-36938d4cdc7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=60" alt="Indoor workspace filled with plants, sunlight filtering through, calm earthy tones.">
+    <img src="https://media.istockphoto.com/id/961877098/photo/interior-of-artist-studio-with-laptop-potted-plants-and-easel.webp?a=1&b=1&s=612x612&w=0&k=20&c=SuemsqZ4xpKI1bzPi3Q9trUKa8FNmt0LURlV4BlceWk=" alt="Indoor workspace filled with plants, sunlight filtering through, calm earthy tones.">
   </a>
   <div class="review-body">
     <h3><a href="review39.html">Biophilic Balance: Designing Spaces That Heal the Mind</a></h3>
@@ -1271,32 +1253,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo({
       top: offsetPosition,
       behavior: "smooth"
-    });
-  });
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const categoryChips = document.querySelectorAll(".category-chip");
-  const reviewCards = document.querySelectorAll(".review-card");
-
-  categoryChips.forEach(chip => {
-    chip.addEventListener("click", () => {
-      // Remove active from all chips
-      categoryChips.forEach(c => c.classList.remove("active"));
-      // Add active to clicked chip
-      chip.classList.add("active");
-
-      const category = chip.getAttribute("data-category");
-
-      reviewCards.forEach(card => {
-        const cardCategory = card.getAttribute("data-category");
-        if (category === "all" || cardCategory === category) {
-          card.style.display = "block";
-        } else {
-          card.style.display = "none";
-        }
-      });
     });
   });
 });

@@ -116,6 +116,39 @@
   font-size: 0.75rem;
   margin-bottom: 4px;
 }
+/* ===== Articles Heading ===== */
+.articles-heading {
+  text-align: center;
+  padding: 40px 20px 20px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.articles-heading h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e3a8a; /* consistent deep rich color for all pages */
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.articles-heading p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .articles-heading h2 {
+    font-size: 2rem;
+  }
+  .articles-heading p {
+    font-size: 1rem;
+  }
+}
 
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
@@ -166,8 +199,18 @@
   </div>
 </section>
 
+
+<!-- Section Heading Before Articles -->
+<section class="articles-heading">
+  <div class="container">
+    <h2>Thoughtful Reads & In-Depth Analyses</h2>
+    <p>Dive into our collection of articles offering expert insights, detailed explorations, and meaningful perspectives across a wide range of topics.</p>
+  </div>
+</section>
+
+
+
   <main class="page-section">
-    <h2 class="section-title">All Articles</h2>
 
     <!-- Articles Grid -->
     <div class="articles-grid">

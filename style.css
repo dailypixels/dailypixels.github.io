@@ -5776,3 +5776,36 @@ body {
 html {
   scroll-behavior: smooth; /* smooth scrolling across the page */
 }
+/* ===== Homepage Stories Heading ===== */
+.homepage-stories-heading {
+  text-align: center;
+  padding: 40px 20px 20px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.homepage-stories-heading h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e3a8a; /* consistent deep rich color */
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.homepage-stories-heading p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .homepage-stories-heading h2 {
+    font-size: 2rem;
+  }
+  .homepage-stories-heading p {
+    font-size: 1rem;
+  }
+}

@@ -99,6 +99,68 @@
 
     @media (max-width: 1024px) { .interview-card { width: 45%; } }
     @media (max-width: 600px) { .interview-card { width: 95%; max-width: 320px; } }
+    .reviews-heading {
+  text-align: center;
+  padding: 25px 0 15px;
+}
+
+.reviews-heading h2 {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif; /* modern font */
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1e3a8a; /* light but visible */
+  border-bottom: 3px solid #ff6b6b; /* underline accent */
+  padding-bottom: 5px;
+  letter-spacing: 0.5px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .reviews-heading h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .reviews-heading h2 {
+    font-size: 1.3rem;
+  }
+}
+/* ===== Interviews Heading ===== */
+.interviews-heading {
+  text-align: center;
+  padding: 40px 20px 20px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.interviews-heading h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e3a8a; /* deep rich color */
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.interviews-heading p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .interviews-heading h2 {
+    font-size: 2rem;
+  }
+  .interviews-heading p {
+    font-size: 1rem;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -135,6 +197,22 @@
       <a href="#interviews" class="hero-btn">Explore Interviews</a>
   </div>
 </section>
+
+
+
+
+<!-- Section Heading Before Interviews -->
+<section class="interviews-heading">
+  <div class="container">
+    <h2>Exclusive Conversations & Insights</h2>
+    <p>Dive into the minds of the world’s most influential personalities — from artists and athletes to entrepreneurs and visionaries. Explore their journeys, thoughts, and inspirations through our in-depth interviews.</p>
+  </div>
+</section>
+
+
+
+
+
 
 <!-- Interviews Grid -->
 <section class="interviews-grid" id="interviews">
