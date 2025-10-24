@@ -2869,7 +2869,7 @@ body.dark .comments h2 {
   }
 
   .main-nav.open {
-    max-height: 460px; /* enough to show all items */
+    max-height: 520px; /* enough to show all items */
   }
 
   .main-nav ul {

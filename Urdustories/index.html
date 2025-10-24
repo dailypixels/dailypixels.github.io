@@ -1079,6 +1079,57 @@
     height: 180px;
   }
 }
+/* ===== Urdu Stories Page - Match Global Mobile Menu Style ===== */
+@media (max-width: 768px) {
+  body.urdu-stories-page .main-nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff;
+    width: 100%;
+    flex-direction: column;
+    gap: 0;
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  body.urdu-stories-page .main-nav.open {
+    max-height: 520px; /* same as homepage */
+  }
+
+  body.urdu-stories-page .main-nav ul {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  body.urdu-stories-page .main-nav li {
+    border-top: 1px solid #f0f0f0;
+  }
+
+  body.urdu-stories-page .main-nav a {
+    display: block;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  body.urdu-stories-page .menu-toggle {
+    display: block;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+  }
+}
+/* ✅ Hide ONLY the Subscribe link on Urdu Stories page — Mobile Only */
+@media (max-width: 768px) {
+  .main-nav li a[href="index.html#newsletter"] {
+    display: none !important;
+  }
+}
 
   </style>
   <!-- Google tag (gtag.js) -->
@@ -1104,13 +1155,14 @@
         <li><a href="../Articles/index.html">Articles</a></li>
         <li><a href="../Blogs/index.html">Blogs</a></li>
         <li><a href="../Reviews/index.html">Reviews</a></li>
+         <li><a href="../Interviews/index.html">Interviews</a></li>
         <li><a href="../submission/index.html" >Submit</a></li>
         <li><a href="../about.html">About</a></li>
         <li><a href="../contact.html">Contact</a></li>
         <li><a href="index.html#newsletter"class="active">Subscribe</a></li>
       </ul>
     </nav>
-<a href="../index.html" class="menu-toggle" id="menu-toggle">&#9776;</a>
+<button class="menu-toggle" id="menu-toggle">&#9776;</button>
   </div>
 </header>
 
