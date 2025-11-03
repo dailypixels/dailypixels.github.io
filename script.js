@@ -1309,3 +1309,4 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
 setTimeout(() => {
   document.body.classList.add('show-sections');
 }, 600); // adjust delay to match hero animation end
+
