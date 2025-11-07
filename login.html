@@ -180,17 +180,16 @@
   </div>
 
 <script type="module">
-  import { 
-    initializeApp 
-  } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-  import { 
-    getAuth, 
-    createUserWithEmailAndPassword, 
-    signInWithEmailAndPassword, 
-    sendPasswordResetEmail 
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+  import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail,
+    confirmPasswordReset
   } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
-  // --- Firebase Config ---
+  // ✅ Firebase Config
   const firebaseConfig = {
     apiKey: "AIzaSyDsl9sK5Yd-YmXzAnpEQcjb8TnJhHb0PeI",
   authDomain: "daily-pixel-s.firebaseapp.com",
@@ -204,99 +203,54 @@
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  // --- UI Elements ---
+  const container = document.querySelector(".auth-container");
   const formTitle = document.getElementById("form-title");
   const toggleForm = document.getElementById("toggle-form");
   const authBtn = document.getElementById("auth-btn");
   const errorMsg = document.getElementById("error-msg");
   const successMsg = document.getElementById("success-msg");
 
-  const emailInput = document.getElementById("email");
-  const passwordInput = document.getElementById("password");
-
-  // Create confirm password input dynamically
-  const confirmPassword = document.createElement("input");
-  confirmPassword.type = "password";
-  confirmPassword.id = "confirm-password";
-  confirmPassword.placeholder = "Confirm Password";
-  confirmPassword.style.display = "none";
-  confirmPassword.style.width = "100%";
-  confirmPassword.style.padding = "12px";
-  confirmPassword.style.margin = "8px 0";
-  confirmPassword.style.border = "1px solid #e5e7eb";
-  confirmPassword.style.borderRadius = "8px";
-  confirmPassword.style.background = "#f9fafb";
-  confirmPassword.style.color = "#111827";
-  confirmPassword.style.fontSize = "1rem";
-  confirmPassword.style.outline = "none";
-  confirmPassword.addEventListener("focus", () => {
-    confirmPassword.style.borderColor = "#60a5fa";
-    confirmPassword.style.background = "#fff";
-  });
-  passwordInput.insertAdjacentElement("afterend", confirmPassword);
-
-  // --- Add Forgot Password link ---
-  const forgotPassword = document.createElement("div");
-  forgotPassword.textContent = "Forgot password?";
-  forgotPassword.className = "forgot-password";
-  forgotPassword.style.color = "#2563eb";
-  forgotPassword.style.cursor = "pointer";
-  forgotPassword.style.fontSize = "0.9rem";
-  forgotPassword.style.marginTop = "8px";
-  forgotPassword.addEventListener("mouseover", () => {
-    forgotPassword.style.textDecoration = "underline";
-  });
-  forgotPassword.addEventListener("mouseout", () => {
-    forgotPassword.style.textDecoration = "none";
-  });
-  passwordInput.insertAdjacentElement("afterend", forgotPassword);
-
-  // --- Toggle Login / Signup ---
   let isLogin = true;
+
+  // ✅ Toggle between Login / Signup
   toggleForm.addEventListener("click", () => {
     isLogin = !isLogin;
     formTitle.textContent = isLogin ? "Login" : "Sign Up";
     authBtn.textContent = isLogin ? "Login" : "Sign Up";
-    confirmPassword.style.display = isLogin ? "none" : "block";
-    forgotPassword.style.display = isLogin ? "block" : "none";
     toggleForm.innerHTML = isLogin
       ? "Don't have an account? <span style='font-weight:600;'>Sign up</span>"
       : "Already have an account? <span style='font-weight:600;'>Login</span>";
     errorMsg.textContent = "";
     successMsg.textContent = "";
-  });
-
-  // --- Forgot Password Action ---
-  forgotPassword.addEventListener("click", async () => {
-    const email = emailInput.value.trim();
-    if (!email) {
-      errorMsg.textContent = "Please enter your email to reset password.";
-      return;
-    }
-    try {
-      await sendPasswordResetEmail(auth, email);
-      successMsg.textContent = "Password reset link sent to your email.";
-    } catch (err) {
-      errorMsg.textContent = "Failed to send reset link. Try again.";
+    document.getElementById("confirm-password")?.remove();
+    if (!isLogin) {
+      const confirmInput = document.createElement("input");
+      confirmInput.type = "password";
+      confirmInput.id = "confirm-password";
+      confirmInput.placeholder = "Confirm Password";
+      authBtn.before(confirmInput);
     }
   });
 
-  // --- Auth Button Action ---
+  // ✅ Detect if URL contains “reset password” mode
+  const urlParams = new URLSearchParams(window.location.search);
+  const mode = urlParams.get("mode");
+  const oobCode = urlParams.get("oobCode");
+
+  if (mode === "resetPassword" && oobCode) {
+    renderResetPasswordForm(oobCode);
+  }
+
+  // ✅ Main login/signup button
   authBtn.addEventListener("click", async () => {
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
-    const confirm = confirmPassword.value.trim();
-
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const confirmPassword = document.getElementById("confirm-password")?.value.trim();
     errorMsg.textContent = "";
     successMsg.textContent = "";
 
-    if (!email || !password || (!isLogin && !confirm)) {
-      errorMsg.textContent = "Please fill in all fields.";
-      return;
-    }
-
-    if (!isLogin && password !== confirm) {
-      errorMsg.textContent = "Passwords do not match.";
+    if (!email || !password) {
+      errorMsg.textContent = "Please enter both email and password.";
       return;
     }
 
@@ -306,19 +260,23 @@
         successMsg.textContent = "Login successful! Redirecting...";
         setTimeout(() => (window.location.href = "index.html"), 1500);
       } else {
+        if (password !== confirmPassword) {
+          errorMsg.textContent = "Passwords do not match.";
+          return;
+        }
         await createUserWithEmailAndPassword(auth, email, password);
         successMsg.textContent = "Account created successfully!";
         setTimeout(() => {
           isLogin = true;
           formTitle.textContent = "Login";
           authBtn.textContent = "Login";
-          confirmPassword.style.display = "none";
-          forgotPassword.style.display = "block";
           toggleForm.innerHTML =
             "Don't have an account? <span style='font-weight:600;'>Sign up</span>";
+          document.getElementById("confirm-password")?.remove();
         }, 1500);
       }
     } catch (err) {
+      console.error(err.code);
       switch (err.code) {
         case "auth/user-not-found":
           errorMsg.textContent = "User not found. Please sign up first.";
@@ -337,7 +295,73 @@
       }
     }
   });
+
+  // ✅ Forgot Password link
+  const forgotPassword = document.createElement("div");
+  forgotPassword.className = "toggle";
+  forgotPassword.textContent = "Forgot password?";
+  forgotPassword.style.marginTop = "10px";
+  authBtn.after(forgotPassword);
+
+  forgotPassword.addEventListener("click", async () => {
+    const email = document.getElementById("email").value.trim();
+    if (!email) {
+      errorMsg.textContent = "Please enter your email to reset password.";
+      return;
+    }
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+      successMsg.textContent = "Password reset link sent to your email.";
+    } catch (err) {
+      switch (err.code) {
+        case "auth/user-not-found":
+          errorMsg.textContent = "No account found with this email.";
+          break;
+        default:
+          errorMsg.textContent = "Failed to send reset link. Try again.";
+      }
+    }
+  });
+
+  // ✅ Reset Password page renderer
+  function renderResetPasswordForm(oobCode) {
+    container.innerHTML = `
+      <h2>Reset Password</h2>
+      <input type="password" id="new-password" placeholder="New Password" />
+      <input type="password" id="confirm-new-password" placeholder="Confirm Password" />
+      <button id="reset-btn">Update Password</button>
+      <div class="error" id="error-msg"></div>
+      <div class="success" id="success-msg"></div>
+    `;
+
+    document.getElementById("reset-btn").addEventListener("click", async () => {
+      const newPassword = document.getElementById("new-password").value.trim();
+      const confirmNewPassword = document.getElementById("confirm-new-password").value.trim();
+      const errorMsg = document.getElementById("error-msg");
+      const successMsg = document.getElementById("success-msg");
+
+      if (newPassword.length < 6) {
+        errorMsg.textContent = "Password must be at least 6 characters.";
+        return;
+      }
+
+      if (newPassword !== confirmNewPassword) {
+        errorMsg.textContent = "Passwords do not match.";
+        return;
+      }
+
+      try {
+        await confirmPasswordReset(auth, oobCode, newPassword);
+        successMsg.textContent = "Password updated successfully! Redirecting...";
+        setTimeout(() => (window.location.href = "login.html"), 2000);
+      } catch (error) {
+        errorMsg.textContent = "Invalid or expired link.";
+      }
+    });
+  }
 </script>
+
 
 </body>
 </html>
