@@ -167,90 +167,78 @@
   </div>
 
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } 
-      from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+import { 
+  getAuth, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  onAuthStateChanged, 
+  signOut 
+} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
 
-    // Your Firebase Config
-    const firebaseConfig = {
-      apiKey: "AIzaSyDKnIJMeStQulQxpLRmHowiDoC-USqnlHk",
-      authDomain: "dailypixelauth.firebaseapp.com",
-      projectId: "dailypixelauth",
-      storageBucket: "dailypixelauth.firebasestorage.app",
-      messagingSenderId: "728879527094",
-      appId: "1:728879527094:web:7f8756b473ae255d85e217",
-      measurementId: "G-PYZGEN1Y55"
-    };
+const firebaseConfig = {
+  apiKey: "AIzaSyDKnIJMeStQulQxpLRmHowiDoC-USqnlHk",
+  authDomain: "dailypixelauth.firebaseapp.com",
+  projectId: "dailypixelauth",
+  storageBucket: "dailypixelauth.firebasestorage.app",
+  messagingSenderId: "728879527094",
+  appId: "1:728879527094:web:7f8756b473ae255d85e217",
+  measurementId: "G-PYZGEN1Y55"
+};
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-    const formTitle = document.getElementById("form-title");
-    const toggleForm = document.getElementById("toggle-form");
-    const authBtn = document.getElementById("auth-btn");
-    const errorMsg = document.getElementById("error-msg");
-    const successMsg = document.getElementById("success-msg");
+// 🟦 Sign Up
+document.getElementById('signup-btn')?.addEventListener('click', async () => {
+  const email = document.getElementById('signup-email').value;
+  const password = document.getElementById('signup-password').value;
+  const messageBox = document.getElementById('message');
 
-    let isLogin = true;
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    messageBox.textContent = "Account created successfully ✅ Redirecting...";
+    messageBox.style.color = "green";
+    setTimeout(() => window.location.href = "index.html", 2000);
+  } catch (error) {
+    if (error.code === "auth/email-already-in-use") {
+      messageBox.textContent = "This email is already registered.";
+    } else if (error.code === "auth/invalid-email") {
+      messageBox.textContent = "Invalid email address.";
+    } else if (error.code === "auth/weak-password") {
+      messageBox.textContent = "Password should be at least 6 characters.";
+    } else {
+      messageBox.textContent = error.message;
+    }
+    messageBox.style.color = "red";
+  }
+});
 
-    toggleForm.addEventListener("click", () => {
-      isLogin = !isLogin;
-      formTitle.textContent = isLogin ? "Login" : "Sign Up";
-      authBtn.textContent = isLogin ? "Login" : "Sign Up";
-      toggleForm.innerHTML = isLogin
-        ? "Don't have an account? <span style='font-weight:600;'>Sign up</span>"
-        : "Already have an account? <span style='font-weight:600;'>Login</span>";
-      errorMsg.textContent = "";
-      successMsg.textContent = "";
-    });
+// 🟩 Login
+document.getElementById('login-btn')?.addEventListener('click', async () => {
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
+  const messageBox = document.getElementById('message');
 
-    authBtn.addEventListener("click", async () => {
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value.trim();
-      errorMsg.textContent = "";
-      successMsg.textContent = "";
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    messageBox.textContent = "Login successful ✅ Redirecting...";
+    messageBox.style.color = "green";
+    setTimeout(() => window.location.href = "index.html", 2000);
+  } catch (error) {
+    if (error.code === "auth/user-not-found") {
+      messageBox.textContent = "User not found. Please sign up first.";
+    } else if (error.code === "auth/wrong-password") {
+      messageBox.textContent = "Incorrect password. Try again.";
+    } else if (error.code === "auth/invalid-email") {
+      messageBox.textContent = "Invalid email format.";
+    } else {
+      messageBox.textContent = error.message;
+    }
+    messageBox.style.color = "red";
+  }
+});
 
-      if (!email || !password) {
-        errorMsg.textContent = "Please enter both email and password.";
-        return;
-      }
-
-      try {
-        if (isLogin) {
-          await signInWithEmailAndPassword(auth, email, password);
-          successMsg.textContent = "Login successful! Redirecting...";
-          setTimeout(() => (window.location.href = "index.html"), 1500);
-        } else {
-          await createUserWithEmailAndPassword(auth, email, password);
-          successMsg.textContent = "Account created successfully!";
-          setTimeout(() => {
-            isLogin = true;
-            formTitle.textContent = "Login";
-            authBtn.textContent = "Login";
-            toggleForm.innerHTML =
-              "Don't have an account? <span style='font-weight:600;'>Sign up</span>";
-          }, 1500);
-        }
-      } catch (err) {
-        console.error(err.code);
-        switch (err.code) {
-          case "auth/user-not-found":
-            errorMsg.textContent = "User not found. Please sign up first.";
-            break;
-          case "auth/wrong-password":
-            errorMsg.textContent = "Incorrect password. Try again.";
-            break;
-          case "auth/email-already-in-use":
-            errorMsg.textContent = "This email is already registered.";
-            break;
-          case "auth/weak-password":
-            errorMsg.textContent = "Password should be at least 6 characters.";
-            break;
-          default:
-            errorMsg.textContent = "Something went wrong. Please try again.";
-        }
-      }
-    });
   </script>
 </body>
 </html>
