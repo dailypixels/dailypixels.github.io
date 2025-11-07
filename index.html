@@ -5099,85 +5099,118 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDKnIJMeStQulQxpLRmHowiDoC-USqnlHk",
-  authDomain: "dailypixelauth.firebaseapp.com",
-  projectId: "dailypixelauth",
-  storageBucket: "dailypixelauth.firebasestorage.app",
-  messagingSenderId: "728879527094",
-  appId: "1:728879527094:web:7f8756b473ae255d85e217",
-  measurementId: "G-PYZGEN1Y55"
-};
+  // Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyDKnIJMeStQulQxpLRmHowiDoC-USqnlHk",
+    authDomain: "dailypixelauth.firebaseapp.com",
+    projectId: "dailypixelauth",
+    storageBucket: "dailypixelauth.firebasestorage.app",
+    messagingSenderId: "728879527094",
+    appId: "1:728879527094:web:7f8756b473ae255d85e217",
+    measurementId: "G-PYZGEN1Y55"
+  };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 
-const loginBtn = document.querySelector('.login-btn');
+  // Find login button (the one you placed in hero/top-right)
+  const loginBtn = document.querySelector('.login-btn');
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // User logged in
-    loginBtn.outerHTML = `
-      <div class="user-menu">
-        <span class="user-name">${user.email.split('@')[0]}</span>
-        <button class="logout-btn">Logout</button>
-      </div>
-    `;
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // ✅ Replace login button with profile + logout
+      const userName = user.email.split('@')[0];
+      loginBtn.outerHTML = `
+        <div class="user-profile">
+          <div class="avatar">${userName.charAt(0).toUpperCase()}</div>
+          <span class="user-name">${userName}</span>
+          <button class="logout-btn">Logout</button>
+        </div>
+      `;
 
-    document.querySelector('.logout-btn').addEventListener('click', async () => {
-      await signOut(auth);
-      window.location.reload();
-    });
-  }
-});
+      // Logout action
+      document.querySelector('.logout-btn').addEventListener('click', async () => {
+        await signOut(auth);
+        window.location.reload();
+      });
+    }
+  });
 </script>
 
 <style>
-.user-menu {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  background: #f8f9ff;
-  border: 1px solid #e0e7ff;
-  border-radius: 10px;
-  padding: 8px 14px;
-  box-shadow: 0 4px 10px rgba(30,58,138,0.1);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.user-name {
-  color: #1e3a8a;
-  font-weight: 500;
-}
-
-.logout-btn {
-  background: #1e3a8a;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 6px 10px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: 0.25s ease;
-}
-
-.logout-btn:hover {
-  background: #3748c9;
-  transform: translateY(-1px);
-}
-
-@media (max-width: 768px) {
-  .user-menu {
-    top: 15px;
-    right: 20px;
-    font-size: 0.85rem;
+  /* 🔹 Profile Container */
+  .user-profile {
+    position: absolute;
+    top: 22px;
+    right: 35px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8faff;
+    border: 1px solid #e0e7ff;
+    border-radius: 12px;
+    padding: 8px 12px;
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.08);
+    transition: all 0.25s ease;
+    z-index: 999;
   }
-}
+
+  /* 🔹 User Avatar */
+  .avatar {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #2563eb, #1e3a8a);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  /* 🔹 Username */
+  .user-name {
+    color: #1e3a8a;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+
+  /* 🔹 Logout Button */
+  .logout-btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: 0.25s ease;
+  }
+
+  .logout-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+  }
+
+  /* 🔹 Mobile adjustments */
+  @media (max-width: 768px) {
+    .user-profile {
+      top: 15px;
+      right: 20px;
+      font-size: 0.85rem;
+      gap: 8px;
+      padding: 6px 10px;
+    }
+    .avatar {
+      width: 28px;
+      height: 28px;
+      font-size: 0.9rem;
+    }
+  }
 </style>
 
 
