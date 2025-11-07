@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reset Password — Daily Pixel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      display: flex; justify-content: center; align-items: center;
+      height: 100vh; background: #f9fafb; margin: 0; font-family: "Inter", sans-serif;
+    }
+    .reset-box {
+      background: #fff; border-radius: 16px; padding: 2rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      text-align: center; width: 90%; max-width: 380px;
+    }
+    h2 { font-size: 1.6rem; color: #111827; margin-bottom: 1.2rem; }
+    input {
+      width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px;
+      border: 1px solid #e5e7eb; background: #f9fafb; font-size: 1rem;
+    }
+    input:focus { border-color: #2563eb; background: #fff; outline: none; }
+    button {
+      width: 100%; padding: 12px; margin-top: 14px; border: none; border-radius: 8px;
+      background: #2563eb; color: #fff; font-size: 1rem; font-weight: 600; cursor: pointer;
+    }
+    button:hover { background: #1e40af; }
+    .msg { font-size: 0.9rem; margin-top: 10px; }
+    .error { color: #dc2626; }
+    .success { color: #16a34a; }
+  </style>
+</head>
+<body>
+
+  <div class="reset-box">
+    <h2>Reset Password</h2>
+    <input type="password" id="newPass" placeholder="New password">
+    <input type="password" id="confirmPass" placeholder="Confirm password">
+    <button id="saveBtn">Save New Password</button>
+    <div id="msg" class="msg"></div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getAuth, confirmPasswordReset } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDsl9sK5Yd-YmXzAnpEQcjb8TnJhHb0PeI",
+      authDomain: "daily-pixel-s.firebaseapp.com",
+      projectId: "daily-pixel-s",
+      storageBucket: "daily-pixel-s.appspot.com",
+      messagingSenderId: "398842218844",
+      appId: "1:398842218844:web:3e433b1b4c42169df91999",
+      measurementId: "G-RJJY4HSYDN"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const params = new URLSearchParams(window.location.search);
+    const oobCode = params.get("oobCode");
+    const saveBtn = document.getElementById("saveBtn");
+    const msg = document.getElementById("msg");
+
+    saveBtn.addEventListener("click", async () => {
+      const pass = document.getElementById("newPass").value.trim();
+      const confirm = document.getElementById("confirmPass").value.trim();
+      msg.textContent = "";
+      msg.className = "msg";
+
+      if (!pass || !confirm) {
+        msg.textContent = "Please fill in both fields.";
+        msg.classList.add("error");
+        return;
+      }
+      if (pass !== confirm) {
+        msg.textContent = "Passwords do not match.";
+        msg.classList.add("error");
+        return;
+      }
+
+      try {
+        await confirmPasswordReset(auth, oobCode, pass);
+        msg.textContent = "Password reset successful! Redirecting to login...";
+        msg.classList.add("success");
+        setTimeout(() => (window.location.href = "login.html"), 2000);
+      } catch (err) {
+        msg.textContent = "Invalid or expired link.";
+        msg.classList.add("error");
+      }
+    });
+  </script>
+</body>
+</html>
