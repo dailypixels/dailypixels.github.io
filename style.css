@@ -5846,3 +5846,76 @@ html {
 .reference:hover::after {
   display: block;
 }
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: white;
+  min-width: 180px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1000;
+}
+
+.dropdown-content li a {
+  display: block;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdown-content li a:hover {
+  background: #f2f2f2;
+}
+
+/* Optional: style for the dropdown button when active */
+.dropbtn.active {
+  color: #007bff;
+}
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 180px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0;
+  z-index: 1000;
+
+  /* Animation setup */
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+
+.dropdown-content.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown-content li a {
+  display: block;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.dropdown-content li a:hover {
+  background: #f2f2f2;
+}
+
+.dropbtn.active {
+  color: #007bff;
+}

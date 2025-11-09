@@ -19,6 +19,38 @@
   gtag('config', 'G-GZ3CFNHDLS');
 </script>
 
+<script>
+document.addEventListener('click', function(e) {
+  const btn = document.getElementById('articlesBtn');
+  const menu = document.getElementById('articlesMenu');
+
+  // If "Articles" clicked → toggle dropdown
+  if (btn.contains(e.target)) {
+    e.preventDefault();
+    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    btn.classList.toggle('active');
+  } else {
+    // Clicked anywhere else → close dropdown
+    menu.style.display = 'none';
+    btn.classList.remove('active');
+  }
+});
+</script>
+<script>
+document.addEventListener('click', function(e) {
+  const btn = document.getElementById('articlesBtn');
+  const menu = document.getElementById('articlesMenu');
+
+  if (btn.contains(e.target)) {
+    e.preventDefault();
+    menu.classList.toggle('show');
+    btn.classList.toggle('active');
+  } else {
+    menu.classList.remove('show');
+    btn.classList.remove('active');
+  }
+});
+</script>
 
 
 </head>
@@ -32,15 +64,21 @@
 <a href="../index.html" class="logo">Daily Pixel</a>
    <nav class="main-nav">
   <ul>
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="Urdustories/index.html">Urdu Stories</a></li>
-    <li><a href="Articles/index.html" >Articles</a></li>
-    <li><a href="Blogs/index.html">Blogs</a></li>
-    <li><a href="Reviews/index.html">Reviews</a></li>
-     <li><a href="../Interviews/index.html">Interviews</a></li>
-    <li><a href="submission/index.html">Submit</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li> 
+    <li><a href="/" class="active">Home</a></li>
+    <li><a href="/Urdustories/">Urdu Stories</a></li>
+    <li class="dropdown">
+ <li class="dropdown">
+  <a href="#" class="dropbtn" id="articlesBtn">Articles ▾</a>
+  <ul class="dropdown-content" id="articlesMenu">
+    <li><a href="/Articles/">All Articles</a></li>
+    <li><a href="/Blogs/">Blogs</a></li>
+    <li><a href="/Reviews/">Reviews</a></li>
+    <li><a href="/Interviews/">Interviews</a></li>
+  </ul>
+</li>
+    <li><a href="/submission/">Submit</a></li>
+    <li><a href="/About/">About</a></li>
+    <li><a href="/contact/">Contact</a></li> 
     <li><a href="#newsletter"class="active">Subscribe</a></li> 
   </ul>
 </nav>
@@ -726,6 +764,32 @@
     <p class="meta">November 9, 2025 — Written by Daily Pixel Mystery Desk</p>
     <p class="excerpt">When Evelyn Ward checked into the Merriton Hotel, she wanted nothing more than quiet. What she found instead was a face—painted centuries ago—that seemed to know her better than she knew herself.</p>
     <a class="text-link" href="stories/story344.html">Read More →</a>
+  </div>
+</article>
+
+<!-- Story 345 -->
+<article class="story-card" data-category="hurror" data-tags="#Horror #PsychologicalHorror #SmallTownSecrets #Guilt #Isolation #CreepingFear #Supernatural" data-title="The Sound Beneath the Floorboards">
+  <a class="thumb" href="stories/story345.html">
+    <img src="https://media.istockphoto.com/id/1167523179/photo/old-house-with-a-ghost-in-the-forest-at-night-or-abandoned-haunted-horror-house-in-fog-old.webp?a=1&b=1&s=612x612&w=0&k=20&c=MqnW9v-oJIk8qVTVpqzN9HRlLwsin2qxnE8EbwspaWg=" alt="A dimly lit wooden cabin at night, one window glowing faintly, and a shadowy figure barely visible beneath the floorboards.">
+  </a>
+  <div class="story-body">
+    <h3><a href="stories/story345.html">The Sound Beneath the Floorboards</a></h3>
+    <p class="meta">November 9, 2025 — Written by Daily Pixel Horror Desk</p>
+    <p class="excerpt">When Liam Ross inherited his grandfather’s cabin deep in the woods of Eastwell, he expected peace and silence. What he got instead was a sound—a slow, deliberate knocking—that never came from the same place twice.</p>
+    <a class="text-link" href="stories/story345.html">Read More →</a>
+  </div>
+</article>
+
+<!-- Story 346 -->
+<article class="story-card" data-category="comedy" data-tags="#Comedy #Humor #SmallTownLife #CookingFail #CompetitionGoneWrong #CommunityChaos" data-title="The Great Neighborhood Bake-Off Disaster">
+  <a class="thumb" href="stories/story346.html">
+    <img src="https://media.istockphoto.com/id/1167523179/photo/old-house-with-a-ghost-in-the-forest-at-night-or-abandoned-haunted-horror-house-in-fog-old.webp?a=1&b=1&s=612x612&w=0&k=20&c=MqnW9v-oJIk8qVTVpqzN9HRlLwsin2qxnE8EbwspaWg=" alt="A dimly lit wooden cabin at night, one window glowing faintly, and a shadowy figure barely visible beneath the floorboards.">
+  </a>
+  <div class="story-body">
+    <h3><a href="stories/story346.html">The Great Neighborhood Bake-Off Disaster</a></h3>
+    <p class="meta">November 9, 2025 — Written by Daily Pixel Horror Desk</p>
+    <p class="excerpt">When a friendly bake-off turns into a full-blown kitchen catastrophe, the residents of Maplewood discover that competition, egos, and three malfunctioning ovens can make for one unforgettable Sunday.</p>
+    <a class="text-link" href="stories/story346.html">Read More →</a>
   </div>
 </article>
 
