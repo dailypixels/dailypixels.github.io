@@ -7,42 +7,39 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
  <style>
-
-/* ===== Tips & Guides Grid ===== */
+/* ===== Tips & Guides Grid (4 per row, centered) ===== */
 .tips-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;      /* centers cards horizontally */
-  align-items: flex-start;      /* keeps top edges aligned */
-  gap: 20px;
-  margin: 40px auto;            /* center entire grid block */
-  max-width: 1200px;            /* keeps grid centered and not stretched full width */
-  padding: 0 20px;              /* adds nice left/right breathing space */
+  justify-content: center;      /* keeps grid centered */
+  gap: 25px;                    /* space between cards */
+  margin: 50px auto;
+  max-width: 1300px;            /* controls overall grid width */
+  padding: 0 30px;              /* equal empty space on left & right */
 }
 
-
-/* ===== Tips & Guides Card ===== */
+/* ===== Individual Tip Card ===== */
 .tip-card {
-  background: #ffffff;
+  background: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
-  width: 280px;
+  width: calc(25% - 25px);      /* 4 per row with gap accounted */
+  min-width: 260px;             /* ensures cards don’t get too small */
   display: flex;
   flex-direction: column;
 }
 
 .tip-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
 }
 
-/* Thumbnail */
+/* Thumbnail Image */
 .tip-card .thumb {
-  display: block;
   width: 100%;
-  height: 150px;
+  height: 160px;
   overflow: hidden;
 }
 
@@ -72,7 +69,7 @@
 }
 
 .tip-body h3 a {
-  color: #1e3a8a; /* same dark blue accent */
+  color: #1e3a8a;
   text-decoration: none;
 }
 
@@ -82,15 +79,15 @@
 
 .tip-body .meta {
   font-size: 0.8rem;
-  color: #666;
+  color: #555;
   margin-bottom: 10px;
 }
 
 .tip-body .excerpt {
   font-size: 0.9rem;
   color: #333;
-  margin-bottom: 12px;
-  line-height: 1.4;
+  margin-bottom: 10px;
+  line-height: 1.5;
 }
 
 .tip-body .text-link {
@@ -108,32 +105,23 @@
 /* ===== Responsive ===== */
 @media (max-width: 1024px) {
   .tip-card {
-    width: 45%; /* 2 per row on tablets */
+    width: calc(33.33% - 20px); /* 3 per row on tablet */
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .tip-card {
-    width: 95%; /* 1 per row on mobile */
+    width: calc(50% - 20px); /* 2 per row on small tablets */
+  }
+}
+
+@media (max-width: 500px) {
+  .tip-card {
+    width: 100%; /* 1 per row on mobile */
     max-width: 320px;
   }
-
-  .tip-card .thumb {
-    height: 140px;
-  }
-
-  .tip-body h3 {
-    font-size: 1rem;
-  }
-
-  .tip-body .excerpt {
-    font-size: 0.85rem;
-  }
-
-  .tip-body .text-link {
-    font-size: 0.85rem;
-  }
 }
+
 </style>
 
   <style>
@@ -172,6 +160,7 @@ section.reviews-heading p {
   section.reviews-heading h2 { font-size: 2rem !important; }
   section.reviews-heading p  { font-size: 1rem !important; }
 }
+
 </style>
   <script>
 document.addEventListener('click', function(e) {
@@ -250,126 +239,43 @@ document.addEventListener('click', function(e) {
 
 
  <section id="tips-guides" class="tips-grid container">
-  <article class="tip-card">
+  <article class="tip-card" data-category="Travel & Lifestyle" data-tags="#TravelTips #LifeHacks #SmartTravel #PackingTips #Adventure">
     <a href="tips-guide1.html" class="thumb">
-      <img src="images/travel-hacks.jpg" alt="Smart Travel Hacks">
+      <img src="https://media.istockphoto.com/id/2175668165/photo/woman-packing-suitcase-in-bright-modern-living-room.webp?a=1&b=1&s=612x612&w=0&k=20&c=CoV1l14VK_EDrLqYp7KWm2vn3E3IUMTeng7NpGUhlrQ=" alt="Traveler organizing suitcase with passport and travel essentials in bright natural light">
     </a>
     <div class="tip-body">
-      <h3><a href="tips-guide1.html">10 Smart Travel Hacks for 2025</a></h3>
-      <p class="meta">By DailyPixels • 5 min read</p>
-      <p class="excerpt">Discover practical, time-saving tricks for smoother, cheaper, and more enjoyable travel this year.</p>
+      <h3><a href="tips-guide1.html">10 Smart Travel Hacks to Make Your Next Trip Effortless</a></h3>
+      <p class="meta">November 9, 2025 — by Daily Pixel Travel & Lifestyle Desk</p>
+      <p class="excerpt">Traveling can be exciting, but it can also be stressful if you’re unprepared. From forgotten essentials to long airport lines...</p>
       <a href="tips-guide1.html" class="text-link">Read More →</a>
     </div>
   </article>
 
-  <article class="tip-card">
+  <article class="tip-card" data-category="Lifestyle & Productivity" data-tags="#MorningRoutine #LifeHacks #ProductivityTips #HealthyHabits #DailyBoost">
     <a href="tips-guide2.html" class="thumb">
-      <img src="images/writing-tips.jpg" alt="Creative Writing Tips">
+      <img src="https://media.istockphoto.com/id/1407108856/photo/pen-opened-notebook-and-coffee-cup-on-working-table-in-morning-time-on-work-day-freelance.webp?a=1&b=1&s=612x612&w=0&k=20&c=0HZ-3FMf93-jnQy_08ADW0birVTtF3LpJ_nfBlTolgc=" alt="Bright morning sunlight through window, coffee mug on desk, open notebook and planner">
     </a>
     <div class="tip-body">
-      <h3><a href="tips-guide2.html">Writing with Flow: 7 Tips to Beat Writer’s Block</a></h3>
-      <p class="meta">By DailyPixels • 4 min read</p>
-      <p class="excerpt">Learn simple strategies to keep your creativity alive and make writing feel effortless again.</p>
+      <h3><a href="tips-guide2.html">5 Creative Ways to Boost Your Morning Routine</a></h3>
+      <p class="meta">November 9, 2025 — by Daily Pixel Lifestyle & Productivity Desk</p>
+      <p class="excerpt">Start your day with energy and focus using these 5 simple yet effective morning routine tips.</p>
       <a href="tips-guide2.html" class="text-link">Read More →</a>
     </div>
   </article>
 
-  <article class="tip-card">
+  <article class="tip-card" data-category="Writing & Lifestyle" data-tags="#WritingTips #Creativity #ContentCreation #DailyWriting #Inspiration">
     <a href="tips-guide3.html" class="thumb">
-      <img src="images/morning-routine.jpg" alt="Morning Routine">
+      <img src="https://media.istockphoto.com/id/1189654345/photo/work-space-laptop-and-note-book-on-the-table-in-the-cafe-copy-space-business-concept.webp?a=1&b=1&s=612x612&w=0&k=20&c=rYupRbG86bpSdljysq4gPnR_W8LBNLulHibZhEERG4E=" alt="Writer’s desk with open notebook, pen, laptop, and warm natural light streaming through window">
     </a>
     <div class="tip-body">
-      <h3><a href="tips-guide3.html">The Perfect Morning Routine: Start Your Day Right</a></h3>
-      <p class="meta">By DailyPixels • 6 min read</p>
-      <p class="excerpt">Practical routines and mindset shifts to boost energy, focus, and happiness from sunrise.</p>
+      <h3><a href="tips-guide3.html">7 Practical Writing Tips to Unlock Your Creativity</a></h3>
+      <p class="meta">November 9, 2025 — by Daily Pixel Writing & Lifestyle Desk</p>
+      <p class="excerpt">Boost your creativity and writing flow with these 7 practical tips you can use every day.</p>
       <a href="tips-guide3.html" class="text-link">Read More →</a>
     </div>
   </article>
 
-  <article class="tip-card">
-    <a href="tips-guide4.html" class="thumb">
-      <img src="images/creative-life.jpg" alt="Creative Lifestyle">
-    </a>
-    <div class="tip-body">
-      <h3><a href="tips-guide4.html">Living Creatively: Simple Ways to Add Art to Life</a></h3>
-      <p class="meta">By DailyPixels • 3 min read</p>
-      <p class="excerpt">Transform your everyday routine into an inspiring canvas with small creative habits.</p>
-      <a href="tips-guide4.html" class="text-link">Read More →</a>
-    </div>
-  </article>
-
- <article class="tip-card">
-    <a href="tips-guide2.html" class="thumb">
-      <img src="images/writing-tips.jpg" alt="Creative Writing Tips">
-    </a>
-    <div class="tip-body">
-      <h3><a href="tips-guide2.html">Writing with Flow: 7 Tips to Beat Writer’s Block</a></h3>
-      <p class="meta">By DailyPixels • 4 min read</p>
-      <p class="excerpt">Learn simple strategies to keep your creativity alive and make writing feel effortless again.</p>
-      <a href="tips-guide2.html" class="text-link">Read More →</a>
-    </div>
-  </article>
-
-  <article class="tip-card">
-    <a href="tips-guide3.html" class="thumb">
-      <img src="images/morning-routine.jpg" alt="Morning Routine">
-    </a>
-    <div class="tip-body">
-      <h3><a href="tips-guide3.html">The Perfect Morning Routine: Start Your Day Right</a></h3>
-      <p class="meta">By DailyPixels • 6 min read</p>
-      <p class="excerpt">Practical routines and mindset shifts to boost energy, focus, and happiness from sunrise.</p>
-      <a href="tips-guide3.html" class="text-link">Read More →</a>
-    </div>
-  </article>
-
-  <article class="tip-card">
-    <a href="tips-guide4.html" class="thumb">
-      <img src="images/creative-life.jpg" alt="Creative Lifestyle">
-    </a>
-    <div class="tip-body">
-      <h3><a href="tips-guide4.html">Living Creatively: Simple Ways to Add Art to Life</a></h3>
-      <p class="meta">By DailyPixels • 3 min read</p>
-      <p class="excerpt">Transform your everyday routine into an inspiring canvas with small creative habits.</p>
-      <a href="tips-guide4.html" class="text-link">Read More →</a>
-    </div>
-  </article>
-
-   <article class="tip-card">
-    <a href="tips-guide2.html" class="thumb">
-      <img src="images/writing-tips.jpg" alt="Creative Writing Tips">
-    </a>
-    <div class="tip-body">
-      <h3><a href="tips-guide2.html">Writing with Flow: 7 Tips to Beat Writer’s Block</a></h3>
-      <p class="meta">By DailyPixels • 4 min read</p>
-      <p class="excerpt">Learn simple strategies to keep your creativity alive and make writing feel effortless again.</p>
-      <a href="tips-guide2.html" class="text-link">Read More →</a>
-    </div>
-  </article>
-
-  <article class="tip-card">
-    <a href="tips-guide3.html" class="thumb">
-      <img src="images/morning-routine.jpg" alt="Morning Routine">
-    </a>
-    <div class="tip-body">
-      <h3><a href="tips-guide3.html">The Perfect Morning Routine: Start Your Day Right</a></h3>
-      <p class="meta">By DailyPixels • 6 min read</p>
-      <p class="excerpt">Practical routines and mindset shifts to boost energy, focus, and happiness from sunrise.</p>
-      <a href="tips-guide3.html" class="text-link">Read More →</a>
-    </div>
-  </article>
-
-  <article class="tip-card">
-    <a href="tips-guide4.html" class="thumb">
-      <img src="images/creative-life.jpg" alt="Creative Lifestyle">
-    </a>
-    <div class="tip-body">
-      <h3><a href="tips-guide4.html">Living Creatively: Simple Ways to Add Art to Life</a></h3>
-      <p class="meta">By DailyPixels • 3 min read</p>
-      <p class="excerpt">Transform your everyday routine into an inspiring canvas with small creative habits.</p>
-      <a href="tips-guide4.html" class="text-link">Read More →</a>
-    </div>
-  </article>
-
+  
 </section>
 
 
