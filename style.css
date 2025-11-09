@@ -2841,73 +2841,152 @@ body.dark .comments h2 {
 
 
 
-/* ======= Hamburger Button ======= */
+/* ======= Hamburger Button (modernized) ======= */
 .menu-toggle {
   display: none;
-  font-size: 1.8rem;
+  font-size: 2rem;
   background: none;
   border: none;
   color: #333;
   cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.menu-toggle:hover {
+  color: #007bff;
+  transform: rotate(90deg);
 }
 
 /* ======= Mobile Styles ======= */
 @media (max-width: 768px) {
   .main-nav {
     position: absolute;
-    top: 100%;
+    top: 70px;
     right: 0;
-    background: #fff;
     width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
     flex-direction: column;
     gap: 0;
-    border-bottom: 1px solid #eee;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.35s ease;
+    z-index: 999;
   }
 
   .main-nav.open {
-    max-height: 520px; /* enough to show all items */
+    max-height: 600px;
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .main-nav ul {
     flex-direction: column;
-    gap: 0;
+    padding: 0;
+    margin: 0;
   }
 
   .main-nav li {
-    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
 
   .main-nav a {
     display: block;
     padding: 1rem;
     text-align: center;
+    font-size: 1rem;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .main-nav a:hover {
+    background: rgba(0, 123, 255, 0.1);
+    color: #007bff;
   }
 
   .menu-toggle {
     display: block;
   }
 }
-/* Hide custom menu-btn on desktop */
+
+/* ======= Custom Menu Button (mobile version) ======= */
 .menu-btn {
   display: none;
 }
 
-/* Show only on mobile */
 @media (max-width: 768px) {
   .menu-btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1.8rem;
     background: none;
     border: none;
     color: #333;
     cursor: pointer;
     padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .menu-btn:hover {
+    background: rgba(0, 123, 255, 0.1);
+    transform: scale(1.1);
+    color: #007bff;
   }
 }
+/* ======= Dropdown Menu Modern Style ======= */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  min-width: 180px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown.open .dropdown-content {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Dropdown Links */
+.dropdown-content a {
+  display: block;
+  padding: 0.9rem 1.2rem;
+  font-size: 0.95rem;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+  background: rgba(0, 123, 255, 0.1);
+  color: #007bff;
+}
+
 /* ===== Urdu Stories Hero ===== */
 .hero-urdu {
   display: flex;
@@ -5831,7 +5910,8 @@ html {
   position: absolute;
   bottom: 120%;
   left: 0;
-  background: white;
+   background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
@@ -5882,7 +5962,8 @@ html {
   position: absolute;
   top: 100%;
   left: 0;
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
   min-width: 180px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
@@ -5918,4 +5999,10 @@ html {
 
 .dropbtn.active {
   color: #007bff;
+}
+/* Hide Subscribe button on screens smaller than 768px (typical mobile devices) */
+@media only screen and (max-width: 767px) {
+  li a[href="#newsletter"] {
+    display: none;
+  }
 }
