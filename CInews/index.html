@@ -200,7 +200,7 @@
   </div>
 </section>
 
-   <section class="news-section">
+   <section id="CINews" class="news-section">
   <article class="news-card" data-category="Digital Media & Storytelling Technology" data-tags="#AIStorytelling #PublishingInnovation #DigitalMedia #CreativePlatforms #CreatorEconomy #TechInCreativity #FutureOfStories">
     <img src="https://plus.unsplash.com/premium_photo-1706061122237-4b4750cc086a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8JUUyJTgwJTk0JTIwKEltYWdlJTIwc2hvd2luZyUyMGNyZWF0b3JzJTIwY29sbGFib3JhdGluZyUyMG9uJTIwZGlnaXRhbCUyMHN0b3J5dGVsbGluZyUyMGludGVyZmFjZSl8ZW58MHx8MHx8fDA%3D" alt="creators collaborating on digital storytelling interface">
     <div class="news-card-content">
@@ -318,6 +318,17 @@
         A new generation of storytelling platforms is emerging in 2025 — offering immersive, premium reading experiences that blend audio, visual design, and interactivity.
       </p>
       <a class="text-link" href="news10.html">Read More →</a>
+    </div>
+  </article>
+
+    <article class="news-card" data-category="Digital Storytelling & Publishing Platforms" data-tags="#FilmDistribution #StreamingWar #GlobalCinema2025 #DigitalMedia #ContentStrategy #OTTPlatforms">
+    <img src="https://media.istockphoto.com/id/1329156094/photo/digital-contents-concept-social-networking-service-streaming-video-communication-network.webp?a=1&b=1&s=612x612&w=0&k=20&c=RrvCKqL1IZ-fyk7T0SwiYphXseYK1aqOvVnpGeSzFtM=" alt="A minimalist cinematic frame with streaming platform logos dissolving into a global map.">
+    <div class="news-card-content">
+      <h2 class="news-card-title">How Streaming Services Are Quietly Reshaping Global Film Distribution in 2025</h2>
+      <div class="news-card-date">Film Industry • Digital Distribution • Streaming Trends</div>
+      <p class="news-card-summary">
+        Hollywood’s biggest shift isn’t happening inside studios — it’s happening inside apps. In 2025, global streamers are redefining how films are released, discovered, and monetized.
+      <a class="text-link" href="news11.html">Read More →</a>
     </div>
   </article>
 
@@ -463,23 +474,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 </script>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const links = document.querySelectorAll('a[href^="#"]');
-
-    links.forEach(link => {
-      link.addEventListener("click", function (e) {
-        const target = document.querySelector(this.getAttribute("href"));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        }
-      });
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
   });
 </script>
+
 
 </body>
 </html>
