@@ -577,9 +577,9 @@ body {
   border: 1px solid #ddd;
 }
 .story-nav a:hover {
-  background: #ff5722;
+  background: #225dff;
   color: #fff;
-  border-color: #ff5722;
+  border-color: #3122ff;
 }
 
 /* Responsive Design */
@@ -1033,7 +1033,7 @@ body {
   text-decoration: none;
 }
 .nav-links li a.active {
-  border-bottom: 2px solid #ff9800;
+  border-bottom: 2px solid #0044ff;
 }
 
 /* Hero */

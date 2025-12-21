@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>جو رہ گیا وہ سبق تھا</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="urdustyle.css" />
+  <link rel="stylesheet" href="style.css"/>
+
+
+  <style>
+    body {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      margin: 0;
+      background: #fff;
+    }
+
+    /* Like + Comment Floating Buttons */
+    .floating-buttons {
+      position: fixed;
+      bottom: 22px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+      z-index: 1000;
+    }
+
+    .float-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      color: #111;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      width: 52px;
+      height: 52px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .float-btn:hover {
+      transform: scale(1.1);
+      background: #f5f5f5;
+    }
+
+    .float-btn.liked {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      color: white;
+      box-shadow: 0 4px 12px rgba(34,197,94,0.4);
+    }
+
+    /* Like Count */
+    .like-count {
+      position: absolute;
+      bottom: -18px;
+      right: 15px;
+      font-size: 0.8rem;
+      color: #555;
+      font-family: sans-serif;
+    }
+
+    /* Comment Popup */
+    .comment-popup {
+      position: fixed;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      max-height: 85%;
+      background: #fff;
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -6px 20px rgba(0,0,0,0.25);
+      padding: 20px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      transition: bottom 0.4s ease;
+    }
+
+    .comment-popup.active {
+      bottom: 0;
+    }
+
+    .popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .close-popup {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .comments-list {
+      flex: 1;
+      overflow-y: auto;
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .comment-item {
+      background: #f9fafb;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      border: 1px solid #eee;
+    }
+
+    .comment-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #111;
+      font-size: 0.95rem;
+    }
+
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+      margin-top: 12px;
+    }
+
+    .comment-form input,
+    .comment-form textarea {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 10px;
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      width: 100%;
+      resize: none;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .comment-form input:focus,
+    .comment-form textarea:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+    }
+
+    .comment-form button {
+      align-self: flex-start;
+      background: linear-gradient(90deg, #2563eb, #1d4ed8);
+      color: white;
+      border: none;
+      border-radius: 40px;
+      padding: 8px 22px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(37,99,235,0.3);
+    }
+
+    .comment-form button:hover {
+      transform: scale(1.05);
+    }
+
+    .comment-form button.sent {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      box-shadow: 0 4px 10px rgba(34,197,94,0.4);
+      cursor: default;
+      transform: none;
+    }
+
+    /* Scrollbar */
+    .comments-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    .comments-list::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .float-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+      }
+      .comment-popup {
+        padding: 16px;
+      }
+    }
+ul {
+  list-style-position: inside;
+  padding-right: 0;
+}
+
+li {
+  margin-bottom: 8px;
+  line-height: 1.8;
+}
+
+  </style>
+</head>
+<body>
+
+    <!-- SEO -->
+  <meta name="description" content="یہ کہانی ایک ایسے انسان کی ہے جس نے زندگی میں بہت کچھ کھو دیا، مگر آخرکار سمجھا کہ جو چیز واقعی بچی رہتی ہے، وہ نقصان نہیں بلکہ اس میں چھپا سبق ہوتا ہے۔ یہ کہانی ہمیں سکھاتی ہے کہ زندگی ہر چھیننے کے ساتھ کچھ سکھا بھی جاتی ہے۔" />
+  <meta name="keywords" content="اردو کہانی، سبق آموز، نقصان، صبر، خود احتسابی، زندگی کی حقیقت، اصلاحی کہانی" />
+
+  <!-- Back to Urdu Stories -->
+  <a class="back-link" href="index.html">← تمام اردو کہانیاں</a>
+
+  <article class="story-container">
+    <header class="story-header">
+      <h1 class="story-title">جو رہ گیا وہ سبق تھا</h1>
+      <p class="story-meta">20 دسمبر 2025 — by Daily Pixels</p>
+      <div class="story-tags"><span>اصلاحی کہانی</span><span>زندگی کی حقیقت</span><span>خود احتسابی</span><span>صبر</span><span>نقصان</span></div>
+      <img class="urdu-featured-image" src="https://media.istockphoto.com/id/1311093809/photo/tired-man-with-glass-of-wine-after-moving-to-a-new-flat.webp?a=1&b=1&s=612x612&w=0&k=20&c=zWbpxLDJFO0q1oXXGYJCI5oYBo82uMOZu-7JmMYO70A=" alt="A man sitting alone in an empty room with packed boxes, evening light, emotional and reflective mood" loading="eager" />
+    </header>
+
+    <main class="story-content">
+
+<hr>
+
+<p>حارث کے پاس کبھی سب کچھ تھا۔
+اپنا کاروبار، عزت، دوست، اور ایک پُررونق گھر۔
+لوگ اس کے فیصلوں پر اعتماد کرتے تھے، اور وہ خود کو ناقابلِ شکست سمجھتا تھا۔</p>
+<p>اس کا ماننا تھا:
+"جو تیز ہے، وہی جیتتا ہے۔"</p>
+<p>کاروبار میں اس نے تیزی دکھائی،
+مگر احتیاط چھوڑ دی۔
+مشورے سننا اسے کمزوری لگتا تھا۔</p>
+<p>ایک دن ایک بڑا معاہدہ سامنے آیا۔
+خطرہ تھا، مگر فائدہ بھی بڑا تھا۔
+سب نے روکا،
+مگر حارث نے سنا نہیں۔</p>
+<p>شروع میں سب ٹھیک رہا۔
+پیسہ آیا، نام بنا، غرور بڑھا۔</p>
+<p>پھر ایک دن بازار بدلا۔
+وہی تیزی اس کے خلاف ہو گئی۔</p>
+<p>ادائیگیاں رک گئیں،
+قرض بڑھنے لگا،
+اور اعتماد ٹوٹنے لگا۔</p>
+<p>دوست آہستہ آہستہ پیچھے ہٹ گئے۔
+وہ لوگ جو کبھی اس کے دسترخوان پر بیٹھتے تھے،
+اب فون نہیں اٹھاتے تھے۔</p>
+<p>گھر میں خاموشی چھا گئی۔
+بیوی کی آنکھوں میں سوال تھے،
+اور بچوں کے چہروں پر الجھن۔</p>
+<p>ایک شام حارث اکیلا کمرے میں بیٹھا تھا۔
+سامان بندھا ہوا تھا۔
+گھر خالی ہو رہا تھا۔</p>
+<p>اس نے خود سے کہا:
+"میں نے کیا کھویا؟"</p>
+<p>جواب آیا:
+"میں نے سیکھا نہیں تھا۔"</p>
+<p>اسی رات اس نے پہلا سچ مانا:
+غرور نے اسے اندھا کیا تھا۔</p>
+<p>کچھ دن بعد وہ ایک چھوٹی نوکری پر لگ گیا۔
+وہی حارث،
+جو کبھی فیصلے کرتا تھا،
+اب ہدایات سنتا تھا۔</p>
+<p>شروع میں یہ سب بہت کڑوا تھا۔
+مگر اسی کڑواہٹ میں اس نے خود کو پہچانا۔</p>
+<p>وہ وقت پر آتا،
+دھیان سے سنتا،
+اور سوال پوچھتا۔</p>
+<p>مہینے گزرے۔
+اعتماد واپس آنا شروع ہوا —
+دوسروں کا بھی،
+اور اپنا بھی۔</p>
+<p>ایک دن اس کا بیٹا بولا:
+"ابو، ہمیں سب کچھ واپس مل جائے گا؟"</p>
+<p>حارث نے مسکرا کر کہا:
+"نہیں بیٹا،
+سب کچھ نہیں۔
+مگر جو ملے گا،
+وہ سمجھ کے ساتھ ملے گا۔"</p>
+<p>اس دن حارث نے جان لیا:
+جو رہ گیا تھا،
+وہی اصل دولت تھا —
+سبق۔</p>
+
+<hr>
+<br>
+<h3>معنی اور غور و فکر—</h3>
+<p>یہ کہانی ہمیں یہ سکھاتی ہے کہ:
+    <ul>
+        <li>نقصان ہمیشہ خالی ہاتھ نہیں چھوڑتا</li>
+        <li>غرور سب سے مہنگی غلطی ہے</li>
+        <li>سیکھنے والا کبھی مکمل طور پر نہیں ہارتا</li>
+        <li>جو سبق سمجھ لے، وہ دوبارہ کھڑا ہو سکتا ہے</li>
+    </ul>
+<strong>زندگی جب بہت کچھ چھین لے، تو رک کر دیکھیں — شاید وہ آپ کو خود سے ملا رہی ہو۔</strong></p>
+<hr>
+
+        <p class="end-note">— اختتام —</p>
+    </main>
+
+    <div class="story-nav">
+      <a href="urdustory169.html" class="nav-button">← پچھلی کہانی</a>
+      <a href="urdustory171.html" class="nav-button">اگلی کہانی →</a>
+    </div>
+  </article>
+
+  <!-- Floating Like + Comment Buttons -->
+  <div class="floating-buttons">
+    <div style="position: relative;">
+      <button class="float-btn" id="likeBtn">❤️</button>
+      <span class="like-count" id="likeCount">0</span>
+    </div>
+    <button class="float-btn" id="commentBtn">💬</button>
+  </div>
+
+  <!-- Comment Popup -->
+  <div class="comment-popup" id="commentPopup">
+    <div class="popup-header">
+      <span>Comments</span>
+      <button class="close-popup" id="closePopup">✕</button>
+    </div>
+
+    <div class="comments-list" id="commentsList"></div>
+
+    <form class="comment-form" action="https://formspree.io/f/your-form-id" method="POST" id="commentForm">
+      <input type="text" id="name" name="name" placeholder="Your name" required />
+      <textarea id="comment" name="comment" placeholder="Write a comment..." required></textarea>
+      <button type="submit" id="sendBtn">Send</button>
+    </form>
+  </div>
+
+  <footer class="urdu-footer">
+  <p>© 2025 Daily Pixel۔ جملہ حقوق محفوظ ہیں۔</p>
+</footer>
+
+  <script src="../js/storyFeatures.js"></script>
+
+  <script>
+    /* ---------------- LIKE SYSTEM ---------------- */
+    const likeBtn = document.getElementById("likeBtn");
+    const likeCount = document.getElementById("likeCount");
+
+    const storyKey = location.pathname.split("/").pop();
+    const likedKey = `liked_${storyKey}`;
+    const countKey = `likeCount_${storyKey}`;
+
+    let liked = localStorage.getItem(likedKey) === "true";
+    let count = parseInt(localStorage.getItem(countKey));
+
+    if (isNaN(count)) {
+      count = Math.floor(15 + Math.random() * 50);
+      localStorage.setItem(countKey, count);
+    }
+
+    updateLikeUI();
+
+    likeBtn.addEventListener("click", () => {
+      liked = !liked;
+      count = liked ? count + 1 : Math.max(0, count - 1);
+      localStorage.setItem(likedKey, liked);
+      localStorage.setItem(countKey, count);
+      updateLikeUI();
+    });
+
+    function updateLikeUI() {
+      likeBtn.classList.toggle("liked", liked);
+      likeCount.textContent = count;
+    }
+
+    /* ---------------- COMMENT POPUP ---------------- */
+    const commentBtn = document.getElementById("commentBtn");
+    const commentPopup = document.getElementById("commentPopup");
+    const closePopup = document.getElementById("closePopup");
+    const commentsList = document.getElementById("commentsList");
+    const commentForm = document.getElementById("commentForm");
+    const sendBtn = document.getElementById("sendBtn");
+
+    commentBtn.addEventListener("click", () => {
+      commentPopup.classList.add("active");
+    });
+
+    closePopup.addEventListener("click", () => {
+      commentPopup.classList.remove("active");
+    });
+
+    /* Load saved comments */
+    const commentsKey = `comments_${storyKey}`;
+    let comments = JSON.parse(localStorage.getItem(commentsKey)) || [];
+    renderComments();
+
+    function renderComments() {
+      commentsList.innerHTML = comments.length
+        ? comments.map(c => `<div class="comment-item"><strong>${c.name}</strong>${c.text}</div>`).join("")
+        : `<p style="color:#777;font-family:sans-serif;font-size:0.9rem;">No comments yet.</p>`;
+    }
+
+    /* Submit comment */
+    commentForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const text = document.getElementById("comment").value.trim();
+      if (!name || !text) return;
+
+      // Save locally
+      comments.push({ name, text });
+      localStorage.setItem(commentsKey, JSON.stringify(comments));
+      renderComments();
+
+      // Send to Formspree
+      const formData = new FormData(commentForm);
+      const action = commentForm.getAttribute("action");
+
+      try {
+        const res = await fetch(action, { method: "POST", body: formData, headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          sendBtn.textContent = "Sent ✅";
+          sendBtn.classList.add("sent");
+          sendBtn.disabled = true;
+          commentForm.reset();
+          setTimeout(() => {
+            sendBtn.textContent = "Send";
+            sendBtn.classList.remove("sent");
+            sendBtn.disabled = false;
+          }, 2000);
+        }
+      } catch {
+        alert("Connection failed. Please try again.");
+      }
+    });
+  </script>
+</body>
+</html>
