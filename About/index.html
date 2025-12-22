@@ -129,6 +129,104 @@
   from { opacity: 0; transform: translateX(30px); }
   to   { opacity: 1; transform: translateX(0); }
 }
+.about-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.about-section h2 {
+  font-size: 32px;
+  margin-bottom: 40px;
+  color: #1e6be3;
+}
+
+/* Grid layout */
+.team {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* Card */
+.team-member {
+  background: #f3f8fd;
+  border-radius: 16px;
+  padding: 30px 20px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-6px);
+}
+
+/* Image */
+.team-member img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+
+/* Text */
+.team-member h3 {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.team-member p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.team-member p:first-of-type {
+  font-weight: 600;
+  color: #777;
+  margin-bottom: 10px;
+}
+@media (max-width: 992px) {
+  .team {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-section h2 {
+    font-size: 28px;
+  }
+}
+@media (max-width: 600px) {
+  .team {
+    grid-template-columns: 1fr;
+  }
+
+  .about-section {
+    padding: 40px 16px;
+  }
+
+  .about-section h2 {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .team-member {
+    padding: 24px 18px;
+  }
+
+  .team-member img {
+    width: 90px;
+    height: 90px;
+  }
+
+  .team-member h3 {
+    font-size: 18px;
+  }
+
+  .team-member p {
+    font-size: 14px;
+  }
+}
 
   </style>
   <!-- Google tag (gtag.js) -->
