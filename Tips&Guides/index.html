@@ -160,7 +160,30 @@ section.reviews-heading p {
   section.reviews-heading h2 { font-size: 2rem !important; }
   section.reviews-heading p  { font-size: 1rem !important; }
 }
+/* 🔼 Back to Top Button */
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 26px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background-color: #007BFF; /* match your site blue */
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+  z-index: 999;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+  transition: all 0.3s ease;
+}
 
+#backToTop:hover {
+  background-color: #0056d6; /* slightly darker blue on hover */
+  transform: translateY(-3px);
+}
 </style>
   <script>
 document.addEventListener('click', function(e) {
@@ -754,6 +777,11 @@ document.addEventListener('click', function(e) {
 <footer class="site-footer">
   <p>© <span id="year"></span> Daily Pixel. All rights reserved.</p>
 </footer>
+
+<button id="backToTop" title="Go to top">
+  <span style="font-size: 22px; line-height: 0;">&#8679;</span>
+</button>
+
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();

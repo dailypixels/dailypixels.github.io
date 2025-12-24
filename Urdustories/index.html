@@ -10,23 +10,30 @@
   <link rel="stylesheet" href="../style.css" />
 
   <style>
-    /* Back-to-top button */
-    #backToTop {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #222;
-      color: #fff;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 6px;
-      font-size: 1rem;
-      cursor: pointer;
-      display: none;
-      transition: background 0.3s;
-      z-index: 999;
-    }
-    #backToTop:hover { background: #444; }
+    /* 🔼 Back to Top Button */
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 26px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background-color: #007BFF; /* match your site blue */
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+  z-index: 999;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+#backToTop:hover {
+  background-color: #0056d6; /* slightly darker blue on hover */
+  transform: translateY(-3px);
+}
 
     /* Dark Mode */
     body.dark-mode {

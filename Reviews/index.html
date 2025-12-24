@@ -163,7 +163,30 @@
     font-size: 1rem;
   }
 }
+/* 🔼 Back to Top Button */
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 26px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background-color: #007BFF; /* match your site blue */
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+  z-index: 999;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+  transition: all 0.3s ease;
+}
 
+#backToTop:hover {
+  background-color: #0056d6; /* slightly darker blue on hover */
+  transform: translateY(-3px);
+}
   </style>
   <script>
 document.addEventListener('click', function(e) {
@@ -196,6 +219,7 @@ document.addEventListener('click', function(e) {
     btn.classList.remove('active');
   }
 });
+
 </script>
 </head>
 <body>
@@ -1781,6 +1805,10 @@ document.addEventListener('click', function(e) {
 <footer class="site-footer">
   <p>© 2025 Daily Pixel. All rights reserved.</p>
 </footer>
+
+<button id="backToTop" title="Go to top">
+  <span style="font-size: 22px; line-height: 0;">&#8679;</span>
+</button>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
