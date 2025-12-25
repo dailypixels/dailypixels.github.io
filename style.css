@@ -6093,3 +6093,22 @@ html {
     font-size: 16px;
   }
 }
+/* ===== Desktop Only: Scrollable Categories Sidebar ===== */
+@media (min-width: 1024px) {
+  .sidebar.left {
+    position: sticky;
+    top: 90px; /* adjust according to header height */
+
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    padding-right: 6px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .sidebar.left {
+    max-height: none;
+    overflow: visible;
+    position: static;
+  }
+}
