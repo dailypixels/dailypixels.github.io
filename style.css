@@ -6112,3 +6112,11 @@ html {
     position: static;
   }
 }
+.urdu-quote {
+  border-right: 4px solid #999;
+  padding-right: 15px;
+  margin: 20px 0;
+  font-style: italic;
+  line-height: 2;
+  color: #333;
+}
