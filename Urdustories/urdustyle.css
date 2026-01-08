@@ -1390,3 +1390,56 @@ body {
   line-height: 2;
   color: #333;
 }
+/* ===============================
+   Urdu Story Mobile Reading View
+   =============================== */
+
+.story-container {
+  max-width: 720px;           /* controls reading width */
+  margin: 0 auto;             /* center content */
+  padding: 10px 12px;         /* left & right gap */
+}
+
+/* Story text */
+.story-content {
+  font-size: 1.15rem;
+  line-height: 2.4;
+  text-align: right;
+}
+
+/* Paragraph spacing */
+.story-content p {
+  margin-bottom: 1.6em;
+}
+
+/* Headings inside story */
+.story-content h3 {
+  margin: 2em 0 1em;
+  font-size: 1.2rem;
+}
+
+/* Featured image spacing */
+.urdu-featured-image {
+  width: 100%;
+  border-radius: 14px;
+  margin: 18px 0 26px;
+}
+
+/* Mobile fine-tuning */
+@media (max-width: 600px) {
+  .story-container {
+    padding: 35px 35px;
+  }
+
+  .story-content {
+    font-size: 1.05rem;
+    line-height: 2.3;
+  }
+}
+.story-container {
+  background: #ffffff;
+}
+
+.story-content {
+  color: #111;
+}
