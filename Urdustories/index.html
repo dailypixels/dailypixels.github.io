@@ -1187,6 +1187,58 @@
     gap: 10px;
   }
 }
+.urdu-feature-intro {
+  max-width: 680px;
+  margin: 12px auto -1px;
+  text-align: center;
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 1.05rem;
+  line-height: 2.2;
+  color: #555;
+  letter-spacing: 0.01em;
+}
+
+/* Mobile optimization for Nastaliq */
+@media (max-width: 600px) {
+  .urdu-feature-intro {
+    max-width: 92%;
+    font-size: 0.98rem;
+    line-height: 2.35;
+    margin: 10px auto -1px;
+  }
+}
+.urdu-feature-intro {
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Clean Nastaliq styling for hero paragraph */
+.hero-content p {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 1.05rem;
+  line-height: 2.2;
+  max-width: 680px;
+  margin: 0 auto 28px;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 0.01em;
+}
+.hero-content p {
+  opacity: 0.95;
+}
+/* Clean Nastaliq styling for hero title */
+.hero-content h1 {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 2.2rem;
+  line-height: 1.4;
+  margin-bottom: 20px;
+  color: #ffffff;
+  font-weight: 700;
+}
+@media (max-width: 600px) {
+  .hero-content h1 {
+    font-size: 1.8rem;
+    line-height: 1.45;
+  }
+}
 
   </style>
   <!-- Google tag (gtag.js) -->
@@ -1279,6 +1331,9 @@ document.addEventListener('click', function(e) {
   <!-- Stories Grid -->
    <section class="urdu-feature-stories">
   <h2 class="urdu-feature-heading">نمایاں کہانیاں</h2>
+  <p class="urdu-feature-intro">
+  منتخب اردو کہانیاں— جہاں الفاظ کم اور احساسات گہرے ہوتے ہیں۔
+</p>
   <main class="page-section">
     <div class="post-grid">
 
