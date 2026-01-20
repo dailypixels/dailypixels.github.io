@@ -7442,6 +7442,133 @@ document.getElementById("installBtn").onclick = async () => {
 };
 </script>
 
+
+
+
+
+
+<div id="pwa-overlay">
+  <div class="pwa-popup">
+    <h3>Install Daily Pixels</h3>
+    <p>Get the full app experience on your device.</p>
+
+    <button id="pwa-install-btn">Install App</button>
+
+    <div class="pwa-note" id="pwa-note" style="display:none;"></div>
+
+    <span id="pwa-close">Not now</span>
+  </div>
+</div>
+<style>
+#pwa-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.pwa-popup {
+  background: #fff;
+  width: 90%;
+  max-width: 360px;
+  padding: 22px;
+  border-radius: 18px;
+  text-align: center;
+}
+
+.pwa-popup h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.pwa-popup p {
+  font-size: 14px;
+  opacity: .75;
+  margin: 8px 0 18px;
+}
+
+#pwa-install-btn {
+  width: 100%;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 14px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.pwa-note {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #444;
+}
+
+#pwa-close {
+  display: block;
+  margin-top: 14px;
+  font-size: 13px;
+  color: #777;
+  cursor: pointer;
+}
+</style>
+<script>
+let installPrompt = null;
+
+const overlay = document.getElementById("pwa-overlay");
+const installBtn = document.getElementById("pwa-install-btn");
+const closeBtn = document.getElementById("pwa-close");
+const note = document.getElementById("pwa-note");
+
+// Detect installed
+const isInstalled =
+  window.matchMedia("(display-mode: standalone)").matches ||
+  window.navigator.standalone === true;
+
+// Only show popup if NOT installed
+if (!isInstalled) {
+  setTimeout(() => {
+    overlay.style.display = "flex";
+  }, 2500);
+}
+
+// Capture Chrome install prompt
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault();
+  installPrompt = e;
+});
+
+// Install button logic
+installBtn.onclick = async () => {
+  if (installPrompt) {
+    // Chrome / Edge / Android
+    installPrompt.prompt();
+    installPrompt = null;
+    overlay.style.display = "none";
+  } else {
+    // iOS / Firefox / unsupported
+    note.style.display = "block";
+    note.innerHTML = `
+      <b>How to install:</b><br><br>
+      • Chrome / Edge: click ⋮ → Install App<br>
+      • iPhone: Share → Add to Home Screen<br>
+      • Desktop: install icon in address bar
+    `;
+  }
+};
+
+// Close (decline)
+closeBtn.onclick = () => {
+  overlay.style.display = "none";
+};
+</script>
+
+
+
+
 <script src="script.js"></script>
 </body>
 </html>
