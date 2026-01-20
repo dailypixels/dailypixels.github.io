@@ -7441,6 +7441,190 @@ document.getElementById("installBtn").onclick = async () => {
 };
 </script>
 
+
+
+
+
+
+
+
+<div id="pwa-install">
+  <div class="pwa-box">
+    <strong>📲 Install Daily Pixels</strong>
+    <p>Get quick access like an app</p>
+    <button id="pwa-btn">Install App</button>
+    <span id="pwa-close">✕</span>
+  </div>
+</div>
+<style>
+#pwa-install {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.pwa-box {
+  background: #fff;
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+  border-radius: 18px 18px 0 0;
+  text-align: center;
+  position: relative;
+}
+
+.pwa-box strong {
+  font-size: 18px;
+}
+
+.pwa-box p {
+  font-size: 14px;
+  opacity: .75;
+  margin: 6px 0 14px;
+}
+
+#pwa-btn {
+  width: 100%;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+#pwa-close {
+  position: absolute;
+  right: 16px;
+  top: 14px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+@media (min-width: 768px) {
+  #pwa-install {
+    align-items: center;
+  }
+  .pwa-box {
+    border-radius: 18px;
+  }
+}
+</style>
+<script>
+let installPrompt = null;
+const popup = document.getElementById("pwa-install");
+const btn = document.getElementById("pwa-btn");
+const close = document.getElementById("pwa-close");
+
+// Show popup after delay (all devices)
+setTimeout(() => {
+  // Don't show if already installed
+  if (
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone
+  ) return;
+
+  popup.style.display = "flex";
+}, 3000);
+
+// Capture real install prompt (Chrome/Edge/Android)
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault();
+  installPrompt = e;
+});
+
+// Install button behavior
+btn.onclick = async () => {
+  if (installPrompt) {
+    installPrompt.prompt();
+    installPrompt = null;
+  } else {
+    // Fallback instructions (ALL DEVICES)
+    alert(
+`To install Daily Pixels:
+
+• Chrome / Edge:
+  Click ⋮ (3 dots) → Install App
+
+• iPhone (Safari):
+  Share → Add to Home Screen
+
+• Desktop:
+  Address bar install icon or menu`
+    );
+  }
+};
+
+// Close popup
+close.onclick = () => popup.style.display = "none";
+// Check if PWA is already installed
+const isInstalled =
+  window.matchMedia("(display-mode: standalone)").matches ||
+  window.navigator.standalone === true;
+
+if (isInstalled) {
+  popup.style.display = "none";
+}
+// Don't show if user closed popup before
+if (localStorage.getItem("pwaClosed")) {
+  popup.style.display = "none";
+}
+close.onclick = () => {
+  popup.style.display = "none";
+  localStorage.setItem("pwaClosed", "true");
+};
+let installPrompt = null;
+const popup = document.getElementById("pwa-install");
+const btn = document.getElementById("pwa-btn");
+const close = document.getElementById("pwa-close");
+
+// Check if already installed or dismissed
+const isInstalled =
+  window.matchMedia("(display-mode: standalone)").matches ||
+  window.navigator.standalone === true;
+
+if (!isInstalled && !localStorage.getItem("pwaClosed")) {
+  setTimeout(() => popup.style.display = "flex", 3000);
+}
+
+// Capture install prompt event
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault();
+  installPrompt = e;
+});
+
+// Install button
+btn.onclick = async () => {
+  if (installPrompt) {
+    installPrompt.prompt();
+    installPrompt = null;
+    popup.style.display = "none";
+  } else {
+    alert(
+`To install Daily Pixels:
+
+• Chrome / Edge: Click ⋮ → Install App
+• iPhone Safari: Share → Add to Home Screen
+• Desktop: Address bar install icon`
+    );
+  }
+};
+
+// Close button
+close.onclick = () => {
+  popup.style.display = "none";
+  localStorage.setItem("pwaClosed", "true");
+};
+</script>
+
+
+
+
 <script src="script.js"></script>
 </body>
 </html>
