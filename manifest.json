@@ -3,9 +3,9 @@
   "short_name": "DailyPixels",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#2563eb",
-  "description": "Daily Pixels – Stories, culture, and creative writing",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "description": "Daily Pixels – stories, culture, and creative writing",
   "icons": [
     {
       "src": "/icons/icon-192.png",
