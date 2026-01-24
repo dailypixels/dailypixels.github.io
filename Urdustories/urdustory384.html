@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>خاموش مضبوط لوگ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="urdustyle.css" />
+  <link rel="stylesheet" href="style.css"/>
+
+
+  <style>
+    body {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      margin: 0;
+      background: #fff;
+    }
+
+    /* Like + Comment Floating Buttons */
+    .floating-buttons {
+      position: fixed;
+      bottom: 22px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+      z-index: 1000;
+    }
+
+    .float-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      color: #111;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      width: 52px;
+      height: 52px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .float-btn:hover {
+      transform: scale(1.1);
+      background: #f5f5f5;
+    }
+
+    .float-btn.liked {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      color: white;
+      box-shadow: 0 4px 12px rgba(34,197,94,0.4);
+    }
+
+    /* Like Count */
+    .like-count {
+      position: absolute;
+      bottom: -18px;
+      right: 15px;
+      font-size: 0.8rem;
+      color: #555;
+      font-family: sans-serif;
+    }
+
+    /* Comment Popup */
+    .comment-popup {
+      position: fixed;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      max-height: 85%;
+      background: #fff;
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -6px 20px rgba(0,0,0,0.25);
+      padding: 20px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      transition: bottom 0.4s ease;
+    }
+
+    .comment-popup.active {
+      bottom: 0;
+    }
+
+    .popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .close-popup {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .comments-list {
+      flex: 1;
+      overflow-y: auto;
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .comment-item {
+      background: #f9fafb;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      border: 1px solid #eee;
+    }
+
+    .comment-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #111;
+      font-size: 0.95rem;
+    }
+
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+      margin-top: 12px;
+    }
+
+    .comment-form input,
+    .comment-form textarea {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 10px;
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      width: 100%;
+      resize: none;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .comment-form input:focus,
+    .comment-form textarea:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+    }
+
+    .comment-form button {
+      align-self: flex-start;
+      background: linear-gradient(90deg, #2563eb, #1d4ed8);
+      color: white;
+      border: none;
+      border-radius: 40px;
+      padding: 8px 22px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(37,99,235,0.3);
+    }
+
+    .comment-form button:hover {
+      transform: scale(1.05);
+    }
+
+    .comment-form button.sent {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      box-shadow: 0 4px 10px rgba(34,197,94,0.4);
+      cursor: default;
+      transform: none;
+    }
+
+    /* Scrollbar */
+    .comments-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    .comments-list::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .float-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+      }
+      .comment-popup {
+        padding: 16px;
+      }
+    }
+ul {
+  list-style-position: inside;
+  padding-right: 0;
+}
+
+li {
+  margin-bottom: 8px;
+  line-height: 1.8;
+}
+
+  </style>
+</head>
+<body>
+
+    <!-- SEO -->
+  <meta name="description" content="یہ کہانی اُن لوگوں کی ہے جنہیں سب کہتے ہیں:
+“تم بہت مضبوط ہو”
+مگر کوئی نہیں پوچھتا:
+“تم تھکے تو نہیں؟”
+
+یہ داستان ہے اُس بوجھ کی جو مضبوط لوگ ہر روز اٹھاتے ہیں — بغیر شور، بغیر شکوے۔" />
+  <meta name="keywords" content="اردو کہانی، مضبوط لوگ، اندرونی درد، جذباتی تنہائی، جدید معاشرہ، خاموش قربانی، سبق آموز، گہری کہانی" />
+
+  <!-- Back to Urdu Stories -->
+  <a class="back-link" href="index.html">← تمام اردو کہانیاں</a>
+
+  <article class="story-container">
+    <header class="story-header">
+      <h1 class="story-title">خاموش مضبوط لوگ</h1>
+      <p class="story-meta">24 جنوری 2026 — by Daily Pixels</p>
+      <div class="story-tags"><span>خاموش قربانی</span><span>جدید معاشرہ</span><span>جذباتی تنہائی</span><span>اندرونی درد</span><span>مضبوط لوگ</span></div>
+      <img class="urdu-featured-image" src="https://media.istockphoto.com/id/2239418432/photo/silhouette-of-man-against-backdrop-of-foggy-city-at-night.webp?a=1&b=1&s=612x612&w=0&k=20&c=ZV9sDKlpCTaCt9WAbzFDrDOkXyQObMYDR6M9f_pFYzs=" alt="A calm looking person standing alone at night under streetlight, subtle sadness, cinematic mood" loading="eager" />
+    </header>
+
+    <main class="story-content">
+
+<hr>
+
+<p>علی کو سب مضبوط کہتے تھے۔</p>
+<p>گھر میں مسئلہ ہو تو<br>
+کہا جاتا:<br>
+"علی ہے نا، سب سنبھال لے گا۔"</p>
+<p>دوست پریشان ہوں تو<br>
+فون اسی کو آتا۔</p>
+<p>دفتر میں دباؤ بڑھے تو<br>
+بوجھ اسی کے حصے میں آتا۔</p>
+<p>اور علی…
+کچھ نہیں کہتا۔</p>
+<p>وہ مسکرا دیتا۔
+بات بدل دیتا۔
+کام میں لگ جاتا۔</p>
+<p>لوگ سمجھتے تھے<br>
+اسے فرق نہیں پڑتا۔</p>
+<p>کسی نے نہیں سوچا کہ
+فرق پڑنا بھی
+ایک حد کے بعد
+تھکا دیتا ہے۔</p>
+<p>علی بچپن سے ایسا نہیں تھا۔
+وہ بھی روتا تھا۔
+شکایت کرتا تھا۔
+ضد کرتا تھا۔</p>
+<p>مگر ہر بار جواب ملتا:
+"مرد ہو، مضبوط بنو۔"
+"یہ باتیں کمزور کرتے ہیں۔"</p>
+<p>آہستہ آہستہ
+اس نے سیکھ لیا
+کہ خاموش رہنا
+زیادہ محفوظ ہے۔</p>
+<p>وہ جوان ہوا۔
+ذمہ داریاں بڑھیں۔
+اور جذبات
+پیچھے رہ گئے۔</p>
+<p>وہ رات کو
+اکیلا جاگتا۔
+چھت کو گھورتا۔
+اور سوچتا:
+"اگر میں بھی ٹوٹ جاؤں
+تو کیا ہوگا؟"</p>
+<p>یہ سوال
+وہ کسی سے نہیں پوچھتا تھا۔</p>
+<p>کیونکہ مضبوط لوگ
+سوال نہیں کرتے،
+بس سہتے ہیں۔</p>
+<p>ایک دن اس کی ماں بیمار ہوئی۔
+سب نے علی کی طرف دیکھا۔</p>
+<p>اس دن وہ ہسپتال کے باہر
+کرسی پر بیٹھا
+اور پہلی بار
+اس کی آنکھیں بھر آئیں۔</p>
+<p>مگر اس نے رونے سے پہلے
+ارد گرد دیکھا۔</p>
+<p>کوئی نہیں تھا
+جو اس کے آنسو سنبھالتا۔</p>
+<p>وہ خود ہی
+آنکھیں پونچھ کر
+کھڑا ہو گیا۔</p>
+<p>وقت گزرتا گیا۔</p>
+<p>علی کامیاب تھا۔
+عزت دار تھا۔
+قابلِ اعتماد تھا۔</p>
+<p>مگر خوش…
+نہیں۔</p>
+<p>وہ خود کو
+ایک خالی کمرے جیسا محسوس کرتا
+جہاں سب آتے ہیں،
+کام لیتے ہیں،
+اور چلے جاتے ہیں۔</p>
+<p>ایک رات
+وہ شدید تھکن کے بعد
+خاموشی سے بیٹھا رہا۔</p>
+<p>اس نے خود سے کہا:
+"میں مضبوط نہیں ہوں،
+میں بس
+اپنے درد کو
+بولنے نہیں دیتا۔"</p>
+<p>یہ جملہ
+اس کی زندگی کا
+سب سے سچا جملہ تھا۔</p>
+<p>اگلے دن
+اس نے سب کچھ نہیں بدلا۔</p>
+<p>بس ایک کام کیا۔</p>
+<p>جب کسی نے پوچھا:
+"سب ٹھیک ہے؟"</p>
+<p>اس نے کہا:
+"نہیں۔"</p>
+<p>بس اتنا۔</p>
+<p>اور حیرت کی بات یہ تھی
+کہ دنیا ختم نہیں ہوئی۔</p>
+<p>کچھ لوگ رک گئے۔
+کچھ نے سنا۔
+کچھ نے ساتھ دیا۔</p>
+<p>علی نے سیکھا کہ
+مضبوط ہونا
+خاموش رہنے کا نام نہیں۔</p>
+<p>اصل مضبوطی
+یہ مان لینے میں ہے
+کہ انسان ہوں،
+پتھر نہیں۔</p>
+
+<hr>
+<h3>معنی اور غور و فکر—</h3>
+
+<p>یہ کہانی ہمیں سکھاتی ہے کہ:
+    <ul>
+        <li>مضبوط لوگ بھی ٹوٹتے ہیں</li>
+        <li>خاموشی ہمیشہ طاقت نہیں ہوتی</li>
+        <li>مدد مانگنا کمزوری نہیں، انسانیت ہے</li>
+        <li>جو سب کا سہارا بنتے ہیں، انہیں بھی سہارے کی ضرورت ہوتی ہے</li>
+    </ul>
+خاموش مضبوط لوگ ہمیں یاد دلاتی ہے کہ
+اگر ہم نے مضبوط لوگوں سے<br>
+ان کا درد پوچھنا چھوڑ دیا،<br>
+تو ایک دن وہ<br>
+خاموشی میں گم ہو جائیں گے۔</p>
+<p>اور شاید…<br>
+ہمیں تب پتہ چلے گا<br>
+جب بہت دیر ہو چکی ہوگی۔</p>
+
+<hr>
+
+        <p class="end-note">— اختتام —</p>
+    </main>
+
+    <div class="story-nav">
+      <a href="urdustory383.html" class="nav-button">← پچھلی کہانی</a>
+      <a href="urdustory160.html" class="nav-button">اگلی کہانی →</a>
+    </div>
+  </article>
+
+  <!-- Floating Like + Comment Buttons -->
+  <div class="floating-buttons">
+    <div style="position: relative;">
+      <button class="float-btn" id="likeBtn">❤️</button>
+      <span class="like-count" id="likeCount">0</span>
+    </div>
+    <button class="float-btn" id="commentBtn">💬</button>
+  </div>
+
+  <!-- Comment Popup -->
+  <div class="comment-popup" id="commentPopup">
+    <div class="popup-header">
+      <span>Comments</span>
+      <button class="close-popup" id="closePopup">✕</button>
+    </div>
+
+    <div class="comments-list" id="commentsList"></div>
+
+    <form class="comment-form" action="https://formspree.io/f/your-form-id" method="POST" id="commentForm">
+      <input type="text" id="name" name="name" placeholder="Your name" required />
+      <textarea id="comment" name="comment" placeholder="Write a comment..." required></textarea>
+      <button type="submit" id="sendBtn">Send</button>
+    </form>
+  </div>
+
+  <footer class="urdu-footer">
+  <p>© 2025 Daily Pixel۔ جملہ حقوق محفوظ ہیں۔</p>
+</footer>
+
+  <script src="../js/storyFeatures.js"></script>
+
+  <script>
+    /* ---------------- LIKE SYSTEM ---------------- */
+    const likeBtn = document.getElementById("likeBtn");
+    const likeCount = document.getElementById("likeCount");
+
+    const storyKey = location.pathname.split("/").pop();
+    const likedKey = `liked_${storyKey}`;
+    const countKey = `likeCount_${storyKey}`;
+
+    let liked = localStorage.getItem(likedKey) === "true";
+    let count = parseInt(localStorage.getItem(countKey));
+
+    if (isNaN(count)) {
+      count = Math.floor(15 + Math.random() * 50);
+      localStorage.setItem(countKey, count);
+    }
+
+    updateLikeUI();
+
+    likeBtn.addEventListener("click", () => {
+      liked = !liked;
+      count = liked ? count + 1 : Math.max(0, count - 1);
+      localStorage.setItem(likedKey, liked);
+      localStorage.setItem(countKey, count);
+      updateLikeUI();
+    });
+
+    function updateLikeUI() {
+      likeBtn.classList.toggle("liked", liked);
+      likeCount.textContent = count;
+    }
+
+    /* ---------------- COMMENT POPUP ---------------- */
+    const commentBtn = document.getElementById("commentBtn");
+    const commentPopup = document.getElementById("commentPopup");
+    const closePopup = document.getElementById("closePopup");
+    const commentsList = document.getElementById("commentsList");
+    const commentForm = document.getElementById("commentForm");
+    const sendBtn = document.getElementById("sendBtn");
+
+    commentBtn.addEventListener("click", () => {
+      commentPopup.classList.add("active");
+    });
+
+    closePopup.addEventListener("click", () => {
+      commentPopup.classList.remove("active");
+    });
+
+    /* Load saved comments */
+    const commentsKey = `comments_${storyKey}`;
+    let comments = JSON.parse(localStorage.getItem(commentsKey)) || [];
+    renderComments();
+
+    function renderComments() {
+      commentsList.innerHTML = comments.length
+        ? comments.map(c => `<div class="comment-item"><strong>${c.name}</strong>${c.text}</div>`).join("")
+        : `<p style="color:#777;font-family:sans-serif;font-size:0.9rem;">No comments yet.</p>`;
+    }
+
+    /* Submit comment */
+    commentForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const text = document.getElementById("comment").value.trim();
+      if (!name || !text) return;
+
+      // Save locally
+      comments.push({ name, text });
+      localStorage.setItem(commentsKey, JSON.stringify(comments));
+      renderComments();
+
+      // Send to Formspree
+      const formData = new FormData(commentForm);
+      const action = commentForm.getAttribute("action");
+
+      try {
+        const res = await fetch(action, { method: "POST", body: formData, headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          sendBtn.textContent = "Sent ✅";
+          sendBtn.classList.add("sent");
+          sendBtn.disabled = true;
+          commentForm.reset();
+          setTimeout(() => {
+            sendBtn.textContent = "Send";
+            sendBtn.classList.remove("sent");
+            sendBtn.disabled = false;
+          }, 2000);
+        }
+      } catch {
+        alert("Connection failed. Please try again.");
+      }
+    });
+  </script>
+</body>
+</html>
