@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>پہلی بارش</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="urdustyle.css" />
+  <link rel="stylesheet" href="style.css"/>
+
+
+  <style>
+    body {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      margin: 0;
+      background: #fff;
+    }
+
+    /* Like + Comment Floating Buttons */
+    .floating-buttons {
+      position: fixed;
+      bottom: 22px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+      z-index: 1000;
+    }
+
+    .float-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      color: #111;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      width: 52px;
+      height: 52px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .float-btn:hover {
+      transform: scale(1.1);
+      background: #f5f5f5;
+    }
+
+    .float-btn.liked {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      color: white;
+      box-shadow: 0 4px 12px rgba(34,197,94,0.4);
+    }
+
+    /* Like Count */
+    .like-count {
+      position: absolute;
+      bottom: -18px;
+      right: 15px;
+      font-size: 0.8rem;
+      color: #555;
+      font-family: sans-serif;
+    }
+
+    /* Comment Popup */
+    .comment-popup {
+      position: fixed;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      max-height: 85%;
+      background: #fff;
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -6px 20px rgba(0,0,0,0.25);
+      padding: 20px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      transition: bottom 0.4s ease;
+    }
+
+    .comment-popup.active {
+      bottom: 0;
+    }
+
+    .popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .close-popup {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .comments-list {
+      flex: 1;
+      overflow-y: auto;
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .comment-item {
+      background: #f9fafb;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      border: 1px solid #eee;
+    }
+
+    .comment-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #111;
+      font-size: 0.95rem;
+    }
+
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+      margin-top: 12px;
+    }
+
+    .comment-form input,
+    .comment-form textarea {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 10px;
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      width: 100%;
+      resize: none;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .comment-form input:focus,
+    .comment-form textarea:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+    }
+
+    .comment-form button {
+      align-self: flex-start;
+      background: linear-gradient(90deg, #2563eb, #1d4ed8);
+      color: white;
+      border: none;
+      border-radius: 40px;
+      padding: 8px 22px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(37,99,235,0.3);
+    }
+
+    .comment-form button:hover {
+      transform: scale(1.05);
+    }
+
+    .comment-form button.sent {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      box-shadow: 0 4px 10px rgba(34,197,94,0.4);
+      cursor: default;
+      transform: none;
+    }
+
+    /* Scrollbar */
+    .comments-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    .comments-list::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .float-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+      }
+      .comment-popup {
+        padding: 16px;
+      }
+    }
+ul {
+  list-style-position: inside;
+  padding-right: 0;
+}
+
+li {
+  margin-bottom: 8px;
+  line-height: 1.8;
+}
+
+  </style>
+</head>
+<body>
+
+    <!-- SEO -->
+  <meta name="description" content="یہ کہانی ایک بیٹے اور اس کے بوڑھے باپ کے درمیان خاموش دوری، اور ایک غیر متوقع بارش کے ذریعے آنے والے صلح و معافی کے لمحات کی داستان ہے۔" />
+  <meta name="keywords" content="جذباتی کہانی, خاندانی رشتے, یادوں کا سفر, دیہاتی زندگی, معافی و درگزر" />
+
+  <!-- Back to Urdu Stories -->
+  <a class="back-link" href="index.html">← تمام اردو کہانیاں</a>
+
+  <article class="story-container">
+    <header class="story-header">
+      <h1 class="story-title">پہلی بارش</h1>
+      <p class="story-meta">30 جنوری 2026 — by Daily Pixels</p>
+      <div class="story-tags"><span>معافی و درگزر</span><span>دیہاتی زندگی</span><span>یادوں کا سفر</span><span>خاندانی رشتے</span></div>
+      <img class="urdu-featured-image" src="https://media.istockphoto.com/id/2223818479/photo/heavy-monsoon-clouds-gather-over-badami-town-with-sunbeams-piercing-the-sky-in-dramatic-rays.webp?a=1&b=1&s=612x612&w=0&k=20&c=8hgdDRjV8ekFzt_g6XnnEIQiMgC4994VJ34d8ey7Yro=" alt="A dramatic sky over a small village with mud houses, just before rain, seen from a hilltop." loading="eager" />
+    </header>
+
+    <main class="story-content">
+
+<hr>
+
+<p>آسمان پر بادل گہرے سُرخی مائل سیاہی لیے منڈلا رہے تھے، جیسے کوئی پرانا زخم تازہ ہونے والا ہو۔ وقاص چپ چاپ پہاڑی کی چوٹی پر کھڑا تھا اور نیچے وادی میں بکھرے اپنے گاؤں کو دیکھ رہا تھا۔ پندرہ سال بعد وہ یہاں واپس آیا تھا، محض ایک خط کے دو سطر پڑھنے کے بعد: "ابو کی طبیعت زیادہ خراب ہے۔ آنا ہو تو آجاؤ۔" خط اس کی بہن ساجدہ کا تھا</p>
+<p>وہ گاؤں میں داخل ہوا تو ہر گلی، ہر درخت اس سے باتیں کرنے لگا۔ یہاں وہ کھیلتا تھا، یہاں اس نے پہلی بار سائیکل چلائی تھی، اور وہ کنواں... جہاں اس دن سب کچھ بدل گیا تھا۔ پندرہ سال پہلے بھی ایسے ہی بادل تھے۔ وقاص میٹرک کا نتیجہ لے کر آیا تھا۔ پورے گاؤں میں اول آیا تھا۔ ابو کا چہرہ فخر سے دمک اٹھا تھا۔ لیکن جب اس نے کہا کہ وہ انجینئر بننا چاہتا ہے اور شہر جا کر پڑھے گا، تو ابو کا چہرہ پتھرایا ہو گیا۔ "ہمارا خاندان ہزاروں سال سے یہی زمین جوتتا آیا ہے۔ یہ ہماری وراثت ہے۔ تم کتابوں میں نہیں، فصلوں میں کام یاب ہو سکتے ہو۔" بحث ہوئی، تلخ کلامی ہوئی، اور وقاص نے راتوں رات گاؤں چھوڑ دیا۔ ابو کی آخری بات اب بھی اس کے کانوں میں گونجتی تھی: "جو یہ دروازہ چھوڑ کر جاتا ہے، وہ واپس نہیں آتا۔"</p>
+<p>اب وہ اسی دروازے پر کھڑا تھا۔ دروازہ پرانا ہو گیا تھا، لکڑی میں دیمک لگ گئی تھی۔ ہاتھ اٹھایا تو دل دھک دھک کرنے لگا۔ دروازہ کھلا اور ساجدہ نے حیرت اور خوشی کے ملے جلے تاثر سے اسے دیکھا۔ "آ گئے..." بس اتنا کہا اور آنسوؤں میں ڈوب گئی۔</p>
+<p>اندر داخل ہوا تو وہی صحن، وہی آنگن تھا۔ مگر ابو کی کرسی خالی تھی، جہاں وہ شام کو چپ چاپ بیٹھا کرتے تھے۔ "کمرے میں لیٹے ہیں،" ساجدہ نے آہستہ سے کہا۔</p>
+<p>کمرے کا دروازہ کھولا تو ہلکی سی بوڑھے آنکھوں کی روشنی اس سے ٹکرائی۔ ابو بستر پر تھے، جسم سوکھ کر کاغذ ہو گیا تھا، مگر آنکھیں وہی تھیں۔ گہری، پراسرار، دور تک دیکھنے والی۔ انہوں نے وقاص کو دیکھا۔ نہ حیرت تھی، نہ غصہ۔ بس ایک خالی سی نظروں میں وسعت۔ وقاص کی زبان بندھ گئی۔ ساری رٹی ہوئی باتیں، معافی کے الفاظ سب بھول گئے۔ وہ بس کمرے میں داخل ہوا اور کھڑکی کے پاس جاکر کھڑا ہو گیا، جہاں سے کھیت نظر آ رہے تھے۔</p>
+<p>"موسم بدل رہا ہے،" ابو کی آواز آئی، بہت دھیمی، جیسے ہوا میں تیر رہی ہو۔ "بڑی بارش آئے گی۔"</p>
+<p>"جی،" وقاص نے کہا۔</p>
+<p>"تمہاری فیکٹری میں کام کیسا چل رہا ہے؟" ابو نے پوچھا۔ وقاص نے حیرت سے مڑ کر دیکھا۔ ابو جانتے تھے؟ ساجدہ نے اشارہ کیا، ہاں۔ ابو ہمیشہ خاموشی سے اس کے بارے میں پوچھتے رہتے تھے۔</p>
+<p>"ٹھیک ہے،" وقاص نے کہا۔</p>
+<p>"ٹھیک ہے؟" ابو نے دہرایا، اور پھر ایک خاموشی طاری ہو گئی۔ یہ خاموشی پندرہ سال کی تھی۔ یہ خاموشی ان غیر مواصلت کے خطوط کی تھی جو کبھی نہیں لکھے گئے۔ یہ خاموشی ہر عید، ہر جنم دن کی تھی جب وقاص فون اٹھانے سے گھبرا جاتا تھا۔</p>
+<p>شام ڈھلنے لگی تو ہوا میں نمی بڑھ گئی۔ اچانک ابو بستر سے اٹھ بیٹھے۔ "مجھے صحن میں لے چلو۔"</p>
+<p>"ابو، ڈاکٹر نے..." ساجدہ نے اعتراض کیا مگر ابو کی نظر نے اسے چپ کرایا۔ وقاص نے آگے بڑھ کر ابو کا ہاتھ تھاما۔ ہاتھ ہلکا سا کانپا۔ یہ وہ ہاتھ تھا جس نے اسے بچپن میں اٹھایا تھا، جس نے اسے کھیتی سکھائی تھی، اور جس نے اس دن دروازہ اشارہ کیا تھا کہ چلے جاؤ۔ اب وہی ہاتھ اس کے ہاتھ میں تھا، بے حد کمزور، مگر پھر بھی ایک عجیب طاقت لیے ہوئے۔</p>
+<p>صحن میں اپنی پرانی کرسی پر بٹھا کر وقاص بھی ایک چوکی پر بیٹھ گیا۔ ابو آسمان کی طرف دیکھتے رہے۔ "تمہیں یاد ہے،" ابو نے آہستہ سے کہا، "جب تم چھوٹے تھے اور بارش ہوتی تھی، تو تم ہمیشہ یہیں، میرے پاس آ کر بیٹھ جاتے تھے؟ تمہیں بجلی کے کڑکنے سے ڈر لگتا تھا۔"</p>
+<p>وقاص نے حیرت سے ابو کو دیکھا۔ اسے یقین نہیں آ رہا تھا کہ ابو کو یہ سب یاد تھا۔ "جی... یاد ہے۔"</p>
+<p>"تم ڈرتے تھے،" ابو نے جاری رکھا، "اور میں کہتا تھا: ڈر مت، یہ بارش ہماری فصلوں کے لیے خدا کا انعام ہے۔ ہر بوند زمین کے لیے دعا ہے۔"</p>
+<p>پھر ایک طویل خاموشی۔ ابو نے آنکھیں بند کر لیں۔ وقاص سمجھ گیا کہ وہ تھک گئے ہیں۔ وہ اٹھنا چاہتا تھا کہ ابو نے دوبارہ بولنا شروع کیا۔ لیکن یہ بار آواز میں ایک ایسی لرزش تھی جو وقاص نے پہلے کبھی نہیں سنی تھی۔</p>
+<p>"میری زندگی میں سب سے بڑی غلطی یہ تھی کہ میں نے تمہارے خواب کو اپنے خواب سمجھ لیا،" ابو نے کہا، آنکھیں اب بھی بند تھیں۔ "میں ڈرا تھا۔ ڈرا اس بات سے کہ تم دور چلے جاؤ گے، اس زمین سے، اس وراثت سے... اور پھر میری موت کے بعد کوئی اس گھر کو سنبھالے گا ہی نہیں۔ مگر میں بھول گیا تھا کہ خواب بھی تو وراثت میں ملتے ہیں۔ بس ان کی شکل بدل جاتی ہے۔ تم فصل نہیں اُگا رہے، مگر تم جو مشینیں بناتے ہو، وہ کسانوں کی مدد کرتی ہیں۔ یہ بھی تو خدمت ہے۔"</p>
+<p>وقاص کی آنکھیں نم ہو گئیں۔ اس کی سانس پھولی میں اٹک گئی۔</p>
+<p>ابو نے آنکھیں کھولیں، اور پہلی بار براہ راست وقاص کی آنکھوں میں دیکھا۔ "میں تم سے معافی چاہتا ہوں، بیٹا۔ میں نے تمہیں وہ محبت نہیں دی جو تمہارا حق تھی۔ میں نے اپنے غرور کو تم پر ترجیح دی۔"</p>
+<p>یہ الفاظ سنتے ہی وقاص کے تمام دفاع، تمام نفرت، تمام کڑواہٹ پگھل کر بہہ گئی۔ وہ ابو کے قدموں میں گر پڑا۔ "نہیں ابو... غلطی میری تھی۔ میں نے صرف اپنی بات مانی۔ میں نے کبھی آپ کا نقطہ نظر سمجھنے کی کوشش ہی نہیں کی۔ میں نے غرور کیا۔ میں معافی چاہتا ہوں۔"</p>
+<p>ابو کا ہاتھ اس کے سر پر آیا، ہلکا سا، پھر طاقت سے۔ وہی پرانا انداز۔ اسی لمحے آسمان میں بجلی کڑکی اور پہلی بوند ٹپکی۔ پھر دوسری، پھر تیسری۔ اور پھر جیسے آسمان نے زمین کو گلے لگانے کا فیصلہ کر لیا ہو، زوردار بارش شروع ہو گئی۔</p>
+<p>وہ دونوں باپ بیٹے وہیں بیٹھے رہے، بارش میں بھیگتے ہوئے۔ ساجدہ نے چھتری لانے کی کوشش کی تو ابو نے ہاتھ کے اشارے سے منع کر دیا۔ یہ بارش صرف ان دونوں کے لیے تھی۔ یہ پندرہ سال کی خشک سالی کے بعد آنے والی پہلی بارش تھی۔ ہر بوند کے ساتھ ایک تلخی دھلتی گئی، ایک خاموشی ٹوٹتی گئی۔</p>
+<p>بارش تھم گئی تو ہوا میں مٹی کی مہک تھی۔ وہ خوشبو جو وقاص پندرہ سال سے بھولا بیٹھا تھا۔ ابو نے وقاص کا ہاتھ تھاما۔ "تمہاری واپسی میری زندگی کی آخری فصل ہے، بیٹا۔ اور یہ سب سے زیادہ قیمتی فصل ہے۔"</p>
+<p>اگلے دن صبح، وقاص نے ابو کو کافی پلائی۔ وہ بستر پر آرام سے تھے۔ ان کا چہرہ پر سکون تھा۔ جب وقاص نے کافی کا<br>
+کپ واپس لیا تو ابو نے مسکراتے ہوئے کہا، "آج کی کافی خاص ہے۔ تمہارے ہاتھوں کی ہے۔"</p>
+<p>دو ہفتے بعد، ابو چل بسے۔ ان کی آخری خواہش کے مطابق، انہیں گاؤں کے قبرستان میں، اس پہاڑی کی چوٹی پر دفنایا گیا جہاں سے سارا گاؤں نظر آتا تھا۔ وقاص وہاں کھڑا تھا، اور اسے لگا جیسے ابو اب بھی اپنی زمین، اپنے گھر، اپنے لوگوں پر نظر رکھے ہوئے ہیں۔</p>
+<p>اب وقاص شہر واپس نہیں گیا۔ اس نے اپنی فیکٹری کا انتظام دور سے سنبھال لیا ہے۔ وہ گاؤں میں رہتا ہے، اپنی بہن کے ساتھ۔ وہ ابو کی زمین جوتتا ہے، نئی طریقے سیکھتا ہے۔ اور جب بھی بارش ہوتی ہے، وہ صحن میں ابو کی کرسی کے پاس بیٹھ جاتا ہے۔ اسے لگتا ہے کہ ابو اب بھی اس کے ساتھ ہیں۔ ہر بارش کے ساتھ، وہ پیچھے مڑ کر دیکھتا ہے، اور پھر آگے کی طرف دیکھتا ہے۔ کیونکہ اب وہ جانتا ہے کہ محبت اور معافی کی فصلیں کبھی خشک نہیں ہوتیں۔ وہ ہمیشہ بارش کا انتظار کرتی ہیں۔ اور ہر دل میں، چاہے وہ کتنا ہی سخت کیوں نہ ہو جائے، ایک بارش کا موسم ضرور آتا ہے۔</p>
+
+<hr>
+<h3>معنی اور غور و فکر—</h3>
+
+<p>یہ کہانی دوری، غرور، اور معافی کے راستے پر روشنی ڈالتی ہے۔ اکثر رشتے فطری اختلافات کی بجائے، ان اختلافات کو بیان نہ کر پانے، اپنے جذبات کو دبا دینے کی وجہ سے زخمی ہوتے ہیں۔ باپ کا کردار ایک ایسی نسل کی نمائندگی کرتا ہے جو روایتوں سے پیار کرتی ہے مگر تبدیلی سے ڈرتی ہے۔ بیٹے کا کردار ترقی اور ذاتی خوابوں کی علامت ہے۔ کہانی ہمیں یاد دلاتی ہے کہ محبت کا اظہار کرنے میں دیر نہیں کرنی چاہیے۔ بعض اوقات زندگی ہمیں دوسرا موقع نہیں دیتی۔ بارش یہاں تبدیلی، صفائی اور نئے سرے سے شروع ہونے کی علامت ہے۔ جس طرح خشک زمین بارش کا انتظار کرتی ہے، اسی طرح انسان کا دل معافی اور پیار کے الفاظ کا انتظار کرتا ہے۔ حقیقی طاقت ہٹ دھرمی میں نہیں، بلکہ غلطی مان لینے اور درگزر کر دینے میں ہے۔ خاندان کی بنیاد صرف خون کے رشتے پر نہیں، بلکہ باہمی تفہیم، احترام اور وقت پر دی گئی معافی پر ہوتی ہے۔</p>
+
+<hr>
+
+        <p class="end-note">— اختتام —</p>
+    </main>
+
+    <div class="story-nav">
+      <a href="urdustory391.html" class="nav-button">← پچھلی کہانی</a>
+      <a href="urdustory393.html" class="nav-button">اگلی کہانی →</a>
+    </div>
+  </article>
+
+  <!-- Floating Like + Comment Buttons -->
+  <div class="floating-buttons">
+    <div style="position: relative;">
+      <button class="float-btn" id="likeBtn">❤️</button>
+      <span class="like-count" id="likeCount">0</span>
+    </div>
+    <button class="float-btn" id="commentBtn">💬</button>
+  </div>
+
+  <!-- Comment Popup -->
+  <div class="comment-popup" id="commentPopup">
+    <div class="popup-header">
+      <span>Comments</span>
+      <button class="close-popup" id="closePopup">✕</button>
+    </div>
+
+    <div class="comments-list" id="commentsList"></div>
+
+    <form class="comment-form" action="https://formspree.io/f/your-form-id" method="POST" id="commentForm">
+      <input type="text" id="name" name="name" placeholder="Your name" required />
+      <textarea id="comment" name="comment" placeholder="Write a comment..." required></textarea>
+      <button type="submit" id="sendBtn">Send</button>
+    </form>
+  </div>
+
+  <footer class="urdu-footer">
+  <p>© 2025 Daily Pixel۔ جملہ حقوق محفوظ ہیں۔</p>
+</footer>
+
+  <script src="../js/storyFeatures.js"></script>
+
+  <script>
+    /* ---------------- LIKE SYSTEM ---------------- */
+    const likeBtn = document.getElementById("likeBtn");
+    const likeCount = document.getElementById("likeCount");
+
+    const storyKey = location.pathname.split("/").pop();
+    const likedKey = `liked_${storyKey}`;
+    const countKey = `likeCount_${storyKey}`;
+
+    let liked = localStorage.getItem(likedKey) === "true";
+    let count = parseInt(localStorage.getItem(countKey));
+
+    if (isNaN(count)) {
+      count = Math.floor(15 + Math.random() * 50);
+      localStorage.setItem(countKey, count);
+    }
+
+    updateLikeUI();
+
+    likeBtn.addEventListener("click", () => {
+      liked = !liked;
+      count = liked ? count + 1 : Math.max(0, count - 1);
+      localStorage.setItem(likedKey, liked);
+      localStorage.setItem(countKey, count);
+      updateLikeUI();
+    });
+
+    function updateLikeUI() {
+      likeBtn.classList.toggle("liked", liked);
+      likeCount.textContent = count;
+    }
+
+    /* ---------------- COMMENT POPUP ---------------- */
+    const commentBtn = document.getElementById("commentBtn");
+    const commentPopup = document.getElementById("commentPopup");
+    const closePopup = document.getElementById("closePopup");
+    const commentsList = document.getElementById("commentsList");
+    const commentForm = document.getElementById("commentForm");
+    const sendBtn = document.getElementById("sendBtn");
+
+    commentBtn.addEventListener("click", () => {
+      commentPopup.classList.add("active");
+    });
+
+    closePopup.addEventListener("click", () => {
+      commentPopup.classList.remove("active");
+    });
+
+    /* Load saved comments */
+    const commentsKey = `comments_${storyKey}`;
+    let comments = JSON.parse(localStorage.getItem(commentsKey)) || [];
+    renderComments();
+
+    function renderComments() {
+      commentsList.innerHTML = comments.length
+        ? comments.map(c => `<div class="comment-item"><strong>${c.name}</strong>${c.text}</div>`).join("")
+        : `<p style="color:#777;font-family:sans-serif;font-size:0.9rem;">No comments yet.</p>`;
+    }
+
+    /* Submit comment */
+    commentForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const text = document.getElementById("comment").value.trim();
+      if (!name || !text) return;
+
+      // Save locally
+      comments.push({ name, text });
+      localStorage.setItem(commentsKey, JSON.stringify(comments));
+      renderComments();
+
+      // Send to Formspree
+      const formData = new FormData(commentForm);
+      const action = commentForm.getAttribute("action");
+
+      try {
+        const res = await fetch(action, { method: "POST", body: formData, headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          sendBtn.textContent = "Sent ✅";
+          sendBtn.classList.add("sent");
+          sendBtn.disabled = true;
+          commentForm.reset();
+          setTimeout(() => {
+            sendBtn.textContent = "Send";
+            sendBtn.classList.remove("sent");
+            sendBtn.disabled = false;
+          }, 2000);
+        }
+      } catch {
+        alert("Connection failed. Please try again.");
+      }
+    });
+  </script>
+</body>
+</html>
