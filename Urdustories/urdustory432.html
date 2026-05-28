@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>رات کے آخری پہر والی دکان</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="urdustyle.css" />
+  <link rel="stylesheet" href="style.css"/>
+
+
+  <style>
+    body {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      margin: 0;
+      background: #fff;
+    }
+
+    /* Like + Comment Floating Buttons */
+    .floating-buttons {
+      position: fixed;
+      bottom: 22px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+      z-index: 1000;
+    }
+
+    .float-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      color: #111;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      width: 52px;
+      height: 52px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .float-btn:hover {
+      transform: scale(1.1);
+      background: #f5f5f5;
+    }
+
+    .float-btn.liked {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      color: white;
+      box-shadow: 0 4px 12px rgba(34,197,94,0.4);
+    }
+
+    /* Like Count */
+    .like-count {
+      position: absolute;
+      bottom: -18px;
+      right: 15px;
+      font-size: 0.8rem;
+      color: #555;
+      font-family: sans-serif;
+    }
+
+    /* Comment Popup */
+    .comment-popup {
+      position: fixed;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      max-height: 85%;
+      background: #fff;
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -6px 20px rgba(0,0,0,0.25);
+      padding: 20px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      transition: bottom 0.4s ease;
+    }
+
+    .comment-popup.active {
+      bottom: 0;
+    }
+
+    .popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .close-popup {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .comments-list {
+      flex: 1;
+      overflow-y: auto;
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .comment-item {
+      background: #f9fafb;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      border: 1px solid #eee;
+    }
+
+    .comment-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #111;
+      font-size: 0.95rem;
+    }
+
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+      margin-top: 12px;
+    }
+
+    .comment-form input,
+    .comment-form textarea {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 10px;
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      width: 100%;
+      resize: none;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .comment-form input:focus,
+    .comment-form textarea:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+    }
+
+    .comment-form button {
+      align-self: flex-start;
+      background: linear-gradient(90deg, #2563eb, #1d4ed8);
+      color: white;
+      border: none;
+      border-radius: 40px;
+      padding: 8px 22px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(37,99,235,0.3);
+    }
+
+    .comment-form button:hover {
+      transform: scale(1.05);
+    }
+
+    .comment-form button.sent {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      box-shadow: 0 4px 10px rgba(34,197,94,0.4);
+      cursor: default;
+      transform: none;
+    }
+
+    /* Scrollbar */
+    .comments-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    .comments-list::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .float-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+      }
+      .comment-popup {
+        padding: 16px;
+      }
+    }
+ul {
+  list-style-position: inside;
+  padding-right: 0;
+}
+
+li {
+  margin-bottom: 8px;
+  line-height: 1.8;
+}
+
+  </style>
+</head>
+<body>
+
+    <!-- SEO -->
+  <meta name="description" content="بعض لوگ ہماری زندگی میں بہت مختصر وقت کے لیے آتے ہیں، مگر ان کی ایک بات یا ایک رویہ ہمارے اندر برسوں تک زندہ رہتا ہے۔ یہ کہانی ایک ایسی رات کی ہے جب ایک عام سی دکان پر ہونے والی مختصر ملاقات نے ایک انسان کی سوچ بدل دی۔" />
+  <meta name="keywords" content="اردو کہانی، جذباتی کہانی، امید، انسانی رویے، زندگی کے سبق، معاشرتی کہانی، اردو ادب" />
+
+  <!-- Back to Urdu Stories -->
+  <a class="back-link" href="index.html">← تمام اردو کہانیاں</a>
+
+  <article class="story-container">
+    <header class="story-header">
+      <h1 class="story-title">رات کے آخری پہر والی دکان</h1>
+      <p class="story-meta">28 مئی 2026 — by Daily Pixels</p>
+      <div class="story-tags"><span>معاشرتی کہانی</span><span>انسانی رویے</span><span>امید</span></div>
+      <img class="urdu-featured-image" src="https://media.istockphoto.com/id/801839964/photo/shop-windows-are-reflected-on-the-wet-asphalt-after-rain.webp?a=1&b=1&s=612x612&w=0&k=20&c=DoOp-axTf5zn4ErDdduFgLDUgVVECHvrOawZzN12JnQ=" alt="Small grocery shop open late at night, empty street, warm yellow lights, cinematic rainy atmosphere" loading="eager" />
+    </header>
+
+    <main class="story-content">
+
+<hr>
+
+<p>رات کافی گزر چکی تھی۔ شہر کا شور آہستہ آہستہ ختم ہورہا تھا اور سڑکوں پر گاڑیوں کی تعداد کم ہوتی جا رہی تھی۔ دور کہیں کبھی کسی موٹر سائیکل کی آواز سنائی دیتی، پھر خاموشی دوبارہ پورے ماحول پر چھا جاتی۔ موسم میں ہلکی ٹھنڈ شامل ہوچکی تھی اور ہوا کے ساتھ کہیں کہیں بارش کی نمی بھی محسوس ہو رہی تھی۔</p>
+<p>شہر کے ایک نسبتاً پرانے علاقے میں ایک چھوٹی سی کریانے کی دکان اب بھی کھلی ہوئی تھی۔ وہ دکان باقی دکانوں سے مختلف تھی، کیونکہ جب پورا بازار بند ہوجاتا، تب بھی وہاں مدھم زرد روشنی جل رہی ہوتی۔</p>
+<p>اس دکان کا مالک یوسف صاحب تھے، ایک درمیانی عمر کے شخص جن کے چہرے پر ہمیشہ عجیب سا سکون رہتا تھا۔ ان کی سفید ہوتی داڑھی، آہستہ بات کرنے کا انداز اور ہر آنے والے کو غور سے سننے کی عادت انہیں دوسروں سے الگ بناتی تھی۔</p>
+<p>لوگ اکثر کہتے تھے کہ وہ صرف دکان نہیں چلاتے، لوگوں کی خاموشیاں بھی سن لیتے ہیں۔</p>
+<p>اس رات فہد تیزی سے چلتا ہوا اسی دکان کے سامنے آکر رکا۔</p>
+<p>اس کے چہرے پر شدید تھکن تھی۔ بال بکھرے ہوئے تھے اور آنکھوں میں کئی راتوں کی بے خوابی صاف دکھائی دے رہی تھی۔ اس نے جیب سے فون نکالا، وقت دیکھا، پھر ایک لمبا سانس لے کر اندر داخل ہوگیا۔</p>
+<p>دکان تقریباً خالی تھی۔</p>
+<p>شیلفوں پر روزمرہ استعمال کی چیزیں رکھی تھیں، ایک کونے میں چھوٹا سا فریج مسلسل ہلکی آواز پیدا کررہا تھا، اور کاؤنٹر کے پاس رکھا پرانا پنکھا آہستہ آہستہ گھوم رہا تھا۔</p>
+<p>یوسف صاحب نے اسے دیکھا اور ہلکا سا مسکرائے۔</p>
+<p>"کافی دیر کردی آج۔"</p>
+<p>فہد چند لمحے خاموش رہا، پھر بولا:</p>
+<p>"نیند نہیں آرہی تھی۔"</p>
+<p>یوسف صاحب نے سر ہلایا جیسے وہ یہ جواب پہلے بھی کئی بار سن چکے ہوں۔</p>
+<p>فہد نے پانی کی بوتل اٹھائی اور کاؤنٹر پر رکھ دی۔</p>
+<p>پیسے دیتے ہوئے اچانک اس کے منہ سے نکل گیا:</p>
+<p>"کبھی کبھی لگتا ہے دماغ بند ہی نہیں ہوتا۔"</p>
+<p>یوسف صاحب نے بوتل اس کی طرف بڑھائی۔</p>
+<p>"زیادہ سوچنے والے لوگ اکثر رات کو جاگتے ہیں۔"</p>
+<p>فہد ہلکا سا مسکرایا، مگر وہ مسکراہٹ فوراً ختم ہوگئی۔</p>
+<p>اصل میں وہ پچھلے کئی مہینوں سے ذہنی دباؤ میں تھا۔ اس نے اپنی پوری توانائی ایک کام میں لگا دی تھی، مگر نتیجہ ویسا نہیں نکلا جیسا وہ چاہتا تھا۔ اس کے دوست آہستہ آہستہ آگے بڑھ رہے تھے، سوشل میڈیا پر سب کی زندگیاں کامیاب دکھائی دیتی تھیں، اور اسے محسوس ہونے لگا تھا کہ شاید وہ پیچھے رہ گیا ہے۔</p>
+<p>سب سے مشکل بات یہ تھی کہ وہ یہ احساس کسی کو سمجھا نہیں پاتا تھا۔</p>
+<p>دن کے وقت وہ نارمل نظر آنے کی کوشش کرتا، لوگوں کے ساتھ ہنستا، کام کرتا، باتیں کرتا، لیکن رات کے وقت اس کے اندر موجود تمام شور واپس آجاتا۔</p>
+<p>یوسف صاحب نے کاؤنٹر صاف کرتے ہوئے پوچھا:</p>
+<p>"کبھی رات کے اس وقت شہر کو غور سے دیکھا ہے؟"</p>
+<p>فہد نے حیرانی سے باہر سڑک کی طرف دیکھا۔</p>
+<p>سڑک تقریباً خالی تھی۔ دور دور تک خاموشی پھیلی ہوئی تھی۔</p>
+<p>"کیا مطلب؟"</p>
+<p>یوسف صاحب آہستہ سے بولے:</p>
+<p>"دن میں ہر چیز تیز ہوتی ہے۔ ہر انسان بھاگ رہا ہوتا ہے۔ سب کو لگتا ہے کہ اگر وہ رک گئے تو پیچھے رہ جائیں گے۔ لیکن رات… رات انسان کو اصل رفتار یاد دلاتی ہے۔"</p>
+<p>فہد خاموش ہوگیا۔</p>
+<p>یوسف صاحب نے ایک پرانا کپ اٹھا کر چائے بنانی شروع کردی۔</p>
+<p>"لوگ سمجھتے ہیں کہ زندگی مقابلہ ہے۔ مگر حقیقت میں ہر انسان کا وقت الگ ہوتا ہے۔"</p>
+<p>چائے کی بھاپ آہستہ آہستہ ہوا میں پھیلنے لگی۔</p>
+<p>"کچھ لوگ جلدی اپنی منزل پا لیتے ہیں، کچھ دیر سے پہنچتے ہیں، اور کچھ راستہ بدل لیتے ہیں۔ لیکن اس کا مطلب یہ نہیں کہ دیر سے پہنچنے والا ناکام ہے۔"</p>
+<p>فہد اب پوری توجہ سے سن رہا تھا۔</p>
+<p>اسے محسوس ہورہا تھا جیسے یہ باتیں صرف الفاظ نہیں بلکہ کسی تجربے سے نکلی ہوئی سچائیاں ہیں۔</p>
+<p>یوسف صاحب نے چائے اس کے سامنے رکھی۔</p>
+<p>"تم نے کبھی دیکھا ہے، رات جتنی بھی لمبی ہو، صبح پھر بھی آجاتی ہے۔"</p>
+<p>یہ جملہ سن کر فہد خاموش ہوگیا۔</p>
+<p>اس کے اندر جیسے کوئی چیز آہستہ آہستہ نرم پڑنے لگی۔</p>
+<p>وہ کافی عرصے سے خود پر بہت سخت ہوگیا تھا۔ ہر ناکامی کو اپنی کمزوری سمجھ رہا تھا، ہر تاخیر کو اپنی ہار سمجھ بیٹھا تھا۔</p>
+<p>کچھ دیر دونوں خاموش رہے۔</p>
+<p>باہر ہلکی ہوا چل رہی تھی اور دور مسجد سے فجر سے پہلے کی مدھم اذان کی آواز ابھرنا شروع ہوگئی تھی۔</p>
+<p>فہد نے پہلی بار محسوس کیا کہ شاید زندگی واقعی ابھی ختم نہیں ہوئی۔</p>
+<p>شاید وہ صرف ایک مشکل رات سے گزر رہا تھا۔</p>
+<p>اس نے چائے ختم کی، پیسے میز پر رکھے اور اٹھ کھڑا ہوا۔</p>
+<p>دروازے تک پہنچ کر وہ رکا۔</p>
+<p>"آپ یہ دکان اتنی دیر تک کیوں کھلی رکھتے ہیں؟"</p>
+<p>یوسف صاحب ہلکا سا مسکرائے۔</p>
+<p>"کچھ لوگوں کو رات کے آخری پہر صرف ایک کھلی دکان نہیں، تھوڑی سی امید چاہیے ہوتی ہے۔"</p>
+<p>فہد چند لمحے انہیں دیکھتا رہا۔</p>
+<p>پھر خاموشی سے باہر نکل آیا۔</p>
+<p>آسمان اب مکمل سیاہ نہیں رہا تھا۔ دور مشرق کی طرف ہلکی روشنی ابھر رہی تھی۔</p>
+<p>اور شاید کافی عرصے بعد پہلی بار، اسے آنے والی صبح کا انتظار برا نہیں لگ رہا تھا۔</p>
+
+<hr>
+<h3>معنی اور غور و فکر—</h3>
+
+<p>زندگی میں سب سے خطرناک چیز ناکامی نہیں، بلکہ خود کو دوسروں کے وقت کے ساتھ موازنہ کرنا ہے۔ جب ہم ہر وقت یہ دیکھتے رہتے ہیں کہ کون ہم سے آگے نکل گیا، تو ہم اپنی رفتار، اپنی محنت اور اپنا سفر بھول جاتے ہیں۔</p>
+<p>ہر انسان کی زندگی کا وقت مختلف ہوتا ہے۔ کچھ لوگوں کی صبح جلدی ہوجاتی ہے، کچھ کی دیر سے، مگر اندھیری رات ہمیشہ نہیں رہتی۔</p>
+<p>کبھی کبھی انسان کو صرف یہ یاد رکھنے کی ضرورت ہوتی ہے کہ دیر سے کھلنے والا سورج بھی روشنی ہی دیتا ہے۔</p>
+
+<hr>
+
+        <p class="end-note">— اختتام —</p>
+    </main>
+
+    <div class="story-nav">
+      <a href="urdustory431.html" class="nav-button">← پچھلی کہانی</a>
+      <a href="urdustory408.html" class="nav-button">اگلی کہانی →</a>
+    </div>
+  </article>
+
+  <!-- Floating Like + Comment Buttons -->
+  <div class="floating-buttons">
+    <div style="position: relative;">
+      <button class="float-btn" id="likeBtn">❤️</button>
+      <span class="like-count" id="likeCount">0</span>
+    </div>
+    <button class="float-btn" id="commentBtn">💬</button>
+  </div>
+
+  <!-- Comment Popup -->
+  <div class="comment-popup" id="commentPopup">
+    <div class="popup-header">
+      <span>Comments</span>
+      <button class="close-popup" id="closePopup">✕</button>
+    </div>
+
+    <div class="comments-list" id="commentsList"></div>
+
+    <form class="comment-form" action="https://formspree.io/f/your-form-id" method="POST" id="commentForm">
+      <input type="text" id="name" name="name" placeholder="Your name" required />
+      <textarea id="comment" name="comment" placeholder="Write a comment..." required></textarea>
+      <button type="submit" id="sendBtn">Send</button>
+    </form>
+  </div>
+
+  <footer class="urdu-footer">
+  <p>© 2025 Daily Pixel۔ جملہ حقوق محفوظ ہیں۔</p>
+</footer>
+
+  <script src="../js/storyFeatures.js"></script>
+
+  <script>
+    /* ---------------- LIKE SYSTEM ---------------- */
+    const likeBtn = document.getElementById("likeBtn");
+    const likeCount = document.getElementById("likeCount");
+
+    const storyKey = location.pathname.split("/").pop();
+    const likedKey = `liked_${storyKey}`;
+    const countKey = `likeCount_${storyKey}`;
+
+    let liked = localStorage.getItem(likedKey) === "true";
+    let count = parseInt(localStorage.getItem(countKey));
+
+    if (isNaN(count)) {
+      count = Math.floor(15 + Math.random() * 50);
+      localStorage.setItem(countKey, count);
+    }
+
+    updateLikeUI();
+
+    likeBtn.addEventListener("click", () => {
+      liked = !liked;
+      count = liked ? count + 1 : Math.max(0, count - 1);
+      localStorage.setItem(likedKey, liked);
+      localStorage.setItem(countKey, count);
+      updateLikeUI();
+    });
+
+    function updateLikeUI() {
+      likeBtn.classList.toggle("liked", liked);
+      likeCount.textContent = count;
+    }
+
+    /* ---------------- COMMENT POPUP ---------------- */
+    const commentBtn = document.getElementById("commentBtn");
+    const commentPopup = document.getElementById("commentPopup");
+    const closePopup = document.getElementById("closePopup");
+    const commentsList = document.getElementById("commentsList");
+    const commentForm = document.getElementById("commentForm");
+    const sendBtn = document.getElementById("sendBtn");
+
+    commentBtn.addEventListener("click", () => {
+      commentPopup.classList.add("active");
+    });
+
+    closePopup.addEventListener("click", () => {
+      commentPopup.classList.remove("active");
+    });
+
+    /* Load saved comments */
+    const commentsKey = `comments_${storyKey}`;
+    let comments = JSON.parse(localStorage.getItem(commentsKey)) || [];
+    renderComments();
+
+    function renderComments() {
+      commentsList.innerHTML = comments.length
+        ? comments.map(c => `<div class="comment-item"><strong>${c.name}</strong>${c.text}</div>`).join("")
+        : `<p style="color:#777;font-family:sans-serif;font-size:0.9rem;">No comments yet.</p>`;
+    }
+
+    /* Submit comment */
+    commentForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const text = document.getElementById("comment").value.trim();
+      if (!name || !text) return;
+
+      // Save locally
+      comments.push({ name, text });
+      localStorage.setItem(commentsKey, JSON.stringify(comments));
+      renderComments();
+
+      // Send to Formspree
+      const formData = new FormData(commentForm);
+      const action = commentForm.getAttribute("action");
+
+      try {
+        const res = await fetch(action, { method: "POST", body: formData, headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          sendBtn.textContent = "Sent ✅";
+          sendBtn.classList.add("sent");
+          sendBtn.disabled = true;
+          commentForm.reset();
+          setTimeout(() => {
+            sendBtn.textContent = "Send";
+            sendBtn.classList.remove("sent");
+            sendBtn.disabled = false;
+          }, 2000);
+        }
+      } catch {
+        alert("Connection failed. Please try again.");
+      }
+    });
+  </script>
+</body>
+</html>

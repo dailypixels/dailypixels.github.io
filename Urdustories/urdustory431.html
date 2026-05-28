@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>خاموش پل کے اُس پار</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="urdustyle.css" />
+  <link rel="stylesheet" href="style.css"/>
+
+
+  <style>
+    body {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      margin: 0;
+      background: #fff;
+    }
+
+    /* Like + Comment Floating Buttons */
+    .floating-buttons {
+      position: fixed;
+      bottom: 22px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+      z-index: 1000;
+    }
+
+    .float-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      color: #111;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      width: 52px;
+      height: 52px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .float-btn:hover {
+      transform: scale(1.1);
+      background: #f5f5f5;
+    }
+
+    .float-btn.liked {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      color: white;
+      box-shadow: 0 4px 12px rgba(34,197,94,0.4);
+    }
+
+    /* Like Count */
+    .like-count {
+      position: absolute;
+      bottom: -18px;
+      right: 15px;
+      font-size: 0.8rem;
+      color: #555;
+      font-family: sans-serif;
+    }
+
+    /* Comment Popup */
+    .comment-popup {
+      position: fixed;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      max-height: 85%;
+      background: #fff;
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -6px 20px rgba(0,0,0,0.25);
+      padding: 20px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      transition: bottom 0.4s ease;
+    }
+
+    .comment-popup.active {
+      bottom: 0;
+    }
+
+    .popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .close-popup {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .comments-list {
+      flex: 1;
+      overflow-y: auto;
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .comment-item {
+      background: #f9fafb;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      border: 1px solid #eee;
+    }
+
+    .comment-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #111;
+      font-size: 0.95rem;
+    }
+
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+      margin-top: 12px;
+    }
+
+    .comment-form input,
+    .comment-form textarea {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 10px;
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      width: 100%;
+      resize: none;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .comment-form input:focus,
+    .comment-form textarea:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+    }
+
+    .comment-form button {
+      align-self: flex-start;
+      background: linear-gradient(90deg, #2563eb, #1d4ed8);
+      color: white;
+      border: none;
+      border-radius: 40px;
+      padding: 8px 22px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(37,99,235,0.3);
+    }
+
+    .comment-form button:hover {
+      transform: scale(1.05);
+    }
+
+    .comment-form button.sent {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      box-shadow: 0 4px 10px rgba(34,197,94,0.4);
+      cursor: default;
+      transform: none;
+    }
+
+    /* Scrollbar */
+    .comments-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    .comments-list::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .float-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+      }
+      .comment-popup {
+        padding: 16px;
+      }
+    }
+ul {
+  list-style-position: inside;
+  padding-right: 0;
+}
+
+li {
+  margin-bottom: 8px;
+  line-height: 1.8;
+}
+
+  </style>
+</head>
+<body>
+
+    <!-- SEO -->
+  <meta name="description" content="کبھی کبھی انسان اپنی زندگی کے شور سے اتنا تھک جاتا ہے کہ وہ صرف خاموشی ڈھونڈنے نکل پڑتا ہے۔ لیکن بعض خاموش جگہیں انسان کو صرف سکون نہیں دیتیں، بلکہ اسے اپنے اندر چھپے ہوئے سوالوں کے جواب بھی دے دیتی ہیں۔ یہ کہانی ایک ایسے ہی پل کی ہے جہاں ایک شخص خود سے دوبارہ ملا۔" />
+  <meta name="keywords" content="اردو کہانی، جذباتی کہانی، امید، زندگی کے سبق، انسانی احساسات، معاشرتی کہانی، اردو ادب" />
+
+  <!-- Back to Urdu Stories -->
+  <a class="back-link" href="index.html">← تمام اردو کہانیاں</a>
+
+  <article class="story-container">
+    <header class="story-header">
+      <h1 class="story-title">خاموش پل کے اُس پار</h1>
+      <p class="story-meta">28 مئی 2026 — by Daily Pixels</p>
+      <div class="story-tags"><span>انسانی احساسات</span><span>زندگی کے سبق</span><span>امید</span></div>
+      <img class="urdu-featured-image" src="https://plus.unsplash.com/premium_photo-1765287089968-4cb06f123ebd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8T2xkJTIwc2lsZW50JTIwYnJpZGdlJTIwb3ZlciUyMHJpdmVyJTIwYXQlMjBmb2dneSUyMGV2ZW5pbmclMkMlMjBzb2Z0JTIwbGlnaHRzJTIwcmVmbGVjdGluZyUyMG9uJTIwd2F0ZXIlMkMlMjBsb25lbHklMjBjaW5lbWF0aWMlMjBhdG1vc3BoZXJlfGVufDB8fDB8fHww" alt="Old silent bridge over river at foggy evening, soft lights reflecting on water, lonely cinematic atmosphere" loading="eager" />
+    </header>
+
+    <main class="story-content">
+
+<hr>
+
+<p>شہر کے کنارے بہنے والے دریا پر ایک پرانا پل بنا ہوا تھا۔ وہ پل اب زیادہ استعمال نہیں ہوتا تھا کیونکہ اس کے قریب ایک نیا اور بڑا پل تعمیر ہوچکا تھا جہاں ہر وقت گاڑیوں کا شور، روشنیوں کی چمک اور لوگوں کی جلدی دکھائی دیتی تھی۔ پرانا پل اب صرف چند راہگیروں، شام کی ہوا، اور خاموشی کے حصے میں رہ گیا تھا۔</p>
+<p>رات کے وقت وہاں عجیب سا سکون ہوتا تھا۔ دریا کا پانی آہستہ آہستہ بہتا رہتا، ٹھنڈی ہوا پل کے لوہے سے ٹکرا کر سرسراہٹ پیدا کرتی، اور دور شہر کی روشنیاں پانی میں لرزتی ہوئی دکھائی دیتیں۔</p>
+<p>زین اکثر اس پل پر آتا تھا۔</p>
+<p>وہ ہر بار ایک ہی جگہ جا کر کھڑا ہوجاتا، ریلنگ پر ہاتھ رکھتا اور کافی دیر تک خاموشی سے پانی کو دیکھتا رہتا۔</p>
+<p>اس کی عمر تیس سال کے قریب تھی، مگر اس کے چہرے پر ایسی تھکن تھی جیسے اس نے عمر سے کہیں زیادہ سفر طے کرلیا ہو۔ چند سال پہلے تک اس کے خواب بہت بڑے تھے۔ وہ ایک کامیاب زندگی چاہتا تھا، عزت، سکون، اچھا مستقبل۔ وہ دن رات محنت کرتا رہا، لیکن وقت کے ساتھ چیزیں اس کے ہاتھ سے پھسلتی گئیں۔</p>
+<p>اس کی منگنی ٹوٹ گئی تھی، کاروبار میں نقصان ہوگیا تھا، اور اب وہ ایک ایسی زندگی گزار رہا تھا جس میں ہر صبح صرف ذمہ داری محسوس ہوتی تھی، خوشی نہیں۔</p>
+<p>لوگ اسے اب بھی مضبوط سمجھتے تھے۔</p>
+<p>کیونکہ وہ کبھی اپنے مسائل کے بارے میں بات نہیں کرتا تھا۔</p>
+<p>لیکن حقیقت یہ تھی کہ وہ اندر سے آہستہ آہستہ خالی ہوتا جا رہا تھا۔</p>
+<p>اس رات بھی وہ پل پر کھڑا پانی دیکھ رہا تھا۔</p>
+<p>ہوا کافی سرد تھی اور ہلکی دھند دریا کے اوپر پھیل رہی تھی۔</p>
+<p>اسی دوران اسے پیچھے سے قدموں کی آواز سنائی دی۔</p>
+<p>ایک بزرگ آدمی آہستہ آہستہ چلتے ہوئے اس کے قریب آئے۔ ان کے ہاتھ میں پرانی لکڑی کی چھڑی تھی اور کندھوں پر موٹی شال رکھی ہوئی تھی۔</p>
+<p>وہ زین سے کچھ فاصلے پر رکے اور دریا کی طرف دیکھنے لگے۔</p>
+<p>کچھ لمحے خاموشی رہی۔</p>
+<p>پھر بزرگ شخص نے آہستہ سے کہا:</p>
+<p>"پانی عجیب چیز ہے۔"</p>
+<p>زین نے ان کی طرف دیکھا مگر کچھ نہیں بولا۔</p>
+<p>بزرگ شخص نے دریا کی طرف اشارہ کیا۔</p>
+<p>"کتنے پتھر آتے ہیں اس کے راستے میں، مگر یہ رکنا نہیں سیکھتا۔"</p>
+<p>زین ہلکا سا مسکرایا، مگر اس کی آنکھوں میں تھکن اب بھی موجود تھی۔</p>
+<p>چند لمحوں بعد اس نے دھیرے سے کہا:</p>
+<p>"ہر چیز پانی جیسی مضبوط نہیں ہوتی۔"</p>
+<p>بزرگ شخص خاموشی سے اس کی بات سنتے رہے۔</p>
+<p>پھر انہوں نے پوچھا:</p>
+<p>"تمہیں لگتا ہے تم تھک گئے ہو؟"</p>
+<p>یہ سوال سن کر زین کچھ دیر خاموش رہا۔</p>
+<p>ہوا اب مزید ٹھنڈی ہوگئی تھی۔</p>
+<p>دور کہیں کسی کشتی کی مدھم روشنی پانی پر ہل رہی تھی۔</p>
+<p>زین نے آہستہ سے جواب دیا:</p>
+<p>"کبھی کبھی لگتا ہے کہ میں جتنا بھی چلوں، کہیں پہنچ نہیں رہا۔"</p>
+<p>بزرگ شخص نے سر ہلایا جیسے وہ یہ احساس اچھی طرح سمجھتے ہوں۔</p>
+<p>"زندگی میں سب سے خطرناک تھکن جسم کی نہیں ہوتی، دل کی ہوتی ہے۔ انسان چل تو رہا ہوتا ہے، مگر اندر سے رک چکا ہوتا ہے۔"</p>
+<p>یہ جملہ سن کر زین کی نظریں دوبارہ پانی کی طرف چلی گئیں۔</p>
+<p>اسے لگا جیسے کسی نے پہلی بار اس کے اندر موجود خاموشی کو پہچانا ہو۔</p>
+<p>بزرگ شخص نے پل کی ریلنگ پر ہاتھ رکھا۔</p>
+<p>"میں جب جوان تھا تو مجھے لگتا تھا کہ کامیابی ہر مسئلے کا حل ہے۔ پھر ایک دن سمجھ آیا کہ انسان کو صرف کامیابی نہیں، سکون بھی چاہیے ہوتا ہے۔"</p>
+<p>زین خاموشی سے سنتا رہا۔</p>
+<p>"اور سکون ہمیشہ چیزوں سے نہیں ملتا۔ کبھی کبھی انسان کو صرف یہ قبول کرنا پڑتا ہے کہ ہر خواب اپنے وقت پر پورا ہوتا ہے، اور کچھ خواب شاید اس لیے ٹوٹتے ہیں تاکہ انسان خود نہ ٹوٹ جائے۔"</p>
+<p>ہوا میں خاموشی دوبارہ پھیل گئی۔</p>
+<p>نیچے دریا مسلسل بہہ رہا تھا۔</p>
+<p>زین نے پہلی بار محسوس کیا کہ وہ کافی دیر سے اپنے اندر کی سختی چھوڑتا جا رہا ہے۔</p>
+<p>وہ ہر ناکامی کو اپنی کمزوری سمجھ بیٹھا تھا، حالانکہ شاید زندگی صرف اسے ایک مختلف راستے پر لے جا رہی تھی۔</p>
+<p>کچھ دیر بعد بزرگ شخص جانے لگے۔</p>
+<p>چند قدم چلنے کے بعد وہ رکے اور مڑ کر بولے:</p>
+<p>"یاد رکھنا، دریا کبھی اپنے راستے سے شرمندہ نہیں ہوتا۔ چاہے اسے کتنے ہی موڑ کیوں نہ لینے پڑیں۔"</p>
+<p>پھر وہ دھند میں آہستہ آہستہ غائب ہوگئے۔</p>
+<p>زین کافی دیر تک وہیں کھڑا رہا۔</p>
+<p>شہر کی روشنیاں اب بھی پانی میں لرز رہی تھیں، ہوا اب بھی سرد تھی، اور پل اب بھی خاموش تھا۔</p>
+<p>لیکن اس کے اندر جو شور کئی مہینوں سے چل رہا تھا، وہ پہلی بار کچھ کم محسوس ہورہا تھا۔</p>
+<p>اس نے گہرا سانس لیا، آسمان کی طرف دیکھا، اور آہستہ آہستہ پل سے واپس چلنے لگا۔</p>
+<p>شاید زندگی ابھی ختم نہیں ہوئی تھی۔</p>
+<p>شاید وہ صرف ایک مشکل موڑ سے گزر رہا تھا۔</p>
+
+<hr>
+<h3>معنی اور غور و فکر—</h3>
+
+<p>ہم اکثر زندگی کے موڑوں کو اختتام سمجھ لیتے ہیں۔ جب خواب ٹوٹتے ہیں یا راستے بدلتے ہیں تو انسان سوچتا ہے کہ شاید وہ ناکام ہوگیا ہے۔ لیکن حقیقت یہ ہے کہ زندگی ہمیشہ سیدھی لائن میں نہیں چلتی۔</p>
+<p>دریا کی طرح انسان کو بھی کبھی کبھی راستہ بدلنا پڑتا ہے، موڑ لینے پڑتے ہیں، اور کچھ چیزیں پیچھے چھوڑنی پڑتی ہیں تاکہ وہ بہتا رہے۔</p>
+<p>اصل طاقت یہ نہیں کہ انسان کبھی نہ ٹوٹے، بلکہ یہ ہے کہ ٹوٹنے کے بعد بھی وہ رکنا نہ سیکھے۔</p>
+
+<hr>
+
+        <p class="end-note">— اختتام —</p>
+    </main>
+
+    <div class="story-nav">
+      <a href="urdustory430.html" class="nav-button">← پچھلی کہانی</a>
+      <a href="urdustory432.html" class="nav-button">اگلی کہانی →</a>
+    </div>
+  </article>
+
+  <!-- Floating Like + Comment Buttons -->
+  <div class="floating-buttons">
+    <div style="position: relative;">
+      <button class="float-btn" id="likeBtn">❤️</button>
+      <span class="like-count" id="likeCount">0</span>
+    </div>
+    <button class="float-btn" id="commentBtn">💬</button>
+  </div>
+
+  <!-- Comment Popup -->
+  <div class="comment-popup" id="commentPopup">
+    <div class="popup-header">
+      <span>Comments</span>
+      <button class="close-popup" id="closePopup">✕</button>
+    </div>
+
+    <div class="comments-list" id="commentsList"></div>
+
+    <form class="comment-form" action="https://formspree.io/f/your-form-id" method="POST" id="commentForm">
+      <input type="text" id="name" name="name" placeholder="Your name" required />
+      <textarea id="comment" name="comment" placeholder="Write a comment..." required></textarea>
+      <button type="submit" id="sendBtn">Send</button>
+    </form>
+  </div>
+
+  <footer class="urdu-footer">
+  <p>© 2025 Daily Pixel۔ جملہ حقوق محفوظ ہیں۔</p>
+</footer>
+
+  <script src="../js/storyFeatures.js"></script>
+
+  <script>
+    /* ---------------- LIKE SYSTEM ---------------- */
+    const likeBtn = document.getElementById("likeBtn");
+    const likeCount = document.getElementById("likeCount");
+
+    const storyKey = location.pathname.split("/").pop();
+    const likedKey = `liked_${storyKey}`;
+    const countKey = `likeCount_${storyKey}`;
+
+    let liked = localStorage.getItem(likedKey) === "true";
+    let count = parseInt(localStorage.getItem(countKey));
+
+    if (isNaN(count)) {
+      count = Math.floor(15 + Math.random() * 50);
+      localStorage.setItem(countKey, count);
+    }
+
+    updateLikeUI();
+
+    likeBtn.addEventListener("click", () => {
+      liked = !liked;
+      count = liked ? count + 1 : Math.max(0, count - 1);
+      localStorage.setItem(likedKey, liked);
+      localStorage.setItem(countKey, count);
+      updateLikeUI();
+    });
+
+    function updateLikeUI() {
+      likeBtn.classList.toggle("liked", liked);
+      likeCount.textContent = count;
+    }
+
+    /* ---------------- COMMENT POPUP ---------------- */
+    const commentBtn = document.getElementById("commentBtn");
+    const commentPopup = document.getElementById("commentPopup");
+    const closePopup = document.getElementById("closePopup");
+    const commentsList = document.getElementById("commentsList");
+    const commentForm = document.getElementById("commentForm");
+    const sendBtn = document.getElementById("sendBtn");
+
+    commentBtn.addEventListener("click", () => {
+      commentPopup.classList.add("active");
+    });
+
+    closePopup.addEventListener("click", () => {
+      commentPopup.classList.remove("active");
+    });
+
+    /* Load saved comments */
+    const commentsKey = `comments_${storyKey}`;
+    let comments = JSON.parse(localStorage.getItem(commentsKey)) || [];
+    renderComments();
+
+    function renderComments() {
+      commentsList.innerHTML = comments.length
+        ? comments.map(c => `<div class="comment-item"><strong>${c.name}</strong>${c.text}</div>`).join("")
+        : `<p style="color:#777;font-family:sans-serif;font-size:0.9rem;">No comments yet.</p>`;
+    }
+
+    /* Submit comment */
+    commentForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const text = document.getElementById("comment").value.trim();
+      if (!name || !text) return;
+
+      // Save locally
+      comments.push({ name, text });
+      localStorage.setItem(commentsKey, JSON.stringify(comments));
+      renderComments();
+
+      // Send to Formspree
+      const formData = new FormData(commentForm);
+      const action = commentForm.getAttribute("action");
+
+      try {
+        const res = await fetch(action, { method: "POST", body: formData, headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          sendBtn.textContent = "Sent ✅";
+          sendBtn.classList.add("sent");
+          sendBtn.disabled = true;
+          commentForm.reset();
+          setTimeout(() => {
+            sendBtn.textContent = "Send";
+            sendBtn.classList.remove("sent");
+            sendBtn.disabled = false;
+          }, 2000);
+        }
+      } catch {
+        alert("Connection failed. Please try again.");
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>پرانی لائبریری کی کھڑکی</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="urdustyle.css" />
+  <link rel="stylesheet" href="style.css"/>
+
+
+  <style>
+    body {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      margin: 0;
+      background: #fff;
+    }
+
+    /* Like + Comment Floating Buttons */
+    .floating-buttons {
+      position: fixed;
+      bottom: 22px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+      z-index: 1000;
+    }
+
+    .float-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      color: #111;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      width: 52px;
+      height: 52px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .float-btn:hover {
+      transform: scale(1.1);
+      background: #f5f5f5;
+    }
+
+    .float-btn.liked {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      color: white;
+      box-shadow: 0 4px 12px rgba(34,197,94,0.4);
+    }
+
+    /* Like Count */
+    .like-count {
+      position: absolute;
+      bottom: -18px;
+      right: 15px;
+      font-size: 0.8rem;
+      color: #555;
+      font-family: sans-serif;
+    }
+
+    /* Comment Popup */
+    .comment-popup {
+      position: fixed;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      max-height: 85%;
+      background: #fff;
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -6px 20px rgba(0,0,0,0.25);
+      padding: 20px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      transition: bottom 0.4s ease;
+    }
+
+    .comment-popup.active {
+      bottom: 0;
+    }
+
+    .popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .close-popup {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .comments-list {
+      flex: 1;
+      overflow-y: auto;
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .comment-item {
+      background: #f9fafb;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      border: 1px solid #eee;
+    }
+
+    .comment-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #111;
+      font-size: 0.95rem;
+    }
+
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+      margin-top: 12px;
+    }
+
+    .comment-form input,
+    .comment-form textarea {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 10px;
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      width: 100%;
+      resize: none;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .comment-form input:focus,
+    .comment-form textarea:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+    }
+
+    .comment-form button {
+      align-self: flex-start;
+      background: linear-gradient(90deg, #2563eb, #1d4ed8);
+      color: white;
+      border: none;
+      border-radius: 40px;
+      padding: 8px 22px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(37,99,235,0.3);
+    }
+
+    .comment-form button:hover {
+      transform: scale(1.05);
+    }
+
+    .comment-form button.sent {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      box-shadow: 0 4px 10px rgba(34,197,94,0.4);
+      cursor: default;
+      transform: none;
+    }
+
+    /* Scrollbar */
+    .comments-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    .comments-list::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .float-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+      }
+      .comment-popup {
+        padding: 16px;
+      }
+    }
+ul {
+  list-style-position: inside;
+  padding-right: 0;
+}
+
+li {
+  margin-bottom: 8px;
+  line-height: 1.8;
+}
+
+  </style>
+</head>
+<body>
+
+    <!-- SEO -->
+  <meta name="description" content="کبھی کبھی انسان اپنی زندگی میں اتنا الجھ جاتا ہے کہ اسے لگنے لگتا ہے کہ راستے ختم ہو چکے ہیں۔ پھر اچانک کسی عام جگہ، کسی خاموش کونے یا کسی چھوٹے لمحے میں اسے ایک ایسی بات مل جاتی ہے جو اس کی پوری سوچ بدل دیتی ہے۔ یہ کہانی ایک ایسی ہی ملاقات کی ہے۔" />
+  <meta name="keywords" content="اردو کہانی، جذباتی کہانی، زندگی کے سبق، امید، انسانی سوچ، معاشرتی کہانی" />
+
+  <!-- Back to Urdu Stories -->
+  <a class="back-link" href="index.html">← تمام اردو کہانیاں</a>
+
+  <article class="story-container">
+    <header class="story-header">
+      <h1 class="story-title">پرانی لائبریری کی کھڑکی</h1>
+      <p class="story-meta">27 مئی 2026 — by Daily Pixels</p>
+      <div class="story-tags"><span>انسانی سوچ</span><span>امید</span><span>زندگی کے سبق</span></div>
+      <img class="urdu-featured-image" src="https://images.unsplash.com/photo-1735805546449-a7b50db09776?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Old library interior with large rainy window, wooden shelves full of books, warm light, cinematic atmosphere" loading="eager" />
+    </header>
+
+    <main class="story-content">
+
+<hr>
+
+<p>سردیوں کی ایک خاموش شام تھی۔ سورج کافی دیر پہلے ڈھل چکا تھا اور شہر کی سڑکوں پر ہلکا ہلکا دھند کا پردہ اترنا شروع ہوگیا تھا۔ دور سڑکوں پر گاڑیوں کی روشنیاں دھند کے اندر دھندلی سی لکیر بناتی ہوئی گزر رہی تھیں اور ہوا میں ٹھنڈک اس قدر بڑھ گئی تھی کہ لوگ اپنے کوٹ مزید مضبوطی سے لپیٹ کر چل رہے تھے۔ شہر کے شور سے کچھ فاصلے پر ایک پرانی لائبریری موجود تھی، ایسی لائبریری جس کی دیواروں پر وقت کے نشان صاف نظر آتے تھے، جہاں لکڑی کی پرانی میزیں تھیں، کتابوں سے بھرے اونچے شیلف تھے اور ہر طرف خاموشی کا ایک عجیب سکون پھیلا رہتا تھا۔</p>
+<p>اس لائبریری میں علی اکثر آیا کرتا تھا۔ لیکن وہ کتابیں پڑھنے کے لیے نہیں آتا تھا۔ وہ یہاں صرف خاموشی لینے آتا تھا۔ اس کی عمر تقریباً ستائیس سال تھی، اور گزشتہ دو سال اس کی زندگی کے سب سے مشکل سال ثابت ہوئے تھے۔ اس نے کئی خواب دیکھے تھے، بہت سی امیدیں باندھی تھیں، مگر ہر بار چیزیں اس کے ہاتھ سے نکل جاتی تھیں۔ ایک اچھی نوکری کی امید ٹوٹ گئی تھی، اس کا کاروبار شروع ہونے سے پہلے ہی ختم ہوگیا تھا، اور آہستہ آہستہ اسے لگنے لگا تھا کہ شاید قسمت نے اس کے لیے کچھ رکھا ہی نہیں۔</p>
+<p>وہ اکثر لائبریری کے ایک کونے میں موجود بڑی کھڑکی کے پاس جا کر بیٹھتا تھا۔ اس کھڑکی سے باہر سڑک صاف نظر آتی تھی۔ لوگ آتے جاتے رہتے، گاڑیاں گزرتی رہتیں، اور زندگی اپنی رفتار سے چلتی رہتی۔</p>
+<p>اس دن بھی وہ اسی جگہ بیٹھا ہوا تھا۔ اس کے سامنے ایک کھلی کتاب رکھی تھی مگر اس کی نظریں کتاب پر نہیں بلکہ کھڑکی سے باہر تھیں۔</p>
+<p>بارش شروع ہو چکی تھی۔</p>
+<p>بارش کے قطرے کھڑکی کے شیشے سے ٹکرا رہے تھے اور پھر آہستہ آہستہ نیچے پھسل رہے تھے۔ علی خاموشی سے انہیں دیکھ رہا تھا۔</p>
+<p>اس کے ذہن میں عجیب قسم کے سوال چل رہے تھے۔</p>
+<p>"کیوں کچھ لوگوں کی زندگی اتنی آسان ہوتی ہے اور کچھ لوگوں کو ہر قدم پر مشکل کا سامنا کرنا پڑتا ہے؟"</p>
+<p>"کیوں کچھ خواب صرف خواب رہ جاتے ہیں؟"</p>
+<p>"اور آخر کب سب کچھ بہتر ہوگا؟"</p>
+<p>وہ انہی سوچوں میں گم تھا کہ اچانک اس کے سامنے والی کرسی کھسکنے کی آواز آئی۔</p>
+<p>اس نے سر اٹھا کر دیکھا۔</p>
+<p>ایک عمر رسیدہ شخص وہاں بیٹھ رہا تھا۔ اس کے بال مکمل سفید تھے، چہرے پر ہلکی جھریاں تھیں اور آنکھوں میں عجیب سی نرمی تھی۔ اس کے ہاتھ میں چند کتابیں تھیں۔</p>
+<p>چند لمحے خاموشی رہی۔</p>
+<p>پھر اس شخص نے کھڑکی کی طرف دیکھتے ہوئے کہا:</p>
+<p>"بارش کو دیکھنے والے لوگ اکثر بہت کچھ سوچ رہے ہوتے ہیں۔"</p>
+<p>علی نے چونک کر اس کی طرف دیکھا۔</p>
+<p>وہ شخص مسکرا رہا تھا۔</p>
+<p>علی نے ہلکی سی مسکراہٹ کے ساتھ کہا:</p>
+<p>"شاید۔"</p>
+<p>بوڑھے شخص نے شیشے پر بہتے پانی کی طرف اشارہ کیا۔</p>
+<p>"ان قطروں کو دیکھو۔"</p>
+<p>علی نے کھڑکی کی طرف دیکھا۔</p>
+<p>"یہ اوپر سے نیچے گر رہے ہیں، کچھ قطرے راستے میں رک جاتے ہیں، کچھ دوسروں سے مل جاتے ہیں، کچھ الگ ہوجاتے ہیں۔ لیکن آخر میں سب اپنی منزل تک پہنچ جاتے ہیں۔"</p>
+<p>علی خاموش رہا۔</p>
+<p>بوڑھے آدمی نے اپنی کتاب میز پر رکھتے ہوئے کہا:</p>
+<p>"انسان مسئلہ یہ کرتا ہے کہ وہ اپنی زندگی کا ایک چھوٹا سا حصہ دیکھ کر پورا فیصلہ کر لیتا ہے۔ اگر آج کچھ خراب ہو تو وہ سمجھتا ہے سب ختم ہوگیا۔ اگر آج راستہ بند ہو تو وہ سوچتا ہے آگے کوئی راستہ نہیں۔"</p>
+<p>علی نے آہستہ سے پوچھا:</p>
+<p>"اور اگر واقعی راستہ نہ ہو؟"</p>
+<p>بوڑھے شخص ہلکا سا مسکرایا۔</p>
+<p>پھر اس نے کھڑکی سے باہر سڑک کی طرف اشارہ کیا۔</p>
+<p>بارش اب کافی تیز ہو چکی تھی۔ لوگ جلدی جلدی بھاگ رہے تھے، کچھ دکانوں کے نیچے کھڑے ہوگئے تھے، کچھ گاڑیوں میں بیٹھ چکے تھے۔</p>
+<p>اس نے کہا:</p>
+<p>"کبھی غور کیا ہے؟ بارش کبھی لوگوں کو روک نہیں سکتی۔ لوگ صرف کچھ دیر کے لیے رک جاتے ہیں۔"</p>
+<p>یہ جملہ سن کر علی خاموش ہوگیا۔</p>
+<p>وہ کئی سیکنڈ تک باہر دیکھتا رہا۔</p>
+<p>پہلی بار اسے لگا کہ شاید مسئلہ اس کی زندگی نہیں تھی، مسئلہ اس کی سوچ تھی۔</p>
+<p>وہ ہر مشکل کو آخری دیوار سمجھ رہا تھا، حالانکہ شاید وہ صرف عارضی رکاوٹیں تھیں۔</p>
+<p>کچھ دیر بعد جب اس نے دوبارہ اس شخص کی طرف دیکھا تو وہ اپنی کتاب پڑھنے میں مصروف تھا۔</p>
+<p>لائبریری کی گھڑی نے آٹھ بجنے کا اعلان کیا۔</p>
+<p>علی آہستہ سے اپنی جگہ سے اٹھا، کتاب بند کی اور باہر نکلنے لگا۔</p>
+<p>جب وہ دروازے کے قریب پہنچا تو ایک بار پھر مڑا۔</p>
+<p>بوڑھا شخص اب بھی خاموشی سے کتاب پڑھ رہا تھا۔</p>
+<p>علی کے چہرے پر ہلکی سی مسکراہٹ آگئی۔</p>
+<p>شاید کئی مہینوں بعد پہلی بار۔</p>
+<p>وہ باہر آیا۔</p>
+<p>بارش اب رک چکی تھی۔</p>
+<p>سڑک اب بھی گیلی تھی لیکن بادل آہستہ آہستہ ہٹ رہے تھے اور آسمان کے ایک کونے سے چاند کی روشنی ظاہر ہونا شروع ہوگئی تھی۔</p>
+<p>اس رات گھر جاتے ہوئے اسے محسوس ہوا کہ شاید زندگی کے تمام راستے ختم نہیں ہوئے تھے۔</p>
+<p>شاید وہ صرف بارش رکنے کا انتظار کر رہا تھا۔</p>
+
+<hr>
+<h3>معنی اور غور و فکر—</h3>
+
+<p>ہم اکثر اپنی زندگی کے مشکل لمحوں کو آخری حقیقت سمجھ لیتے ہیں۔ جب حالات خراب ہوں تو انسان یہی سوچتا ہے کہ شاید اب آگے کچھ اچھا نہیں ہوگا۔ لیکن زندگی ایک موسم کی طرح ہے؛ یہ ہمیشہ ایک جیسی نہیں رہتی۔</p>
+<p>بارش کی طرح مشکل وقت بھی مستقل نہیں ہوتا۔ وہ صرف کچھ دیر کے لیے ہمیں رکنے پر مجبور کرتا ہے، مگر راستے ختم نہیں کرتا۔</p>
+<p>بعض اوقات ہمیں صرف اتنا یاد رکھنے کی ضرورت ہوتی ہے کہ اگر آج آسمان بادلوں سے بھرا ہوا ہے تو اس کا مطلب یہ نہیں کہ سورج ہمیشہ کے لیے غائب ہوگیا ہے۔</p>
+
+<hr>
+
+        <p class="end-note">— اختتام —</p>
+    </main>
+
+    <div class="story-nav">
+      <a href="urdustory428.html" class="nav-button">← پچھلی کہانی</a>
+      <a href="urdustory430.html" class="nav-button">اگلی کہانی →</a>
+    </div>
+  </article>
+
+  <!-- Floating Like + Comment Buttons -->
+  <div class="floating-buttons">
+    <div style="position: relative;">
+      <button class="float-btn" id="likeBtn">❤️</button>
+      <span class="like-count" id="likeCount">0</span>
+    </div>
+    <button class="float-btn" id="commentBtn">💬</button>
+  </div>
+
+  <!-- Comment Popup -->
+  <div class="comment-popup" id="commentPopup">
+    <div class="popup-header">
+      <span>Comments</span>
+      <button class="close-popup" id="closePopup">✕</button>
+    </div>
+
+    <div class="comments-list" id="commentsList"></div>
+
+    <form class="comment-form" action="https://formspree.io/f/your-form-id" method="POST" id="commentForm">
+      <input type="text" id="name" name="name" placeholder="Your name" required />
+      <textarea id="comment" name="comment" placeholder="Write a comment..." required></textarea>
+      <button type="submit" id="sendBtn">Send</button>
+    </form>
+  </div>
+
+  <footer class="urdu-footer">
+  <p>© 2025 Daily Pixel۔ جملہ حقوق محفوظ ہیں۔</p>
+</footer>
+
+  <script src="../js/storyFeatures.js"></script>
+
+  <script>
+    /* ---------------- LIKE SYSTEM ---------------- */
+    const likeBtn = document.getElementById("likeBtn");
+    const likeCount = document.getElementById("likeCount");
+
+    const storyKey = location.pathname.split("/").pop();
+    const likedKey = `liked_${storyKey}`;
+    const countKey = `likeCount_${storyKey}`;
+
+    let liked = localStorage.getItem(likedKey) === "true";
+    let count = parseInt(localStorage.getItem(countKey));
+
+    if (isNaN(count)) {
+      count = Math.floor(15 + Math.random() * 50);
+      localStorage.setItem(countKey, count);
+    }
+
+    updateLikeUI();
+
+    likeBtn.addEventListener("click", () => {
+      liked = !liked;
+      count = liked ? count + 1 : Math.max(0, count - 1);
+      localStorage.setItem(likedKey, liked);
+      localStorage.setItem(countKey, count);
+      updateLikeUI();
+    });
+
+    function updateLikeUI() {
+      likeBtn.classList.toggle("liked", liked);
+      likeCount.textContent = count;
+    }
+
+    /* ---------------- COMMENT POPUP ---------------- */
+    const commentBtn = document.getElementById("commentBtn");
+    const commentPopup = document.getElementById("commentPopup");
+    const closePopup = document.getElementById("closePopup");
+    const commentsList = document.getElementById("commentsList");
+    const commentForm = document.getElementById("commentForm");
+    const sendBtn = document.getElementById("sendBtn");
+
+    commentBtn.addEventListener("click", () => {
+      commentPopup.classList.add("active");
+    });
+
+    closePopup.addEventListener("click", () => {
+      commentPopup.classList.remove("active");
+    });
+
+    /* Load saved comments */
+    const commentsKey = `comments_${storyKey}`;
+    let comments = JSON.parse(localStorage.getItem(commentsKey)) || [];
+    renderComments();
+
+    function renderComments() {
+      commentsList.innerHTML = comments.length
+        ? comments.map(c => `<div class="comment-item"><strong>${c.name}</strong>${c.text}</div>`).join("")
+        : `<p style="color:#777;font-family:sans-serif;font-size:0.9rem;">No comments yet.</p>`;
+    }
+
+    /* Submit comment */
+    commentForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const text = document.getElementById("comment").value.trim();
+      if (!name || !text) return;
+
+      // Save locally
+      comments.push({ name, text });
+      localStorage.setItem(commentsKey, JSON.stringify(comments));
+      renderComments();
+
+      // Send to Formspree
+      const formData = new FormData(commentForm);
+      const action = commentForm.getAttribute("action");
+
+      try {
+        const res = await fetch(action, { method: "POST", body: formData, headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          sendBtn.textContent = "Sent ✅";
+          sendBtn.classList.add("sent");
+          sendBtn.disabled = true;
+          commentForm.reset();
+          setTimeout(() => {
+            sendBtn.textContent = "Send";
+            sendBtn.classList.remove("sent");
+            sendBtn.disabled = false;
+          }, 2000);
+        }
+      } catch {
+        alert("Connection failed. Please try again.");
+      }
+    });
+  </script>
+</body>
+</html>
