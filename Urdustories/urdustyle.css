@@ -1443,3 +1443,24 @@ body {
 .story-content {
   color: #111;
 }
+.load-more-wrapper{
+    text-align:center;
+    margin:40px 0;
+}
+
+.load-more-btn{
+    padding:15px 40px;
+    border:none;
+    border-radius:40px;
+    cursor:pointer;
+    font-size:18px;
+    font-weight:600;
+    color:white;
+    background:linear-gradient(135deg,#5a4fff,#2d8cff);
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+    transition:.3s;
+}
+
+.load-more-btn:hover{
+    transform:translateY(-3px);
+}
