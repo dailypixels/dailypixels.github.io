@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>جھیل کے کنارے والا خالی گھر</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="urdustyle.css" />
+  <link rel="stylesheet" href="style.css"/>
+
+
+  <style>
+    body {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      margin: 0;
+      background: #fff;
+    }
+
+    /* Like + Comment Floating Buttons */
+    .floating-buttons {
+      position: fixed;
+      bottom: 22px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+      z-index: 1000;
+    }
+
+    .float-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      color: #111;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      width: 52px;
+      height: 52px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .float-btn:hover {
+      transform: scale(1.1);
+      background: #f5f5f5;
+    }
+
+    .float-btn.liked {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      color: white;
+      box-shadow: 0 4px 12px rgba(34,197,94,0.4);
+    }
+
+    /* Like Count */
+    .like-count {
+      position: absolute;
+      bottom: -18px;
+      right: 15px;
+      font-size: 0.8rem;
+      color: #555;
+      font-family: sans-serif;
+    }
+
+    /* Comment Popup */
+    .comment-popup {
+      position: fixed;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      max-height: 85%;
+      background: #fff;
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -6px 20px rgba(0,0,0,0.25);
+      padding: 20px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      transition: bottom 0.4s ease;
+    }
+
+    .comment-popup.active {
+      bottom: 0;
+    }
+
+    .popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .close-popup {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .comments-list {
+      flex: 1;
+      overflow-y: auto;
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .comment-item {
+      background: #f9fafb;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      border: 1px solid #eee;
+    }
+
+    .comment-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #111;
+      font-size: 0.95rem;
+    }
+
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+      margin-top: 12px;
+    }
+
+    .comment-form input,
+    .comment-form textarea {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 10px;
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      width: 100%;
+      resize: none;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .comment-form input:focus,
+    .comment-form textarea:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+    }
+
+    .comment-form button {
+      align-self: flex-start;
+      background: linear-gradient(90deg, #2563eb, #1d4ed8);
+      color: white;
+      border: none;
+      border-radius: 40px;
+      padding: 8px 22px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(37,99,235,0.3);
+    }
+
+    .comment-form button:hover {
+      transform: scale(1.05);
+    }
+
+    .comment-form button.sent {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      box-shadow: 0 4px 10px rgba(34,197,94,0.4);
+      cursor: default;
+      transform: none;
+    }
+
+    /* Scrollbar */
+    .comments-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    .comments-list::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .float-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+      }
+      .comment-popup {
+        padding: 16px;
+      }
+    }
+ul {
+  list-style-position: inside;
+  padding-right: 0;
+}
+
+li {
+  margin-bottom: 8px;
+  line-height: 1.8;
+}
+
+  </style>
+</head>
+<body>
+
+    <!-- SEO -->
+  <meta name="description" content="کچھ گھر وقت کے ساتھ خالی ہوجاتے ہیں، لیکن ان کی دیواروں میں کہانیاں باقی رہتی ہیں۔ بعض جگہیں انسان کو صرف پناہ نہیں دیتیں بلکہ اسے اپنے بارے میں ایسی باتیں سمجھا دیتی ہیں جو برسوں کی مصروف زندگی بھی نہیں سکھا پاتی۔ یہ کہانی ایک ایسے ہی گھر، ایک خاموش جھیل، اور ایک ایسے انسان کی ہے جو اپنے کھوئے ہوئے سکون کو تلاش کرنے نکلا تھا۔" />
+  <meta name="keywords" content="اردو کہانی، طویل اردو کہانی، جذباتی کہانی، زندگی کے سبق، امید، خود شناسی، اردو ادب" />
+
+  <!-- Back to Urdu Stories -->
+  <a class="back-link" href="index.html">← تمام اردو کہانیاں</a>
+
+  <article class="story-container">
+    <header class="story-header">
+      <h1 class="story-title">جھیل کے کنارے والا خالی گھر</h1>
+      <p class="story-meta">21 جون 2026 — by Daily Pixels</p>
+      <div class="story-tags"><span>امید</span><span>زندگی کے سبق</span><span>جذباتی کہانی</span></div>
+      <img class="urdu-featured-image" src="https://images.unsplash.com/photo-1648552093450-ca39db1198cf?q=80&w=1331&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Abandoned wooden house beside a calm lake, morning mist, mountains in background, cinematic peaceful atmosphere" loading="eager" />
+    </header>
+
+    <main class="story-content">
+
+<hr>
+
+<p>جھیل کے کنارے واقع وہ گھر دور سے دیکھنے پر عام سا محسوس ہوتا تھا، لیکن قریب جانے پر اس کے اندر ایک عجیب سی کشش محسوس ہوتی تھی۔ لکڑی سے بنا ہوا وہ پرانا مکان شاید کئی دہائیوں پرانا تھا۔ اس کی کھڑکیوں کے فریم وقت کے اثر سے مدھم پڑ چکے تھے، برآمدے کی لکڑی کئی جگہوں سے گھس چکی تھی، اور چھت پر گرنے والے پتوں نے اسے اردگرد کے درختوں کا حصہ بنا دیا تھا۔ گھر کے سامنے پھیلی ہوئی جھیل صبح کے وقت شیشے کی طرح پرسکون نظر آتی تھی، اور اس کے پانی میں آسمان، بادل اور درخت ایسے منعکس ہوتے تھے جیسے کسی مصور نے انتہائی احتیاط سے ایک تصویر بنائی ہو۔</p>
+<p>حسان پہلی بار اس جگہ آیا تھا۔</p>
+<p>شہر میں گزرا ہوا پچھلا ایک سال اس کے لیے بے حد مشکل ثابت ہوا تھا۔ وہ ایک کامیاب پیشہ ور شخص سمجھا جاتا تھا۔ اچھی ملازمت، مناسب آمدنی اور ایک مصروف زندگی اس کے پاس موجود تھی۔ بظاہر سب کچھ ٹھیک تھا، مگر حقیقت اس کے بالکل برعکس تھی۔ اس کے دن ذمہ داریوں کے بوجھ تلے گزرتے تھے اور راتیں بے چینی میں۔ وہ اکثر لوگوں کے درمیان موجود ہوتا، مگر اندر سے شدید تنہائی محسوس کرتا۔ اس کے پاس ہر سوال کا جواب تھا، سوائے اس سوال کے کہ وہ خود خوش کیوں نہیں تھا۔</p>
+<p>ایک دن مسلسل تھکن اور ذہنی دباؤ کے بعد اس نے چند دن کی چھٹی لی اور شہر سے دور نکل آیا۔ اس کا ارادہ صرف اتنا تھا کہ کچھ دن خاموشی میں گزارے جائیں، لیکن اسے اندازہ نہیں تھا کہ یہ سفر اس کی سوچ بدل دے گا۔</p>
+<p>پہلی صبح وہ بہت جلد جاگ گیا۔ سورج ابھی مکمل طور پر نہیں نکلا تھا۔ ہلکی دھند جھیل کے اوپر تیر رہی تھی اور پانی کی سطح پر ہلکی لہریں پیدا ہورہی تھیں۔ وہ گھر کے برآمدے میں بیٹھ گیا اور کافی دیر تک صرف منظر کو دیکھتا رہا۔ کوئی آواز نہیں تھی، سوائے پرندوں کی مدھم چہچہاہٹ اور درختوں کے پتوں سے گزرتی ہوا کے۔</p>
+<p>شہر میں وہ ہر وقت کچھ نہ کچھ سننے کا عادی ہوچکا تھا؛ گاڑیوں کا شور، فون کی گھنٹیاں، لوگوں کی باتیں، خبروں کی آوازیں۔ یہاں پہلی بار اسے خاموشی سنائی دے رہی تھی۔</p>
+<p>اسی دن دوپہر کے وقت اس نے جھیل کے گرد چہل قدمی شروع کی۔ راستہ درختوں کے درمیان سے گزرتا تھا اور کئی جگہوں پر لکڑی کے پرانے تختے زمین پر بچھے ہوئے تھے۔ کچھ فاصلے پر اسے ایک بزرگ شخص نظر آئے جو پانی کے کنارے بیٹھے ہوئے ماہی گیری کی کوشش کر رہے تھے۔</p>
+<p>ان کے سفید بال ہوا میں ہلکے ہلکے ہل رہے تھے اور چہرے پر وہ سکون تھا جو اکثر صرف عمر اور تجربے کے بعد حاصل ہوتا ہے۔</p>
+<p>حسان نے سلام کیا اور قریب بیٹھ گیا۔</p>
+<p>بزرگ شخص نے مسکرا کر جواب دیا اور پھر جھیل کی طرف دیکھتے ہوئے بولے، "یہ جگہ پہلی بار آئے ہو؟"</p>
+<p>"جی۔"</p>
+<p>"اور شاید کچھ ڈھونڈنے آئے ہو۔"</p>
+<p>حسان نے چونک کر ان کی طرف دیکھا۔</p>
+<p>یہ عجیب بات تھی کہ وہ شخص اس کے دل کی حالت کو چند لمحوں میں سمجھ گیا تھا۔</p>
+<p>کچھ دیر خاموشی رہی۔ پھر بزرگ آدمی نے اپنی نظریں جھیل پر رکھتے ہوئے کہا، "جانتے ہو، لوگ اکثر سمجھتے ہیں کہ سکون کہیں باہر موجود ہے۔ وہ نئی جگہوں پر جاتے ہیں، نئے لوگوں سے ملتے ہیں، نئی چیزیں خریدتے ہیں، لیکن پھر بھی خالی محسوس کرتے ہیں۔"</p>
+<p>حسان غور سے سننے لگا۔</p>
+<p>"کیونکہ سکون کوئی جگہ نہیں، ایک حالت ہے۔"</p>
+<p>یہ جملہ سادہ تھا، مگر اس میں ایک عجیب گہرائی تھی۔</p>
+<p>حسان نے آہستہ سے پوچھا، "اگر انسان اپنے اندر ہی سکون نہ ڈھونڈ پائے تو؟"</p>
+<p>بزرگ شخص مسکرائے۔</p>
+<p>انہوں نے جھیل کے پانی کی طرف اشارہ کیا۔</p>
+<p>"اس پانی کو دیکھو۔"</p>
+<p>حسان نے جھیل کی سطح کی طرف دیکھا۔</p>
+<p>"جب ہوا تیز چلتی ہے تو پانی بے چین ہوجاتا ہے۔ لہریں پیدا ہوتی ہیں، عکس ٹوٹ جاتے ہیں اور کچھ بھی صاف نظر نہیں آتا۔ لیکن جب ہوا رک جاتی ہے تو یہی پانی ہر چیز کو واضح دکھانے لگتا ہے۔"</p>
+<p>وہ چند لمحے رکے اور پھر بولے:</p>
+<p>"انسان کا ذہن بھی ایسا ہی ہے۔ جب ہر وقت فکر، خوف، موازنہ اور جلدی ہو تو وہ اپنے اندر کچھ نہیں دیکھ پاتا۔"</p>
+<p>یہ الفاظ حسان کے دل میں اترتے چلے گئے۔</p>
+<p>اسے احساس ہوا کہ وہ کئی سالوں سے مسلسل دوڑ رہا تھا۔ وہ ہمیشہ اگلے مقصد کے بارے میں سوچتا تھا۔ جب ایک کامیابی ملتی تو وہ اگلی کامیابی کے پیچھے بھاگنے لگتا۔ اس نے اپنی زندگی کو اہداف کی فہرست بنا دیا تھا، مگر اس فہرست میں سکون کہیں موجود نہیں تھا۔</p>
+<p>اگلے چند دن اس نے اسی جھیل کے کنارے گزارے۔</p>
+<p>وہ صبح سورج نکلتے دیکھتا، دوپہر میں درختوں کے درمیان چلتا اور شام کو جھیل کے پانی پر پڑتی روشنیوں کو خاموشی سے دیکھتا رہتا۔ آہستہ آہستہ اس کے ذہن کا شور کم ہونے لگا۔ پہلی بار اسے محسوس ہوا کہ ہر لمحے کچھ حاصل کرنا ضروری نہیں۔ کبھی کبھی صرف رک جانا بھی ضروری ہوتا ہے۔</p>
+<p>واپسی سے ایک دن پہلے وہ دوبارہ اسی بزرگ شخص سے ملا۔</p>
+<p>شام کا وقت تھا۔ سورج غروب ہونے کے قریب تھا اور جھیل سنہری روشنی سے بھر گئی تھی۔</p>
+<p>حسان نے کہا، "مجھے لگتا ہے میں یہاں کچھ سیکھ کر جا رہا ہوں۔"</p>
+<p>بزرگ آدمی ہلکا سا مسکرائے۔</p>
+<p>"کیا؟"</p>
+<p>حسان نے کچھ لمحے سوچا۔</p>
+<p>"یہ کہ شاید زندگی کو ہر وقت بہتر بنانے کی کوشش میں، میں زندگی جینا ہی بھول گیا تھا۔"</p>
+<p>بزرگ شخص نے سر ہلایا۔</p>
+<p>"زیادہ تر لوگ یہی غلطی کرتے ہیں۔ وہ مستقبل کی فکر میں حال کو ضائع کردیتے ہیں، پھر ایک دن پیچھے مڑ کر دیکھتے ہیں تو احساس ہوتا ہے کہ بہترین لمحے تو انہی دنوں میں تھے جنہیں وہ عام سمجھ کر گزار گئے۔"</p>
+<p>اس رات حسان کافی دیر تک جھیل کے کنارے بیٹھا رہا۔</p>
+<p>آسمان پر ستارے چمک رہے تھے اور پانی میں ان کا عکس ہلکے ہلکے لرز رہا تھا۔</p>
+<p>وہ جانتا تھا کہ واپس جا کر اس کی زندگی یکدم تبدیل نہیں ہوجائے گی۔ مسائل اب بھی ہوں گے، ذمہ داریاں بھی رہیں گی، اور چیلنجز بھی موجود ہوں گے۔</p>
+<p>لیکن اس بار اس کے پاس ایک نئی سمجھ تھی۔</p>
+<p>وہ سمجھ چکا تھا کہ سکون کسی منزل پر نہیں ملتا، بلکہ سفر کے دوران پیدا کرنا پڑتا ہے۔</p>
+
+<hr>
+<h3>معنی اور غور و فکر—</h3>
+
+<p>ہم اکثر یہ سوچتے ہیں کہ خوشی اور سکون کسی بڑی کامیابی، نئی نوکری، زیادہ پیسے یا بہتر حالات کے بعد حاصل ہوں گے۔ لیکن حقیقت یہ ہے کہ اگر انسان اپنے موجودہ لمحے میں سکون پیدا نہیں کر سکتا تو مستقبل کی کامیابیاں بھی اسے زیادہ دیر خوش نہیں رکھ سکتیں۔</p>
+<p>یہ کہانی یاد دلاتی ہے کہ زندگی صرف حاصل کرنے کا نام نہیں، محسوس کرنے کا نام بھی ہے۔ کبھی کبھی رک جانا، خاموشی اختیار کرنا اور اپنے اندر جھانکنا بھی اتنا ہی ضروری ہوتا ہے جتنا آگے بڑھنا۔</p>
+<p>اصل سکون وہاں نہیں ملتا جہاں ہم پہنچنا چاہتے ہیں، بلکہ وہاں ملتا ہے جہاں ہم خود کو سمجھنا شروع کرتے ہیں۔</p>
+
+<hr>
+
+        <p class="end-note">— اختتام —</p>
+    </main>
+
+    <div class="story-nav">
+      <a href="urdustory435.html" class="nav-button">← پچھلی کہانی</a>
+    </div>
+  </article>
+
+  <!-- Floating Like + Comment Buttons -->
+  <div class="floating-buttons">
+    <div style="position: relative;">
+      <button class="float-btn" id="likeBtn">❤️</button>
+      <span class="like-count" id="likeCount">0</span>
+    </div>
+    <button class="float-btn" id="commentBtn">💬</button>
+  </div>
+
+  <!-- Comment Popup -->
+  <div class="comment-popup" id="commentPopup">
+    <div class="popup-header">
+      <span>Comments</span>
+      <button class="close-popup" id="closePopup">✕</button>
+    </div>
+
+    <div class="comments-list" id="commentsList"></div>
+
+    <form class="comment-form" action="https://formspree.io/f/your-form-id" method="POST" id="commentForm">
+      <input type="text" id="name" name="name" placeholder="Your name" required />
+      <textarea id="comment" name="comment" placeholder="Write a comment..." required></textarea>
+      <button type="submit" id="sendBtn">Send</button>
+    </form>
+  </div>
+
+  <footer class="urdu-footer">
+  <p>© 2025 Daily Pixel۔ جملہ حقوق محفوظ ہیں۔</p>
+</footer>
+
+  <script src="../js/storyFeatures.js"></script>
+
+  <script>
+    /* ---------------- LIKE SYSTEM ---------------- */
+    const likeBtn = document.getElementById("likeBtn");
+    const likeCount = document.getElementById("likeCount");
+
+    const storyKey = location.pathname.split("/").pop();
+    const likedKey = `liked_${storyKey}`;
+    const countKey = `likeCount_${storyKey}`;
+
+    let liked = localStorage.getItem(likedKey) === "true";
+    let count = parseInt(localStorage.getItem(countKey));
+
+    if (isNaN(count)) {
+      count = Math.floor(15 + Math.random() * 50);
+      localStorage.setItem(countKey, count);
+    }
+
+    updateLikeUI();
+
+    likeBtn.addEventListener("click", () => {
+      liked = !liked;
+      count = liked ? count + 1 : Math.max(0, count - 1);
+      localStorage.setItem(likedKey, liked);
+      localStorage.setItem(countKey, count);
+      updateLikeUI();
+    });
+
+    function updateLikeUI() {
+      likeBtn.classList.toggle("liked", liked);
+      likeCount.textContent = count;
+    }
+
+    /* ---------------- COMMENT POPUP ---------------- */
+    const commentBtn = document.getElementById("commentBtn");
+    const commentPopup = document.getElementById("commentPopup");
+    const closePopup = document.getElementById("closePopup");
+    const commentsList = document.getElementById("commentsList");
+    const commentForm = document.getElementById("commentForm");
+    const sendBtn = document.getElementById("sendBtn");
+
+    commentBtn.addEventListener("click", () => {
+      commentPopup.classList.add("active");
+    });
+
+    closePopup.addEventListener("click", () => {
+      commentPopup.classList.remove("active");
+    });
+
+    /* Load saved comments */
+    const commentsKey = `comments_${storyKey}`;
+    let comments = JSON.parse(localStorage.getItem(commentsKey)) || [];
+    renderComments();
+
+    function renderComments() {
+      commentsList.innerHTML = comments.length
+        ? comments.map(c => `<div class="comment-item"><strong>${c.name}</strong>${c.text}</div>`).join("")
+        : `<p style="color:#777;font-family:sans-serif;font-size:0.9rem;">No comments yet.</p>`;
+    }
+
+    /* Submit comment */
+    commentForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const text = document.getElementById("comment").value.trim();
+      if (!name || !text) return;
+
+      // Save locally
+      comments.push({ name, text });
+      localStorage.setItem(commentsKey, JSON.stringify(comments));
+      renderComments();
+
+      // Send to Formspree
+      const formData = new FormData(commentForm);
+      const action = commentForm.getAttribute("action");
+
+      try {
+        const res = await fetch(action, { method: "POST", body: formData, headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          sendBtn.textContent = "Sent ✅";
+          sendBtn.classList.add("sent");
+          sendBtn.disabled = true;
+          commentForm.reset();
+          setTimeout(() => {
+            sendBtn.textContent = "Send";
+            sendBtn.classList.remove("sent");
+            sendBtn.disabled = false;
+          }, 2000);
+        }
+      } catch {
+        alert("Connection failed. Please try again.");
+      }
+    });
+  </script>
+</body>
+</html>

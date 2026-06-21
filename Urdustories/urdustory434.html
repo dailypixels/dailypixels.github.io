@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>سمندر کے کنارے والی روشنی</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="urdustyle.css" />
+  <link rel="stylesheet" href="style.css"/>
+
+
+  <style>
+    body {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      margin: 0;
+      background: #fff;
+    }
+
+    /* Like + Comment Floating Buttons */
+    .floating-buttons {
+      position: fixed;
+      bottom: 22px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+      z-index: 1000;
+    }
+
+    .float-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      color: #111;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      width: 52px;
+      height: 52px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .float-btn:hover {
+      transform: scale(1.1);
+      background: #f5f5f5;
+    }
+
+    .float-btn.liked {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      color: white;
+      box-shadow: 0 4px 12px rgba(34,197,94,0.4);
+    }
+
+    /* Like Count */
+    .like-count {
+      position: absolute;
+      bottom: -18px;
+      right: 15px;
+      font-size: 0.8rem;
+      color: #555;
+      font-family: sans-serif;
+    }
+
+    /* Comment Popup */
+    .comment-popup {
+      position: fixed;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      max-height: 85%;
+      background: #fff;
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -6px 20px rgba(0,0,0,0.25);
+      padding: 20px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      transition: bottom 0.4s ease;
+    }
+
+    .comment-popup.active {
+      bottom: 0;
+    }
+
+    .popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .close-popup {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .comments-list {
+      flex: 1;
+      overflow-y: auto;
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .comment-item {
+      background: #f9fafb;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      border: 1px solid #eee;
+    }
+
+    .comment-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #111;
+      font-size: 0.95rem;
+    }
+
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+      margin-top: 12px;
+    }
+
+    .comment-form input,
+    .comment-form textarea {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 10px;
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      width: 100%;
+      resize: none;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .comment-form input:focus,
+    .comment-form textarea:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+    }
+
+    .comment-form button {
+      align-self: flex-start;
+      background: linear-gradient(90deg, #2563eb, #1d4ed8);
+      color: white;
+      border: none;
+      border-radius: 40px;
+      padding: 8px 22px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(37,99,235,0.3);
+    }
+
+    .comment-form button:hover {
+      transform: scale(1.05);
+    }
+
+    .comment-form button.sent {
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      box-shadow: 0 4px 10px rgba(34,197,94,0.4);
+      cursor: default;
+      transform: none;
+    }
+
+    /* Scrollbar */
+    .comments-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    .comments-list::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .float-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+      }
+      .comment-popup {
+        padding: 16px;
+      }
+    }
+ul {
+  list-style-position: inside;
+  padding-right: 0;
+}
+
+li {
+  margin-bottom: 8px;
+  line-height: 1.8;
+}
+
+  </style>
+</head>
+<body>
+
+    <!-- SEO -->
+  <meta name="description" content="زندگی میں کچھ سوال ایسے ہوتے ہیں جن کے جواب کتابوں میں نہیں ملتے۔ انسان جتنا انہیں سمجھنے کی کوشش کرتا ہے، اتنا ہی الجھتا جاتا ہے۔ لیکن کبھی کبھی ایک خاموش شام، سمندر کی لہریں، اور ایک اجنبی کی چند باتیں وہ سمجھا دیتی ہیں جو برسوں کی سوچ بھی نہیں سمجھا پاتی۔ یہ کہانی ایسے ہی ایک سفر کی ہے۔" />
+  <meta name="keywords" content="اردو کہانی، جذباتی کہانی، زندگی کے سبق، امید، خود شناسی، انسانی تعلقات، اردو ادب" />
+
+  <!-- Back to Urdu Stories -->
+  <a class="back-link" href="index.html">← تمام اردو کہانیاں</a>
+
+  <article class="story-container">
+    <header class="story-header">
+      <h1 class="story-title">سمندر کے کنارے والی روشنی</h1>
+      <p class="story-meta">21 جون 2026 — by Daily Pixels</p>
+      <div class="story-tags"><span>خود شناسی</span><span>امید</span><span>زندگی کے سبق</span></div>
+      <img class="urdu-featured-image" src="https://images.unsplash.com/photo-1579280417587-5aafee5d72c1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fExvbmVseSUyMGxpZ2h0aG91c2UlMjBieSUyMHRoZSUyMHNlYSUyMGF0JTIwZHVzayUyQyUyMGNyYXNoaW5nJTIwd2F2ZXMlMkMlMjBkcmFtYXRpYyUyMHNreSUyQyUyMHdhcm0lMjBsaWdodCUyMGZyb20lMjB0b3dlciUyQyUyMGNpbmVtYXRpYyUyMGF0bW9zcGhlcmV8ZW58MHx8MHx8fDA%3D" alt="Lonely lighthouse by the sea at dusk, crashing waves, dramatic sky, warm light from tower, cinematic atmosphere" loading="eager" />
+    </header>
+
+    <main class="story-content">
+
+<hr>
+
+<p>شہر کے شور سے بہت دور، جہاں پکی سڑک ختم ہوکر پتھریلے راستے میں بدل جاتی تھی اور جہاں ہوا میں نمکین سمندری خوشبو گھل جاتی تھی، وہاں ایک پرانا ساحلی علاقہ تھا۔ اس ساحل پر سیاح کم آتے تھے کیونکہ یہاں نہ بڑے ہوٹل تھے، نہ رنگ برنگی روشنیاں اور نہ ہی تفریح کے جدید انتظامات۔ یہاں صرف سمندر تھا، اس کی بے شمار لہریں تھیں، دور افق تک پھیلا ہوا پانی تھا، اور ایک پرانا لائٹ ہاؤس جو کئی دہائیوں سے خاموشی کے ساتھ کھڑا تھا۔</p>
+<p>شام ڈھل رہی تھی۔</p>
+<p>سورج آہستہ آہستہ سمندر میں اترتا محسوس ہو رہا تھا اور آسمان پر نارنجی، سنہری اور جامنی رنگ ایک دوسرے میں گھل رہے تھے۔ لہریں مسلسل ساحل سے ٹکرا رہی تھیں اور ان کی آواز ایسی تھی جیسے سمندر کوئی پرانی کہانی دہرا رہا ہو۔</p>
+<p>اسی ساحل پر حماد اکیلا بیٹھا تھا۔</p>
+<p>اس کی نظریں دور پانی پر جمی ہوئی تھیں لیکن اس کا ذہن کہیں اور بھٹک رہا تھا۔</p>
+<p>گزشتہ ایک سال اس کی زندگی کا سب سے مشکل سال رہا تھا۔ وہ ہمیشہ ایک منظم اور محنتی انسان رہا تھا۔ اس نے اپنی تعلیم مکمل کی، اچھی نوکری حاصل کی، اور ہر وہ قدم اٹھایا جو کامیابی کی طرف جاتا دکھائی دیتا تھا۔</p>
+<p>لیکن زندگی ہمیشہ منصوبوں کے مطابق نہیں چلتی۔</p>
+<p>کمپنی میں اچانک تبدیلیاں آئیں، اس کی پوزیشن ختم ہوگئی، کئی ماہ کی بے روزگاری شروع ہوگئی، اور پھر آہستہ آہستہ اس کے اعتماد میں دراڑیں پڑنے لگیں۔</p>
+<p>لوگ اسے مشورے دیتے تھے۔</p>
+<p>"فکر نہ کرو۔"</p>
+<p>"سب ٹھیک ہوجائے گا۔"</p>
+<p>"مثبت سوچو۔"</p>
+<p>لیکن کبھی کبھی انسان کو مسئلہ یہ نہیں ہوتا کہ وہ حل نہیں جانتا، مسئلہ یہ ہوتا ہے کہ وہ امید کھونے لگتا ہے۔</p>
+<p>حماد انہی خیالات میں گم تھا جب اس نے محسوس کیا کہ کوئی شخص قریب آکر کھڑا ہوگیا ہے۔</p>
+<p>وہ ایک بزرگ آدمی تھے۔</p>
+<p>ان کے ہاتھ میں مچھلی پکڑنے والی پرانی چھڑی تھی اور کندھوں پر موٹا کوٹ۔</p>
+<p>وہ کچھ دیر خاموشی سے سمندر کو دیکھتے رہے، پھر آہستہ سے بولے:</p>
+<p>"سمندر کو دیکھنے والے لوگ اکثر اپنے اندر طوفان لے کر آتے ہیں۔"</p>
+<p>حماد نے چونک کر ان کی طرف دیکھا۔</p>
+<p>بزرگ شخص کی نظریں اب بھی سمندر پر تھیں۔</p>
+<p>حماد نے ہلکی سی مسکراہٹ کے ساتھ کہا:</p>
+<p>"شاید آپ ٹھیک کہہ رہے ہیں۔"</p>
+<p>بزرگ آدمی ریت پر بیٹھ گئے۔</p>
+<p>"کبھی غور کیا ہے؟ سمندر کی سطح پر ہمیشہ شور ہوتا ہے، لیکن گہرائی میں خاموشی ہوتی ہے۔"</p>
+<p>حماد نے کچھ نہیں کہا۔</p>
+<p>وہ صرف سن رہا تھا۔</p>
+<p>بزرگ آدمی نے ایک چھوٹا سا پتھر اٹھایا اور پانی کی طرف پھینک دیا۔</p>
+<p>پتھر چند اچھال کھا کر لہروں میں غائب ہوگیا۔</p>
+<p>"انسان بھی عجیب ہے۔ وہ اپنی زندگی کی سطح پر ہونے والی ہر چیز کو اپنی پوری حقیقت سمجھ لیتا ہے۔ اگر نوکری چلی جائے تو لگتا ہے سب ختم ہوگیا۔ اگر کوئی خواب ٹوٹ جائے تو محسوس ہوتا ہے زندگی بے معنی ہوگئی۔"</p>
+<p>انہوں نے حماد کی طرف دیکھا۔</p>
+<p>"لیکن حقیقت اکثر اس سے کہیں گہری ہوتی ہے۔"</p>
+<p>ہوا اب کچھ تیز ہوگئی تھی۔</p>
+<p>لائٹ ہاؤس کی روشنی آہستہ آہستہ جلنا شروع ہوگئی تھی اور اس کی روشنی سمندر پر لمبی لکیر بناتی ہوئی دور تک جا رہی تھی۔</p>
+<p>حماد نے آہستہ سے پوچھا:</p>
+<p>"اگر انسان بار بار کوشش کرے اور پھر بھی کامیاب نہ ہو تو؟"</p>
+<p>بزرگ آدمی مسکرائے۔</p>
+<p>"تمہیں معلوم ہے لائٹ ہاؤس کیا کرتا ہے؟"</p>
+<p>حماد نے سر ہلایا۔</p>
+<p>"جہازوں کو راستہ دکھاتا ہے۔"</p>
+<p>"بالکل۔ لیکن کیا لائٹ ہاؤس سمندر کو پرسکون کرتا ہے؟"</p>
+<p>"نہیں۔"</p>
+<p>"کیا وہ طوفان روک دیتا ہے؟"</p>
+<p>"نہیں۔"</p>
+<p>"کیا وہ لہروں کو ختم کردیتا ہے؟"</p>
+<p>"نہیں۔"</p>
+<p>بزرگ آدمی نے لائٹ ہاؤس کی طرف اشارہ کیا۔</p>
+<p>"وہ صرف روشنی دیتا ہے۔"</p>
+<p>حماد خاموش ہوگیا۔</p>
+<p>بزرگ آدمی کی آواز نرم تھی مگر الفاظ گہرے تھے۔</p>
+<p>"زندگی میں امید بھی لائٹ ہاؤس جیسی ہوتی ہے۔ یہ مسائل ختم نہیں کرتی، طوفان نہیں روکتی، راستے کو آسان نہیں بناتی۔ لیکن یہ اتنی روشنی ضرور دیتی ہے کہ انسان اگلا قدم دیکھ سکے۔"</p>
+<p>یہ جملہ سن کر حماد کی نظریں دوبارہ سمندر کی طرف چلی گئیں۔</p>
+<p>اسے احساس ہوا کہ وہ کئی مہینوں سے پورا راستہ دیکھنے کی کوشش کر رہا تھا۔</p>
+<p>وہ جاننا چاہتا تھا کہ اگلے پانچ سال کیسے ہوں گے، کب کامیابی ملے گی، کب سب ٹھیک ہوگا۔</p>
+<p>اور شاید اسی وجہ سے وہ تھک گیا تھا۔</p>
+<p>شاید انسان کو پورا سمندر نہیں، صرف اگلی لہر پار کرنی ہوتی ہے۔</p>
+<p>کچھ دیر بعد سورج مکمل طور پر غروب ہوگیا۔</p>
+<p>آسمان تاریک ہونے لگا۔</p>
+<p>لائٹ ہاؤس کی روشنی اب زیادہ واضح دکھائی دے رہی تھی۔</p>
+<p>بزرگ آدمی آہستہ سے کھڑے ہوگئے۔</p>
+<p>"مجھے چلنا چاہیے۔"</p>
+<p>حماد بھی کھڑا ہوگیا۔</p>
+<p>"کیا آپ یہاں روز آتے ہیں؟"</p>
+<p>بزرگ آدمی ہلکا سا مسکرائے۔</p>
+<p>"جب مجھے یاد دلانا ہو کہ سمندر جتنا بھی بے چین ہو، روشنی بجھنی نہیں چاہیے۔"</p>
+<p>یہ کہہ کر وہ ساحل کے ساتھ ساتھ چلتے ہوئے دور ہوتے گئے۔</p>
+<p>حماد کافی دیر تک انہیں جاتا ہوا دیکھتا رہا۔</p>
+<p>پھر اس نے سمندر کی طرف رخ کیا۔</p>
+<p>لہریں اب بھی ویسی ہی تھیں۔</p>
+<p>ہوا اب بھی ویسی ہی تھی۔</p>
+<p>مسائل بھی ابھی ختم نہیں ہوئے تھے۔</p>
+<p>مگر اس کے اندر ایک فرق آچکا تھا۔</p>
+<p>کافی عرصے بعد اسے محسوس ہوا کہ شاید اسے تمام جوابوں کی ضرورت نہیں۔</p>
+<p>شاید اسے صرف اتنی روشنی چاہیے تھی کہ وہ اگلا قدم اٹھا سکے۔</p>
+<p>اور بعض اوقات یہی کافی ہوتا ہے۔</p>
+
+<hr>
+<h3>معنی اور غور و فکر—</h3>
+
+<p>ہم اکثر زندگی میں پورا راستہ دیکھنے کی کوشش کرتے ہیں۔ ہم جاننا چاہتے ہیں کہ مستقبل کیسا ہوگا، کب کامیابی ملے گی، اور کب مشکلات ختم ہوں گی۔ لیکن زندگی اس طرح نہیں چلتی۔</p>
+<p>جس طرح لائٹ ہاؤس پورا سمندر روشن نہیں کرتا بلکہ صرف اتنی روشنی دیتا ہے کہ جہاز اپنا اگلا راستہ دیکھ سکے، اسی طرح امید بھی ہمیں صرف اگلا قدم دکھاتی ہے۔</p>
+<p>کامیاب زندگی وہ نہیں جس میں کبھی طوفان نہ آئے، بلکہ وہ ہے جس میں طوفان کے باوجود انسان اپنی روشنی بجھنے نہ دے۔</p>
+
+<hr>
+
+        <p class="end-note">— اختتام —</p>
+    </main>
+
+    <div class="story-nav">
+      <a href="urdustory433.html" class="nav-button">← پچھلی کہانی</a>
+      <a href="urdustory435.html" class="nav-button">اگلی کہانی →</a>
+    </div>
+  </article>
+
+  <!-- Floating Like + Comment Buttons -->
+  <div class="floating-buttons">
+    <div style="position: relative;">
+      <button class="float-btn" id="likeBtn">❤️</button>
+      <span class="like-count" id="likeCount">0</span>
+    </div>
+    <button class="float-btn" id="commentBtn">💬</button>
+  </div>
+
+  <!-- Comment Popup -->
+  <div class="comment-popup" id="commentPopup">
+    <div class="popup-header">
+      <span>Comments</span>
+      <button class="close-popup" id="closePopup">✕</button>
+    </div>
+
+    <div class="comments-list" id="commentsList"></div>
+
+    <form class="comment-form" action="https://formspree.io/f/your-form-id" method="POST" id="commentForm">
+      <input type="text" id="name" name="name" placeholder="Your name" required />
+      <textarea id="comment" name="comment" placeholder="Write a comment..." required></textarea>
+      <button type="submit" id="sendBtn">Send</button>
+    </form>
+  </div>
+
+  <footer class="urdu-footer">
+  <p>© 2025 Daily Pixel۔ جملہ حقوق محفوظ ہیں۔</p>
+</footer>
+
+  <script src="../js/storyFeatures.js"></script>
+
+  <script>
+    /* ---------------- LIKE SYSTEM ---------------- */
+    const likeBtn = document.getElementById("likeBtn");
+    const likeCount = document.getElementById("likeCount");
+
+    const storyKey = location.pathname.split("/").pop();
+    const likedKey = `liked_${storyKey}`;
+    const countKey = `likeCount_${storyKey}`;
+
+    let liked = localStorage.getItem(likedKey) === "true";
+    let count = parseInt(localStorage.getItem(countKey));
+
+    if (isNaN(count)) {
+      count = Math.floor(15 + Math.random() * 50);
+      localStorage.setItem(countKey, count);
+    }
+
+    updateLikeUI();
+
+    likeBtn.addEventListener("click", () => {
+      liked = !liked;
+      count = liked ? count + 1 : Math.max(0, count - 1);
+      localStorage.setItem(likedKey, liked);
+      localStorage.setItem(countKey, count);
+      updateLikeUI();
+    });
+
+    function updateLikeUI() {
+      likeBtn.classList.toggle("liked", liked);
+      likeCount.textContent = count;
+    }
+
+    /* ---------------- COMMENT POPUP ---------------- */
+    const commentBtn = document.getElementById("commentBtn");
+    const commentPopup = document.getElementById("commentPopup");
+    const closePopup = document.getElementById("closePopup");
+    const commentsList = document.getElementById("commentsList");
+    const commentForm = document.getElementById("commentForm");
+    const sendBtn = document.getElementById("sendBtn");
+
+    commentBtn.addEventListener("click", () => {
+      commentPopup.classList.add("active");
+    });
+
+    closePopup.addEventListener("click", () => {
+      commentPopup.classList.remove("active");
+    });
+
+    /* Load saved comments */
+    const commentsKey = `comments_${storyKey}`;
+    let comments = JSON.parse(localStorage.getItem(commentsKey)) || [];
+    renderComments();
+
+    function renderComments() {
+      commentsList.innerHTML = comments.length
+        ? comments.map(c => `<div class="comment-item"><strong>${c.name}</strong>${c.text}</div>`).join("")
+        : `<p style="color:#777;font-family:sans-serif;font-size:0.9rem;">No comments yet.</p>`;
+    }
+
+    /* Submit comment */
+    commentForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const text = document.getElementById("comment").value.trim();
+      if (!name || !text) return;
+
+      // Save locally
+      comments.push({ name, text });
+      localStorage.setItem(commentsKey, JSON.stringify(comments));
+      renderComments();
+
+      // Send to Formspree
+      const formData = new FormData(commentForm);
+      const action = commentForm.getAttribute("action");
+
+      try {
+        const res = await fetch(action, { method: "POST", body: formData, headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          sendBtn.textContent = "Sent ✅";
+          sendBtn.classList.add("sent");
+          sendBtn.disabled = true;
+          commentForm.reset();
+          setTimeout(() => {
+            sendBtn.textContent = "Send";
+            sendBtn.classList.remove("sent");
+            sendBtn.disabled = false;
+          }, 2000);
+        }
+      } catch {
+        alert("Connection failed. Please try again.");
+      }
+    });
+  </script>
+</body>
+</html>
